@@ -1,0 +1,56 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "title",
+            "settings": {
+                "helpText": "Will be used as link text"
+            },
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "internalLink",
+            "settings": {
+                "helpText": "Link to page in our app"
+            },
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "externalLink",
+            "settings": {
+                "helpText": "Link which lead user out of app"
+            },
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "anchorId",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "isNewTab",
+            "settings": {
+                "helpText": "Should we open our link in new tab?",
+                "trueLabel": "Yes",
+                "falseLabel": "No"
+            },
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "associatedIcon",
+            "widgetId": "dropdown",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

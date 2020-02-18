@@ -1,0 +1,72 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "image",
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "caption",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "description",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "notice",
+            "widgetId": "richTextEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "showMoreButtonLabel",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "currentMultiplierLabel",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "nextMultiplierLabel",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "button",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "forActiveUser",
+            "settings": {
+                "helpText": "Active User - user with one and more multiplier. If not selected, visible for both users",
+                "trueLabel": "Active User",
+                "falseLabel": "Not Active User"
+            },
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "tableData",
+            "widgetId": "objectEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

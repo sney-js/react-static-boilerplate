@@ -1,0 +1,126 @@
+@import "typography-utils";
+@import "variables";
+
+@mixin theming($theme) {
+    background: map-color(map-get($theme, primary));
+    color: map-color(map-get($theme, primary), default-contrast);
+
+    a {
+        color: map-color(map-get($theme, primary), default-contrast);
+    }
+    $borderStyle: 1px solid map-color(map-get($theme, primary), default-border);
+
+    .copy-section {
+        border-top: $borderStyle;
+        border-bottom: $borderStyle;
+    }
+
+    .links-row {
+        border-bottom: $borderStyle;
+
+        a + a {
+            border-left: $borderStyle;
+        }
+
+        @media #{$screen-mobile} {
+            a + a {
+                border-left: none;
+                border-top: $borderStyle;
+            }
+        }
+    }
+}
+
+.footer {
+    position: relative;
+    @include theming($default-theme);
+
+    @media #{$screen-mobile} {
+        section {
+            padding: 0;
+        }
+    }
+
+    .icon-link {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        :global(.bpl-svg-icon) {
+            font-size: 60px;
+        }
+    }
+
+    .copy-section {
+        .copy {
+            text-align: center;
+            padding: $default-gap * 2.5 $default-gap $default-gap * 1.5 $default-gap;
+        }
+    }
+
+    .links {
+        .links-row {
+            @include setTypeStyles("menu-link");
+
+            a {
+                display: inline-block;
+                padding: $default-gap 0;
+                width: 33%;
+                text-align: center;
+
+                &.filler {
+                    pointer-events: none;
+                }
+
+                &:first-of-type {
+                    text-align: left;
+                }
+
+                &:last-of-type {
+                    text-align: right;
+                }
+
+                @media #{$screen-mobile} {
+                    width: 100%;
+                    &:first-of-type,
+                    &:last-of-type {
+                        text-align: center;
+                    }
+
+                    &.filler {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .flex-row {
+        display: flex;
+        @include setTypeStyles("small");
+
+        padding: $default-gap * 0.75 0;
+
+        @media #{$screen-mobile} {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .additional-links {
+            font-weight: bold;
+            a {
+                display: inline-block;
+                padding: $default-gap;
+                padding-left: 0;
+            }
+        }
+
+        .copyright {
+            padding: $default-gap;
+        }
+
+        .flex-item {
+            flex: 1 1 0;
+        }
+    }
+}

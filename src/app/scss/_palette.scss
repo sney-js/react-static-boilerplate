@@ -1,0 +1,121 @@
+$dark-primary-text: black;
+$light-primary-text: white;
+
+$grey: (
+        50: #fff,
+        100: #f6f6f6,
+        200: #989898,
+        900: black,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                900: $light-primary-text,
+        ),
+        logo-contrast: #3f3975,
+        border: (
+                100: #f0f0f0,
+                900: #53534d,
+        ),
+        hero: (),
+        flexible-card: (),
+        tutorial: (),
+);
+
+// Alias for alternate spelling.
+$gray: $grey;
+
+// Background palette for light themes.
+$light-theme-background: (
+        background: map_get($grey, 100),
+        card: map_get($grey, 50),
+);
+
+$red: (
+        500: #f44336,
+        contrast: (
+                500: $light-primary-text,
+        ),
+        logo-contrast: #3f3975,
+        border: (),
+        hero: (),
+        flexible-card: (),
+        tutorial: (),
+);
+
+$green: (
+        500: #028e01,
+        contrast: (
+                500: $light-primary-text,
+        ),
+        logo-contrast: #3f3975,
+        border: (),
+        hero: (),
+        flexible-card: (),
+        tutorial: (),
+);
+
+$purpleRadialGradient: radial-gradient(circle at 50% 50%, #6c69a2, #3f3975 60%);
+
+$purple: (
+        300: #9b8eff,
+        400: #575481,
+        500: #3f3975,
+        600: #2b2952,
+        contrast: (
+                400: $light-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+        ),
+        logo-contrast: $light-primary-text,
+        border: (),
+        hero: (
+                background: $purpleRadialGradient,
+        ),
+        flexible-card: (
+                background: $purpleRadialGradient,
+        ),
+        tutorial: (
+                background: $purpleRadialGradient,
+                image: $purpleRadialGradient,
+                caption: #9b8eff,
+        ),
+);
+
+$blueThemeBgImage: url("/assets/images/clouds/clouds.png");
+$blueThemeLinearGradient: linear-gradient(180deg, #6a9ed3 0%, #fbf3dd 100%);
+
+$blue: (
+        500: #6a9ed3,
+        contrast: (
+                500: $dark-primary-text,
+        ),
+        border: (),
+        logo-contrast: #3f3975,
+        hero: (
+                background: $blueThemeLinearGradient,
+                image: $blueThemeBgImage,
+        ),
+        flexible-card: (
+                background: $blueThemeLinearGradient,
+                image: $blueThemeBgImage,
+        ),
+        tutorial: (),
+);
+
+$yellow: (
+        400: #e7db00,
+        500: #fff01f,
+        600: #f7dc00,
+        contrast: (
+                500: $dark-primary-text,
+                600: $dark-primary-text,
+        ),
+        border: (
+                400: #dbc600,
+                500: #e7db00,
+        ),
+        logo-contrast: #3f3975,
+        hero: (),
+        flexible-card: (),
+        tutorial: (),
+);

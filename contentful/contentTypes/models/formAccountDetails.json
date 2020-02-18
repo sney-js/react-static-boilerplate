@@ -1,0 +1,207 @@
+{
+    "displayField": "name",
+    "name": "Form > Account : Details",
+    "description": "Form for managing Personal Details of user's account.",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "errorCodes",
+            "name": "Error Codes",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formElementsErrors"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "onSuccess",
+            "name": "On Success",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "link"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "step1Text",
+            "name": "Text",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formText"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputFirstName",
+            "name": "Input: First name",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputMiddleName",
+            "name": "Input: Middle name",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputLastName",
+            "name": "Input: Last name",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputMale",
+            "name": "Radio: Male",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputFemale",
+            "name": "Radio: Female",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputEmail",
+            "name": "Input: Email",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputDOB",
+            "name": "Input: Date of birth",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputPhone",
+            "name": "Input: Phone",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        }
+    ],
+    "sys": {
+        "id": "formAccountDetails"
+    }
+}

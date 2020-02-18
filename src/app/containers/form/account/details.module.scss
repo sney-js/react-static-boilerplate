@@ -1,0 +1,10 @@
+@import "variables";
+
+.radio-wrapper {
+    display: flex;
+    justify-content: center;
+
+    :global(.bpl-form-radio:not(:last-of-type)) {
+        margin-right: $default-gap * 2.5;
+    }
+}

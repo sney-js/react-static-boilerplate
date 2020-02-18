@@ -1,0 +1,49 @@
+@import "variables";
+
+@mixin theming($theme) {
+    background: map-color(map-get($theme, primary));
+}
+
+.toolbar {
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+    z-index: 101;
+    max-height: 100vh;
+    overflow: auto;
+
+    &:not(.hidden).with-shadow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: all $appearing-animation-speed;
+        box-shadow: 0 3px 10px rgba(57, 63, 72, 0.3);
+
+        &.no-shadow {
+            box-shadow: none;
+            transition: none;
+        }
+    }
+
+    &.hidden {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: all $appearing-animation-speed;
+        transform: translateY(-100%);
+    }
+}
+
+.filler {
+    width: 100%;
+    min-height: 70px;
+
+    @include theming($default-theme);
+
+    @each $theme in $themes {
+        &.#{map-get($theme, name)} {
+            @include theming($theme);
+        }
+    }
+}

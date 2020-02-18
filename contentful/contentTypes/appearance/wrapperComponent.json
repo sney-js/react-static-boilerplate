@@ -1,0 +1,30 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "content",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "backgroundStyle",
+            "widgetId": "dropdown",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "backgroundPosition",
+            "widgetId": "radio",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

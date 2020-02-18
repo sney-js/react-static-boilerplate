@@ -1,0 +1,165 @@
+{
+    "displayField": "name",
+    "name": "Sprint Sparen",
+    "description": "",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "image",
+            "name": "Image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "caption",
+            "name": "Caption",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "title",
+            "name": "Title",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "description",
+            "name": "Description",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "notice",
+            "name": "Notice",
+            "type": "RichText",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "nodes": {
+                        "entry-hyperlink": [
+                            {
+                                "linkContentType": [
+                                    "link"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "enabledMarks": [
+                        "bold",
+                        "italic",
+                        "underline"
+                    ],
+                    "message": "Only bold, italic, and underline marks are allowed"
+                },
+                {
+                    "enabledNodeTypes": [
+                        "hyperlink",
+                        "entry-hyperlink"
+                    ],
+                    "message": "Only link to Url and link to entry nodes are allowed"
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "showMoreButtonLabel",
+            "name": "Show More Button Label",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "currentMultiplierLabel",
+            "name": "Current Multiplier Label",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "nextMultiplierLabel",
+            "name": "Next Multiplier Label",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "button",
+            "name": "Button",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "link"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "forActiveUser",
+            "name": "Visible For User",
+            "type": "Boolean",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "tableData",
+            "name": "Table Data",
+            "type": "Object",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "sprintSparen"
+    }
+}

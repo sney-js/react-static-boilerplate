@@ -1,0 +1,60 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "label",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "description",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputFormatting",
+            "settings": {
+                "helpText": "e.g. **** ** to format text in \"ABCD EF\". 99 99 99 to format numbers in \"12 34 56\". Use 5698 999 999 to format numbers in format 5698 xxx xxx"
+            },
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "errorEmpty",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "errorInvalid",
+            "settings": {
+                "helpText": "e.g. Not a valid card number, password must be 8 characters long etc.."
+            },
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "errorCodes",
+            "settings": {
+                "helpText": "e.g. 23#Password is invalid"
+            },
+            "widgetId": "tagEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "disabled",
+            "settings": {
+                "trueLabel": "Yes",
+                "falseLabel": "No"
+            },
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

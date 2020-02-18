@@ -1,0 +1,23 @@
+@import "typography-utils";
+@import "variables";
+
+.form-error-box {
+    min-height: 1em;
+    color: $color--error;
+    font-weight: bold;
+    text-align: center;
+    @media #{$screen-tablet} {
+        min-height: 3em;
+    }
+    @media #{$screen-desktop} {
+        margin-left: 0;
+    }
+}
+
+.form-container-series {
+    .form-error-box {
+        @media #{$screen-desktop} {
+            text-align: left;
+        }
+    }
+}

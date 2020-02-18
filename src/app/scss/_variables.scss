@@ -1,0 +1,43 @@
+$phone: 600;
+$tablet: 902;
+$desktop: 1024;
+$widescreen: 1440;
+$hd: 1920;
+$max-width: 1280 - 64 * 2;
+$appearing-animation-speed: 750ms cubic-bezier(0.35, 1, 0.45, 1);
+
+$content-max-width: #{$max-width}px;
+
+$app-default-bg: white;
+
+$bg-main: #f6f6f6;
+$bg-white: #fff;
+$color-line: #f0f0f0;
+
+// should not need to use any other queries except these
+$screen-tablet: screen and
+    (
+        max-width: #{$tablet}px,
+    );
+$screen-mobile: screen and
+    (
+        max-width: #{$phone}px,
+    );
+$screen-desktop: screen and
+    (
+        min-width: #{$tablet + 1}px,
+    );
+
+// ---------------------------------------------------
+$default-gap-small: 8px;
+$default-gap: 16px;
+$gap-wide: 64px;
+$gap-tablet: 48px;
+$gap-narrow: 32px;
+
+$gap-small-wide: 40px;
+$gap-small-tablet: 32px;
+$gap-small-narrow: 32px;
+
+$desktop-header-height: 90px;
+$mobile-header-height: 70px;

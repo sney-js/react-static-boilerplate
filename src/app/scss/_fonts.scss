@@ -1,0 +1,79 @@
+$font-primary: "SyntaxLTStd";
+
+$font-loc: "/assets/fonts/";
+
+@mixin get-font-all($name, $weight) {
+    font-family: $font-primary;
+    src: /* Safari, Android, iOS */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.woff")
+            format("woff"),
+        /* Default */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.eot?#iefix")
+            format("embedded-opentype"),
+        /* IE6-IE8 */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.otf")
+            format("opentype"),
+        /* Open Type Font */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.svg")
+            format("svg"),
+        /* Legacy iOS */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.ttf")
+            format("truetype"),
+        /* Modern Browsers */ url("#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.woff2")
+            format("woff2"); /* Modern Browsers */
+}
+
+@font-face {
+    @include get-font-all($font-primary, "Roman");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    @include get-font-all($font-primary, "Italic");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    @include get-font-all($font-primary, "Bold");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    @include get-font-all($font-primary, "Black");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    @include get-font-all($font-primary, "UltraBlack");
+    font-weight: 900;
+    font-style: normal;
+}
+
+body {
+    font-family: $font-primary, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+        Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+strong,
+b {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: bold;
+}
+.black {
+    font-weight: 800;
+}
+.ultra-black {
+    font-weight: 900;
+}

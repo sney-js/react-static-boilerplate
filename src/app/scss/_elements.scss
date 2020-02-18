@@ -1,0 +1,45 @@
+@import "variables";
+@import "helpers";
+
+.rich-text-component {
+    .header {
+        @media #{$screen-tablet} {
+            text-align: center;
+        }
+    }
+
+    p,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    table,
+    ul,
+    ol {
+        @extend %padded-x;
+    }
+
+    .header h4 {
+        @include setTypeStylesAll("caption");
+    }
+}
+
+.registation-form {
+    .registration-barcode-desktop {
+        @media #{$screen-desktop} {
+            margin-top: $gap-narrow;
+        }
+        @media #{$screen-tablet} {
+            display: none;
+        }
+    }
+
+    .registration-barcode-mobile {
+        @media #{$screen-desktop} {
+            display: none;
+        }
+    }
+}

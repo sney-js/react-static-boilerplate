@@ -1,0 +1,19 @@
+{
+  "short_name": "Website",
+  "name": "Website",
+  "icons": [
+    {
+      "src": "/assets/app-icons/icon144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/assets/app-icons/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f6f6f6",
+  "display": "standalone"
+}

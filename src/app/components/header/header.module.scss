@@ -1,0 +1,155 @@
+@import "variables";
+@import "typography-utils";
+
+@mixin theming($theme) {
+    background: map-color(map-get($theme, primary));
+
+    .logo a {
+        color: map-get(map-get($theme, primary), logo-contrast);
+    }
+
+    .user-icon {
+        &:hover {
+            :global(svg:not(.icon-fill)) {
+                color: map-color(map-get($theme, primary));
+            }
+
+            :global(.icon-fill) {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.header {
+    width: 100%;
+    height: $desktop-header-height;
+    padding: 0 $default-gap * 4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+
+    @media #{$screen-tablet} {
+        padding: 0 $default-gap * 2;
+        height: $mobile-header-height;
+    }
+    @media #{$screen-mobile} {
+        padding: 0 $default-gap;
+    }
+
+    .navigation {
+        margin-right: $default-gap * 3;
+
+        a {
+            display: inline-block;
+            margin-left: $default-gap * 3;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        @media #{$screen-tablet} {
+            display: none;
+        }
+    }
+
+    .content {
+        width: 100%;
+        max-width: $content-max-width;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .flex {
+        flex: 1 1 0;
+    }
+
+    .menu {
+        display: none;
+
+        & + .flex {
+            display: none;
+        }
+
+        @media #{$screen-tablet} {
+            display: block;
+
+            & + .flex {
+                display: block;
+            }
+        }
+    }
+
+    .user-icon {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-indicator-label {
+        @include setTypeStylesAll("caption");
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-right: $default-gap;
+
+        @media #{$screen-tablet} {
+            display: none;
+        }
+    }
+
+    .logo {
+        width: 85px;
+        height: 32px;
+        transform: translateY(-10px);
+        flex-shrink: 0;
+
+        @media #{$screen-tablet} {
+            width: 95px;
+        }
+
+        svg {
+            stroke-width: 0;
+        }
+    }
+
+    @include theming($default-theme);
+
+    @each $theme in $themes {
+        &.#{map-get($theme, name)} {
+            @include theming($theme);
+        }
+    }
+}
+
+.modal-wrapper {
+    @media #{$screen-mobile} {
+        padding-bottom: $default-gap * 6;
+    }
+}
+
+.login-wrapper {
+    background: map-color(map-get($default-theme, primary));
+    overflow: hidden;
+}
+
+.overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    position: fixed;
+    background: black;
+    opacity: 0.8;
+    z-index: 2;
+
+    &.active {
+        display: block;
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "caption",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "content",
+            "widgetId": "richTextEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "setAnalyticsCookie",
+            "settings": {
+                "trueLabel": "Yes",
+                "falseLabel": "No"
+            },
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "setTrackingCookie",
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

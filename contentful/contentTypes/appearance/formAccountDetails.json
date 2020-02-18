@@ -1,0 +1,67 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "errorCodes",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "onSuccess",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "step1Text",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputFirstName",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputMiddleName",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputLastName",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputMale",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputFemale",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputEmail",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputDOB",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "inputPhone",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

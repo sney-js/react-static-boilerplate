@@ -1,0 +1,71 @@
+{
+    "displayField": "name",
+    "name": "Form > Cookie Settings",
+    "description": "",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "text",
+            "name": "Text",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formText"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputAnalyticsCookie",
+            "name": "Input: Analytics Cookie",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputTrackingCookie",
+            "name": "Input: Tracking Cookie",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        }
+    ],
+    "sys": {
+        "id": "formCookieSettings"
+    }
+}

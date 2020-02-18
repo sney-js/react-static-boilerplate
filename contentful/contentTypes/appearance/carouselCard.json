@@ -1,0 +1,57 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "type",
+            "widgetId": "dropdown",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "caption",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "description",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "notice",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "button",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "secondaryButton",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "image",
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "logo",
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

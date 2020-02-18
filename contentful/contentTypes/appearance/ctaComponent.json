@@ -1,0 +1,32 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "caption",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "image",
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "button",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

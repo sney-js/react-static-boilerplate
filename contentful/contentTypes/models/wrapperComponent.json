@@ -1,0 +1,90 @@
+{
+    "displayField": "name",
+    "name": "Wrapper",
+    "description": "Can wrap 1 or more components with specific design and layout style",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "content",
+            "name": "Content",
+            "type": "Array",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "ctaComponent",
+                            "formAccountAddress",
+                            "formAccountDetails",
+                            "formAccountPassword",
+                            "formAccountPreferences",
+                            "formCookieSettings",
+                            "formForgotPassword",
+                            "login",
+                            "registrationFormPhysical",
+                            "registrationFormVirtual",
+                            "formResetPassword",
+                            "textCard"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "backgroundStyle",
+            "name": "Background Style",
+            "type": "Text",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "in": [
+                        "None",
+                        "Yellow",
+                        "White",
+                        "Blue",
+                        "Purple"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "backgroundPosition",
+            "name": "Background Position",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "in": [
+                        "Fill",
+                        "Top",
+                        "Bottom"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "wrapperComponent"
+    }
+}

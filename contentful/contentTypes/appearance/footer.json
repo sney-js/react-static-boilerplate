@@ -1,0 +1,53 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "iconLink",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "links",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "loginLabel",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "logoutLabel",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "additionalLinks",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "copyright",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

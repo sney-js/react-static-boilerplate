@@ -1,0 +1,11 @@
+@import "variables";
+
+.bpl-button.bpl-arrow-button {
+    min-width: 0;
+    padding: 0;
+    padding: $default-gap/4;
+
+    .mirrored {
+        transform: rotateZ(180deg);
+    }
+}

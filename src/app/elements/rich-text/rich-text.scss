@@ -1,0 +1,9 @@
+@import "variables";
+@import "typography-utils";
+
+.bpl-rich-text {
+  white-space: pre-line;
+  a {
+    @include linkStyles($default-theme);
+  }
+}

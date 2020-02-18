@@ -1,0 +1,156 @@
+{
+    "displayField": "name",
+    "name": "Form > Account : Address",
+    "description": "Form for managing Registration of Virtual cards.",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "errorCodes",
+            "name": "Error Codes",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formElementsErrors"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "onSuccess",
+            "name": "On Success",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "link"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "step1Text",
+            "name": "Text",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formText"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputZipCode",
+            "name": "Input: Zip code",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputStreet",
+            "name": "Input: Street",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputHouseNumber",
+            "name": "Input: House number",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputFloor",
+            "name": "Input: Floor",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "inputCity",
+            "name": "Input: City",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "formInput"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        }
+    ],
+    "sys": {
+        "id": "formAccountAddress"
+    }
+}

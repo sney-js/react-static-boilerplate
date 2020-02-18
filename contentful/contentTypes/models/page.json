@@ -1,0 +1,211 @@
+{
+    "displayField": "title",
+    "name": "Page",
+    "description": "A page identifier.  Use this to build a webpage of content that can appear in site navigations.",
+    "fields": [
+        {
+            "id": "title",
+            "name": "Page name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                },
+                {
+                    "size": {
+                        "max": 55
+                    }
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "header",
+            "name": "Header",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "header"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "footer",
+            "name": "Footer",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "footer"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "content",
+            "name": "Content",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "accordion",
+                            "carousel",
+                            "ctaComponent",
+                            "flexibleCard",
+                            "formAccountAddress",
+                            "formAccountDetails",
+                            "formAccountPassword",
+                            "formAccountPreferences",
+                            "formCookieSettings",
+                            "formForgotPassword",
+                            "login",
+                            "registrationFormPhysical",
+                            "registrationFormVirtual",
+                            "formResetPassword",
+                            "hero",
+                            "list",
+                            "offers",
+                            "partnersCard",
+                            "sprintSparen",
+                            "textCard",
+                            "transactionHistory",
+                            "tutorial",
+                            "wrapperComponent"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "parentPage",
+            "name": "Parent Page",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "page"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "theme",
+            "name": "Theme",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "in": [
+                        "yellow",
+                        "white",
+                        "blue"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "filledBackground",
+            "name": "Filled Background",
+            "type": "Boolean",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "metaData",
+            "name": "Meta Data",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "metaData"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "name",
+            "name": "Page slug",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "size": {
+                        "max": 55
+                    }
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "requireAuthorization",
+            "name": "Require Authorization",
+            "type": "Boolean",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "cookieBanner",
+            "name": "Cookie Banner",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "cookieBanner"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        }
+    ],
+    "sys": {
+        "id": "page"
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "controls": [
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "header",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "footer",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "content",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "parentPage",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "theme",
+            "settings": {
+                "helpText": "Page theme"
+            },
+            "widgetId": "dropdown",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "filledBackground",
+            "settings": {
+                "helpText": "Should background be filled with theme color?",
+                "trueLabel": "Yes",
+                "falseLabel": "No"
+            },
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "metaData",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "name",
+            "settings": {
+                "helpText": "This field makes up the URL that this content will sit on. Your home page must have a name of index, to signify that this is the root page."
+            },
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "requireAuthorization",
+            "widgetId": "boolean",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "cookieBanner",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

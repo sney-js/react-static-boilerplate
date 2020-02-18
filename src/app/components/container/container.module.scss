@@ -1,0 +1,248 @@
+@import "variables";
+@import "helpers";
+
+
+$fold-height: 60px;
+$fold-width: 60px;
+$border-radius: 75px;
+
+@mixin top-left {
+    border-top-left-radius: $border-radius;
+    background: linear-gradient(to bottom right, transparent 50%, $app-default-card-bg 50%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
+    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
+    background-position: 0% 0%, $fold-width 0%, 100% $fold-height;
+    background-repeat: no-repeat;
+
+    &.clipped {
+        clip-path: polygon(0 $fold-height, $fold-width 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+
+@mixin top-right {
+    border-top-right-radius: $border-radius;
+    background: linear-gradient(to bottom left, transparent 50%, $app-default-card-bg 50%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
+    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
+    background-position: 100% 0%, -$fold-width 0%, 100% $fold-height;
+    background-repeat: no-repeat;
+
+    &.clipped {
+        clip-path: polygon(
+                        0% 0%,
+                        calc(100% - #{$fold-width - 1px}) 0,
+                        100% $fold-height + 1px,
+                        100% 100%,
+                        0 100%
+        );
+    }
+}
+
+
+@mixin bottom-left {
+    border-bottom-left-radius: $border-radius;
+    background: linear-gradient(to top right, transparent 50%, $app-default-card-bg 50%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
+    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
+    background-position: 0% 100%, $fold-width 0%, 100% (-$fold-height);
+    background-repeat: no-repeat;
+    &.clipped {
+        clip-path: polygon(
+                        0% 0%,
+                        100% 0,
+                        100% 100%,
+                        $fold-width 100%,
+                        0 calc(100% - #{$fold-width})
+        );
+    }
+}
+
+@mixin bottom-right {
+    border-bottom-right-radius: $border-radius;
+    background: linear-gradient(to top left, transparent 50%, $app-default-card-bg 50%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
+    linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
+    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
+    background-position: 100% 100%, -$fold-width 0%, 100% (-$fold-height);
+    background-repeat: no-repeat;
+    &.clipped {
+        clip-path: polygon(
+                        0% 0%,
+                        100% 0,
+                        100% calc(100% - #{$fold-height}),
+                        calc(100% - #{$fold-width}) 100%,
+                        0 100%
+        );
+    }
+}
+
+.card {
+    border-radius: $default-border-radius;
+    background-color: $app-default-card-bg;
+    position: relative;
+
+
+
+
+    &.clipped {
+        overflow: hidden;
+    }
+
+    &.top_left {
+        &.mobile {
+            @media #{$screen-mobile} {
+                @include top-left();
+            }
+        }
+
+        &.tablet {
+            @media #{$screen-tablet} {
+                @include top-left();
+            }
+        }
+
+        &:not(.mobile):not(.tablet) {
+            @include top-left();
+        }
+
+    }
+
+    &.top_right {
+        &.mobile {
+            @media #{$screen-mobile} {
+                @include top-right();
+            }
+        }
+
+        &.tablet {
+            @media #{$screen-tablet} {
+                @include top-right();
+            }
+        }
+
+        &:not(.mobile):not(.tablet) {
+            @include top-right();
+        }
+    }
+
+    &.bottom_left {
+        &.mobile {
+            @media #{$screen-mobile} {
+                @include bottom-left();
+            }
+        }
+
+        &.tablet {
+            @media #{$screen-tablet} {
+                @include bottom-left();
+            }
+        }
+
+        &:not(.mobile):not(.tablet) {
+            @include bottom-left();
+        }
+    }
+
+    &.bottom_right {
+        &.mobile {
+            @media #{$screen-mobile} {
+                @include bottom-right();
+            }
+        }
+
+        &.tablet {
+            @media #{$screen-tablet} {
+                @include bottom-right();
+            }
+        }
+
+        &:not(.mobile):not(.tablet) {
+            @include bottom-right();
+        }
+    }
+
+    &.no_fold {
+    }
+}
+
+.padded {
+    @extend %padded-x;
+    @extend %padded-y;
+
+    &.half_padded_y {
+        @extend %half-padded-y;
+    }
+}
+
+.padded_x {
+    @extend %padded-x;
+}
+
+.padded_x_desktop {
+    @extend %padded-x;
+    @media #{$screen-tablet} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.padded_y {
+    @extend %padded-y;
+
+    &.half_padded_y {
+        @extend %half-padded-y;
+    }
+}
+
+.padded_bottom {
+    padding-bottom: $gap-wide;
+    @media #{$screen-tablet} {
+        padding-bottom: $gap-tablet;
+    }
+    @media #{$screen-mobile} {
+        padding-bottom: $gap-narrow;
+    }
+}
+
+.max-width {
+    max-width: $content-max-width;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.split-col-2 {
+    @media #{$screen-desktop} {
+        display: flex;
+        > *:first-child {
+            flex-basis: 50%;
+        }
+        > *:nth-child(2) {
+            flex-basis: 50%;
+        }
+        &.padded_Splitview {
+            > *:first-child {
+                margin-right: $gap-wide/2;
+            }
+
+            > *:nth-child(2) {
+                margin-left: $gap-wide/2;
+            }
+        }
+    }
+    @media #{$screen-tablet} {
+        text-align: center;
+        &.padded_Splitview {
+            > *:first-child {
+                margin-bottom: $gap-wide;
+            }
+
+            > *:nth-child(2) {
+                margin-top: $gap-wide;
+            }
+        }
+    }
+}

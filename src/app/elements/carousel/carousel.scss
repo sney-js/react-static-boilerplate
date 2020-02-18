@@ -1,0 +1,123 @@
+@import "variables";
+
+.bpl-carousel-wrapper {
+    overflow: hidden;
+}
+
+.bpl-carousel {
+    position: relative;
+    overflow: visible;
+    max-width: 100%;
+
+    .next-button,
+    .prev-button {
+        position: absolute;
+        z-index: 1;
+        @media #{$screen-tablet} {
+            display: none;
+        }
+    }
+
+    .next-button {
+        top: 50%;
+        right: 0;
+        transform: translate(calc(50% + #{$default-gap/4}), -50%);
+    }
+
+    .prev-button {
+        top: 50%;
+        left: 0;
+        transform: translate(calc(-50% - #{$default-gap/4}), -50%);
+    }
+
+    .bpl-carousel-items-container {
+        transition: 300ms;
+
+        &.is-dragging {
+            transition: 150ms;
+        }
+
+        display: flex;
+    }
+
+    .bpl-carousel-items-wrapper {
+        position: relative;
+    }
+
+    .bpl-carousel-item {
+        display: flex;
+        max-width: 100%;
+        flex-shrink: 0;
+        min-width: calc(50% - #{$default-gap/2});
+
+        @media #{$screen-mobile} {
+            min-width: 100%;
+        }
+
+        > * {
+            flex: 1 0 100%;
+            flex-shrink: 0;
+            max-width: 100%;
+        }
+
+        .text-card {
+            height: 100%;
+            width: $content-max-width;
+            max-width: 100%;
+
+            > *,
+            .card {
+                height: 100%;
+                flex: 1 1 0;
+            }
+
+            .card {
+                @media #{$screen-desktop} {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .bpl-carousel-item-gap {
+        display: inline-block;
+        width: $default-gap/2;
+        flex-shrink: 0;
+    }
+
+    .bpl-carousel-indicators-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-top: $default-gap;
+
+        .bpl-carousel-indicator-wrapper {
+            width: $default-gap * 2;
+            height: $default-gap *2;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .bpl-carousel-indicator {
+            $dotSize: 7px;
+            height: $dotSize;
+            width: $dotSize;
+            background-color: map-color(map-get($default-theme, accent));
+            border: 1px solid map-get(map-get($default-theme, background), background);
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &.active {
+                background-color: map-color(map-get($default-theme, primary));
+            }
+
+        }
+    }
+}

@@ -1,0 +1,22 @@
+@import "variables";
+
+.login {
+    .description-desktop {
+        @media #{$screen-tablet} {
+            display: none;
+        }
+    }
+
+    .description-mobile {
+        display: none;
+        text-align: center;
+        @media #{$screen-tablet} {
+            display: block;
+        }
+    }
+
+    .remember-me {
+        display: flex;
+        justify-content: center;
+    }
+}

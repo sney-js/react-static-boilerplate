@@ -1,0 +1,30 @@
+@import "variables";
+
+.bpl-title {
+    @media #{$screen-tablet} {
+        text-align: center;
+    }
+
+    &.align-left {
+        text-align: left;
+    }
+    &.align-right {
+        text-align: right;
+    }
+    &.align-center {
+        text-align: center;
+    }
+
+    .caption {
+        margin-bottom: $default-gap;
+        opacity: 0.5;
+    }
+
+    &:only-child {
+        .bpl-rich-text {
+            *:last-child {
+              margin-bottom: 0;
+            }
+        }
+    }
+}

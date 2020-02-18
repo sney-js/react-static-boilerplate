@@ -1,0 +1,15 @@
+{
+  "name": "csg-toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "preferGlobal": true,
+  "scripts": {},
+  "bin": {
+    "contentful:pull-types": "bin/pull-types.js",
+    "contentful:push-types": "bin/push-types.js"
+  },
+  "dependencies": {
+    "contentful-management": "^5.11.0",
+    "lodash.omit": "^4.5.0"
+  }
+}

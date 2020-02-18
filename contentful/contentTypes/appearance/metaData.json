@@ -1,0 +1,30 @@
+{
+    "controls": [
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "description",
+            "widgetId": "multipleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "keywords",
+            "settings": {
+                "helpText": "List of keywords"
+            },
+            "widgetId": "tagEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "image",
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}
