@@ -1,0 +1,98 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "settings": {
+                "helpText": "This is the name of the piece of content for identification within Contentful - use sensible names e.g. Product Page Meta Data."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "browserTitle",
+            "settings": {
+                "helpText": "Defaults to the Page display name if left empty"
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "pageDescription",
+            "settings": {
+                "helpText": "Can appear alongside the Browser title in search engine results."
+            },
+            "widgetId": "multipleLine"
+        },
+        {
+            "fieldId": "ogTitle",
+            "settings": {
+                "helpText": "Used by Facebook to present a preview of a link. If undefined this will default to the page title."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "ogDescription",
+            "settings": {
+                "helpText": "The description to be displayed on Facebook as part of a link preview. If left blank, will default to Page description."
+            },
+            "widgetId": "multipleLine"
+        },
+        {
+            "fieldId": "ogImage",
+            "settings": {
+                "helpText": "The image to be displayed on Facebook as part of a link preview. If left blank, no image will be displayed. For image size recommendations see; https://developers.facebook.com/docs/sharing/best-practices#images"
+            },
+            "widgetId": "assetLinkEditor"
+        },
+        {
+            "fieldId": "twitterTitle",
+            "settings": {
+                "helpText": "Used by Twitter to present a preview of a link. Defaults to OG Title then to Page Title if undefined."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "twitterDescription",
+            "settings": {
+                "helpText": "Used by Twitter to present a preview of a link. Defaults to OG Description then to Page Description if undefined."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "twitterImage",
+            "settings": {
+                "helpText": "Used by Twitter to present a preview of a link."
+            },
+            "widgetId": "assetLinkEditor"
+        },
+        {
+            "fieldId": "robotsNoIndex",
+            "settings": {
+                "helpText": "If selected will instruct crawlers not to index the page. Defaults to Index."
+            },
+            "widgetId": "checkbox"
+        },
+        {
+            "fieldId": "robotsNoFollow",
+            "settings": {
+                "helpText": "If selected will instruct crawlers not to follow and index any hyperlinks. Defaults to FOLLOW."
+            },
+            "widgetId": "checkbox"
+        },
+        {
+            "fieldId": "changeFrequency",
+            "settings": {
+                "helpText": "Default; 'daily' if omitted. The value \"never\" should be used to describe archived URLs. Please note that the value of this tag is considered a hint and not a command"
+            },
+            "widgetId": "dropdown"
+        },
+        {
+            "fieldId": "priority",
+            "settings": {
+                "helpText": "Default; Calculated from site-tree if omitted. Use to promote important pages to a higher priority. Lets the search engines know which pages you deem most important for the crawlers. "
+            },
+            "widgetId": "dropdown"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

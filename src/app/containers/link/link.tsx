@@ -1,6 +1,5 @@
 import React from "react";
 import LinkElement from "../../elements/link/LinkElement";
-import { getAssociatedIcon } from "../helpers";
 
 // Add all new contentful containers here.
 export default params => {
@@ -14,7 +13,6 @@ export default params => {
         title,
         newTab,
         isExternal,
-        associatedIcon: associatedIcon ? React.createElement(getAssociatedIcon(associatedIcon)) : null,
     };
 
     return (

@@ -3,129 +3,38 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface IAccordionFields {
-    /** Name */
-    name?: string | undefined;
+export interface IArticleFields {
+    /** Headline */
+    title: string;
 
-    /** Id */
-    id?: string | undefined;
+    /** Parent page */
+    parentPage?: IArticle | IPage | undefined;
 
-    /** Caption */
-    caption?: string | undefined;
+    /** Article introduction */
+    shortDescription?: string | undefined;
 
-    /** Title */
-    title?: Document | undefined;
-
-    /** Items */
-    items?: (IAccordionItem)[] | undefined;
-}
-
-export interface IAccordion extends Entry<IAccordionFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "accordion";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IAccordionItemFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Content */
-    content?: Document | undefined;
-
-    /** Links */
-    links?: (ILink)[] | undefined;
-}
-
-export interface IAccordionItem extends Entry<IAccordionItemFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "accordionItem";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ICarouselFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Items */
-    items?: (ICarouselCard)[] | undefined;
-}
-
-export interface ICarousel extends Entry<ICarouselFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "carousel";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ICarouselCardFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Type */
-    type?: "Default" | "Image Card" | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Notice */
-    notice?: string | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-
-    /** Secondary Button */
-    secondaryButton?: ILink | undefined;
+    /** Article content */
+    content: string;
 
     /** Image */
     image?: Asset | undefined;
 
-    /** Logo */
-    logo?: Asset | undefined;
+    /** Related content */
+    related?: (IArticle | IPage)[] | undefined;
+
+    /** Tags */
+    tags?: ITag[] | undefined;
+
+    /** Article meta data */
+    metaData?: IMetaData | undefined;
+
+    /** Slug */
+    name: string;
 }
 
-export interface ICarouselCard extends Entry<ICarouselCardFields> {
+/** Articles; such as news, blog posts, press releases */
+
+export interface IArticle extends Entry<IArticleFields> {
     sys: {
         id: string;
         type: string;
@@ -134,7 +43,7 @@ export interface ICarouselCard extends Entry<ICarouselCardFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "carouselCard";
+                id: "article";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -142,24 +51,26 @@ export interface ICarouselCard extends Entry<ICarouselCardFields> {
     };
 }
 
-export interface ICookieBannerFields {
-    /** Name */
+export interface ICtaFields {
+    /** Content name */
     name?: string | undefined;
 
-    /** Caption */
-    caption?: string | undefined;
+    /** Button text */
+    title: string;
 
-    /** Content */
-    content?: Document | undefined;
+    /** Page link */
+    pageReference?: IPage | undefined;
 
-    /** Set Analytics Cookie */
-    setAnalyticsCookie?: boolean | undefined;
+    /** External URL */
+    href?: string | undefined;
 
-    /** Set Tracking Cookie */
-    setTrackingCookie?: boolean | undefined;
+    /** Open link in new browser tab */
+    target?: "Yes"[] | undefined;
 }
 
-export interface ICookieBanner extends Entry<ICookieBannerFields> {
+/** A textfield combined with a URL */
+
+export interface ICta extends Entry<ICtaFields> {
     sys: {
         id: string;
         type: string;
@@ -168,117 +79,7 @@ export interface ICookieBanner extends Entry<ICookieBannerFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "cookieBanner";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ICtaComponentFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-}
-
-/** A CTA component comprised of caption, title, image and button. */
-export interface ICtaComponent extends Entry<ICtaComponentFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "ctaComponent";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IDeploymentFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Project key */
-    projectKey: string;
-
-    /** Deploy */
-    deploy?: Record<string, any> | undefined;
-}
-
-/** Bamboo deployment content type. */
-export interface IDeployment extends Entry<IDeploymentFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "deployment";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFlexibleCardFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Theme */
-    theme?: "yellow" | "blue" | "purple" | "white" | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Notice */
-    notice?: string | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-
-    /** Secondary Button */
-    secondaryButton?: ILink | undefined;
-}
-
-export interface IFlexibleCard extends Entry<IFlexibleCardFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "flexibleCard";
+                id: "cta";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -287,30 +88,17 @@ export interface IFlexibleCard extends Entry<IFlexibleCardFields> {
 }
 
 export interface IFooterFields {
-    /** Name */
-    name?: string | undefined;
+    /** Content name */
+    name: string;
 
-    /** Icon Link */
-    iconLink?: ILink | undefined;
+    /** Main footer navigation */
+    navigation?: INavigation | undefined;
 
-    /** Title */
-    title?: string | undefined;
-
-    /** Links */
-    links?: (ILink)[] | undefined;
-
-    /** Login Label */
-    loginLabel?: string | undefined;
-
-    /** Logout Label */
-    logoutLabel?: string | undefined;
-
-    /** Additional Links */
-    additionalLinks?: (ILink)[] | undefined;
-
-    /** Copyright */
+    /** Copyright message */
     copyright?: string | undefined;
 }
+
+/** A grouping of content which sits at the bottom of a page. */
 
 export interface IFooter extends Entry<IFooterFields> {
     sys: {
@@ -329,442 +117,21 @@ export interface IFooter extends Entry<IFooterFields> {
     };
 }
 
-export interface IFormAccountAddressFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    step1Text: IFormText;
-
-    /** Input: Zip code */
-    inputZipCode: IFormInput;
-
-    /** Input: Street */
-    inputStreet: IFormInput;
-
-    /** Input: House number */
-    inputHouseNumber: IFormInput;
-
-    /** Input: Floor */
-    inputFloor: IFormInput;
-
-    /** Input: City */
-    inputCity: IFormInput;
-}
-
-/** Form for managing Registration of Virtual cards. */
-export interface IFormAccountAddress extends Entry<IFormAccountAddressFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formAccountAddress";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormAccountDetailsFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    step1Text: IFormText;
-
-    /** Input: First name */
-    inputFirstName: IFormInput;
-
-    /** Input: Middle name */
-    inputMiddleName: IFormInput;
-
-    /** Input: Last name */
-    inputLastName: IFormInput;
-
-    /** Radio: Male */
-    inputMale: IFormInput;
-
-    /** Radio: Female */
-    inputFemale: IFormInput;
-
-    /** Input: Email */
-    inputEmail: IFormInput;
-
-    /** Input: Date of birth */
-    inputDOB: IFormInput;
-
-    /** Input: Phone */
-    inputPhone?: IFormInput | undefined;
-}
-
-/** Form for managing Personal Details of user's account. */
-export interface IFormAccountDetails extends Entry<IFormAccountDetailsFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formAccountDetails";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormAccountPasswordFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    step1Text: IFormText;
-
-    /** Input: Current password */
-    inputCurrentPassword: IFormInput;
-
-    /** Input: New Password */
-    inputNewPassword: IFormInput;
-}
-
-/** Form for managing Password of user's account. */
-export interface IFormAccountPassword extends Entry<IFormAccountPasswordFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formAccountPassword";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormAccountPreferencesFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    step1Text: IFormText;
-
-    /** Input: Newsletter */
-    inputEmailOffers: IFormInput;
-}
-
-/** Form for managing Preferences of user's account. */
-export interface IFormAccountPreferences extends Entry<IFormAccountPreferencesFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formAccountPreferences";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormCookieSettingsFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Text */
-    text: IFormText;
-
-    /** Input: Analytics Cookie */
-    inputAnalyticsCookie?: IFormInput | undefined;
-
-    /** Input: Tracking Cookie */
-    inputTrackingCookie?: IFormInput | undefined;
-}
-
-export interface IFormCookieSettings extends Entry<IFormCookieSettingsFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formCookieSettings";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormElementsErrorsFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: (string)[] | undefined;
-
-    /** Generic Error */
-    genericError: string;
-
-    /** Unreachable Error */
-    unreachableError: string;
-}
-
-export interface IFormElementsErrors extends Entry<IFormElementsErrorsFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formElementsErrors";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormForgotPasswordFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    text: IFormText;
-
-    /** Input: Card Number */
-    cardNumber: IFormInput;
-
-    /** Input: Email */
-    email: IFormInput;
-
-    /** Redirect Url */
-    redirectUrl: ILink;
-}
-
-export interface IFormForgotPassword extends Entry<IFormForgotPasswordFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formForgotPassword";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormInputFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Label */
-    label: string;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Input Formatting */
-    inputFormatting?: string | undefined;
-
-    /** Error: Empty */
-    errorEmpty?: string | undefined;
-
-    /** Error: Invalid */
-    errorInvalid?: string | undefined;
-
-    /** Error: Error Codes */
-    errorCodes?: (string)[] | undefined;
-
-    /** Disabled */
-    disabled?: boolean | undefined;
-}
-
-export interface IFormInput extends Entry<IFormInputFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formInput";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormResetPasswordFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    text: IFormText;
-
-    /** Input: New Password */
-    newPassword: IFormInput;
-
-    /** Token Invalid Component */
-    tokenInvalidComponent?: ITextCard | undefined;
-}
-
-export interface IFormResetPassword extends Entry<IFormResetPasswordFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formResetPassword";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IFormTextFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: Document | undefined;
-
-    /** Primary Button Text */
-    primaryButtonText?: string | undefined;
-
-    /** Secondary Button Text */
-    secondaryButtonText?: string | undefined;
-
-    /** Secondary Button Link */
-    secondaryButton?: ILink | undefined;
-
-    /** Footnote */
-    footnote?: Document | undefined;
-}
-
-/** Contains text information for form */
-export interface IFormText extends Entry<IFormTextFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "formText";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
 export interface IHeaderFields {
-    /** Name */
-    name?: string | undefined;
+    /** Content name */
+    name: string;
 
-    /** Login Label */
-    loginLabel?: string | undefined;
+    /** Logo */
+    logo?: Asset | undefined;
 
-    /** Logout Label */
-    logoutLabel?: string | undefined;
+    /** Logo Link */
+    linkReference?: IPage | undefined;
 
-    /** Logged In User Indicator */
-    loggedInUserIndicator?: string | undefined;
-
-    /** Navigation */
-    navigation?: (ILink)[] | undefined;
-
-    /** Additional Links */
-    additionalLinks?: (ILink)[] | undefined;
-
-    /** Serviceline Link */
-    servicelineLink?: ILink | undefined;
-
-    /** Serviceline Title */
-    servicelineTitle?: string | undefined;
-
-    /** Serviceline Description */
-    servicelineDescription?: string | undefined;
-
-    /** Login Form */
-    loginForm?: ILogin | undefined;
-
-    /** Logged In User Link */
-    loggedInUserLink?: ILink | undefined;
+    /** Header navigation */
+    navigation?: INavigation | undefined;
 }
+
+/** A component that contains content that will appear in a header section */
 
 export interface IHeader extends Entry<IHeaderFields> {
     sys: {
@@ -783,42 +150,17 @@ export interface IHeader extends Entry<IHeaderFields> {
     };
 }
 
-export interface IHeroFields {
-    /** Name */
-    name?: string | undefined;
+export interface IImageFields {
+    /** Content name */
+    name: string;
 
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Notice */
-    notice?: Document | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Show When */
-    forLoggedIn?: boolean | undefined;
-
-    /** Show Balance For Logged In User */
-    showBalance?: boolean | undefined;
-
-    /** Balance Label */
-    balanceLabel?: string | undefined;
-
-    /** Show Barcode For Logged In User */
-    showBarcode?: boolean | undefined;
+    /** image */
+    image: Asset;
 }
 
-export interface IHero extends Entry<IHeroFields> {
+/** A content wrapper for Images */
+
+export interface IImage extends Entry<IImageFields> {
     sys: {
         id: string;
         type: string;
@@ -827,48 +169,7 @@ export interface IHero extends Entry<IHeroFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "hero";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ILinkFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Internal Link */
-    internalLink?: IPage | undefined;
-
-    /** Direct Link */
-    externalLink?: string | undefined;
-
-    /** Anchor Id */
-    anchorId?: string | undefined;
-
-    /** Is New Tab */
-    isNewTab?: boolean | undefined;
-
-    /** Associated Icon */
-    associatedIcon?: "Contact" | "Question" | "Newsletter" | undefined;
-}
-
-/** Link for external or internal resources for our app */
-export interface ILink extends Entry<ILinkFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "link";
+                id: "image";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -877,18 +178,18 @@ export interface ILink extends Entry<ILinkFields> {
 }
 
 export interface IListFields {
-    /** Name */
-    name?: string | undefined;
+    /** Content name */
+    name: string;
 
-    /** Caption */
-    caption?: string | undefined;
+    /** Search query */
+    queryJSON?: Record<string, any> | undefined;
 
-    /** Title */
-    title?: Document | undefined;
-
-    /** Items */
-    items?: (ILink)[] | undefined;
+    /** Content items */
+    consys?: (IArticle | IPage | IVideo)[] | undefined;
 }
+
+/** A wrapper component for listing content.  e.g Articles.
+Has functionality to query and display content based on a search query. e.g. Latest 10 Articles */
 
 export interface IList extends Entry<IListFields> {
     sys: {
@@ -907,61 +208,69 @@ export interface IList extends Entry<IListFields> {
     };
 }
 
-export interface ILoginFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Text */
-    text: IFormText;
-
-    /** Input: Card Number */
-    cardNumber: IFormInput;
-
-    /** Input: Password */
-    inputPassword: IFormInput;
-
-    /** Checkbox: Remember Me */
-    checkboxRememberMe?: IFormInput | undefined;
-}
-
-export interface ILogin extends Entry<ILoginFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "login";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
 export interface IMetaDataFields {
-    /** Title */
-    title?: string | undefined;
+    /** Content name */
+    name: string;
 
-    /** Description */
-    description?: string | undefined;
+    /** Browser title */
+    browserTitle?: string | undefined;
 
-    /** Keywords */
-    keywords?: (string)[] | undefined;
+    /** Page description */
+    pageDescription?: string | undefined;
 
-    /** Image */
-    image?: Asset | undefined;
+    /** Facebook OG title */
+    ogTitle?: string | undefined;
+
+    /** Facebook OG description */
+    ogDescription?: string | undefined;
+
+    /** Facebook OG image */
+    ogImage?: Asset | undefined;
+
+    /** Twitter title */
+    twitterTitle?: string | undefined;
+
+    /** Twitter description */
+    twitterDescription?: string | undefined;
+
+    /** Twitter image */
+    twitterImage?: Asset | undefined;
+
+    /** Robots no index */
+    robotsNoIndex?: "NOINDEX"[] | undefined;
+
+    /** Robots no follow */
+    robotsNoFollow?: "NOFOLLOW"[] | undefined;
+
+    /** Change frequency */
+    changeFrequency?:
+        | "always"
+        | "hourly"
+        | "daily"
+        | "weekly"
+        | "monthly"
+        | "yearly"
+        | "never"
+        | undefined;
+
+    /** Priority */
+    priority?:
+        | "1.0"
+        | "0.9"
+        | "0.8"
+        | "0.7"
+        | "0.6"
+        | "0.5"
+        | "0.4"
+        | "0.3"
+        | "0.2"
+        | "0.1"
+        | "0.0"
+        | undefined;
 }
 
-/** Add custom page meta data values. */
+/** Holds meta data for a page including Page description and social meta descriptions */
+
 export interface IMetaData extends Entry<IMetaDataFields> {
     sys: {
         id: string;
@@ -971,7 +280,7 @@ export interface IMetaData extends Entry<IMetaDataFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "metaData";
+                id: "meta-data";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -979,39 +288,18 @@ export interface IMetaData extends Entry<IMetaDataFields> {
     };
 }
 
-export interface IOffersFields {
-    /** Name */
-    name?: string | undefined;
+export interface INavigationFields {
+    /** Content name */
+    name: string;
 
-    /** Not Logged In Card */
-    notLoggedInCard?: ICtaComponent | IFlexibleCard | undefined;
-
-    /** Placeholder Image */
-    placeholderImage?: Asset | undefined;
-
-    /** Valid In Label */
-    validInLabel?: string | undefined;
-
-    /** Valid For Label */
-    validForLabel?: string | undefined;
-
-    /** Active Label */
-    activeLabel?: string | undefined;
-
-    /** Activate Button Label */
-    activateButtonLabel?: string | undefined;
-
-    /** Back Button Label */
-    backButtonLabel?: string | undefined;
-
-    /** Flip Card Button Label */
-    flipCardButtonLabel?: string | undefined;
-
-    /** Campaign Names */
-    campaignNames?: (string)[] | undefined;
+    /** Pages to appear in this navigation */
+    pages?: IPage[] | undefined;
 }
 
-export interface IOffers extends Entry<IOffersFields> {
+/** A Navigation item containing references to pages.
+Typically used for Main/Footer navigations. */
+
+export interface INavigation extends Entry<INavigationFields> {
     sys: {
         id: string;
         type: string;
@@ -1020,7 +308,7 @@ export interface IOffers extends Entry<IOffersFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "offers";
+                id: "navigation";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -1032,63 +320,43 @@ export interface IPageFields {
     /** Page name */
     title: string;
 
-    /** Header */
-    header?: IHeader | undefined;
+    /** Parent page */
+    parentPage?: IArticle | IPage | undefined;
 
-    /** Footer */
-    footer?: IFooter | undefined;
-
-    /** Content */
-    content?:
+    /** Content on this page */
+    consys?:
         | (
-              | IAccordion
-              | ICarousel
-              | ICtaComponent
-              | IFlexibleCard
-              | IFormAccountAddress
-              | IFormAccountDetails
-              | IFormAccountPassword
-              | IFormAccountPreferences
-              | IFormCookieSettings
-              | IFormForgotPassword
-              | ILogin
-              | IRegistrationFormPhysical
-              | IRegistrationFormVirtual
-              | IFormResetPassword
-              | IHero
+              | IArticle
+              | ICta
+              | IFooter
+              | IHeader
+              | IImage
               | IList
-              | IOffers
-              | IPartnersCard
-              | ISprintSparen
-              | ITextCard
-              | ITransactionHistory
-              | ITutorial
-              | IWrapperComponent)[]
+              | IMultipleColumn
+              | INavigation
+              | IRichText
+              | IVideo
+          )[]
         | undefined;
 
-    /** Parent Page */
-    parentPage?: IPage | undefined;
+    /** Link to external page */
+    url?: string | undefined;
 
-    /** Theme */
-    theme?: "yellow" | "white" | "blue" | undefined;
-
-    /** Filled Background */
-    filledBackground?: boolean | undefined;
-
-    /** Meta Data */
+    /** Page meta data */
     metaData?: IMetaData | undefined;
+
+    /** Page image */
+    image?: Asset | undefined;
+
+    /** Tags */
+    tags?: ITag[] | undefined;
 
     /** Page slug */
     name: string;
-
-    /** Require Authorization */
-    requireAuthorization?: boolean | undefined;
-
-    /** Cookie Banner */
-    cookieBanner?: ICookieBanner | undefined;
 }
 
 /** A page identifier.  Use this to build a webpage of content that can appear in site navigations. */
+
 export interface IPage extends Entry<IPageFields> {
     sys: {
         id: string;
@@ -1106,395 +374,23 @@ export interface IPage extends Entry<IPageFields> {
     };
 }
 
-export interface IPartnersCardFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Logo */
-    logo?: Asset | undefined;
-
-    /** Logos Image */
-    logosImage?: Asset | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-}
-
-export interface IPartnersCard extends Entry<IPartnersCardFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "partnersCard";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IRegistrationFormPhysicalFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Step 1 Text */
-    step1Text: IFormText;
-
-    /** Input: Card id */
-    inputCardId: IFormInput;
-
-    /** Input: Activation Code */
-    inputActivationCode: IFormInput;
-
-    /** Step 2 Text */
-    step2Text: IFormText;
-
-    /** Input: First name */
-    inputFirstName: IFormInput;
-
-    /** Input: Middle name */
-    inputMiddleName: IFormInput;
-
-    /** Input: Last name */
-    inputLastName: IFormInput;
-
-    /** Input: Zip code */
-    inputZipCode: IFormInput;
-
-    /** Input: House number */
-    inputHouseNumber: IFormInput;
-
-    /** Input: Street */
-    inputStreet: IFormInput;
-
-    /** Input: City */
-    inputCity: IFormInput;
-
-    /** Step 3 Text */
-    step3Text: IFormText;
-
-    /** Input: Date of birth */
-    inputDOB?: IFormInput | undefined;
-
-    /** Input: Email */
-    inputEmail: IFormInput;
-
-    /** Input: Password */
-    inputPassword: IFormInput;
-
-    /** Input: ExtraOffers */
-    inputExtraOffers: IFormInput;
-}
-
-/** Two types of form for managing registrations. */
-export interface IRegistrationFormPhysical extends Entry<IRegistrationFormPhysicalFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "registrationFormPhysical";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IRegistrationFormVirtualFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Error Codes */
-    errorCodes?: IFormElementsErrors | undefined;
-
-    /** On Success */
-    onSuccess?: ILink | undefined;
-
-    /** Step 1 Text */
-    step1Text: IFormText;
-
-    /** Input: First name */
-    inputFirstName: IFormInput;
-
-    /** Input: Middle name */
-    inputMiddleName: IFormInput;
-
-    /** Input: Last name */
-    inputLastName: IFormInput;
-
-    /** Input: Zip code */
-    inputZipCode: IFormInput;
-
-    /** Input: House number */
-    inputHouseNumber: IFormInput;
-
-    /** Input: Street */
-    inputStreet: IFormInput;
-
-    /** Input: City */
-    inputCity: IFormInput;
-
-    /** Step 2 Text */
-    step2Text: IFormText;
-
-    /** Input: Date of birth */
-    inputDOB?: IFormInput | undefined;
-
-    /** Input: Email */
-    inputEmail: IFormInput;
-
-    /** Input: Password */
-    inputPassword: IFormInput;
-
-    /** Input: Extra Offers */
-    inputExtraOffers: IFormInput;
-}
-
-/** Form for managing Registration of Virtual cards. */
-export interface IRegistrationFormVirtual extends Entry<IRegistrationFormVirtualFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "registrationFormVirtual";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ISprintSparenFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: string | undefined;
-
-    /** Notice */
-    notice?: Document | undefined;
-
-    /** Show More Button Label */
-    showMoreButtonLabel?: string | undefined;
-
-    /** Current Multiplier Label */
-    currentMultiplierLabel?: string | undefined;
-
-    /** Next Multiplier Label */
-    nextMultiplierLabel?: string | undefined;
-
-    /** Button */
-    button?: ILink | undefined;
-
-    /** Visible For User */
-    forActiveUser?: boolean | undefined;
-
-    /** Table Data */
-    tableData?: Record<string, any> | undefined;
-}
-
-export interface ISprintSparen extends Entry<ISprintSparenFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "sprintSparen";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ITextCardFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Header */
-    header?: Document | undefined;
-
-    /** Header Alignment */
-    headerAlignment?: "left" | "right" | "center" | undefined;
-
-    /** Do Not Apply Card Styles */
-    doNotApplyCardStyles?: boolean | undefined;
-
-    /** Content */
-    content?: Document | undefined;
-
-    /** Show When */
-    forLoggedIn?: boolean | undefined;
-}
-
-/** Text card is comprised of header and content with multiple options. */
-export interface ITextCard extends Entry<ITextCardFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "textCard";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ITransactionHistoryFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Description */
-    description?: Document | undefined;
-
-    /** Points Label */
-    pointsLabel?: string | undefined;
-
-    /** Data Is Loading Message */
-    dataIsLoadingMessage?: string | undefined;
-
-    /** No Data Message */
-    noDataMessage?: string | undefined;
-
-    /** Loading Error Message */
-    loadingErrorMessage?: string | undefined;
-}
-
-export interface ITransactionHistory extends Entry<ITransactionHistoryFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "transactionHistory";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ITutorialFields {
-    /** Name */
-    name?: string | undefined;
-
-    /** Caption */
-    caption?: string | undefined;
-
-    /** Title */
-    title?: string | undefined;
-
-    /** Image */
-    image?: Asset | undefined;
-
-    /** Theme */
-    theme?: "Yellow" | "Blue" | "Purple" | undefined;
-
-    /** Items */
-    items?: (ITextCard)[] | undefined;
-}
-
-export interface ITutorial extends Entry<ITutorialFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "tutorial";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IWrapperComponentFields {
-    /** Name */
+export interface IRedirectFields {
+    /** Content name */
     name: string;
 
-    /** Content */
-    content: (
-        | ICtaComponent
-        | IFormAccountAddress
-        | IFormAccountDetails
-        | IFormAccountPassword
-        | IFormAccountPreferences
-        | IFormCookieSettings
-        | IFormForgotPassword
-        | ILogin
-        | IRegistrationFormPhysical
-        | IRegistrationFormVirtual
-        | IFormResetPassword
-        | ITextCard)[];
+    /** URL from */
+    source: string;
 
-    /** Background Style */
-    backgroundStyle: "None" | "Yellow" | "White" | "Blue" | "Purple";
+    /** Redirect to */
+    destination?: IArticle | IPage | undefined;
 
-    /** Background Position */
-    backgroundPosition?: "Fill" | "Top" | "Bottom" | undefined;
+    /** Redirect to URL */
+    destinationExplicit?: string | undefined;
 }
 
-/** Can wrap 1 or more components with specific design and layout style */
-export interface IWrapperComponent extends Entry<IWrapperComponentFields> {
+/** Add redirects for vanity URLs, legacy redirects and SEO */
+
+export interface IRedirect extends Entry<IRedirectFields> {
     sys: {
         id: string;
         type: string;
@@ -1503,7 +399,109 @@ export interface IWrapperComponent extends Entry<IWrapperComponentFields> {
         locale: string;
         contentType: {
             sys: {
-                id: "wrapperComponent";
+                id: "redirect";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
+export interface IRichTextFields {
+    /** Content name */
+    name?: string | undefined;
+
+    /** Text */
+    text?: string | undefined;
+
+    /** Button */
+    cta?: ICta | undefined;
+}
+
+/** A Rich text component with Markdown Editor */
+
+export interface IRichText extends Entry<IRichTextFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "rich-text";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
+export interface ITagFields {
+    /** Tag title */
+    title: string;
+
+    /** Tag slug */
+    name: string;
+}
+
+/** A basic data type for a content tag */
+
+export interface ITag extends Entry<ITagFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "tag";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
+export interface IVideoFields {
+    /** Video title */
+    title: string;
+
+    /** Video asset */
+    video?: Asset | undefined;
+
+    /** Video image */
+    poster?: Asset | undefined;
+
+    /** Autoplay */
+    autoplay?: boolean | undefined;
+
+    /** Loop */
+    loop?: boolean | undefined;
+
+    /** Display video controls */
+    controls?: boolean | undefined;
+
+    /** Description */
+    description?: string | undefined;
+
+    /** Display titles and descriptions */
+    displayTitles?: "yes"[] | undefined;
+}
+
+/** A component that displays a video. Can have optional elements like strapline, heading, description. Optional viewport transition. */
+
+export interface IVideo extends Entry<IVideoFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "video";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -1512,42 +510,20 @@ export interface IWrapperComponent extends Entry<IWrapperComponentFields> {
 }
 
 type CONTENT_TYPE =
-    | "accordion"
-    | "accordionItem"
-    | "carousel"
-    | "carouselCard"
-    | "cookieBanner"
-    | "ctaComponent"
-    | "deployment"
-    | "flexibleCard"
+    | "article"
+    | "cta"
     | "footer"
-    | "formAccountAddress"
-    | "formAccountDetails"
-    | "formAccountPassword"
-    | "formAccountPreferences"
-    | "formCookieSettings"
-    | "formElementsErrors"
-    | "formForgotPassword"
-    | "formInput"
-    | "formResetPassword"
-    | "formText"
     | "header"
-    | "hero"
-    | "link"
+    | "image"
     | "list"
-    | "login"
-    | "metaData"
-    | "offers"
+    | "meta-data"
+    | "navigation"
     | "page"
-    | "partnersCard"
-    | "registrationFormPhysical"
-    | "registrationFormVirtual"
-    | "sprintSparen"
-    | "textCard"
-    | "transactionHistory"
-    | "tutorial"
-    | "wrapperComponent";
+    | "redirect"
+    | "rich-text"
+    | "tag"
+    | "video";
 
-type LOCALE_CODE = "nl-NL";
+type LOCALE_CODE = "en-US";
 
-type CONTENTFUL_DEFAULT_LOCALE_CODE = "nl-NL";
+type CONTENTFUL_DEFAULT_LOCALE_CODE = "en-US";

@@ -1,0 +1,15 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "image",
+            "widgetId": "assetLinkEditor"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

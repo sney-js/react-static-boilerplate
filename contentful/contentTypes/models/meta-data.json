@@ -1,0 +1,244 @@
+{
+    "displayField": "name",
+    "name": "Meta data (Element)",
+    "description": "Holds meta data for a page including Page description and social meta descriptions",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Content name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "browserTitle",
+            "name": "Browser title",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "pageDescription",
+            "name": "Page description",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "ogTitle",
+            "name": "Facebook OG title",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "ogDescription",
+            "name": "Facebook OG description",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "ogImage",
+            "name": "Facebook OG image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkMimetypeGroup": [
+                        "image"
+                    ]
+                },
+                {
+                    "assetImageDimensions": {
+                        "width": {
+                            "min": 600,
+                            "max": null
+                        },
+                        "height": {
+                            "min": 315,
+                            "max": null
+                        }
+                    },
+                    "message": "See https://developers.facebook.com/docs/sharing/best-practices#images"
+                },
+                {
+                    "assetFileSize": {
+                        "max": 8388608
+                    },
+                    "message": "See https://developers.facebook.com/docs/sharing/best-practices#images"
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "twitterTitle",
+            "name": "Twitter title",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "twitterDescription",
+            "name": "Twitter description",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "twitterImage",
+            "name": "Twitter image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkMimetypeGroup": [
+                        "image"
+                    ]
+                },
+                {
+                    "assetImageDimensions": {
+                        "width": {
+                            "min": 280,
+                            "max": null
+                        },
+                        "height": {
+                            "min": 150,
+                            "max": null
+                        }
+                    },
+                    "message": "See https://dev.twitter.com/cards/types/summary-large-image"
+                },
+                {
+                    "assetFileSize": {
+                        "max": 1048576
+                    },
+                    "message": "See https://dev.twitter.com/cards/types/summary-large-image"
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "robotsNoIndex",
+            "name": "Robots no index",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Symbol",
+                "validations": [
+                    {
+                        "in": [
+                            "NOINDEX"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "robotsNoFollow",
+            "name": "Robots no follow",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Symbol",
+                "validations": [
+                    {
+                        "in": [
+                            "NOFOLLOW"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "changeFrequency",
+            "name": "Change frequency",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "in": [
+                        "always",
+                        "hourly",
+                        "daily",
+                        "weekly",
+                        "monthly",
+                        "yearly",
+                        "never"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "priority",
+            "name": "Priority",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "in": [
+                        "1.0",
+                        "0.9",
+                        "0.8",
+                        "0.7",
+                        "0.6",
+                        "0.5",
+                        "0.4",
+                        "0.3",
+                        "0.2",
+                        "0.1",
+                        "0.0"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "meta-data"
+    }
+}

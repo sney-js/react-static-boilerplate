@@ -40,6 +40,10 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
     routeChanged$;
     headerRef: any;
     toolbarRef: any;
+    defaultState = {
+        modalIsActive: false,
+        modalContent: null,
+    };
 
     toggleNavigation(contentType: ModalContentType, flag?) {
         let toState = flag;

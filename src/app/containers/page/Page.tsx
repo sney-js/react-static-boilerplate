@@ -18,6 +18,7 @@ type PageProps = {
 
 const Page = (props: PageProps) => {
     let page, locale;
+    console.log(props);
 
     if (props.routeData) {
         page = props.routeData.page;
@@ -30,20 +31,20 @@ const Page = (props: PageProps) => {
     }
 
     const {
-        fields: { title, theme, filledBackground },
+        fields: { title },
     } = page as IPage;
 
     let metaData = page.fields.metaData ? page.fields.metaData.fields : { title: title };
     return (
         <Layout
-            header={HeaderContainer({ item: page.fields.header })}
-            footer={FooterContainer({ item: page.fields.footer })}
-            cookieBanner={CookieBannerContainer({ item: page.fields.cookieBanner })}
-            metaData={metaData}
-            locale={locale}
+            // header={HeaderContainer({ item: page.fields.header })}
+            // footer={FooterContainer({ item: page.fields.footer })}
+            cookieBanner={CookieBannerContainer()}
+            // metaData={metaData}
+            // locale={locale}
         >
-            {page.fields.content &&
-                page.fields.content.map((item, index) =>
+            {page.fields.consys &&
+                page.fields.consys.map((item, index) =>
                     renderContentContainer({ item, key: index }),
                 )}
         </Layout>

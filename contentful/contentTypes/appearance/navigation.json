@@ -1,0 +1,18 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "pages",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

@@ -1,28 +1,32 @@
 {
     "displayField": "name",
-    "name": "Footer",
-    "description": "",
+    "name": "Footer (Module)",
+    "description": "A grouping of content which sits at the bottom of a page.",
     "fields": [
         {
             "id": "name",
-            "name": "Name",
+            "name": "Content name",
             "type": "Symbol",
             "localized": false,
-            "required": false,
-            "validations": [],
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
             "disabled": false,
             "omitted": false
         },
         {
-            "id": "iconLink",
-            "name": "Icon Link",
+            "id": "navigation",
+            "name": "Main footer navigation",
             "type": "Link",
             "localized": false,
             "required": false,
             "validations": [
                 {
                     "linkContentType": [
-                        "link"
+                        "navigation"
                     ]
                 }
             ],
@@ -31,80 +35,8 @@
             "linkType": "Entry"
         },
         {
-            "id": "title",
-            "name": "Title",
-            "type": "Symbol",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "links",
-            "name": "Links",
-            "type": "Array",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false,
-            "items": {
-                "type": "Link",
-                "validations": [
-                    {
-                        "linkContentType": [
-                            "link"
-                        ]
-                    }
-                ],
-                "linkType": "Entry"
-            }
-        },
-        {
-            "id": "loginLabel",
-            "name": "Login Label",
-            "type": "Symbol",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "logoutLabel",
-            "name": "Logout Label",
-            "type": "Symbol",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "additionalLinks",
-            "name": "Additional Links",
-            "type": "Array",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false,
-            "items": {
-                "type": "Link",
-                "validations": [
-                    {
-                        "linkContentType": [
-                            "link"
-                        ]
-                    }
-                ],
-                "linkType": "Entry"
-            }
-        },
-        {
             "id": "copyright",
-            "name": "Copyright",
+            "name": "Copyright message",
             "type": "Symbol",
             "localized": false,
             "required": false,

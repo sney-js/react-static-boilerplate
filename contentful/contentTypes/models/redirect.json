@@ -1,11 +1,21 @@
 {
     "displayField": "name",
-    "name": "Header (Module)",
-    "description": "A component that contains content that will appear in a header section",
+    "name": "Redirect",
+    "description": "Add redirects for vanity URLs, legacy redirects and SEO",
     "fields": [
         {
             "id": "name",
             "name": "Content name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "source",
+            "name": "URL from",
             "type": "Symbol",
             "localized": false,
             "required": true,
@@ -18,31 +28,15 @@
             "omitted": false
         },
         {
-            "id": "logo",
-            "name": "Logo",
-            "type": "Link",
-            "localized": false,
-            "required": false,
-            "validations": [
-                {
-                    "linkMimetypeGroup": [
-                        "image"
-                    ]
-                }
-            ],
-            "disabled": false,
-            "omitted": false,
-            "linkType": "Asset"
-        },
-        {
-            "id": "linkReference",
-            "name": "Logo Link",
+            "id": "destination",
+            "name": "Redirect to",
             "type": "Link",
             "localized": false,
             "required": false,
             "validations": [
                 {
                     "linkContentType": [
+                        "article",
                         "page"
                     ]
                 }
@@ -52,24 +46,17 @@
             "linkType": "Entry"
         },
         {
-            "id": "navigation",
-            "name": "Header navigation",
-            "type": "Link",
+            "id": "destinationExplicit",
+            "name": "Redirect to URL",
+            "type": "Symbol",
             "localized": false,
             "required": false,
-            "validations": [
-                {
-                    "linkContentType": [
-                        "navigation"
-                    ]
-                }
-            ],
+            "validations": [],
             "disabled": false,
-            "omitted": false,
-            "linkType": "Entry"
+            "omitted": false
         }
     ],
     "sys": {
-        "id": "header"
+        "id": "redirect"
     }
 }

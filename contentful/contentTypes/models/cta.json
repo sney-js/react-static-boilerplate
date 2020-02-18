@@ -1,0 +1,83 @@
+{
+    "displayField": "name",
+    "name": "Button/CTA (Element)",
+    "description": "A textfield combined with a URL",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Content name",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "title",
+            "name": "Button text",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "size": {
+                        "max": 50
+                    }
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "pageReference",
+            "name": "Page link",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "page"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "href",
+            "name": "External URL",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "target",
+            "name": "Open link in new browser tab",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Symbol",
+                "validations": [
+                    {
+                        "in": [
+                            "Yes"
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "sys": {
+        "id": "cta"
+    }
+}

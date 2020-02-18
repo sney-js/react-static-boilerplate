@@ -2,72 +2,58 @@
     "controls": [
         {
             "fieldId": "title",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "header",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "footer",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "content",
-            "settings": {
-                "bulkEditing": false
-            },
-            "widgetId": "entryLinksEditor",
-            "widgetNamespace": "builtin"
+            "widgetId": "singleLine"
         },
         {
             "fieldId": "parentPage",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
+            "settings": {
+                "helpText": "To build up a nested navigation structure, assign this page to a parent page. This helps to build up the site URL structure. e.g. Widget may have a parent Page of Products. Resulting in the URL; /products/widget.html. If left empty, it will assume that Home is the parent page."
+            },
+            "widgetId": "entryLinkEditor"
         },
         {
-            "fieldId": "theme",
+            "fieldId": "consys",
             "settings": {
-                "helpText": "Page theme"
+                "helpText": "Build up the content of the page using the content system or \"consys\"",
+                "bulkEditing": false
             },
-            "widgetId": "dropdown",
-            "widgetNamespace": "builtin"
+            "widgetId": "entryLinksEditor"
         },
         {
-            "fieldId": "filledBackground",
+            "fieldId": "url",
             "settings": {
-                "helpText": "Should background be filled with theme color?",
-                "trueLabel": "Yes",
-                "falseLabel": "No"
+                "helpText": "If populated all links to this page will link out to the external URL."
             },
-            "widgetId": "boolean",
-            "widgetNamespace": "builtin"
+            "widgetId": "urlEditor"
         },
         {
             "fieldId": "metaData",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
+            "settings": {
+                "helpText": "Configure the Meta data for a page, such as descriptions and social tags"
+            },
+            "widgetId": "entryLinkEditor"
+        },
+        {
+            "fieldId": "image",
+            "settings": {
+                "helpText": "Specify an image for this page.  Maybe be used as a thumbnail as a representation of this page or when shared on social media."
+            },
+            "widgetId": "assetLinkEditor"
+        },
+        {
+            "fieldId": "tags",
+            "settings": {
+                "helpText": "Specify the Tags that you would like to associate with this content.",
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor"
         },
         {
             "fieldId": "name",
             "settings": {
                 "helpText": "This field makes up the URL that this content will sit on. Your home page must have a name of index, to signify that this is the root page."
             },
-            "widgetId": "slugEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "requireAuthorization",
-            "widgetId": "boolean",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "cookieBanner",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
+            "widgetId": "slugEditor"
         }
     ],
     "sys": {

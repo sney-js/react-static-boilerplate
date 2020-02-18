@@ -2,67 +2,25 @@
     "controls": [
         {
             "fieldId": "name",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
+            "settings": {
+                "helpText": "This is the name of the piece of content for identification within Contentful - use sensible names e.g. Main Header Nav"
+            },
+            "widgetId": "singleLine"
         },
         {
-            "fieldId": "loginLabel",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
+            "fieldId": "logo",
+            "settings": {
+                "helpText": ""
+            },
+            "widgetId": "assetLinkEditor"
         },
         {
-            "fieldId": "logoutLabel",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "loggedInUserIndicator",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
+            "fieldId": "linkReference",
+            "widgetId": "entryLinkEditor"
         },
         {
             "fieldId": "navigation",
-            "settings": {
-                "bulkEditing": false
-            },
-            "widgetId": "entryLinksEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "additionalLinks",
-            "settings": {
-                "bulkEditing": false
-            },
-            "widgetId": "entryLinksEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "servicelineLink",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "servicelineTitle",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "servicelineDescription",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "loginForm",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "loggedInUserLink",
-            "settings": {
-                "helpText": "User will be redirected on this page when he clicks top-right icon (login icon) after he logged in"
-            },
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
+            "widgetId": "entryLinkEditor"
         }
     ],
     "sys": {

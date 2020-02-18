@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import ImageElement from "../image/Image";
 import LinkElement from "../link/LinkElement";
 import "./rich-text.scss";
+import * as Markdown from "react-markdown";
 
 const GLOBAL_OPTIONS = {
     renderNode: {
@@ -17,14 +18,36 @@ const GLOBAL_OPTIONS = {
                 </LinkElement>
             );
         },
+        // text hyperlinks are always external.
+        [INLINES.HYPERLINK]: node => {
+            return (
+                <a href={node.data.uri} target={"_blank"}>
+                    {node.content[0].value}
+                </a>
+            );
+        },
     },
 };
 
-export default ({ html }) => {
-    if (!html) return null;
-    const data = documentToReactComponents(html, GLOBAL_OPTIONS) as Array<any>;
-    if (data.length && !data[data.length - 1].props.children[0]) {
-        data.pop();
+export type RichTextType = {
+    markdown?: string;
+    document?: any;
+};
+
+export default (props: RichTextType) => {
+    if (props.document) {
+        const data = documentToReactComponents(props.document, GLOBAL_OPTIONS) as Array<any>;
+        if (data.length && !data[data.length - 1].props.children[0]) {
+            data.pop();
+        }
+        return <section className={"bpl-rich-text"}>{data}</section>;
+    } else if (props.markdown) {
+        return (
+            <section className={"bpl-rich-text"}>
+                <Markdown source={props.markdown} escapeHtml={false} />
+            </section>
+        );
+    } else {
+        return null;
     }
-    return <section className={"bpl-rich-text"}>{data}</section>;
 };

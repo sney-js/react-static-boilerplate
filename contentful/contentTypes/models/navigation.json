@@ -1,7 +1,7 @@
 {
     "displayField": "name",
-    "name": "List (Module)",
-    "description": "A wrapper component for listing content.  e.g Articles.\nHas functionality to query and display content based on a search query. e.g. Latest 10 Articles",
+    "name": "Navigation (Element)",
+    "description": "A Navigation item containing references to pages.\nTypically used for Main/Footer navigations.",
     "fields": [
         {
             "id": "name",
@@ -14,18 +14,8 @@
             "omitted": false
         },
         {
-            "id": "queryJSON",
-            "name": "Search query",
-            "type": "Object",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "consys",
-            "name": "Content items",
+            "id": "pages",
+            "name": "Pages to appear in this navigation",
             "type": "Array",
             "localized": false,
             "required": false,
@@ -37,9 +27,7 @@
                 "validations": [
                     {
                         "linkContentType": [
-                            "article",
-                            "page",
-                            "video"
+                            "page"
                         ]
                     }
                 ],
@@ -48,6 +36,6 @@
         }
     ],
     "sys": {
-        "id": "list"
+        "id": "navigation"
     }
 }

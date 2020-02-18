@@ -1,22 +1,17 @@
 {
     "displayField": "title",
-    "name": "Page",
-    "description": "A page identifier.  Use this to build a webpage of content that can appear in site navigations.",
+    "name": "Article",
+    "description": "Articles; such as news, blog posts, press releases",
     "fields": [
         {
             "id": "title",
-            "name": "Page name",
+            "name": "Headline",
             "type": "Symbol",
             "localized": false,
             "required": true,
             "validations": [
                 {
                     "unique": true
-                },
-                {
-                    "size": {
-                        "max": 55
-                    }
                 }
             ],
             "disabled": false,
@@ -33,8 +28,7 @@
                     "linkContentType": [
                         "article",
                         "page"
-                    ],
-                    "message": "Please select a page"
+                    ]
                 }
             ],
             "disabled": false,
@@ -42,8 +36,39 @@
             "linkType": "Entry"
         },
         {
-            "id": "consys",
-            "name": "Content on this page",
+            "id": "shortDescription",
+            "name": "Article introduction",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "content",
+            "name": "Article content",
+            "type": "Text",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "image",
+            "name": "Image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "related",
+            "name": "Related content",
             "type": "Array",
             "localized": false,
             "required": false,
@@ -56,64 +81,12 @@
                     {
                         "linkContentType": [
                             "article",
-                            "cta",
-                            "footer",
-                            "header",
-                            "image",
-                            "list",
-                            "multiple-column",
-                            "navigation",
-                            "rich-text",
-                            "video"
+                            "page"
                         ]
                     }
                 ],
                 "linkType": "Entry"
             }
-        },
-        {
-            "id": "url",
-            "name": "Link to external page",
-            "type": "Symbol",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "metaData",
-            "name": "Page meta data",
-            "type": "Link",
-            "localized": false,
-            "required": false,
-            "validations": [
-                {
-                    "linkContentType": [
-                        "meta-data"
-                    ]
-                }
-            ],
-            "disabled": false,
-            "omitted": false,
-            "linkType": "Entry"
-        },
-        {
-            "id": "image",
-            "name": "Page image",
-            "type": "Link",
-            "localized": false,
-            "required": false,
-            "validations": [
-                {
-                    "linkMimetypeGroup": [
-                        "image"
-                    ]
-                }
-            ],
-            "disabled": false,
-            "omitted": false,
-            "linkType": "Asset"
         },
         {
             "id": "tags",
@@ -137,17 +110,29 @@
             }
         },
         {
+            "id": "metaData",
+            "name": "Article meta data",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "meta-data"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
             "id": "name",
-            "name": "Page slug",
+            "name": "Slug",
             "type": "Symbol",
             "localized": false,
             "required": true,
             "validations": [
-                {
-                    "size": {
-                        "max": 55
-                    }
-                },
                 {
                     "regexp": {
                         "pattern": "^(?!(?:static)$).+$",
@@ -161,6 +146,6 @@
         }
     ],
     "sys": {
-        "id": "page"
+        "id": "article"
     }
 }

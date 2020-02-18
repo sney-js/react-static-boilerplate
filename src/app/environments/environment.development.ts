@@ -3,8 +3,8 @@ export const environment = {
     localStorageKey: "bpl-data",
     apiUrl: "https://dev.freebees.nl/api",
     contentful: {
-        space: "4h64vk8nggm5",
-        accessToken: "aYvjcCzlPD5Jzg6-ciMCmP0Y1Df1YTZX-8s3liDdqQA",
+        space: "xyyr4mk4uku2",
+        accessToken: "0UYIUDEai2pMj0Nfre0R00WWUC2nt37uU3vTiLCuUDM",
         environment: "master",
     },
 };

@@ -2,49 +2,18 @@
     "controls": [
         {
             "fieldId": "name",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "iconLink",
-            "widgetId": "entryLinkEditor",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "title",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "links",
             "settings": {
-                "bulkEditing": false
+                "helpText": "This is the name of the piece of content for identification within Contentful - use sensible names e.g. Main Footer or Dark Theme Footer."
             },
-            "widgetId": "entryLinksEditor",
-            "widgetNamespace": "builtin"
+            "widgetId": "singleLine"
         },
         {
-            "fieldId": "loginLabel",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "logoutLabel",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
-        },
-        {
-            "fieldId": "additionalLinks",
-            "settings": {
-                "bulkEditing": false
-            },
-            "widgetId": "entryLinksEditor",
-            "widgetNamespace": "builtin"
+            "fieldId": "navigation",
+            "widgetId": "entryLinkEditor"
         },
         {
             "fieldId": "copyright",
-            "widgetId": "singleLine",
-            "widgetNamespace": "builtin"
+            "widgetId": "singleLine"
         }
     ],
     "sys": {

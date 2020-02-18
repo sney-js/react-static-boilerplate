@@ -1,0 +1,35 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "settings": {
+                "helpText": "Name of the piece of content for identification within Contentful - use sensible names e.g. Campaign redirect."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "source",
+            "settings": {
+                "helpText": "Please specify redirect from path. URL’s should begin with a ‘/’ e.g. /campaignname"
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "destination",
+            "settings": {
+                "helpText": "Please select a page to redirect to.  These links won't break if a page URL changes."
+            },
+            "widgetId": "entryLinkEditor"
+        },
+        {
+            "fieldId": "destinationExplicit",
+            "settings": {
+                "helpText": "OR Redirect to an external site or a specific path.  These links may break if the destination page URL changes."
+            },
+            "widgetId": "singleLine"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

@@ -1,5 +1,4 @@
 import { getContentType, resolve } from "../utils/Resolver";
-import { ILinkFields } from "../../contentful/@types/contentful";
 import linkHandler from "./link/dataHandler";
 
 export function handleContent(contentItem, handlers) {
@@ -62,10 +61,6 @@ export function cleanupData(data, config: CleanupConfig) {
             handleContent(object, config.handlers);
         }
     }
-}
-
-export function getAssociatedIcon(name: ILinkFields["associatedIcon"]) {
-    return null;
 }
 
 export async function routeDataResolver(client) {

@@ -70,14 +70,14 @@ class Layout extends Component<LayoutProps> {
             <div className={generateClassList([styles.layout])}>
                 <Head>
                     <html lang={this.props.locale} />
-                    <title>{metaData.title}</title>
-                    {metaData.description ? (
+                    <title>{metaData?.title}</title>
+                    {metaData?.description ? (
                         <meta name="description" content={metaData.description} />
                     ) : null}
-                    {metaData.keywords ? (
+                    {metaData?.keywords ? (
                         <meta name="keywords" content={metaData.keywords} />
                     ) : null}
-                    {metaData.image ? (
+                    {metaData?.image ? (
                         <meta
                             property="og:image"
                             content={
