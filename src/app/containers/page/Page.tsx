@@ -4,9 +4,6 @@ import "./page.scss";
 import Layout from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
-import FooterContainer from "../footer/FooterContainer";
-import HeaderContainer from "../header/HeaderContainer";
-import { IPage } from "../../../contentful/@types/contentful";
 import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
 
 type PageProps = {
@@ -30,17 +27,11 @@ const Page = (props: PageProps) => {
         locale = routeData.locale;
     }
 
-    const {
-        fields: { title },
-    } = page as IPage;
-
-    let metaData = page.fields.metaData ? page.fields.metaData.fields : { title: title };
+    let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
         <Layout
-            // header={HeaderContainer({ item: page.fields.header })}
-            // footer={FooterContainer({ item: page.fields.footer })}
             cookieBanner={CookieBannerContainer()}
-            // metaData={metaData}
+            metaData={metaData}
             // locale={locale}
         >
             {page.fields.consys &&

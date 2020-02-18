@@ -23,7 +23,7 @@
 
 .header {
     width: 100%;
-    height: $desktop-header-height;
+    min-height: $desktop-header-height;
     padding: 0 $default-gap * 4;
     display: flex;
     flex-direction: row;

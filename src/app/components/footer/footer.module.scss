@@ -35,12 +35,6 @@
     position: relative;
     @include theming($default-theme);
 
-    @media #{$screen-mobile} {
-        section {
-            padding: 0;
-        }
-    }
-
     .icon-link {
         position: absolute;
         top: 0;

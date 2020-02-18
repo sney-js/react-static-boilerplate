@@ -1,21 +1,10 @@
 import React from "react";
-import Link from "../link/link";
-import { IFooterFields } from "../../../contentful/@types/contentful";
-import { Footer } from "../../components/footer/Footer";
+import { Header } from "../../components/header/Header";
+import { useSiteData } from "react-static";
+import Footer from "../../components/footer/Footer";
 
-// Add all new contentful containers here.
-export default ({ item, ...rest }) => {
-    if (!item) return null;
-    //
-    // const {
-    //     title,
-    //     iconLink,
-    //     links,
-    //     loginLabel,
-    //     logoutLabel,
-    //     additionalLinks,
-    //     copyright,
-    // } = item.fields as IFooterFields;
-
-    return <Footer />;
-};
+export default function FooterContainer(props) {
+    const { footer } = useSiteData();
+    if (!footer) return null;
+    return <Footer links={footer.links} content={footer.copyright} />;
+}

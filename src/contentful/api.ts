@@ -3,7 +3,7 @@ import * as contentful from "contentful";
 export class ContentfulApi {
     client = null;
 
-    constructor({ space, accessToken, environment}, host?) {
+    constructor({ space, accessToken, environment }, host?) {
         this.client = contentful.createClient({
             space: space,
             accessToken: accessToken,
@@ -32,5 +32,24 @@ export class ContentfulApi {
             return data.items.map(filter);
         }
         return data;
+    }
+
+    /**
+     *
+     * @param query = {content_type="page", field:"slug", value:"index", include: 3 }
+     * @returns {Promise<Entry<any>>}
+     */
+    async fetchEntry({ content_type, field, value, ...rest }) {
+        const entries = await this.client.getEntries({ content_type, ...rest });
+        return entries.items.find(en => en.fields[field] === value);
+    }
+
+    async fetchQuery(query, filter) {
+        const entries = await this.client.getEntries(query);
+
+        if (filter) {
+            return entries.items.map(filter);
+        }
+        return entries.items;
     }
 }

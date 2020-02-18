@@ -51,51 +51,18 @@ export interface IArticle extends Entry<IArticleFields> {
     };
 }
 
-export interface ICtaFields {
-    /** Content name */
-    name?: string | undefined;
-
-    /** Button text */
-    title: string;
-
-    /** Page link */
-    pageReference?: IPage | undefined;
-
-    /** External URL */
-    href?: string | undefined;
-
-    /** Open link in new browser tab */
-    target?: "Yes"[] | undefined;
-}
-
-/** A textfield combined with a URL */
-
-export interface ICta extends Entry<ICtaFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "cta";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
 export interface IFooterFields {
     /** Content name */
     name: string;
 
-    /** Main footer navigation */
-    navigation?: INavigation | undefined;
+    /** Links */
+    links?: ILink[] | undefined;
 
     /** Copyright message */
     copyright?: string | undefined;
+
+    /** Slug */
+    slug: string;
 }
 
 /** A grouping of content which sits at the bottom of a page. */
@@ -124,11 +91,11 @@ export interface IHeaderFields {
     /** Logo */
     logo?: Asset | undefined;
 
-    /** Logo Link */
-    linkReference?: IPage | undefined;
+    /** Links */
+    links?: ILink[] | undefined;
 
-    /** Header navigation */
-    navigation?: INavigation | undefined;
+    /** Slug */
+    slug: string;
 }
 
 /** A component that contains content that will appear in a header section */
@@ -177,6 +144,42 @@ export interface IImage extends Entry<IImageFields> {
     };
 }
 
+export interface ILinkFields {
+    /** Name */
+    name?: string | undefined;
+
+    /** Title */
+    title?: string | undefined;
+
+    /** Internal Link */
+    internalLink?: IPage | undefined;
+
+    /** Direct Link */
+    externalLink?: string | undefined;
+
+    /** Is New Tab */
+    isNewTab?: boolean | undefined;
+}
+
+/** Link for external or internal resources for our app */
+
+export interface ILink extends Entry<ILinkFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "link";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
 export interface IListFields {
     /** Content name */
     name: string;
@@ -201,114 +204,6 @@ export interface IList extends Entry<IListFields> {
         contentType: {
             sys: {
                 id: "list";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface IMetaDataFields {
-    /** Content name */
-    name: string;
-
-    /** Browser title */
-    browserTitle?: string | undefined;
-
-    /** Page description */
-    pageDescription?: string | undefined;
-
-    /** Facebook OG title */
-    ogTitle?: string | undefined;
-
-    /** Facebook OG description */
-    ogDescription?: string | undefined;
-
-    /** Facebook OG image */
-    ogImage?: Asset | undefined;
-
-    /** Twitter title */
-    twitterTitle?: string | undefined;
-
-    /** Twitter description */
-    twitterDescription?: string | undefined;
-
-    /** Twitter image */
-    twitterImage?: Asset | undefined;
-
-    /** Robots no index */
-    robotsNoIndex?: "NOINDEX"[] | undefined;
-
-    /** Robots no follow */
-    robotsNoFollow?: "NOFOLLOW"[] | undefined;
-
-    /** Change frequency */
-    changeFrequency?:
-        | "always"
-        | "hourly"
-        | "daily"
-        | "weekly"
-        | "monthly"
-        | "yearly"
-        | "never"
-        | undefined;
-
-    /** Priority */
-    priority?:
-        | "1.0"
-        | "0.9"
-        | "0.8"
-        | "0.7"
-        | "0.6"
-        | "0.5"
-        | "0.4"
-        | "0.3"
-        | "0.2"
-        | "0.1"
-        | "0.0"
-        | undefined;
-}
-
-/** Holds meta data for a page including Page description and social meta descriptions */
-
-export interface IMetaData extends Entry<IMetaDataFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "meta-data";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface INavigationFields {
-    /** Content name */
-    name: string;
-
-    /** Pages to appear in this navigation */
-    pages?: IPage[] | undefined;
-}
-
-/** A Navigation item containing references to pages.
-Typically used for Main/Footer navigations. */
-
-export interface INavigation extends Entry<INavigationFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "navigation";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -374,39 +269,6 @@ export interface IPage extends Entry<IPageFields> {
     };
 }
 
-export interface IRedirectFields {
-    /** Content name */
-    name: string;
-
-    /** URL from */
-    source: string;
-
-    /** Redirect to */
-    destination?: IArticle | IPage | undefined;
-
-    /** Redirect to URL */
-    destinationExplicit?: string | undefined;
-}
-
-/** Add redirects for vanity URLs, legacy redirects and SEO */
-
-export interface IRedirect extends Entry<IRedirectFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "redirect";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
 export interface IRichTextFields {
     /** Content name */
     name?: string | undefined;
@@ -430,33 +292,6 @@ export interface IRichText extends Entry<IRichTextFields> {
         contentType: {
             sys: {
                 id: "rich-text";
-                linkType: "ContentType";
-                type: "Link";
-            };
-        };
-    };
-}
-
-export interface ITagFields {
-    /** Tag title */
-    title: string;
-
-    /** Tag slug */
-    name: string;
-}
-
-/** A basic data type for a content tag */
-
-export interface ITag extends Entry<ITagFields> {
-    sys: {
-        id: string;
-        type: string;
-        createdAt: string;
-        updatedAt: string;
-        locale: string;
-        contentType: {
-            sys: {
-                id: "tag";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -511,17 +346,13 @@ export interface IVideo extends Entry<IVideoFields> {
 
 type CONTENT_TYPE =
     | "article"
-    | "cta"
     | "footer"
     | "header"
     | "image"
+    | "link"
     | "list"
-    | "meta-data"
-    | "navigation"
     | "page"
-    | "redirect"
     | "rich-text"
-    | "tag"
     | "video";
 
 type LOCALE_CODE = "en-US";

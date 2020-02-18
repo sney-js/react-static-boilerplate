@@ -2,6 +2,7 @@ import * as path from "path";
 import { ContentfulApi } from "./src/contentful/api";
 import * as Flatted from "flatted";
 import { routeDataResolver } from "./src/app/containers/helpers";
+import { resolveLinkInfo, resolvePageInfo } from "./src/app/utils/Resolver";
 
 require("dotenv").config();
 const client = new ContentfulApi({
@@ -12,19 +13,46 @@ const client = new ContentfulApi({
 
 export default {
     entry: path.resolve("./src/app/index.tsx"),
+    getSiteData: async () => {
+        // -------------------------------Navigation---------------------------
+
+        const mainNav = await client.fetchEntry({
+            content_type: "header",
+            include: 3,
+            field: "slug",
+            value: "main-header",
+        });
+        const navSiteData = mainNav.fields;
+        navSiteData.links = navSiteData.links.map(resolveLinkInfo);
+        // -------------------------------Footer---------------------------
+
+        const footer = await client.fetchEntry({
+            content_type: "footer",
+            field: "slug",
+            value: "main-footer",
+        });
+        const footerSiteData = footer.fields;
+        footerSiteData.links = footerSiteData.links.map(resolveLinkInfo);
+        // -------------------------------site data---------------------------
+
+        return {
+            data: {},
+            header: navSiteData,
+            footer: footerSiteData,
+        };
+    },
     getRoutes: async () => {
         const routes = await routeDataResolver(client);
-        return routes
-            .map(({ page, locale, path }) => {
-                return {
-                    path: path,
-                    template: "src/app/containers/page/Page",
-                    getData: () => ({
-                        page: Flatted.stringify(page),
-                        locale: locale,
-                    }),
-                };
-            });
+        return routes.map(({ page, locale, path }) => {
+            return {
+                path: path,
+                template: "src/app/containers/page/Page",
+                getData: () => ({
+                    page: Flatted.stringify(page),
+                    locale: locale,
+                }),
+            };
+        });
     },
     plugins: [
         "react-static-plugin-typescript",

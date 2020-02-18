@@ -1,26 +1,15 @@
-import React, { Component } from "react";
-import { generateClassList } from "../../utils/helpers";
-
+import React from "react";
+import Container from "../container/Container";
+import LinkWrap from "../../containers/link/linkWrap";
 const styles = require("./footer.module.scss");
 
-type FooterProps = {
-    title?: string;
-};
-
-const mapStateToProps = ({ isLoggedIn }) => {
-    return {
-        isLoggedIn,
-    };
-};
-
-export class Footer extends Component<FooterProps> {
-    render() {
-        return (
-            <footer className={generateClassList([styles.footer])}>
-                <h3>COPYRIGHT</h3>
-            </footer>
-        );
-    }
-}
-
-export default Footer;
+export default ({ content, links }) => (
+    <footer className={styles.footer}>
+        <Container maxWidth padded>
+            <small>{content}</small>
+            <div className={styles.links}>
+                {links.map(l => <LinkWrap {...l} />)}
+            </div>
+        </Container>
+    </footer>
+);
