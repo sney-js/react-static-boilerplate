@@ -1,0 +1,69 @@
+{
+    "displayField": "name",
+    "name": "Footer (Module)",
+    "description": "A grouping of content which sits at the bottom of a page.",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Content name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "links",
+            "name": "Links",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "link"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "copyright",
+            "name": "Copyright message",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "slug",
+            "name": "Slug",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "footer"
+    }
+}

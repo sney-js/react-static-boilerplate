@@ -1,0 +1,53 @@
+{
+    "displayField": "name",
+    "name": "List (Module)",
+    "description": "A wrapper component for listing content.  e.g Articles.\nHas functionality to query and display content based on a search query. e.g. Latest 10 Articles",
+    "fields": [
+        {
+            "id": "name",
+            "name": "Content name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "queryJSON",
+            "name": "Search query",
+            "type": "Object",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "consys",
+            "name": "Content items",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "article",
+                            "page",
+                            "video"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        }
+    ],
+    "sys": {
+        "id": "list"
+    }
+}

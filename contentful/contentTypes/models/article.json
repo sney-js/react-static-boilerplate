@@ -1,0 +1,151 @@
+{
+    "displayField": "title",
+    "name": "Article",
+    "description": "Articles; such as news, blog posts, press releases",
+    "fields": [
+        {
+            "id": "title",
+            "name": "Headline",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "parentPage",
+            "name": "Parent page",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "article",
+                        "page"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "shortDescription",
+            "name": "Article introduction",
+            "type": "Text",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "content",
+            "name": "Article content",
+            "type": "Text",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "image",
+            "name": "Image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "related",
+            "name": "Related content",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "article",
+                            "page"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "tags",
+            "name": "Tags",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "tag"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "metaData",
+            "name": "Article meta data",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "meta-data"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "name",
+            "name": "Slug",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "regexp": {
+                        "pattern": "^(?!(?:static)$).+$",
+                        "flags": null
+                    },
+                    "message": "'static' is a reserved folder name"
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "article"
+    }
+}

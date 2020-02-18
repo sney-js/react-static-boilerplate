@@ -1,0 +1,166 @@
+{
+    "displayField": "title",
+    "name": "Page",
+    "description": "A page identifier.  Use this to build a webpage of content that can appear in site navigations.",
+    "fields": [
+        {
+            "id": "title",
+            "name": "Page name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                },
+                {
+                    "size": {
+                        "max": 55
+                    }
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "parentPage",
+            "name": "Parent page",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "article",
+                        "page"
+                    ],
+                    "message": "Please select a page"
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "consys",
+            "name": "Content on this page",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "article",
+                            "cta",
+                            "footer",
+                            "header",
+                            "image",
+                            "list",
+                            "multiple-column",
+                            "navigation",
+                            "rich-text",
+                            "video"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "url",
+            "name": "Link to external page",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "metaData",
+            "name": "Page meta data",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "meta-data"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
+            "id": "image",
+            "name": "Page image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkMimetypeGroup": [
+                        "image"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+        },
+        {
+            "id": "tags",
+            "name": "Tags",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "tag"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "name",
+            "name": "Page slug",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "size": {
+                        "max": 55
+                    }
+                },
+                {
+                    "regexp": {
+                        "pattern": "^(?!(?:static)$).+$",
+                        "flags": null
+                    },
+                    "message": "'static' is a reserved folder name"
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "page"
+    }
+}

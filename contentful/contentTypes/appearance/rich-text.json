@@ -1,0 +1,25 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "settings": {
+                "helpText": "This is the name of the piece of content for identification within Contentful- use sensible names e.g. Privacy Page Rich Text."
+            },
+            "widgetId": "singleLine"
+        },
+        {
+            "fieldId": "text",
+            "widgetId": "markdown"
+        },
+        {
+            "fieldId": "cta",
+            "settings": {
+                "helpText": "Adds a button/CTA below the text block."
+            },
+            "widgetId": "entryLinkEditor"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

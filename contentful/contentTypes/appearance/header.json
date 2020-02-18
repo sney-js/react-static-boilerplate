@@ -1,0 +1,39 @@
+{
+    "controls": [
+        {
+            "fieldId": "name",
+            "settings": {
+                "helpText": "This is the name of the piece of content for identification within Contentful - use sensible names e.g. Main Header Nav"
+            },
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "logo",
+            "settings": {
+                "helpText": ""
+            },
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "links",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "slug",
+            "settings": {
+                "helpText": "e.g. main-header"
+            },
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}
