@@ -4,7 +4,6 @@ export const environment = {
     apiUrl: "",
     googleTag: null,
     preview: false,
-    reCaptchaKey: "",
     contentful: {
         space: "",
         accessToken: "",

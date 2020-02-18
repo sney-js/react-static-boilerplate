@@ -5,11 +5,6 @@ import Form from "../src/app/elements/forms/Form";
 import Container from "../src/app/components/container/Container";
 import { useState } from "react";
 import Button from "../src/app/elements/button/Button";
-import { PortalService } from "../src/app/core/portal/portalService";
-
-
-const portalService = PortalService.getInstance();
-const Portal = portalService.getPortal();
 
 storiesOf("Form Elements", module).add("All Elements", () => {
     const [submits, setSubmits] = useState(0);
@@ -58,7 +53,6 @@ storiesOf("Form Elements", module).add("All Elements", () => {
                     emptyError={"NO NON O"}
                     description={"e.g. 1234 5678 90"}
                     maskChar={""}
-                    barcodeScanner
                     error={{ error: true, errorText: "fill it" }}
                     setValidity={value => {
                         let isValid = value.trim().length > 0 && value.trim().length < 12;
@@ -120,9 +114,6 @@ storiesOf("Form Elements", module).add("All Elements", () => {
 
                 <Button type={"submit"}>Submit</Button>
             </Form>
-            {
-                Portal
-            }
         </Container>
     );
 });
@@ -221,9 +212,6 @@ storiesOf("Form Elements", module).add("Error + Disabled", () => (
             />
             <Button type={"submit"}>Submit</Button>
         </Form>
-        {
-            Portal
-        }
     </Container>
 ));
 
@@ -307,8 +295,5 @@ storiesOf("Form Elements", module).add("Validation", () => (
             />
             <Button type={"submit"}>Submit</Button>
         </Form>
-        {
-            Portal
-        }
     </Container>
 ));

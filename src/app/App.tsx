@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Root, Routes } from "react-static";
 import { Router } from "@reach/router";
-import { Provider } from "react-redux";
-import store from "./store";
-import { Mocks } from "./core/api/mocks";
+import { Mocks } from "./utils/mocks";
 import { mocksConfig } from "./mock-configs";
 import { ContentfulApi } from "../contentful/api";
 import { routeDataResolver } from "./containers/helpers";
