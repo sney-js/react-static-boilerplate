@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Head } from "react-static";
 import { getUrl } from "../../utils/RespImage";
 import { generateClassList } from "../../utils/helpers";
-import { globalHistory } from "@reach/router";
-import { Theme } from "../../models/Theme";
-import { Cookie } from "../../models/Cookie";
-import Cookies from "js-cookie";
 import GlobalLoader from "../global-loader/GlobalLoader";
 
 const styles = require("./layout.module.scss");
@@ -22,12 +17,10 @@ type LayoutProps = {
     header?: any;
     footer?: any;
     cookieBanner?: any;
-    metaData: MetaDataStructure;
+    metaData?: MetaDataStructure;
     locale?: string;
-    filledBackground?: boolean;
-    isLoggedIn: boolean;
-    theme?: Theme;
     globalLoader?: boolean;
+    children?: any;
 };
 
 const mapStateToProps = ({ title, theme, isLoggedIn, globalLoader }) => ({
@@ -40,20 +33,12 @@ const mapStateToProps = ({ title, theme, isLoggedIn, globalLoader }) => ({
 class Layout extends Component<LayoutProps> {
     headerRef: any;
 
-    componentDidMount(): void {
-    }
+    componentDidMount(): void {}
 
-    componentWillUnmount(): void {
-    }
+    componentWillUnmount(): void {}
 
     componentDidUpdate(prevProps): void {
-        if (prevProps.isLoggedIn !== this.props.isLoggedIn) {
-            if (this.props.isLoggedIn) {
-                this.scrollTo();
-            }
-        }
-
-        if(prevProps.children !== this.props.children) {
+        if (prevProps.children !== this.props.children) {
             this.scrollTo(window.location.hash);
         }
     }
@@ -75,19 +60,14 @@ class Layout extends Component<LayoutProps> {
             let element = document.querySelector(hash);
             if (!element) return;
             const position = element.getBoundingClientRect();
-            window.scrollTo(0,  position.top - 120);
+            window.scrollTo(0, position.top - 120);
         });
     }
 
     render() {
         const { metaData, header, footer } = this.props;
         return (
-            <div
-                className={generateClassList([
-                    styles.layout,
-                    this.props.theme && styles[this.props.theme],
-                ])}
-            >
+            <div className={generateClassList([styles.layout])}>
                 <Head>
                     <html lang={this.props.locale} />
                     <title>{metaData.title}</title>
@@ -122,12 +102,7 @@ class Layout extends Component<LayoutProps> {
                     <div className={styles.cookieBanner}>{this.props.cookieBanner}</div>
                 )}
 
-                <div
-                    className={generateClassList([
-                        styles.content,
-                        this.props.filledBackground && styles.filledBackground,
-                    ])}
-                >
+                <div className={generateClassList([styles.content])}>
                     {header &&
                         React.cloneElement(header, {
                             ...header.props,
@@ -142,11 +117,6 @@ class Layout extends Component<LayoutProps> {
                 {footer &&
                     React.cloneElement(footer, {
                         ...footer.props,
-                        onLogin: e => {
-                            if (this.headerRef) {
-                                this.headerRef.onLoginClick(e);
-                            }
-                        },
                     })}
 
                 {this.props.globalLoader && <GlobalLoader />}
@@ -155,4 +125,4 @@ class Layout extends Component<LayoutProps> {
     }
 }
 
-export default connect(mapStateToProps)(Layout);
+export default Layout;

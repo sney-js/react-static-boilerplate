@@ -15,7 +15,9 @@
         background: map-color(map-get($theme, accent), $hover);
         color: map-color(map-get($theme, accent), default-contrast);
     }
-    &:not([disabled]):active, &:not([disabled]):focus, &:not([disabled]).active {
+    &:not([disabled]):active,
+    &:not([disabled]):focus,
+    &:not([disabled]).active {
         background: map-color(map-get($theme, accent), $active);
         color: map-color(map-get($theme, accent), default-contrast);
     }
@@ -45,7 +47,8 @@
             }
         }
     }
-    &:not([disabled]):active, &:not([disabled]).active {
+    &:not([disabled]):active,
+    &:not([disabled]).active {
         .bpl-svg-icon.filled {
             .icon-fill {
                 color: map-color(map-get($theme, accent), $active);
@@ -66,7 +69,8 @@
                 }
             }
         }
-        &:not([disabled]):active, &:not([disabled]).active {
+        &:not([disabled]):active,
+        &:not([disabled]).active {
             .bpl-svg-icon.filled-outlined {
                 color: $light-primary-text;
                 .icon-fill {

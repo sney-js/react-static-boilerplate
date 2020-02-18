@@ -128,7 +128,6 @@ input[type="password"] {
             cursor: pointer;
             height: 0;
             width: 0;
-
         }
 
         input ~ .checkmark {
@@ -201,9 +200,7 @@ input[type="password"] {
             background-color: white;
         }
 
-
         .check-icon {
-
             position: absolute;
             display: none;
             top: 50%;
@@ -214,7 +211,6 @@ input[type="password"] {
             color: map-color(map-get($default-theme, accent));
             stroke: map-color(map-get($default-theme, accent));
             stroke-width: 2px;
-
         }
 
         .checkmark {

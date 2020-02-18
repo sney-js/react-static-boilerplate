@@ -2,7 +2,7 @@
 @import "variables";
 
 .cookie-banner {
-    padding-top: $default-gap*1.5;
+    padding-top: $default-gap * 1.5;
     padding-bottom: $default-gap/2;
     .caption {
         @include setTypeStyles("caption");

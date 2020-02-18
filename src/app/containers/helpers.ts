@@ -1,7 +1,4 @@
 import { getContentType, resolve } from "../utils/Resolver";
-import SvgPhone from "../elements/svg-elements/Phone";
-import SvgChat from "../elements/svg-elements/Chat";
-import SvgNewsletter from "../elements/svg-elements/Newsletter";
 import { ILinkFields } from "../../contentful/@types/contentful";
 import linkHandler from "./link/dataHandler";
 
@@ -68,16 +65,7 @@ export function cleanupData(data, config: CleanupConfig) {
 }
 
 export function getAssociatedIcon(name: ILinkFields["associatedIcon"]) {
-    const icons = {
-        contact: SvgPhone,
-        question: SvgChat,
-        newsletter: SvgNewsletter,
-    };
-
-    const Icon = icons[name && name.toLowerCase()];
-
-    if (!Icon) return null;
-    return Icon;
+    return null;
 }
 
 export async function routeDataResolver(client) {

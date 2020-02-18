@@ -61,9 +61,9 @@ class Form extends React.Component<FormProps> {
                 onSubmit={e => {
                     e.preventDefault();
                     const allInputsValid = this.state.formValid;
-                    let isEmpty = Object.keys(this.state.inputsInvalid).length===0;
+                    let isEmpty = Object.keys(this.state.inputsInvalid).length === 0;
                     if (!isEmpty && !allInputsValid) {
-                        console.error("All inputs not valid!", this.state.inputsInvalid );
+                        console.error("All inputs not valid!", this.state.inputsInvalid);
                         return;
                     }
                     let jsonData = this.getJsonData(e.target);

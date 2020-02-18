@@ -23,12 +23,8 @@ const GLOBAL_OPTIONS = {
 export default ({ html }) => {
     if (!html) return null;
     const data = documentToReactComponents(html, GLOBAL_OPTIONS) as Array<any>;
-    if(data.length && !data[data.length -1].props.children[0] ) {
+    if (data.length && !data[data.length - 1].props.children[0]) {
         data.pop();
     }
-    return (
-        <section className={"bpl-rich-text"}>
-            {data}
-        </section>
-    );
+    return <section className={"bpl-rich-text"}>{data}</section>;
 };

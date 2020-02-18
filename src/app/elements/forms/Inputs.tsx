@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./inputs.scss";
 import "./toggle.scss";
 import InputMask from "react-input-mask";
-import { PasswordToggleOFF, PasswordToggleON } from "../svg-elements/InputsToggle";
 import { FormValidationContext } from "./Form";
 import { generateClassList } from "../../utils/helpers";
 import SvgCheck from "../svg-elements/Check";
 import Icon from "../icon/Icon";
-import { ScannerService } from "../../core/scannerService/scannerService";
-import SvgBarcode from "../svg-elements/Barcode";
 
 export enum InputType {
     checkbox = "checkbox",
@@ -27,7 +24,6 @@ interface InputGroupProps {
     label: string;
     iconState?: number;
     onIconStateChange?: (state: number) => void;
-    onBarcodeIconClick?: () => void;
 }
 
 export interface InputMaskProps {
@@ -64,7 +60,6 @@ export interface InputProps
     error?: ErrorGroup;
     setValidity?: (e: any) => ErrorGroup;
     disabled?: boolean;
-    barcodeScanner?: boolean;
 }
 
 class Input extends React.Component<InputProps> {
@@ -82,7 +77,6 @@ class Input extends React.Component<InputProps> {
         propError: this.props.error,
         barcodeScannerSupported: false,
     };
-
 
     onInvalid(e) {
         e.preventDefault();
@@ -142,14 +136,14 @@ class Input extends React.Component<InputProps> {
                     this.getSingleBoxID(nextBoxId),
                 ) as HTMLInputElement;
             } else {
-                const formFields = Array.from(target
-                    .closest("form")
-                    .querySelectorAll("input, button"));
-                nextEl =
-                    formFields.slice(formFields.indexOf(target) + 1, formFields.length)
-                        .find((element: HTMLElement) => {
-                            return !element.closest("*[hidden]");
-                        });
+                const formFields = Array.from(
+                    target.closest("form").querySelectorAll("input, button"),
+                );
+                nextEl = formFields
+                    .slice(formFields.indexOf(target) + 1, formFields.length)
+                    .find((element: HTMLElement) => {
+                        return !element.closest("*[hidden]");
+                    });
             }
 
             if (nextEl) {
@@ -158,7 +152,6 @@ class Input extends React.Component<InputProps> {
                     nextEl.focus();
                     if (nextEl.setSelectionRange) nextEl.setSelectionRange(0, 9999);
                 }, 25);
-
             }
         } else if (value.length === 0) {
             value = "-";
@@ -220,28 +213,16 @@ class Input extends React.Component<InputProps> {
     async componentDidMount() {
         const initialValidity = this.checkEmptyValidity(this.props.value);
         this.setInputError(!initialValidity);
-        if (this.props.barcodeScanner) {
-            this.setState({
-                barcodeScannerSupported: await ScannerService.isSupported(),
-            });
-        }
-
     }
 
     onBarcodeIconClick() {
         let validators = null;
 
-        if(this.props.mask) {
+        if (this.props.mask) {
             validators = {
-                symbolCount: this.props.mask.replace(/\s/g,"").length,
+                symbolCount: this.props.mask.replace(/\s/g, "").length,
             };
         }
-
-        ScannerService.startBarcodeScan(validators).then((result: any) => {
-            this.setState({
-                value: result.text,
-            });
-        });
     }
 
     render() {
@@ -257,15 +238,12 @@ class Input extends React.Component<InputProps> {
             errorCodes,
             fieldName,
             originalInputType,
-            barcodeScanner,
             ...rest
         } = this.props;
 
         if (this.props.type === InputType.splitText) {
             return (
-                <InputFieldGroup {...this.props} error={this.state.error}
-                                 barcodeScanner={barcodeScanner && this.state.barcodeScannerSupported}
-                                 onBarcodeIconClick={() => this.onBarcodeIconClick()}>
+                <InputFieldGroup {...this.props} error={this.state.error}>
                     <InputMask
                         ref={this.inputObj}
                         title={""}
@@ -291,8 +269,6 @@ class Input extends React.Component<InputProps> {
                     error={this.state.error}
                     label={undefined}
                     className={"input-with-borders"}
-                    onBarcodeIconClick={() => this.onBarcodeIconClick()}
-                    barcodeScanner={barcodeScanner && this.state.barcodeScannerSupported}
                 >
                     <div className="switch-root">
                         <label className="switch">
@@ -310,7 +286,7 @@ class Input extends React.Component<InputProps> {
                                     this.props.label || this.props.description || this.props.name
                                 }
                             />
-                            <span className="slider round"/>
+                            <span className="slider round" />
                         </label>
                     </div>
                 </InputFieldGroup>
@@ -331,7 +307,7 @@ class Input extends React.Component<InputProps> {
                         {...rest}
                     />
                     <span className="checkmark">
-                        <Icon className={"check-icon"} icon={<SvgCheck/>}/>
+                        <Icon className={"check-icon"} icon={<SvgCheck />} />
                     </span>
                 </CheckboxFieldGroup>
             );
@@ -339,9 +315,7 @@ class Input extends React.Component<InputProps> {
 
         if (this.props.type === InputType.code) {
             return (
-                <InputFieldGroup {...this.props} error={this.state.error}
-                                 barcodeScanner={barcodeScanner && this.state.barcodeScannerSupported}
-                                 onBarcodeIconClick={() => this.onBarcodeIconClick()}>
+                <InputFieldGroup {...this.props} error={this.state.error}>
                     <fieldset
                         className={"inline-input"}
                         id={this.props.id}
@@ -393,7 +367,7 @@ class Input extends React.Component<InputProps> {
                         aria-label={this.props.label || this.props.description || this.props.name}
                         {...rest}
                     />
-                    <span className="checkmark"/>
+                    <span className="checkmark" />
                 </RadioFieldGroup>
             );
         }
@@ -407,8 +381,6 @@ class Input extends React.Component<InputProps> {
                         this.inputObj.current.type = state === 1 ? "text" : "password";
                     }
                 }}
-                onBarcodeIconClick={() => this.onBarcodeIconClick()}
-                barcodeScanner={barcodeScanner && this.state.barcodeScannerSupported}
             >
                 <input
                     title={""}
@@ -491,22 +463,9 @@ function InputFieldGroup(props: InputProps) {
                             props.onIconStateChange && props.onIconStateChange(newIconState);
                         }}
                     >
-                        {iconState === 0 ? (
-                            <PasswordToggleON/>
-                        ) : iconState === 1 ? (
-                            <PasswordToggleOFF/>
-                        ) : null}
+                        {iconState === 0 ? null : iconState === 1 ? null : null}
                     </span>
                 ) : null}
-
-                {
-                    props.barcodeScanner && <span
-                        className={"input-icon barcode-scanner-icon"}
-                        onClick={() => props.onBarcodeIconClick()}
-                    >
-                        <SvgBarcode/>
-                    </span>
-                }
 
                 <div className={"field-description " + props.type}>
                     <small>{props.description}</small>

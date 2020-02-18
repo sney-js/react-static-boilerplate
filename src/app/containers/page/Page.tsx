@@ -1,23 +1,13 @@
 import React from "react";
 import { useRouteData } from "react-static";
 import "./page.scss";
-import { changeLocale, changeTheme } from "../../actions";
-import { connect } from "react-redux";
 import Layout from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
-import AuthGuard from "../auth-guard/AuthGuard";
 import FooterContainer from "../footer/FooterContainer";
 import HeaderContainer from "../header/HeaderContainer";
 import { IPage } from "../../../contentful/@types/contentful";
 import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
-
-function mapDispatchToProps(dispatch) {
-    return {
-        changeTheme: payload => dispatch(changeTheme(payload)),
-        changeLocale: payload => dispatch(changeLocale(payload)),
-    };
-}
 
 type PageProps = {
     changeTheme?: Function;
@@ -43,30 +33,21 @@ const Page = (props: PageProps) => {
         fields: { title, theme, filledBackground },
     } = page as IPage;
 
-    props.changeTheme({ theme });
-    props.changeLocale({ locale });
-
     let metaData = page.fields.metaData ? page.fields.metaData.fields : { title: title };
     return (
-        <AuthGuard requireAuthorization={page.fields.requireAuthorization}>
-            <Layout
-                filledBackground={filledBackground}
-                metaData={metaData}
-                locale={locale}
-                cookieBanner={CookieBannerContainer({ item: page.fields.cookieBanner })}
-                header={HeaderContainer({ item: page.fields.header })}
-                footer={FooterContainer({ item: page.fields.footer })}
-            >
-                {page.fields.content &&
-                    page.fields.content.map((item, index) =>
-                        renderContentContainer({ item, key: index }),
-                    )}
-            </Layout>
-        </AuthGuard>
+        <Layout
+            header={HeaderContainer({ item: page.fields.header })}
+            footer={FooterContainer({ item: page.fields.footer })}
+            cookieBanner={CookieBannerContainer({ item: page.fields.cookieBanner })}
+            metaData={metaData}
+            locale={locale}
+        >
+            {page.fields.content &&
+                page.fields.content.map((item, index) =>
+                    renderContentContainer({ item, key: index }),
+                )}
+        </Layout>
     );
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(Page);
+export default Page;

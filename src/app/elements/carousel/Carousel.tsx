@@ -107,7 +107,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                     >
                         {item}
                     </div>
-                    <div className={"bpl-carousel-item-gap"}/>
+                    <div className={"bpl-carousel-item-gap"} />
                 </React.Fragment>
             );
         });

@@ -83,9 +83,13 @@ class Button extends React.Component<ButtonProps> {
     }
 
     getButtonTitle() {
-        return this.props.label || this.props.text || (this.props.link && this.props.link.props.title) || (this.props as Arrow["props"]).direction;
+        return (
+            this.props.label ||
+            this.props.text ||
+            (this.props.link && this.props.link.props.title) ||
+            (this.props as Arrow["props"]).direction
+        );
     }
-
 
     render() {
         const { className, preventDefaultOnLoading, active, ...rest } = this.props;
@@ -99,8 +103,7 @@ class Button extends React.Component<ButtonProps> {
             active && "active",
         ]);
 
-        let wrapper = this.props.link ? this.props.link : <button title={this.getButtonTitle()}/>;
-
+        let wrapper = this.props.link ? this.props.link : <button title={this.getButtonTitle()} />;
 
         return React.cloneElement(
             wrapper,

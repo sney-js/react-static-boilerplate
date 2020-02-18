@@ -45,6 +45,5 @@ export default {
         ],
         "react-static-plugin-scss-modules-rw",
         "react-static-plugin-file-replace",
-        "react-static-plugin-polyfills",
     ],
 };

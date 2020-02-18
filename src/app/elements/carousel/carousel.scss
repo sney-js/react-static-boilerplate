@@ -95,7 +95,7 @@
 
         .bpl-carousel-indicator-wrapper {
             width: $default-gap * 2;
-            height: $default-gap *2;
+            height: $default-gap * 2;
             position: relative;
             cursor: pointer;
             display: inline-block;
@@ -117,7 +117,6 @@
             &.active {
                 background-color: map-color(map-get($default-theme, primary));
             }
-
         }
     }
 }
