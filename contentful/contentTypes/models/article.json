@@ -1,11 +1,11 @@
 {
     "displayField": "title",
-    "name": "Article",
+    "name": "Article (Page)",
     "description": "Articles; such as news, blog posts, press releases",
     "fields": [
         {
             "id": "title",
-            "name": "Headline",
+            "name": "Title",
             "type": "Symbol",
             "localized": false,
             "required": true,
@@ -18,40 +18,52 @@
             "omitted": false
         },
         {
-            "id": "parentPage",
-            "name": "Parent page",
+            "id": "category",
+            "name": "Category",
             "type": "Link",
             "localized": false,
             "required": false,
-            "validations": [
-                {
-                    "linkContentType": [
-                        "article",
-                        "page"
-                    ]
-                }
-            ],
+            "validations": [],
             "disabled": false,
             "omitted": false,
             "linkType": "Entry"
         },
         {
-            "id": "shortDescription",
-            "name": "Article introduction",
-            "type": "Text",
+            "id": "description",
+            "name": "Description",
+            "type": "RichText",
             "localized": false,
             "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "content",
-            "name": "Article content",
-            "type": "Text",
-            "localized": false,
-            "required": true,
-            "validations": [],
+            "validations": [
+                {
+                    "nodes": {}
+                },
+                {
+                    "enabledMarks": [
+                        "bold",
+                        "italic",
+                        "underline"
+                    ],
+                    "message": "Only bold, italic, and underline marks are allowed"
+                },
+                {
+                    "enabledNodeTypes": [
+                        "heading-1",
+                        "heading-2",
+                        "heading-3",
+                        "heading-4",
+                        "heading-5",
+                        "heading-6",
+                        "ordered-list",
+                        "unordered-list",
+                        "hr",
+                        "blockquote",
+                        "hyperlink",
+                        "entry-hyperlink"
+                    ],
+                    "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, link to Url, and link to entry nodes are allowed"
+                }
+            ],
             "disabled": false,
             "omitted": false
         },
@@ -61,10 +73,63 @@
             "type": "Link",
             "localized": false,
             "required": false,
-            "validations": [],
+            "validations": [
+                {
+                    "linkMimetypeGroup": [
+                        "image"
+                    ]
+                }
+            ],
             "disabled": false,
             "omitted": false,
             "linkType": "Asset"
+        },
+        {
+            "id": "content",
+            "name": "Content",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "image",
+                            "list",
+                            "rich-text"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
+        },
+        {
+            "id": "publishedDate",
+            "name": "Published Date",
+            "type": "Date",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "keywords",
+            "name": "Keywords",
+            "type": "Array",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false,
+            "items": {
+                "type": "Symbol",
+                "validations": []
+            }
         },
         {
             "id": "related",
@@ -73,8 +138,8 @@
             "localized": false,
             "required": false,
             "validations": [],
-            "disabled": false,
-            "omitted": false,
+            "disabled": true,
+            "omitted": true,
             "items": {
                 "type": "Link",
                 "validations": [
@@ -87,44 +152,6 @@
                 ],
                 "linkType": "Entry"
             }
-        },
-        {
-            "id": "tags",
-            "name": "Tags",
-            "type": "Array",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false,
-            "items": {
-                "type": "Link",
-                "validations": [
-                    {
-                        "linkContentType": [
-                            "tag"
-                        ]
-                    }
-                ],
-                "linkType": "Entry"
-            }
-        },
-        {
-            "id": "metaData",
-            "name": "Article meta data",
-            "type": "Link",
-            "localized": false,
-            "required": false,
-            "validations": [
-                {
-                    "linkContentType": [
-                        "meta-data"
-                    ]
-                }
-            ],
-            "disabled": false,
-            "omitted": false,
-            "linkType": "Entry"
         },
         {
             "id": "name",

@@ -5,7 +5,7 @@ import { Mocks } from "./utils/mocks";
 import { mocksConfig } from "./mock-configs";
 import { ContentfulApi } from "../contentful/api";
 import { routeDataResolver } from "./containers/helpers";
-import Page from "./containers/page/Page";
+import Page from "./containers/page/Page_page";
 import { environment } from "./environments/environment";
 import GlobalLoader from "./components/global-loader/GlobalLoader";
 

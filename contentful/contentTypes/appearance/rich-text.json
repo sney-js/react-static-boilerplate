@@ -5,18 +5,18 @@
             "settings": {
                 "helpText": "This is the name of the piece of content for identification within Contentful- use sensible names e.g. Privacy Page Rich Text."
             },
-            "widgetId": "singleLine"
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "content",
+            "widgetId": "richTextEditor",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "text",
-            "widgetId": "markdown"
-        },
-        {
-            "fieldId": "cta",
-            "settings": {
-                "helpText": "Adds a button/CTA below the text block."
-            },
-            "widgetId": "entryLinkEditor"
+            "widgetId": "markdown",
+            "widgetNamespace": "builtin"
         }
     ],
     "sys": {

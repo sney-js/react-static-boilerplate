@@ -10,7 +10,7 @@ export const renderContentContainer = ({ item, ...rest }) => {
         case "rich-text":
             return (
                 <Container padded maxWidth>
-                    <RichText markdown={item.fields.text} />;
+                    <RichText document={item.fields.content} />
                 </Container>
             );
         case "image":

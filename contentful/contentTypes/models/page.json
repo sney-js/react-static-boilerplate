@@ -23,23 +23,28 @@
             "omitted": false
         },
         {
-            "id": "parentPage",
-            "name": "Parent page",
-            "type": "Link",
+            "id": "content",
+            "name": "Content",
+            "type": "Array",
             "localized": false,
             "required": false,
-            "validations": [
-                {
-                    "linkContentType": [
-                        "article",
-                        "page"
-                    ],
-                    "message": "Please select a page"
-                }
-            ],
+            "validations": [],
             "disabled": false,
             "omitted": false,
-            "linkType": "Entry"
+            "items": {
+                "type": "Link",
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "image",
+                            "list",
+                            "rich-text",
+                            "video"
+                        ]
+                    }
+                ],
+                "linkType": "Entry"
+            }
         },
         {
             "id": "consys",
@@ -48,8 +53,8 @@
             "localized": false,
             "required": false,
             "validations": [],
-            "disabled": false,
-            "omitted": false,
+            "disabled": true,
+            "omitted": true,
             "items": {
                 "type": "Link",
                 "validations": [
@@ -72,26 +77,18 @@
             }
         },
         {
-            "id": "url",
-            "name": "Link to external page",
-            "type": "Symbol",
-            "localized": false,
-            "required": false,
-            "validations": [],
-            "disabled": false,
-            "omitted": false
-        },
-        {
-            "id": "metaData",
-            "name": "Page meta data",
+            "id": "parentPage",
+            "name": "Parent page",
             "type": "Link",
             "localized": false,
             "required": false,
             "validations": [
                 {
                     "linkContentType": [
-                        "meta-data"
-                    ]
+                        "article",
+                        "page"
+                    ],
+                    "message": "Please select a page"
                 }
             ],
             "disabled": false,
@@ -116,14 +113,41 @@
             "linkType": "Asset"
         },
         {
+            "id": "url",
+            "name": "Link to external page",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "metaData",
+            "name": "Page meta data",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "metaData"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
             "id": "tags",
             "name": "Tags",
             "type": "Array",
             "localized": false,
             "required": false,
             "validations": [],
-            "disabled": false,
-            "omitted": false,
+            "disabled": true,
+            "omitted": true,
             "items": {
                 "type": "Link",
                 "validations": [
@@ -143,6 +167,9 @@
             "localized": false,
             "required": true,
             "validations": [
+                {
+                    "unique": true
+                },
                 {
                     "size": {
                         "max": 55

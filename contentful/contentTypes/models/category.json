@@ -1,0 +1,34 @@
+{
+    "displayField": "title",
+    "name": "Category (Reference)",
+    "description": "Used to assign Articles categories.",
+    "fields": [
+        {
+            "id": "title",
+            "name": "Title",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [],
+            "disabled": false,
+            "omitted": false
+        },
+        {
+            "id": "slug",
+            "name": "Slug",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "unique": true
+                }
+            ],
+            "disabled": false,
+            "omitted": false
+        }
+    ],
+    "sys": {
+        "id": "category"
+    }
+}

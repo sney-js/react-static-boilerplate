@@ -1,6 +1,6 @@
 {
     "displayField": "name",
-    "name": "Link",
+    "name": "Link (Reference)",
     "description": "Link for external or internal resources for our app",
     "fields": [
         {
@@ -32,6 +32,7 @@
             "validations": [
                 {
                     "linkContentType": [
+                        "article",
                         "page"
                     ]
                 }

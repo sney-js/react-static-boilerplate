@@ -13,7 +13,7 @@ type PageProps = {
     routeData?: any;
 };
 
-const Page = (props: PageProps) => {
+const Page_page = (props: PageProps) => {
     let page, locale;
     console.log(props);
 
@@ -34,12 +34,12 @@ const Page = (props: PageProps) => {
             metaData={metaData}
             // locale={locale}
         >
-            {page.fields.consys &&
-                page.fields.consys.map((item, index) =>
+            {page.fields.content &&
+                page.fields.content.map((item, index) =>
                     renderContentContainer({ item, key: index }),
                 )}
         </Layout>
     );
 };
 
-export default Page;
+export default Page_page;

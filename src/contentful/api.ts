@@ -17,12 +17,16 @@ export class ContentfulApi {
         return data.items.find(item => item.default);
     }
 
-    async getPages(filter?) {
+    async getPages(contentTypePageName = "page", filter?) {
         const data = await this.client
             .getEntries({
-                content_type: "page",
+                content_type: contentTypePageName,
                 include: 10,
                 ...filter,
+            })
+            .then(res=>{
+                console.log(res);
+                return res;
             })
             .catch(e => {
                 console.log(e);

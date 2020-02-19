@@ -21,7 +21,6 @@ export type CleanupConfig = {
     ignoreTypes: Array<string>;
 };
 
-
 function cleanupEntryLink(object) {
     if (Array.isArray(object)) {
         return object.filter(element => cleanupEntryLink(element));
@@ -63,7 +62,7 @@ export function cleanupData(data, config: CleanupConfig) {
     }
 }
 
-export async function routeDataResolver(client) {
+export async function routeDataResolver(client, pageList = ["page"]) {
     const handlers = {
         link: linkHandler,
     };
@@ -74,18 +73,24 @@ export async function routeDataResolver(client) {
         ignoreTypes: [],
     };
 
-    const [{ items: pages }, locale] = await Promise.all([client.getPages(), client.getLocale()]);
+    const locale = await client.getLocale();
 
-    const routes = pages.map(page => {
-        cleanupData(page, cleanupConfig);
-        const path = resolve(page);
-        return {
-            page,
-            path,
-            locale: locale.code,
-        };
-    });
-    return routes;
+    return Promise.all(
+        pageList.map(contentName =>
+            client.getPages(contentName).then(query => ({
+                type: contentName,
+                items: query.items.map(page => {
+                    cleanupData(page, cleanupConfig);
+                    return {
+                        page,
+                        name: page?.fields?.name,
+                        path: resolve(page),
+                        locale: locale.code,
+                    };
+                }),
+            })),
+        ),
+    );
 }
 
 export function toDashCase(str) {

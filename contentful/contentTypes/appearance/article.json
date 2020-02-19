@@ -2,26 +2,48 @@
     "controls": [
         {
             "fieldId": "title",
-            "widgetId": "singleLine"
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
         },
         {
-            "fieldId": "parentPage",
-            "settings": {
-                "helpText": "To build up a nested url structure, assign this article to a parent page. This helps to build up the site URL structure. e.g. Titanic hits iceberg! may have a parent Page of News. Resulting in the URL; /news/titanic-hits-iceberg.html. If left empty, it will assume that Home is the parent page."
-            },
-            "widgetId": "entryLinkEditor"
+            "fieldId": "category",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
         },
         {
-            "fieldId": "shortDescription",
-            "widgetId": "markdown"
-        },
-        {
-            "fieldId": "content",
-            "widgetId": "markdown"
+            "fieldId": "description",
+            "widgetId": "richTextEditor",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "image",
-            "widgetId": "assetLinkEditor"
+            "widgetId": "assetLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "content",
+            "settings": {
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "publishedDate",
+            "settings": {
+                "format": "dateonly",
+                "helpText": "When was the article published? Used for sorting."
+            },
+            "widgetId": "datePicker",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "keywords",
+            "settings": {
+                "helpText": "Used for creating search keywords."
+            },
+            "widgetId": "tagEditor",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "related",
@@ -29,29 +51,16 @@
                 "helpText": "Relate content to this article. This may be other articles or pages",
                 "bulkEditing": false
             },
-            "widgetId": "entryLinksEditor"
-        },
-        {
-            "fieldId": "tags",
-            "settings": {
-                "helpText": "Specify the Tags that you would like to associate with this content.",
-                "bulkEditing": false
-            },
-            "widgetId": "entryLinksEditor"
-        },
-        {
-            "fieldId": "metaData",
-            "settings": {
-                "helpText": "Configure the Meta data for a page, such as descriptions and social tags"
-            },
-            "widgetId": "entryLinkEditor"
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "name",
             "settings": {
                 "helpText": "This field makes up the URL that this content will sit on"
             },
-            "widgetId": "slugEditor"
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
         }
     ],
     "sys": {

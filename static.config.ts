@@ -42,17 +42,24 @@ export default {
         };
     },
     getRoutes: async () => {
-        const routes = await routeDataResolver(client);
-        return routes.map(({ page, locale, path }) => {
-            return {
-                path: path,
-                template: "src/app/containers/page/Page",
+        const pageList = ["page", "article", "category"];
+        const routes = await routeDataResolver(client, pageList);
+        const pageRoutes = routes.map(({ type, items }) => {
+            return items.map(info => ({
+                path: info.path,
+                template: `src/app/containers/page/Page_${type}`,
                 getData: () => ({
-                    page: Flatted.stringify(page),
-                    locale: locale,
+                    page: Flatted.stringify(info.page),
+                    locale: info.locale,
                 }),
-            };
+            }));
         });
+
+        const pageCollection = [].concat(...pageRoutes);
+
+        //TODO print failed pages. before / after
+        pageCollection.map(i => console.log(i.path));
+        return pageCollection;
     },
     plugins: [
         "react-static-plugin-typescript",

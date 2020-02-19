@@ -2,9 +2,12 @@ export const resolve = node => {
     if (!node) return undefined;
     let contentType = getContentType(node);
     switch (contentType) {
-        case "page": {
+        case "page":
+            return getPagePath(node, "parentPage");
+        case "article":
+            return getPagePath(node, "category");
+        case "category":
             return getPagePath(node);
-        }
         default:
             return undefined;
     }
@@ -48,7 +51,7 @@ export const resolveAssetLink = node => {
     }
 };
 
-const getPagePath = page => {
+const getPagePath = (page, parentPage = "parentPage") => {
     const pages = [];
     const stack = [];
     stack.push(page);
@@ -59,8 +62,8 @@ const getPagePath = page => {
 
         pages.push(name);
 
-        if (node.fields.parentPage) {
-            stack.push(node.fields.parentPage);
+        if (node.fields[parentPage]) {
+            stack.push(node.fields[parentPage]);
         }
     }
 

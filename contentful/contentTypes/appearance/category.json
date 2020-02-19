@@ -1,0 +1,17 @@
+{
+    "controls": [
+        {
+            "fieldId": "title",
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
+        },
+        {
+            "fieldId": "slug",
+            "widgetId": "slugEditor",
+            "widgetNamespace": "builtin"
+        }
+    ],
+    "sys": {
+        "id": "default"
+    }
+}

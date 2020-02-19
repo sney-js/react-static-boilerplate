@@ -5,14 +5,16 @@
             "settings": {
                 "helpText": "This is the name of the piece of content for identification within Contentful- use sensible names e.g. Homepage latest news."
             },
-            "widgetId": "singleLine"
+            "widgetId": "singleLine",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "queryJSON",
             "settings": {
                 "helpText": "This field can be used to dynamically retrieve content to list based on the query criteria. The search query is a JSON object; e.g. {\"content_type\":\"article\"} will retrieve all articles.  For search parameters see; https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/query-entries"
             },
-            "widgetId": "objectEditor"
+            "widgetId": "objectEditor",
+            "widgetNamespace": "builtin"
         },
         {
             "fieldId": "consys",
@@ -20,7 +22,8 @@
                 "helpText": "Manually select what content you would like to appear in this list.  This is an alternative to using a query",
                 "bulkEditing": false
             },
-            "widgetId": "entryLinksEditor"
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
         }
     ],
     "sys": {

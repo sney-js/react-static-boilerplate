@@ -24,7 +24,7 @@
         {
             "fieldId": "externalLink",
             "settings": {
-                "helpText": "Link which lead user out of app"
+                "helpText": "Link which lead user out of app. e.g. https://google.com"
             },
             "widgetId": "singleLine",
             "widgetNamespace": "builtin"
