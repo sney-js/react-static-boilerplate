@@ -12,7 +12,7 @@
         "svgr": "svgr --config-file svgrrc.config.js --ext tsx -d src/app/elements/svg-elements public/assets/svg-elements",
         "contentful:pull": "contentful:pull-types",
         "contentful:push": "contentful:push-types",
-        "storybook": "start-storybook -p 9001 -s ./public",
+        "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
         "contentful-typescript-codegen": "contentful-typescript-codegen --output src/contentful/@types/contentful.d.ts"
     },
     "dependencies": {
