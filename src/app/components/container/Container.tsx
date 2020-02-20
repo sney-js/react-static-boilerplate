@@ -22,6 +22,9 @@ export type ContainerProps = {
     splitView?: boolean;
     paddedSplitView?: boolean;
     animateIn?: boolean;
+    nonMobileOnly?: boolean;
+    mobileOnly?: boolean;
+    zIndex?:number;
 };
 
 class Container extends Component<ContainerProps> {
@@ -37,6 +40,8 @@ class Container extends Component<ContainerProps> {
             this.props.padded_x_desktop && styles.padded_x_desktop,
             this.props.padded_y && styles.padded_y,
             this.props.half_padded_y && styles.half_padded_y,
+            this.props.nonMobileOnly && styles.desktopOnly,
+            this.props.mobileOnly && styles.mobileOnly,
             this.props.animateIn && "fadeup-initial",
         ]);
 
@@ -45,12 +50,16 @@ class Container extends Component<ContainerProps> {
             this.props.paddedSplitView && styles.padded_Splitview,
         ]);
 
+        let styleCustom = {};
+        if (this.props.zIndex){
+            styleCustom['z-index'] = this.props.zIndex;
+        }
         return (
             <FadeOnScroll
                 animate={this.props.animateIn}
                 uniqueKey={classNames + "-" + this.props.id}
             >
-                <section id={this.props.id} className={classNames}>
+                <section id={this.props.id} className={classNames} style={styleCustom}>
                     <div className={this.props.maxWidth && styles.maxWidth}>
                         {this.props.splitView ? (
                             <div className={classNamesSplitView}>{this.props.children}</div>

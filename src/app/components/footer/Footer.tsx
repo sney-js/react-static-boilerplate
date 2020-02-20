@@ -8,7 +8,7 @@ export default ({ content, links }) => (
         <Container maxWidth padded>
             <small>{content}</small>
             <div className={styles.links}>
-                {links.map(l => <LinkWrap {...l} />)}
+                {links?.map(l => <LinkWrap {...l} />)}
             </div>
         </Container>
     </footer>

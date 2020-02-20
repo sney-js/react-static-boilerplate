@@ -9,12 +9,16 @@ export const renderContentContainer = ({ item, ...rest }) => {
     switch (item.type) {
         case "rich-text":
             return (
-                <Container padded maxWidth>
+                <Container padded maxWidth animateIn>
                     <RichText document={item.fields.content} />
                 </Container>
             );
         case "image":
-            return <Container maxWidth><RespImage image={item.fields.image} /></Container>;
+            return (
+                <Container maxWidth animateIn>
+                    <RespImage image={item.fields.image} />
+                </Container>
+            );
         default:
             return null;
     }

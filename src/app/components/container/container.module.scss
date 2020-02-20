@@ -238,3 +238,16 @@ $border-radius: 75px;
         }
     }
 }
+
+
+.desktopOnly{
+    @media #{$screen-tablet} {
+        display: none;
+    }
+}
+
+.mobileOnly{
+    @media #{$screen-desktop} {
+        display: none;
+    }
+}
