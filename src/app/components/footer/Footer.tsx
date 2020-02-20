@@ -5,7 +5,7 @@ const styles = require("./footer.module.scss");
 
 export default ({ content, links }) => (
     <footer className={styles.footer}>
-        <Container maxWidth padded>
+        <Container layoutType={"maxWidth"} pad={"All"}>
             <small>{content}</small>
             <div className={styles.links}>
                 {links?.map(l => <LinkWrap {...l} />)}

@@ -61,7 +61,6 @@
         "@types/webpack-env": "^1.14.0",
         "awesome-typescript-loader": "^5.2.1",
         "aws-sdk": "2.524.0",
-        "babel-loader": "^8.0.6",
         "contentful-management": "^5.11.3",
         "contentful-typescript-codegen": "^2.0.1",
         "mime-types": "2.1.24",

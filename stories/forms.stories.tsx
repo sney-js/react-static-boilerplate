@@ -10,7 +10,7 @@ storiesOf("Form Elements", module).add("All Elements", () => {
     const [submits, setSubmits] = useState(0);
     console.log("state changed", submits);
     return (
-        <Container background={"yellow"} padded>
+        <Container background={"Primary"} pad={"All"}>
             <Form
                 onSubmit={data => {
                     setSubmits(submits + 1);
@@ -86,7 +86,7 @@ storiesOf("Form Elements", module).add("All Elements", () => {
                         description={"some description"}
                         value={"M"}
                     />
-                    <Container padded_x>
+                    <Container pad={"Horizontal"}>
                         <Input
                             type={InputType.radio}
                             label={"Female"}
@@ -119,7 +119,7 @@ storiesOf("Form Elements", module).add("All Elements", () => {
 });
 
 storiesOf("Form Elements", module).add("Error + Disabled", () => (
-    <Container background={"yellow"} padded>
+    <Container background={"Primary"} pad={"All"}>
         <Form
             onSubmit={data => {
                 console.log("Do something with the data:");
@@ -216,7 +216,7 @@ storiesOf("Form Elements", module).add("Error + Disabled", () => (
 ));
 
 storiesOf("Form Elements", module).add("Required", () => (
-    <Container background={"yellow"} padded>
+    <Container background={"Primary"} pad={"All"}>
         <Form
             onSubmit={data => {
                 console.log("SENT");
@@ -269,7 +269,7 @@ storiesOf("Form Elements", module).add("Required", () => (
 ));
 
 storiesOf("Form Elements", module).add("Validation", () => (
-    <Container background={"yellow"} padded>
+    <Container background={"Primary"} pad={"All"}>
         <Form
             onSubmit={data => {
                 console.log("SENT");

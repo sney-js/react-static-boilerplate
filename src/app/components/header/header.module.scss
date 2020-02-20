@@ -49,7 +49,7 @@
         display: flex;
         align-items: center;
         @media #{$screen-tablet} {
-        display: none;
+            display: none;
         }
     }
     .navigation {
@@ -167,4 +167,9 @@
 .modal-wrapper-open {
     top: 0;
     padding-top: $mobile-header-height;
+}
+.mobile-root {
+    a {
+        display: block !important;
+    }
 }

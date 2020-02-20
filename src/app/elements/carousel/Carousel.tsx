@@ -166,10 +166,8 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         return (
             <section className={"bpl-carousel-wrapper"}>
                 <Container
-                    padded_x
-                    padded_y={this.props.padded}
-                    half_padded_y
-                    maxWidth
+                    pad={"Horizontal"}
+                    layoutType={"maxWidth"}
                     animateIn={this.props.animateIn}
                 >
                     <section className={"bpl-carousel"}>

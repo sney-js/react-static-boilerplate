@@ -27,7 +27,7 @@ export function Header(props: HeaderProps) {
     return (
         <header className={classNames}>
             <Container
-                mobileOnly
+                breakpoint={"Tablet"}
                 className={generateClassList([
                     styles.modalWrapper,
                     !!menuOpen && styles.modalWrapperOpen,
@@ -35,12 +35,11 @@ export function Header(props: HeaderProps) {
             >
                 <MobileModal links={props.links} />
             </Container>
-            <Container maxWidth padded_x zIndex={1000}>
+
+            <Container layoutType={"maxWidth"} pad={"Horizontal"}>
                 <div className={styles.container}>
                     <div className={styles.logo}>
-                        <LinkElement path={"/"}>
-                            <RespImage image={props.logo} width={"100px"} />
-                        </LinkElement>
+                        <LinkElement path={"/"}>{props.logo || null}</LinkElement>
                     </div>
                     <Container className={styles.actionsDesktop}>
                         <Container className={styles.navigation}>
@@ -77,15 +76,11 @@ const MobileModal = ({ links }) => {
     let className = generateClassList([styles.mobileRoot]);
     return (
         <nav className={className}>
-            <Container padded className={generateClassList([styles.mobileRoot, styles.navigation])}>
-                <ul>
-                    {links &&
-                        links.map(l => (
-                            <li>
-                                <LinkWrap {...l} />
-                            </li>
-                        ))}
-                </ul>
+            <Container
+                pad={"All"}
+                className={generateClassList([styles.mobileRoot, styles.navigation])}
+            >
+                {links && links.map(l => <LinkWrap {...l} />)}
             </Container>
         </nav>
     );

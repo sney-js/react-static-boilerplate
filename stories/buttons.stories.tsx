@@ -8,7 +8,7 @@ import SvgAccount from "../src/app/elements/svg-elements/Arrow";
 
 storiesOf("Button", module).add("default button", () => (
     <React.Fragment>
-        <Container padded_x>
+        <Container pad={"Horizontal"}>
             <h2>Default button</h2>
             <Button>Button text</Button>
             <h2>Disabled button</h2>

@@ -3,8 +3,6 @@ import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
 import { generateClassList } from "../../utils/helpers";
 import GlobalLoader from "../global-loader/GlobalLoader";
-import Footer from "../footer/Footer";
-import HeaderConnected from "../header/Header";
 import HeaderContainer from "../../containers/header/HeaderContainer";
 import FooterContainer from "../../containers/footer/FooterContainer";
 

@@ -5,162 +5,6 @@ $fold-height: 60px;
 $fold-width: 60px;
 $border-radius: 75px;
 
-@mixin top-left {
-    border-top-left-radius: $border-radius;
-    background: linear-gradient(to bottom right, transparent 50%, $app-default-card-bg 50%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
-    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
-    background-position: 0% 0%, $fold-width 0%, 100% $fold-height;
-    background-repeat: no-repeat;
-
-    &.clipped {
-        clip-path: polygon(0 $fold-height, $fold-width 0, 100% 0, 100% 100%, 0 100%);
-    }
-}
-
-@mixin top-right {
-    border-top-right-radius: $border-radius;
-    background: linear-gradient(to bottom left, transparent 50%, $app-default-card-bg 50%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
-    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
-    background-position: 100% 0%, -$fold-width 0%, 100% $fold-height;
-    background-repeat: no-repeat;
-
-    &.clipped {
-        clip-path: polygon(
-            0% 0%,
-            calc(100% - #{$fold-width - 1px}) 0,
-            100% $fold-height + 1px,
-            100% 100%,
-            0 100%
-        );
-    }
-}
-
-@mixin bottom-left {
-    border-bottom-left-radius: $border-radius;
-    background: linear-gradient(to top right, transparent 50%, $app-default-card-bg 50%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
-    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
-    background-position: 0% 100%, $fold-width 0%, 100% (-$fold-height);
-    background-repeat: no-repeat;
-    &.clipped {
-        clip-path: polygon(
-            0% 0%,
-            100% 0,
-            100% 100%,
-            $fold-width 100%,
-            0 calc(100% - #{$fold-width})
-        );
-    }
-}
-
-@mixin bottom-right {
-    border-bottom-right-radius: $border-radius;
-    background: linear-gradient(to top left, transparent 50%, $app-default-card-bg 50%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%),
-        linear-gradient(to right, $app-default-card-bg 100%, transparent 100%);
-    background-size: $fold-width + 1 $fold-height + 1, 100% 100%, 100% 100%;
-    background-position: 100% 100%, -$fold-width 0%, 100% (-$fold-height);
-    background-repeat: no-repeat;
-    &.clipped {
-        clip-path: polygon(
-            0% 0%,
-            100% 0,
-            100% calc(100% - #{$fold-height}),
-            calc(100% - #{$fold-width}) 100%,
-            0 100%
-        );
-    }
-}
-
-.card {
-    background-color: $app-default-card-bg;
-    position: relative;
-
-    &.clipped {
-        overflow: hidden;
-    }
-
-    &.top_left {
-        &.mobile {
-            @media #{$screen-mobile} {
-                @include top-left();
-            }
-        }
-
-        &.tablet {
-            @media #{$screen-tablet} {
-                @include top-left();
-            }
-        }
-
-        &:not(.mobile):not(.tablet) {
-            @include top-left();
-        }
-    }
-
-    &.top_right {
-        &.mobile {
-            @media #{$screen-mobile} {
-                @include top-right();
-            }
-        }
-
-        &.tablet {
-            @media #{$screen-tablet} {
-                @include top-right();
-            }
-        }
-
-        &:not(.mobile):not(.tablet) {
-            @include top-right();
-        }
-    }
-
-    &.bottom_left {
-        &.mobile {
-            @media #{$screen-mobile} {
-                @include bottom-left();
-            }
-        }
-
-        &.tablet {
-            @media #{$screen-tablet} {
-                @include bottom-left();
-            }
-        }
-
-        &:not(.mobile):not(.tablet) {
-            @include bottom-left();
-        }
-    }
-
-    &.bottom_right {
-        &.mobile {
-            @media #{$screen-mobile} {
-                @include bottom-right();
-            }
-        }
-
-        &.tablet {
-            @media #{$screen-tablet} {
-                @include bottom-right();
-            }
-        }
-
-        &:not(.mobile):not(.tablet) {
-            @include bottom-right();
-        }
-    }
-
-    &.no_fold {
-    }
-}
-
 .padded {
     @extend %padded-x;
     @extend %padded-y;
@@ -239,15 +83,21 @@ $border-radius: 75px;
     }
 }
 
-
-.desktopOnly{
+.desktopOnly {
     @media #{$screen-tablet} {
         display: none;
     }
 }
 
-.mobileOnly{
+.tabletOnly {
     @media #{$screen-desktop} {
         display: none;
+    }
+}
+
+.mobileOnly {
+    display: none;
+    @media #{$screen-mobile} {
+        display: block;
     }
 }
