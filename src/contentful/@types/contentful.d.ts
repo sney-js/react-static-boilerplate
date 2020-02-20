@@ -4,29 +4,26 @@ import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
 export interface IArticleFields {
-    /** Headline */
+    /** Title */
     title: string;
 
-    /** Parent page */
-    parentPage?: IArticle | IPage | undefined;
+    /** Category */
+    category: ICategory;
 
-    /** Article introduction */
-    shortDescription?: string | undefined;
-
-    /** Article content */
-    content: string;
+    /** Description */
+    description?: Document | undefined;
 
     /** Image */
     image?: Asset | undefined;
 
-    /** Related content */
-    related?: (IArticle | IPage)[] | undefined;
+    /** Content */
+    content?: (IImage | IList | IRichText)[] | undefined;
 
-    /** Tags */
-    tags?: ITag[] | undefined;
+    /** Published Date */
+    publishedDate: string;
 
-    /** Article meta data */
-    metaData?: IMetaData | undefined;
+    /** Keywords */
+    keywords?: string[] | undefined;
 
     /** Slug */
     name: string;
@@ -44,6 +41,33 @@ export interface IArticle extends Entry<IArticleFields> {
         contentType: {
             sys: {
                 id: "article";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
+export interface ICategoryFields {
+    /** Title */
+    title: string;
+
+    /** Slug */
+    name: string;
+}
+
+/** Used to assign Articles categories. */
+
+export interface ICategory extends Entry<ICategoryFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "category";
                 linkType: "ContentType";
                 type: "Link";
             };
@@ -152,7 +176,7 @@ export interface ILinkFields {
     title?: string | undefined;
 
     /** Internal Link */
-    internalLink?: IPage | undefined;
+    internalLink?: IArticle | IPage | undefined;
 
     /** Direct Link */
     externalLink?: string | undefined;
@@ -184,11 +208,14 @@ export interface IListFields {
     /** Content name */
     name: string;
 
+    /** Content items */
+    consys?: (IArticle | IPage)[] | undefined;
+
     /** Search query */
     queryJSON?: Record<string, any> | undefined;
 
-    /** Content items */
-    consys?: (IArticle | IPage | IVideo)[] | undefined;
+    /** Identifier */
+    identifier: string;
 }
 
 /** A wrapper component for listing content.  e.g Articles.
@@ -211,40 +238,57 @@ export interface IList extends Entry<IListFields> {
     };
 }
 
+export interface IMetaDataFields {
+    /** Title */
+    title?: string | undefined;
+
+    /** Description */
+    description?: string | undefined;
+
+    /** Keywords */
+    keywords?: string[] | undefined;
+
+    /** Image */
+    image?: Asset | undefined;
+}
+
+/** Add custom page meta data values. */
+
+export interface IMetaData extends Entry<IMetaDataFields> {
+    sys: {
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+        locale: string;
+        contentType: {
+            sys: {
+                id: "metaData";
+                linkType: "ContentType";
+                type: "Link";
+            };
+        };
+    };
+}
+
 export interface IPageFields {
     /** Page name */
     title: string;
 
+    /** Content */
+    content?: (IImage | IList | IRichText | IVideo)[] | undefined;
+
     /** Parent page */
     parentPage?: IArticle | IPage | undefined;
 
-    /** Content on this page */
-    consys?:
-        | (
-              | IArticle
-              | ICta
-              | IFooter
-              | IHeader
-              | IImage
-              | IList
-              | IMultipleColumn
-              | INavigation
-              | IRichText
-              | IVideo
-          )[]
-        | undefined;
+    /** Page image */
+    image?: Asset | undefined;
 
     /** Link to external page */
     url?: string | undefined;
 
     /** Page meta data */
     metaData?: IMetaData | undefined;
-
-    /** Page image */
-    image?: Asset | undefined;
-
-    /** Tags */
-    tags?: ITag[] | undefined;
 
     /** Page slug */
     name: string;
@@ -273,11 +317,8 @@ export interface IRichTextFields {
     /** Content name */
     name?: string | undefined;
 
-    /** Text */
-    text?: string | undefined;
-
-    /** Button */
-    cta?: ICta | undefined;
+    /** Content */
+    content?: Document | undefined;
 }
 
 /** A Rich text component with Markdown Editor */
@@ -346,11 +387,13 @@ export interface IVideo extends Entry<IVideoFields> {
 
 type CONTENT_TYPE =
     | "article"
+    | "category"
     | "footer"
     | "header"
     | "image"
     | "link"
     | "list"
+    | "metaData"
     | "page"
     | "rich-text"
     | "video";

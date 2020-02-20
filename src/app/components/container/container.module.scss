@@ -69,6 +69,11 @@ $border-radius: 75px;
     }
 }
 
+.layout-grid{
+    display: grid;
+    grid-gap: calc(var(--gap-layout) / 2);
+}
+
 .desktopOnly {
     @media #{$screen-tablet} {
         display: none;

@@ -2,6 +2,7 @@ import React from "react";
 import RichText from "../../elements/rich-text/RichText";
 import { RespImage } from "../../utils/RespImage";
 import Container from "../../components/container/Container";
+import ListContainer from "../list/ListContainer";
 
 // Add all new contentful containers here.
 export const renderContentContainer = ({ item, ...rest }) => {
@@ -18,6 +19,10 @@ export const renderContentContainer = ({ item, ...rest }) => {
                 <Container layoutType={"maxWidth"} animateIn>
                     <RespImage image={item.fields.image} />
                 </Container>
+            );
+        case "list":
+            return (
+                <ListContainer item={item.fields} />
             );
         default:
             return null;

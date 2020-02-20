@@ -1,20 +1,34 @@
 import React, { Component } from "react";
 import { generateClassList } from "../../utils/helpers";
 import { FadeOnScroll } from "../../elements/fadeup/fadeup";
+import { isMobile, isTablet, isTabletOrMobile } from "../../utils/Device";
 
 const styles = require("./container.module.scss");
 export type ContainerProps = {
     id?: string;
     children?: any;
     className?: string;
+    /**
+     * When using a layoutType, a child div is created. This will set class on that.
+     */
+    classNameInner?: string;
     animateIn?: boolean;
-    layoutType?: "maxWidth" | "splitView";
+    layoutType?: "maxWidth" | "splitView" | "grid";
     pad?: "All" | "Vertical" | "Horizontal" | "Bottom" | "Desktop-Horizontal";
     breakpoint?: "All" | "Desktop" | "Tablet" | "Mobile";
     background?: "None" | "Primary" | "Secondary" | "Themed";
+    gridColumn?: string;
+    gridColumnTablet?: string;
+    gridColumnMobile?: string;
 };
 
+const BREAKPOINT_MOBILE = "(max-width: 902px)";
+
 class Container extends Component<ContainerProps> {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         let classNames = generateClassList([
             this.props.className,
@@ -31,8 +45,13 @@ class Container extends Component<ContainerProps> {
             this.props.animateIn && "fadeup-initial",
         ]);
 
-        const isMaxWidth = this.props.layoutType === "maxWidth";
-        const isSplitView = this.props.layoutType === "splitView";
+        let gridTemplateColumns = this.props.gridColumn;
+        if (isTabletOrMobile()) {
+            gridTemplateColumns = this.props.gridColumnTablet || this.props.gridColumn;
+            if (this.props.gridColumnMobile && isMobile()) {
+                gridTemplateColumns = this.props.gridColumnMobile;
+            }
+        }
 
         return (
             <FadeOnScroll
@@ -40,16 +59,19 @@ class Container extends Component<ContainerProps> {
                 uniqueKey={classNames + "-" + this.props.id}
             >
                 <section id={this.props.id} className={classNames}>
-                    {isMaxWidth || isSplitView ? (
-                        <div
+                    {this.props.layoutType ? (
+                        <section
                             className={generateClassList([
-                                isMaxWidth && styles.maxWidth,
-                                isSplitView && styles.splitCol2,
-                                isSplitView && styles.padded_Splitview,
+                                this.props.classNameInner,
+                                this.props.layoutType === "maxWidth" && styles.maxWidth,
+                                this.props.layoutType === "splitView" && styles.splitCol2,
+                                this.props.layoutType === "splitView" && styles.padded_Splitview,
+                                this.props.layoutType === "grid" && styles.layoutGrid,
                             ])}
+                            style={{ gridTemplateColumns: gridTemplateColumns }}
                         >
                             {this.props.children}
-                        </div>
+                        </section>
                     ) : (
                         this.props.children
                     )}

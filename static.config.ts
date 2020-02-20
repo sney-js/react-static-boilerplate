@@ -56,7 +56,6 @@ export default {
         });
 
         const pageCollection = [].concat(...pageRoutes);
-
         //TODO print failed pages. before / after
         pageCollection.map(i => console.log(i.path));
         return pageCollection;
