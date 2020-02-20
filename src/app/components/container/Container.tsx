@@ -7,14 +7,11 @@ export type ContainerProps = {
     id?: string;
     children?: any;
     className?: string;
-    /**
-     * when you have two direct children, use can use this to split their width 50%
-     */
     animateIn?: boolean;
     layoutType?: "maxWidth" | "splitView";
     pad?: "All" | "Vertical" | "Horizontal" | "Bottom" | "Desktop-Horizontal";
     breakpoint?: "All" | "Desktop" | "Tablet" | "Mobile";
-    background?: "None" | "Primary" | "Secondary";
+    background?: "None" | "Primary" | "Secondary" | "Themed";
 };
 
 class Container extends Component<ContainerProps> {
@@ -30,7 +27,7 @@ class Container extends Component<ContainerProps> {
             this.props.breakpoint === "Desktop" && styles.desktopOnly,
             this.props.breakpoint === "Tablet" && styles.tabletOnly,
             this.props.breakpoint === "Mobile" && styles.mobileOnly,
-            this.props.background === "Primary" && `bg bg-primary`,
+            this.props.background && `bg bg-${this.props.background}`,
             this.props.animateIn && "fadeup-initial",
         ]);
 
