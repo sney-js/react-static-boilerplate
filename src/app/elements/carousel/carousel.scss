@@ -105,8 +105,8 @@
             $dotSize: 7px;
             height: $dotSize;
             width: $dotSize;
-            background-color: map-color(map-get($default-theme, accent));
-            border: 1px solid map-get(map-get($default-theme, background), background);
+            background-color: var(--color-bg);
+            border: 1px solid black;
             border-radius: 50%;
             display: inline-block;
             position: absolute;
@@ -115,7 +115,7 @@
             transform: translate(-50%, -50%);
 
             &.active {
-                background-color: map-color(map-get($default-theme, primary));
+                background-color: black;
             }
         }
     }

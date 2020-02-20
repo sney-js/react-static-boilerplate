@@ -1,91 +1,5 @@
 @import "variables";
 
-@mixin theming($theme: "") {
-    @if $theme != "" {
-        color: map-color(map-get($theme, primary), default-contrast);
-    } @else {
-        color: currentColor;
-    }
-
-    &.filled {
-        svg:not(.icon-fill) {
-            @if $theme != "" {
-                color: map-color(map-get($theme, primary));
-            } @else {
-                color: white;
-            }
-            position: relative;
-            z-index: 2;
-        }
-
-        .icon-fill {
-            z-index: 1;
-
-            @if $theme != "" {
-                color: map-color(map-get($theme, primary), default-contrast);
-            } @else {
-                color: currentColor;
-            }
-        }
-    }
-
-    &.filled-outlined {
-        svg:not(.icon-fill) {
-            @if $theme != "" {
-                color: map-color(map-get($theme, primary));
-            } @else {
-                color: currentColor;
-            }
-            position: relative;
-            z-index: 2;
-        }
-
-        .icon-fill {
-            z-index: 1;
-
-            @if $theme != "" {
-                color: transparent;
-                stroke: map-color(map-get($theme, primary), default-contrast);
-            } @else {
-                fill: transparent;
-                stroke: currentColor;
-            }
-        }
-    }
-
-    &.interactive {
-        .icon-fill {
-            opacity: 0;
-            z-index: 1;
-
-            @if $theme != "" {
-                color: map-color(map-get($theme, primary), default-contrast);
-            } @else {
-                color: currentColor;
-            }
-        }
-
-        svg:not(.icon-fill) {
-            position: relative;
-            z-index: 2;
-        }
-
-        &:hover {
-            .icon-fill {
-                opacity: 1;
-            }
-
-            svg:not(.icon-fill) {
-                @if $theme != "" {
-                    color: map-color(map-get($theme, primary));
-                } @else {
-                    color: white;
-                }
-            }
-        }
-    }
-}
-
 .bpl-svg-icon {
     position: relative;
     width: 1em;
@@ -114,13 +28,5 @@
 
     &.interactive {
         cursor: pointer;
-    }
-
-    @include theming();
-
-    @each $theme in $themes {
-        &.#{map-get($theme, name)} {
-            @include theming($theme);
-        }
     }
 }

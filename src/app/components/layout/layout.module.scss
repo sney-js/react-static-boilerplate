@@ -1,24 +1,10 @@
 @import "variables";
 
-@mixin theming($theme) {
-    .content.filled-background {
-        background-color: map-color(map-get($theme, primary));
-    }
-}
-
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     height: 0; //to make IE flexboxes work
-
-    @include theming($default-theme);
-
-    @each $theme in $themes {
-        &.#{map-get($theme, name)} {
-            @include theming($theme);
-        }
-    }
 
     .cookie-banner {
         position: relative;
@@ -31,7 +17,7 @@
 
         main {
             > *:last-child {
-                padding-bottom: $gap-wide;
+                padding-bottom: var(--gap-layout);;
             }
         }
     }

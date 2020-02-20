@@ -159,7 +159,7 @@ input[type="password"] {
         }
 
         input:checked ~ .checkmark {
-            background-color: map-color(map-get($default-theme, accent));
+            background-color: var(--color-secondary);
         }
 
         input:checked ~ .checkmark:after {
@@ -208,8 +208,8 @@ input[type="password"] {
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            color: map-color(map-get($default-theme, accent));
-            stroke: map-color(map-get($default-theme, accent));
+            color: var(--color-secondary);
+            stroke: var(--color-secondary);
             stroke-width: 2px;
         }
 

@@ -26,20 +26,3 @@
         @include setTypeStylesAll("caption");
     }
 }
-
-.registation-form {
-    .registration-barcode-desktop {
-        @media #{$screen-desktop} {
-            margin-top: $gap-narrow;
-        }
-        @media #{$screen-tablet} {
-            display: none;
-        }
-    }
-
-    .registration-barcode-mobile {
-        @media #{$screen-desktop} {
-            display: none;
-        }
-    }
-}

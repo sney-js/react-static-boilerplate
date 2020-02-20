@@ -3,9 +3,6 @@
 
 .bpl-rich-text {
     white-space: pre-line;
-    a {
-        @include linkStyles($default-theme);
-    }
     h1,
     h2,
     h3,

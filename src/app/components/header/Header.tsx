@@ -43,6 +43,9 @@ export function Header(props: HeaderProps) {
                     <div className={styles.logo}>
                         <LinkElement path={"/"}>{props.logo || null}</LinkElement>
                     </div>
+                    <Container className={styles.actionsMobile}>
+                        <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                    </Container>
                     <Container className={styles.actionsDesktop}>
                         <Container className={styles.navigation}>
                             {props.links &&
@@ -50,23 +53,23 @@ export function Header(props: HeaderProps) {
                                     return <LinkWrap {...l} />;
                                 })}
                         </Container>
+
+                        {props.themeToggle && (
+                            <Container className={styles.toggleTheme}>
+                                <Input
+                                    type={InputType.toggle}
+                                    label={"Theme"}
+                                    name={"global-theme"}
+                                    onChange={data => {
+                                        const selected = data.target.checked;
+                                        document.body["dataset"].theme = selected
+                                            ? "dark"
+                                            : "light";
+                                    }}
+                                />
+                            </Container>
+                        )}
                     </Container>
-                    <Container className={styles.actionsMobile}>
-                        <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-                    </Container>
-                    {props.themeToggle && (
-                        <Container className={styles.toggleTheme}>
-                        <Input
-                            type={InputType.toggle}
-                            label={"Theme"}
-                            name={"global-theme"}
-                            onChange={data => {
-                                const selected = data.target.checked;
-                                document.body["dataset"].theme = selected ? "dark" : "light";
-                            }}
-                        />
-                        </Container>
-                    )}
                 </div>
             </Container>
         </header>

@@ -8,10 +8,6 @@ $border-radius: 75px;
 .padded {
     @extend %padded-x;
     @extend %padded-y;
-
-    &.half_padded_y {
-        @extend %half-padded-y;
-    }
 }
 
 .padded_x {
@@ -28,20 +24,10 @@ $border-radius: 75px;
 
 .padded_y {
     @extend %padded-y;
-
-    &.half_padded_y {
-        @extend %half-padded-y;
-    }
 }
 
 .padded_bottom {
-    padding-bottom: $gap-wide;
-    @media #{$screen-tablet} {
-        padding-bottom: $gap-tablet;
-    }
-    @media #{$screen-mobile} {
-        padding-bottom: $gap-narrow;
-    }
+    padding-bottom: var(--gap-layout);
 }
 
 .max-width {
@@ -61,11 +47,11 @@ $border-radius: 75px;
         }
         &.padded_Splitview {
             > *:first-child {
-                margin-right: $gap-wide/2;
+                margin-right: calc(var(--gap-layout) / 2);
             }
 
             > *:nth-child(2) {
-                margin-left: $gap-wide/2;
+                margin-left: calc(var(--gap-layout) / 2);
             }
         }
     }
@@ -73,11 +59,11 @@ $border-radius: 75px;
         text-align: center;
         &.padded_Splitview {
             > *:first-child {
-                margin-bottom: $gap-wide;
+                margin-bottom: var(--gap-layout);;
             }
 
             > *:nth-child(2) {
-                margin-top: $gap-wide;
+                margin-top: var(--gap-layout);;
             }
         }
     }

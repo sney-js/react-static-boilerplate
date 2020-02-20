@@ -14,13 +14,14 @@
     $color-backgroud: $color--background-dark;
     $dividerBorder: 1px solid $color-border;
 
-    padding-left: $default-gap-small;
+    padding-left: $default-gap / 2;
 
     .switch {
         position: relative;
         display: block;
         margin: $pad--label + 10px 0;
         text-align: left;
+        padding-top: 4px;
     }
 
     /* Hide default HTML checkbox */
@@ -100,7 +101,7 @@
 .field-description.toggle {
     text-align: left;
     padding-top: 0px;
-    padding-left: $default-gap-small;
+    padding-left: $default-gap / 2;
     margin-top: -15px;
     line-height: 1;
     max-width: 310px;

@@ -1,26 +1,6 @@
 @import "variables";
 @import "typography-utils";
 
-@mixin theming($theme) {
-    background: map-color(map-get($theme, primary));
-
-    .logo a {
-        color: map-get(map-get($theme, primary), logo-contrast);
-    }
-
-    .user-icon {
-        &:hover {
-            :global(svg:not(.icon-fill)) {
-                color: map-color(map-get($theme, primary));
-            }
-
-            :global(.icon-fill) {
-                opacity: 1;
-            }
-        }
-    }
-}
-
 .header {
     width: 100%;
     box-sizing: border-box;
@@ -28,15 +8,11 @@
     background-color: var(--color-primary);
 
     .container {
-        height: $desktop-header-height;
+        height: var(--nav-height);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         z-index: 1000;
-
-        @media #{$screen-tablet} {
-            height: $mobile-header-height;
-        }
     }
 
     .actions-mobile {
@@ -79,11 +55,6 @@
             object-fit: contain;
         }
     }
-}
-
-.login-wrapper {
-    background: map-color(map-get($default-theme, primary));
-    overflow: hidden;
 }
 
 .overlay {
@@ -159,7 +130,7 @@
 
 .modal-wrapper-open {
     top: 0;
-    padding-top: $mobile-header-height;
+    padding-top: var(--nav-height);
 }
 .mobile-root {
     a {
@@ -170,8 +141,6 @@
 .toggle-theme {
     display: grid;
     align-items: center;
-    min-width: 120px;
-    @media #{$screen-tablet} {
-        display: none;
-    }
+    min-width: 160px;
+    padding-left: 40px;
 }

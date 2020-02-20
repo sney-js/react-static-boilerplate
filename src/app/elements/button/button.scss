@@ -1,94 +1,9 @@
 @import "variables";
 @import "typography-utils";
 
-@mixin theming($theme, $hover: 600, $active: 400) {
-    background: map-color(map-get($theme, accent));
-    color: map-color(map-get($theme, accent), default-contrast);
-    border: 1px solid map-color(map-get($theme, accent));
-
-    &.outline {
-        background: transparent;
-        color: map-color(map-get($theme, accent));
-    }
-
-    &:not([disabled]):hover {
-        background: map-color(map-get($theme, accent), $hover);
-        color: map-color(map-get($theme, accent), default-contrast);
-    }
-    &:not([disabled]):active,
-    &:not([disabled]):focus,
-    &:not([disabled]).active {
-        background: map-color(map-get($theme, accent), $active);
-        color: map-color(map-get($theme, accent), default-contrast);
-    }
-
-    &[disabled] {
-        opacity: 0.2;
-        pointer-events: none;
-    }
-}
-
-@mixin theming-icon-button($theme, $hover: 600, $active: 400) {
-    background: transparent;
-    .bpl-svg-icon.filled {
-        .icon-fill {
-            color: map-color(map-get($theme, accent));
-        }
-
-        svg:not(.icon-fill) {
-            color: map-color(map-get($theme, accent), default-contrast);
-        }
-    }
-
-    &:not([disabled]):hover {
-        .bpl-svg-icon.filled {
-            .icon-fill {
-                color: map-color(map-get($theme, accent), $hover);
-            }
-        }
-    }
-    &:not([disabled]):active,
-    &:not([disabled]).active {
-        .bpl-svg-icon.filled {
-            .icon-fill {
-                color: map-color(map-get($theme, accent), $active);
-            }
-        }
-    }
-
-    &.filled-outlined {
-        background: transparent;
-        color: map-color(map-get($theme, accent));
-
-        &:not([disabled]):hover {
-            .bpl-svg-icon.filled-outlined {
-                color: $light-primary-text;
-
-                .icon-fill {
-                    fill: map-color(map-get($theme, accent), $hover);
-                }
-            }
-        }
-        &:not([disabled]):active,
-        &:not([disabled]).active {
-            .bpl-svg-icon.filled-outlined {
-                color: $light-primary-text;
-                .icon-fill {
-                    fill: map-color(map-get($theme, accent), $active);
-                }
-            }
-        }
-    }
-
-    &[disabled] {
-        opacity: 0.2;
-        pointer-events: none;
-    }
-}
-
 .bpl-button {
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     outline: none;
     text-align: center;
     cursor: pointer;
@@ -96,16 +11,15 @@
     margin: 0;
     box-sizing: border-box;
     display: inline-block;
+    background-color: var(--color-secondary);
 
     &:not(.bpl-icon-button) {
         padding: $default-gap * 0.75 $default-gap * 2;
         min-width: 120px;
         @include setTypeStylesAll("label");
-        @include theming($default-theme);
     }
 
     &.bpl-icon-button {
         line-height: 0;
-        @include theming-icon-button($default-theme);
     }
 }
