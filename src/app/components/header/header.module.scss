@@ -25,6 +25,7 @@
     width: 100%;
     box-sizing: border-box;
     z-index: 1000;
+    background-color: var(--color-primary);
 
     .container {
         height: $desktop-header-height;
@@ -78,14 +79,6 @@
             object-fit: contain;
         }
     }
-
-    @include theming($default-theme);
-
-    @each $theme in $themes {
-        &.#{map-get($theme, name)} {
-            @include theming($theme);
-        }
-    }
 }
 
 .login-wrapper {
@@ -123,7 +116,7 @@
         width: 16px;
         height: 1px;
         position: absolute;
-        background-color: black;
+        background-color: var(--color-body);
         transition: 0.5s ease-in;
     }
 
@@ -161,7 +154,7 @@
     width: 100vw;
     transition: 1s ease-in-out;
     z-index: -1;
-    background-color: map-color(map-get($default-theme, primary));
+    background-color: var(--color-primary);
 }
 
 .modal-wrapper-open {
@@ -171,5 +164,14 @@
 .mobile-root {
     a {
         display: block !important;
+    }
+}
+
+.toggle-theme {
+    display: grid;
+    align-items: center;
+    min-width: 120px;
+    @media #{$screen-tablet} {
+        display: none;
     }
 }

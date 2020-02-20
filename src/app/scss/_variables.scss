@@ -48,3 +48,25 @@ $gap-small-narrow: 32px;
 
 $desktop-header-height: 90px;
 $mobile-header-height: 70px;
+
+// ------------------ CSS ----------------
+[data-theme="dark"] {
+    --color-primary: #5e2424;
+    --color-bg: #0e0e0e;
+    --color-body: #b7b7b7;
+    --color-heading: #cfcfcf;
+}
+
+:root,
+[data-theme="default"] {
+    --color-primary: #fff01f;
+    --color-bg: #f6f6f6;
+    --color-body: #181818;
+    --color-heading: #353535;
+}
+
+[data-theme] {
+    background-color: var(--color-bg);
+    color: var(--color-body);
+}
+

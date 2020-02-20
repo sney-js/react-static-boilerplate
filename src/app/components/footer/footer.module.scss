@@ -1,39 +1,9 @@
 @import "typography-utils";
 @import "variables";
 
-@mixin theming($theme) {
-    background: map-color(map-get($theme, primary));
-    color: map-color(map-get($theme, primary), default-contrast);
-
-    a {
-        color: map-color(map-get($theme, primary), default-contrast);
-    }
-    $borderStyle: 1px solid map-color(map-get($theme, primary), default-border);
-
-    .copy-section {
-        border-top: $borderStyle;
-        border-bottom: $borderStyle;
-    }
-
-    .links-row {
-        border-bottom: $borderStyle;
-
-        a + a {
-            border-left: $borderStyle;
-        }
-
-        @media #{$screen-mobile} {
-            a + a {
-                border-left: none;
-                border-top: $borderStyle;
-            }
-        }
-    }
-}
-
 .footer {
     position: relative;
-    @include theming($default-theme);
+    background-color: var(--color-primary);
 
     .icon-link {
         position: absolute;

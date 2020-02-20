@@ -4,7 +4,8 @@ import Container from "../container/Container";
 import LinkElement from "../../elements/link/LinkElement";
 import { useLocation } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
-import { RespImage } from "../../utils/RespImage";
+import Input, { InputType } from "../../elements/forms/Inputs";
+import Form from "../../elements/forms/Form";
 
 const styles = require("./header.module.scss");
 
@@ -12,6 +13,7 @@ type HeaderProps = {
     title?: string;
     links?: Array<any>;
     logo?: any;
+    themeToggle?: boolean;
 };
 
 export function Header(props: HeaderProps) {
@@ -52,6 +54,19 @@ export function Header(props: HeaderProps) {
                     <Container className={styles.actionsMobile}>
                         <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                     </Container>
+                    {props.themeToggle && (
+                        <Container className={styles.toggleTheme}>
+                        <Input
+                            type={InputType.toggle}
+                            label={"Theme"}
+                            name={"global-theme"}
+                            onChange={data => {
+                                const selected = data.target.checked;
+                                document.body["dataset"].theme = selected ? "dark" : "light";
+                            }}
+                        />
+                        </Container>
+                    )}
                 </div>
             </Container>
         </header>

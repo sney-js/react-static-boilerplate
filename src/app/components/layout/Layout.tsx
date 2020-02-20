@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
 import { generateClassList } from "../../utils/helpers";
@@ -23,18 +23,15 @@ type LayoutProps = {
     locale?: string;
     globalLoader?: boolean;
     children?: any;
+    theme?: "dark" | "light";
 };
-
-const mapStateToProps = ({ title, theme, isLoggedIn, globalLoader }) => ({
-    title,
-    theme,
-    isLoggedIn,
-    globalLoader,
-});
 
 function Layout(props: LayoutProps) {
     const { header, footer, data } = useSiteData();
     const { metaData } = props;
+    useEffect(() => {
+        document.body["dataset"].theme = props.theme || "light";
+    }, [props.theme]);
     return (
         <div className={generateClassList([styles.layout])}>
             <Head>
@@ -70,7 +67,7 @@ function Layout(props: LayoutProps) {
                 <main>{props.children}</main>
             </div>
 
-            {footer && <FooterContainer item={footer}/>}
+            {footer && <FooterContainer item={footer} />}
 
             {props.globalLoader && <GlobalLoader />}
         </div>
