@@ -36,6 +36,11 @@ $border-radius: 75px;
     margin-right: auto;
 }
 
+//--------------------------------------------
+.padding_xs {
+
+}
+
 .split-col-2 {
     @media #{$screen-desktop} {
         display: flex;

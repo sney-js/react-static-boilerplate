@@ -1,15 +1,18 @@
 import React from "react";
 import Container from "../../components/container/Container";
-import { IArticleFields, IListFields } from "../../../contentful/@types/contentful";
-import { getContentType } from "../../utils/Resolver";
-import { RespImage } from "../../utils/RespImage";
+import { IArticleFields, IListFields, IPageFields } from "../../../contentful/@types/contentful";
+import { getContentType, resolve } from "../../utils/Resolver";
 import RichText from "../../elements/rich-text/RichText";
+import { RespImage } from "../../utils/RespImage";
+import LinkElement from "../../elements/link/LinkElement";
+import { Card } from "../../components/container/Card";
+
 type ListTypes = {
-    item: IListFields;
+    customList?: Array<any>;
+    item?: IListFields;
 };
-export default function ListContainer(props: ListTypes) {
-    const { item } = props;
-    if (!item) return null;
+
+let getEditorEnty = function(item: IListFields) {
     return (
         <Container animateIn pad={"All"} layoutType={"maxWidth"}>
             <h2>{item.name}</h2>
@@ -19,17 +22,30 @@ export default function ListContainer(props: ListTypes) {
                 gridColumnTablet={"1fr 1fr"}
                 gridColumnMobile={"1fr"}
             >
-                {item.consys.map(articles => {
-                    const type = getContentType(articles);
+                {item.consys.map(page => {
+                    const type = getContentType(page);
                     switch (type) {
                         case "article": {
-                            const fields = articles.fields as IArticleFields;
+                            const fields = page.fields as IArticleFields;
                             return (
-                                <Container background={"Primary"}>
-                                    <RespImage image={fields.image} />
-                                    <h3>{fields.title}</h3>
-                                    <RichText document={fields.description} />
-                                </Container>
+                                <Card
+                                    title={fields.title}
+                                    image={<RespImage image={fields.image}/>}
+                                    href={resolve(page)}
+                                    description={<RichText document={fields.description}/>}
+                                    subTitle={fields.category.fields.title}
+                                    subTitleHref={resolve(fields.category)}
+                                />
+                            );
+                        }
+                        case "page": {
+                            const fields = page.fields as IPageFields;
+                            return (
+                                <Card
+                                    title={fields.title}
+                                    image={<RespImage image={fields.image}/>}
+                                    href={resolve(page)}
+                                />
                             );
                         }
                         default:
@@ -39,4 +55,10 @@ export default function ListContainer(props: ListTypes) {
             </Container>
         </Container>
     );
+};
+export default function ListContainer(props: ListTypes) {
+    if (props.item) return getEditorEnty(props.item);
+    else if (props.customList) {
+        return null;
+    }
 }

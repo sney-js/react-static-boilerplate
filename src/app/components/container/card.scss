@@ -1,0 +1,12 @@
+@import "variables";
+@import "layout";
+
+.card {
+    .figure {
+    }
+    .content {
+        padding-left: $default-gap;
+        padding-right: $default-gap;
+        padding-bottom: $default-gap;
+    }
+}
