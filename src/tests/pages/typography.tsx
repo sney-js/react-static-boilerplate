@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "../../app/components/layout/Layout";
+import Container from "../../app/components/container/Container";
 
 export default () => {
     return (
-        <Layout metaData={{title:"Typography"}}>
+        <Container>
             <div className="content">
                 <h1>Heading 1</h1>
                 <h2>Heading 2</h2>
@@ -42,6 +42,6 @@ export default () => {
                     nesciunt nisi quasi? A architecto aut earum optio, quos reiciendis.
                 </p>
             </div>
-        </Layout>
+        </Container>
     );
 };

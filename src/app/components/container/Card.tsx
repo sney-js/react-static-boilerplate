@@ -18,7 +18,7 @@ export const Card = (props: CardProps) => (
             <LinkElement path={props.href}>{props.image}</LinkElement>
         </div>
         <div className={"content"}>
-            <LinkElement path={props.subTitle}>
+            <LinkElement path={props.subTitleHref}>
                 <h4 className={"caption"}>{props.subTitle}</h4>
             </LinkElement>
             <LinkElement path={props.href}>

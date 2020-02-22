@@ -1,10 +1,12 @@
 import React from "react";
 import { useRouteData } from "react-static";
 import "./page.scss";
-import Layout from "../../components/layout/Layout";
+import Layout, { MetaData } from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
 import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
+import { CardList } from "../list/ListContainer";
+import Container from "../../components/container/Container";
 
 type PageProps = {
     changeTheme?: Function;
@@ -13,9 +15,8 @@ type PageProps = {
     routeData?: any;
 };
 
-const Page_page = (props: PageProps) => {
-    let page, locale;
-    console.log(props);
+const Page_category = (props: PageProps) => {
+    let page, locale, extraData;
 
     if (props.routeData) {
         page = props.routeData.page;
@@ -24,22 +25,18 @@ const Page_page = (props: PageProps) => {
         const routeData = useRouteData();
         page = routeData.page;
         page = Flatted.parse(page);
+        extraData = routeData.extraData;
+        extraData = Flatted.parse(extraData);
         locale = routeData.locale;
     }
 
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
-        <Layout
-            cookieBanner={CookieBannerContainer()}
-            metaData={metaData}
-            // locale={locale}
-        >
-            {page.fields.content &&
-                page.fields.content.map((item, index) =>
-                    renderContentContainer({ item, key: index }),
-                )}
-        </Layout>
+        <Container>
+            <MetaData {...metaData} />
+            <CardList title={page.fields.title} list={extraData}/>
+        </Container>
     );
 };
 
-export default Page_page;
+export default Page_category;

@@ -1,10 +1,11 @@
 import React from "react";
 import { useRouteData } from "react-static";
 import "./page.scss";
-import Layout from "../../components/layout/Layout";
+import Layout, { MetaData } from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
 import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
+import Container from "../../components/container/Container";
 
 type PageProps = {
     changeTheme?: Function;
@@ -15,7 +16,6 @@ type PageProps = {
 
 const Page_page = (props: PageProps) => {
     let page, locale;
-    console.log(props);
 
     if (props.routeData) {
         page = props.routeData.page;
@@ -26,19 +26,16 @@ const Page_page = (props: PageProps) => {
         page = Flatted.parse(page);
         locale = routeData.locale;
     }
-
+    console.log("ARTICLE", page);
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
-        <Layout
-            cookieBanner={CookieBannerContainer()}
-            metaData={metaData}
-            // locale={locale}
-        >
+        <Container>
+            <MetaData {...metaData} />
             {page.fields.content &&
                 page.fields.content.map((item, index) =>
                     renderContentContainer({ item, key: index }),
                 )}
-        </Layout>
+        </Container>
     );
 };
 

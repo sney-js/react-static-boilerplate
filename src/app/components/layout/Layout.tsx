@@ -5,6 +5,8 @@ import { generateClassList } from "../../utils/helpers";
 import GlobalLoader from "../global-loader/GlobalLoader";
 import HeaderContainer from "../../containers/header/HeaderContainer";
 import FooterContainer from "../../containers/footer/FooterContainer";
+import { IMetaDataFields } from "../../../contentful/@types/contentful";
+import CookieBannerContainer from "../../containers/cookie-banner/CookieBannerContainer";
 
 const styles = require("./layout.module.scss");
 
@@ -16,37 +18,37 @@ type MetaDataStructure = {
 };
 
 type LayoutProps = {
-    header?: any;
-    footer?: any;
-    cookieBanner?: any;
-    metaData?: MetaDataStructure;
     locale?: string;
     globalLoader?: boolean;
     children?: any;
     theme?: "dark" | "light";
 };
 
+export const MetaData = (props: IMetaDataFields) => {
+    return (
+        <Head>
+            <title>{props?.title}</title>
+            {props?.description ? <meta name="description" content={props.description} /> : null}
+            {props?.keywords ? <meta name="keywords" content={props.keywords?.join(",")} /> : null}
+            {props?.image ? (
+                <meta
+                    property="og:image"
+                    content={props.image && getUrl(props.image).replace("//", "https://")}
+                />
+            ) : null}
+        </Head>
+    );
+};
+
 function Layout(props: LayoutProps) {
     const { header, footer, data } = useSiteData();
-    const { metaData } = props;
     useEffect(() => {
-        document.body["dataset"].theme = props.theme || "light";
+        (window as any).theme = document.body["dataset"].theme = props.theme || "light";
     }, [props.theme]);
     return (
         <div className={generateClassList([styles.layout])}>
             <Head>
                 <html lang={props.locale} />
-                <title>{metaData?.title}</title>
-                {metaData?.description ? (
-                    <meta name="description" content={metaData.description} />
-                ) : null}
-                {metaData?.keywords ? <meta name="keywords" content={metaData.keywords} /> : null}
-                {metaData?.image ? (
-                    <meta
-                        property="og:image"
-                        content={metaData.image && getUrl(metaData.image).replace("//", "https://")}
-                    />
-                ) : null}
 
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,7 +62,7 @@ function Layout(props: LayoutProps) {
                 />
             </Head>
 
-            {props.cookieBanner && <div className={styles.cookieBanner}>{props.cookieBanner}</div>}
+            <div className={styles.cookieBanner}>{CookieBannerContainer()}</div>
 
             {header && <HeaderContainer item={header} />}
             <div className={generateClassList([styles.content])}>
