@@ -117,6 +117,7 @@ const MobileModal = ({ links, languageToggle }) => {
                         />
                     </div>
                 )}
+                <br/>
                 {links && links.map(l => <LinkWrap {...l} />)}
             </Container>
         </nav>
