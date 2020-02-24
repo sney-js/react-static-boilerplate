@@ -3,7 +3,7 @@
 
 .bpl-button {
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     outline: none;
     text-align: center;
     cursor: pointer;
@@ -14,7 +14,7 @@
     background-color: var(--color-secondary);
 
     &:not(.bpl-icon-button) {
-        padding: $default-gap * 0.75 $default-gap * 2;
+        padding: $default-gap ($default-gap * 2) ($default-gap - 3px);
         min-width: 120px;
         @include setTypeStylesAll("label");
     }

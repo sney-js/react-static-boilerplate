@@ -6,10 +6,15 @@ const styles = require("./footer.module.scss");
 export default ({ content, links }) => (
     <footer className={styles.footer}>
         <Container layoutType={"maxWidth"} pad={"All"}>
-            <small>{content}</small>
             <div className={styles.links}>
-                {links?.map(l => <LinkWrap {...l} />)}
+                <Container layoutType={"grid"} gridColumn={"1fr 1fr 1fr"} gridColumnMobile={"1fr"}>
+                    {links?.map(l => (
+                        <LinkWrap {...l} />
+                    ))}
+                </Container>
             </div>
+            <br/>
+            <small>{content}</small>
         </Container>
     </footer>
 );

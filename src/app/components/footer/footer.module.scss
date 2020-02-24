@@ -1,90 +1,15 @@
 @import "typography-utils";
-@import "variables";
 
 .footer {
     position: relative;
     background-color: var(--color-primary);
 
-    .icon-link {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        :global(.bpl-svg-icon) {
-            font-size: 60px;
-        }
-    }
-
-    .copy-section {
-        .copy {
-            text-align: center;
-            padding: $default-gap * 2.5 $default-gap $default-gap * 1.5 $default-gap;
-        }
-    }
-
     .links {
-        .links-row {
-            @include setTypeStyles("menu-link");
 
             a {
-                display: inline-block;
-                padding: $default-gap 0;
-                width: 33%;
-                text-align: center;
-
-                &.filler {
-                    pointer-events: none;
-                }
-
-                &:first-of-type {
-                    text-align: left;
-                }
-
-                &:last-of-type {
-                    text-align: right;
-                }
-
-                @media #{$screen-mobile} {
-                    width: 100%;
-                    &:first-of-type,
-                    &:last-of-type {
-                        text-align: center;
-                    }
-
-                    &.filler {
-                        display: none;
-                    }
-                }
+                @include setTypeStylesAll("caption");
+                font-weight: bold;
+                text-align: left;
             }
-        }
-    }
-
-    .flex-row {
-        display: flex;
-        @include setTypeStyles("small");
-
-        padding: $default-gap * 0.75 0;
-
-        @media #{$screen-mobile} {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .additional-links {
-            font-weight: bold;
-            a {
-                display: inline-block;
-                padding: $default-gap;
-                padding-left: 0;
-            }
-        }
-
-        .copyright {
-            padding: $default-gap;
-        }
-
-        .flex-item {
-            flex: 1 1 0;
-        }
     }
 }

@@ -10,10 +10,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     shape?:
         | "icon"
         | "icon-filled"
-        | "icon-filled-outlined"
-        | "icon-transparent"
-        | "default"
-        | "outline";
+        | "default";
     link?: React.ReactElement<LinkElementProps>;
     label?: string;
     icon?: ReactNode;
@@ -52,12 +49,6 @@ class Button extends React.Component<ButtonProps> {
                 return this.getIconButton("filled", {
                     innerScale: 0.6,
                 });
-            case "icon-filled-outlined":
-                return this.getIconButton("filled-outlined", {
-                    innerScale: 0.6,
-                });
-            case "icon-transparent":
-                return this.getIconButton("interactive");
             default:
                 return this.getDefaultButton();
         }
@@ -97,8 +88,6 @@ class Button extends React.Component<ButtonProps> {
         const classList = generateClassList([
             "bpl-button",
             className,
-            this.props.shape === "outline" && "outline",
-            this.props.shape === "icon-filled-outlined" && "filled-outlined",
             iconButtons.includes(this.props.shape) && "bpl-icon-button",
             active && "active",
         ]);

@@ -22,17 +22,6 @@ storiesOf("Button", module).add("default button", () => (
             <Button shape={"icon-filled"} icon={<SvgAccount />} />
             <Button shape={"icon-filled"} icon={<SvgAccount />} disabled />
 
-            <h2>Outlined Icon button</h2>
-            <Button shape={"icon-filled-outlined"} icon={<SvgAccount />} />
-            <Button shape={"icon-filled-outlined"} icon={<SvgAccount />} disabled />
-
-            <h2>Interactive icon</h2>
-            <Button shape={"icon-transparent"} icon={<SvgAccount />} />
-            <Button
-                shape={"icon-transparent"}
-                icon={<SvgAccount />}
-                iconProps={{ theme: "yellow" }}
-            />
             <h2>Arrows</h2>
             <Arrow direction={"left"} disabled={true} />
             <Arrow />
