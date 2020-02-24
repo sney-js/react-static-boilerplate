@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    localStorageKey: "bpl-data",
+    localStorageKey: "d-data",
     apiUrl: "https://prod.freebees.nl/api",
 };

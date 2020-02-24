@@ -1,10 +1,10 @@
 @import "variables";
 
-.bpl-carousel-wrapper {
+.d-carousel-wrapper {
     overflow: hidden;
 }
 
-.bpl-carousel {
+.d-carousel {
     position: relative;
     overflow: visible;
     max-width: 100%;
@@ -30,7 +30,7 @@
         transform: translate(calc(-50% - #{$default-gap/4}), -50%);
     }
 
-    .bpl-carousel-items-container {
+    .d-carousel-items-container {
         transition: 300ms;
 
         &.is-dragging {
@@ -40,11 +40,11 @@
         display: flex;
     }
 
-    .bpl-carousel-items-wrapper {
+    .d-carousel-items-wrapper {
         position: relative;
     }
 
-    .bpl-carousel-item {
+    .d-carousel-item {
         display: flex;
         max-width: 100%;
         flex-shrink: 0;
@@ -80,20 +80,20 @@
         }
     }
 
-    .bpl-carousel-item-gap {
+    .d-carousel-item-gap {
         display: inline-block;
         width: $default-gap/2;
         flex-shrink: 0;
     }
 
-    .bpl-carousel-indicators-container {
+    .d-carousel-indicators-container {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         padding-top: $default-gap;
 
-        .bpl-carousel-indicator-wrapper {
+        .d-carousel-indicator-wrapper {
             width: $default-gap * 2;
             height: $default-gap * 2;
             position: relative;
@@ -101,7 +101,7 @@
             display: inline-block;
         }
 
-        .bpl-carousel-indicator {
+        .d-carousel-indicator {
             $dotSize: 7px;
             height: $dotSize;
             width: $dotSize;

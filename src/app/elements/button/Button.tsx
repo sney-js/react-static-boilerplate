@@ -86,9 +86,9 @@ class Button extends React.Component<ButtonProps> {
         const { className, preventDefaultOnLoading, active, ...rest } = this.props;
         const iconButtons = ["icon", "icon-filled", "icon-transparent", "icon-filled-outlined"];
         const classList = generateClassList([
-            "bpl-button",
+            "d-button",
             className,
-            iconButtons.includes(this.props.shape) && "bpl-icon-button",
+            iconButtons.includes(this.props.shape) && "d-icon-button",
             active && "active",
         ]);
 

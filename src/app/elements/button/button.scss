@@ -1,7 +1,7 @@
 @import "variables";
 @import "typography-utils";
 
-.bpl-button {
+.d-button {
     border: none;
     border-radius: 8px;
     outline: none;
@@ -13,13 +13,13 @@
     display: inline-block;
     background-color: var(--color-secondary);
 
-    &:not(.bpl-icon-button) {
+    &:not(.d-icon-button) {
         padding: $default-gap ($default-gap * 2) ($default-gap - 3px);
         min-width: 120px;
         @include setTypeStylesAll("label");
     }
 
-    &.bpl-icon-button {
+    &.d-icon-button {
         line-height: 0;
     }
 }

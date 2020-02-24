@@ -404,7 +404,7 @@ class Input extends React.Component<InputProps> {
 
 function CheckboxFieldGroup(props: InputProps) {
     return (
-        <div className={generateClassList(["bpl-form-checkbox", props.className])}>
+        <div className={generateClassList(["d-form-checkbox", props.className])}>
             <div className={generateClassList(["field s"])}>
                 {!props.label && props.children}
                 {props.label && (
@@ -423,7 +423,7 @@ function CheckboxFieldGroup(props: InputProps) {
 
 function RadioFieldGroup(props: InputProps) {
     return (
-        <div className={generateClassList(["bpl-form-radio", props.className])}>
+        <div className={generateClassList(["d-form-radio", props.className])}>
             <div className={generateClassList(["field s"])}>
                 {!props.label && props.children}
                 {props.label && (
@@ -452,7 +452,7 @@ function InputFieldGroup(props: InputProps) {
         }
     }, [props.iconState]);
     return (
-        <div className={generateClassList(["bpl-form-input", props.className])}>
+        <div className={generateClassList(["d-form-input", props.className])}>
             <div className={generateClassList(["field s", hasError && "error error-input-anim"])}>
                 {props.type === "password" ? (
                     <span

@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    localStorageKey: "bpl-data",
+    localStorageKey: "d-data",
     apiUrl: "https://dev.freebees.nl/api",
     contentful: {
         space: "xyyr4mk4uku2",

@@ -32,7 +32,7 @@ input:not([type="checkbox"]):not([type="submit"]):not([type="radio"]) {
 input[type="password"] {
 }
 
-.bpl-form-input:not(.input-with-borders) + .bpl-form-input.input-with-borders {
+.d-form-input:not(.input-with-borders) + .d-form-input.input-with-borders {
     @media #{$screen-tablet} {
         $borderStyle: 1px solid $color--border-dark;
         &:before {
@@ -46,7 +46,7 @@ input[type="password"] {
     }
 }
 
-.bpl-form-input.input-with-borders {
+.d-form-input.input-with-borders {
     @media #{$screen-tablet} {
         position: relative;
         $borderStyle: 1px solid $color--border-dark;
@@ -102,7 +102,7 @@ input[type="password"] {
     }
 }
 
-.bpl-form-radio {
+.d-form-radio {
     .field {
         flex-flow: column;
         -webkit-user-select: none;
@@ -168,7 +168,7 @@ input[type="password"] {
     }
 }
 
-.bpl-form-checkbox {
+.d-form-checkbox {
     .field {
         flex-flow: column;
         -webkit-user-select: none;

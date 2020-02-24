@@ -40,7 +40,7 @@ class Icon extends React.Component<IconProps> {
     render() {
         return (
             <i
-                className={`bpl-svg-icon ${this.props.className || ""} ${this.props.type ||
+                className={`d-svg-icon ${this.props.className || ""} ${this.props.type ||
                     IconType.OUTLINED} ${this.props.theme || ""}`.trim()}
                 style={this.props.style}
             >

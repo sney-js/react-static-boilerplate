@@ -16,7 +16,7 @@ class ImageElement extends React.Component<ImageProps> {
     render() {
         if (!this.props.content && !this.props.children) return null;
         return (
-            <figure className={generateClassList(["bpl-image", this.props.className])}>
+            <figure className={generateClassList(["d-image", this.props.className])}>
                 {this.props.children || RespImage({ image: this.props.content })}
             </figure>
         );

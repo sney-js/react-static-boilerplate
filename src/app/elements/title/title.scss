@@ -1,6 +1,6 @@
 @import "variables";
 
-.bpl-title {
+.d-title {
     @media #{$screen-tablet} {
         text-align: center;
     }
@@ -21,7 +21,7 @@
     }
 
     &:only-child {
-        .bpl-rich-text {
+        .d-rich-text {
             *:last-child {
                 margin-bottom: 0;
             }

@@ -98,7 +98,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                 <React.Fragment key={index}>
                     <div
                         className={generateClassList([
-                            "bpl-carousel-item",
+                            "d-carousel-item",
                             this.state.currentIndex == index && "active",
                         ])}
                         ref={elementRef => {
@@ -107,7 +107,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                     >
                         {item}
                     </div>
-                    <div className={"bpl-carousel-item-gap"} />
+                    <div className={"d-carousel-item-gap"} />
                 </React.Fragment>
             );
         });
@@ -164,14 +164,14 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     render() {
         return (
-            <section className={"bpl-carousel-wrapper"}>
+            <section className={"d-carousel-wrapper"}>
                 <Container
                     pad={"Horizontal"}
                     layoutType={"maxWidth"}
                     animateIn={this.props.animateIn}
                 >
-                    <section className={"bpl-carousel"}>
-                        <div className={"bpl-carousel-items-wrapper"}>
+                    <section className={"d-carousel"}>
+                        <div className={"d-carousel-items-wrapper"}>
                             {this.state.currentIndex > 0 && (
                                 <Arrow
                                     className={"prev-button"}
@@ -194,7 +194,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                                 onTouchMove={touchMoveEvent => this.handleTouchMove(touchMoveEvent)}
                                 onTouchEnd={() => this.handleTouchEnd()}
                                 className={generateClassList([
-                                    "bpl-carousel-items-container",
+                                    "d-carousel-items-container",
                                     this.touchStart && "is-dragging",
                                 ])}
                                 style={this.getCurrentStyle()}
@@ -204,18 +204,18 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                             </div>
                         </div>
                         {this.props.items.length > 1 && (
-                            <div className={"bpl-carousel-indicators-container"}>
+                            <div className={"d-carousel-indicators-container"}>
                                 {this.props.items.map((ref, index) => {
                                     return (
                                         <div
-                                            className={"bpl-carousel-indicator-wrapper"}
+                                            className={"d-carousel-indicator-wrapper"}
                                             onClick={e => this.onIndicatorClick(index)}
                                         >
                                             <div
                                                 key={index}
                                                 className={generateClassList([
                                                     index === this.state.currentIndex && "active",
-                                                    "bpl-carousel-indicator",
+                                                    "d-carousel-indicator",
                                                 ])}
                                             />
                                         </div>

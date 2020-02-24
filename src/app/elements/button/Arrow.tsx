@@ -17,7 +17,7 @@ class Arrow extends React.Component<ArrowProps> {
     render() {
         const { className, ...rest } = this.props;
         return (
-            <Button className={generateClassList(["bpl-arrow-button", className])} {...rest}>
+            <Button className={generateClassList(["d-arrow-button", className])} {...rest}>
                 <Icon className={this.props.direction == "left" ? "mirrored" : ""}>
                     <SvgArrow />
                 </Icon>

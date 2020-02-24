@@ -40,10 +40,10 @@ export default (props: RichTextType) => {
         if (data.length && !data[data.length - 1].props.children[0]) {
             data.pop();
         }
-        return <section className={"bpl-rich-text"}>{data}</section>;
+        return <section className={"d-rich-text"}>{data}</section>;
     } else if (props.markdown) {
         return (
-            <section className={"bpl-rich-text"}>
+            <section className={"d-rich-text"}>
                 <Markdown source={props.markdown} escapeHtml={false} />
             </section>
         );

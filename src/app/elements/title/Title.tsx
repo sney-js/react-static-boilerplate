@@ -20,7 +20,7 @@ class Title extends React.Component<ImageProps> {
         return (
             <Container
                 className={generateClassList([
-                    "bpl-title",
+                    "d-title",
                     this.props.alignment && "align-" + this.props.alignment,
                 ])}
             >
