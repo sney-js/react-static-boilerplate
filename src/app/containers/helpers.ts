@@ -48,6 +48,10 @@ export function cleanupData(data, config: CleanupConfig) {
         if (contentType) {
             object.type = contentType;
         }
+        if (object?.sys?.locale) {
+            object.locale = object.sys.locale;
+        }
+
         for (const prop in object) {
             if (object.hasOwnProperty(prop) && !config.ignoreProps.includes(prop)) {
                 if (prop == null) continue;
@@ -91,8 +95,8 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
                             return {
                                 page,
                                 name: page?.fields?.name,
-                                path: resolve(page, lang === defaultLocale ? undefined : lang),
-                                locale: locale.code,
+                                path: resolve(page),
+                                locale: lang,
                             };
                         }),
                     })),
@@ -108,4 +112,8 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
 export function toDashCase(str) {
     if (!str) return null;
     return str.replace(/\s+/g, "-").toLowerCase();
+}
+
+export function resolveLocalised() {
+    const locale = (window as any)?.locale;
 }

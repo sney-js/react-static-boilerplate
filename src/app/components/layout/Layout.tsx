@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
 import { generateClassList } from "../../utils/helpers";
@@ -40,39 +40,58 @@ export const MetaData = (props: IMetaDataFields) => {
     );
 };
 
+const globalInitialVals = {
+    locale: "en-US",
+    onLocaleChange: (locale: string) => {},
+};
+
+const GlobalContext = React.createContext(globalInitialVals);
+
 function Layout(props: LayoutProps) {
     const { header, footer, data } = useSiteData();
     useEffect(() => {
         const bodyElement = document.body["dataset"];
-        ( window as any).theme = bodyElement && bodyElement.theme? props.theme : "light";
+        (window as any).theme = bodyElement && bodyElement.theme ? props.theme : "light";
     }, [props.theme]);
+
+    const [locale, setLocale] = useState(globalInitialVals.locale);
+
+    const globalState = {
+        onLocaleChange: locale => {
+            setLocale(locale);
+        },
+        locale: locale,
+    };
+
     return (
         <div className={generateClassList([styles.layout])}>
-            <Head>
-                <html lang={props.locale} />
+            <GlobalContext.Provider value={globalState}>
+                <Head>
+                    <html lang={props.locale} />
 
-                <link rel="manifest" href="/manifest.json" />
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-title" content="BPL" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="152x152"
-                    href="/assets/app-icons/icon.png"
-                    type="image/png"
-                />
-            </Head>
+                    <link rel="manifest" href="/manifest.json" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta name="apple-mobile-web-app-title" content="BPL" />
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+                    <link
+                        rel="apple-touch-icon"
+                        sizes="152x152"
+                        href="/assets/app-icons/icon.png"
+                        type="image/png"
+                    />
+                </Head>
 
-            <div className={styles.cookieBanner}>{CookieBannerContainer()}</div>
+                <div className={styles.cookieBanner}>{CookieBannerContainer()}</div>
 
-            {header && <HeaderContainer item={header} />}
-            <div className={generateClassList([styles.content])}>
-                <main>{props.children}</main>
-            </div>
+                {header && <HeaderContainer item={header} />}
+                <div className={generateClassList([styles.content])}>
+                    <main>{props.children}</main>
+                </div>
 
-            {footer && <FooterContainer item={footer} />}
+                {footer && <FooterContainer item={footer} />}
 
-            {props.globalLoader && <GlobalLoader />}
+                {props.globalLoader && <GlobalLoader />}
+            </GlobalContext.Provider>
         </div>
     );
 }

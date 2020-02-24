@@ -7,7 +7,7 @@ type LanguageType = { code: string; icon: any; name: string };
 type LanguageSelectorProps = {
     languages: Array<LanguageType>;
     activeLanguage: LanguageType;
-    setActiveLanguage?: (lang: LanguageType["code"]) => void;
+    setActiveLanguage: (lang: LanguageType["code"]) => void;
     onLanguageChange?: (langTo: LanguageType["code"], langFrom: LanguageType["code"]) => void;
 };
 
@@ -28,9 +28,9 @@ const LanguageSelect = (props: LanguageSelectorProps) => {
                             alt={lang.name}
                             title={lang.name}
                             onClick={() => {
-                                setClosed(true);
                                 setActiveLanguage(lang.code);
-                                onLanguageChange(lang.code, activeLanguage.code);
+                                onLanguageChange && onLanguageChange(lang.code, activeLanguage.code);
+                                setClosed(true);
                             }}
                         />
                     </li>
@@ -45,6 +45,10 @@ export const getLang = (code: String) => {
     switch (code) {
         case "en":
             return { code: "en", icon: aPath + "united-kingdom.png", name: "English" };
+        case "en-US":
+            return { code: "en-US", icon: aPath + "united-kingdom.png", name: "English" };
+        case "en-GB":
+            return { code: "en-GB", icon: aPath + "united-kingdom.png", name: "English" };
         case "fr":
             return { code: "fr", icon: aPath + "france.png", name: "Français" };
         case "de":
@@ -55,5 +59,7 @@ export const getLang = (code: String) => {
             return undefined;
     }
 };
+
+export const ALL_LOCALES=["en","en-US", "en-GB", "fr", "de", "es"];
 
 export default LanguageSelect;

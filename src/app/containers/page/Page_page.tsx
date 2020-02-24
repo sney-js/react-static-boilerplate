@@ -16,18 +16,13 @@ type PageProps = {
 
 const Page_page = (props: PageProps) => {
     let page, locale;
-    console.log(props);
 
-    if (props.routeData) {
-        page = props.routeData.page;
-        locale = props.routeData.locale;
-    } else {
-        const routeData = useRouteData();
-        page = routeData.page;
-        page = Flatted.parse(page);
-        locale = routeData.locale;
-    }
+    const routeData = useRouteData();
+    page = routeData.page;
+    page = Flatted.parse(page);
+    locale = routeData.locale;
 
+    console.log(page,locale);
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
         <Container>

@@ -54,6 +54,7 @@ export default {
                 x => x.page.fields.category.fields.name,
             );
 
+
             return routes.map(({ type, items }) => {
                 return items.map(info => {
                     let extraData = {};

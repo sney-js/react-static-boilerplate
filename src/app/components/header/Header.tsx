@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { generateClassList } from "../../utils/helpers";
 import Container from "../container/Container";
 import LinkElement from "../../elements/link/LinkElement";
-import { useLocation } from "react-static";
+import { useLocation, useRouteData } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
 import Input, { InputType } from "../../elements/forms/Inputs";
 import Form from "../../elements/forms/Form";
-import LanguageSelect, { getLang } from "./LanguageSelector";
+import LanguageSelect, { ALL_LOCALES, getLang } from "./LanguageSelector";
+import { DEFAULT_LOCALE } from "../../utils/Resolver";
 
 const styles = require("./header.module.scss");
 
@@ -18,6 +19,19 @@ type HeaderProps = {
     themeToggle?: boolean;
 };
 
+let getPathBreaks = function(pathname) {
+    return pathname.split("/").filter(e => e.length);
+};
+
+function getCurrentLocale(pathname) {
+    const paths = getPathBreaks(pathname);
+    if (ALL_LOCALES.find(l => l === paths[1])) {
+        console.log("has locale : " + paths[1]);
+        return paths[1];
+    }
+    return undefined;
+}
+
 export function Header(props: HeaderProps) {
     console.log("HEADER", props);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -28,6 +42,33 @@ export function Header(props: HeaderProps) {
     }, [location?.pathname]);
 
     const classNames = generateClassList([styles.header]);
+    const languageSelector = (
+        <div className={styles.toggleLang}>
+            <LanguageSelect
+                languages={[getLang("en-US"), getLang("fr")]}
+                activeLanguage={getLang("en-US")}
+                setActiveLanguage={locale => {
+                    console.log(locale);
+                    (window as any).locale = locale;
+                    //TODO use react way
+                    console.log(location.pathname);
+                    const currentLocale = getCurrentLocale(location.pathname);
+                    let pathBreaks = getPathBreaks(location.pathname);
+                    if (currentLocale) {
+                        pathBreaks[0] = locale;
+                    } else {
+                        // in default locale so no lang prefix
+                        if (locale !== DEFAULT_LOCALE) {
+                            pathBreaks.reverse().push(locale);
+                            pathBreaks = pathBreaks.reverse();
+                        }
+                    }
+                    const newPath: string = pathBreaks.join("/");
+                    (window as any).location.pathname = newPath;
+                }}
+            />
+        </div>
+    );
     return (
         <header className={classNames}>
             <Container
@@ -37,7 +78,7 @@ export function Header(props: HeaderProps) {
                     !!menuOpen && styles.modalWrapperOpen,
                 ])}
             >
-                <MobileModal links={props.links} languageToggle={props.languageToggle} />
+                <MobileModal links={props.links} languageToggle={languageSelector} />
             </Container>
 
             <Container layoutType={"maxWidth"} pad={"Horizontal"}>
@@ -68,14 +109,7 @@ export function Header(props: HeaderProps) {
                                     />
                                 </Container>
                             )}
-                            {props.languageToggle && (
-                                <div className={styles.toggleLang}>
-                                    <LanguageSelect
-                                        languages={[getLang("en"), getLang("fr")]}
-                                        activeLanguage={getLang("en")}
-                                    />
-                                </div>
-                            )}
+                            {languageSelector}
                         </Container>
                         <div className={styles.actionsMobile}>
                             <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -109,15 +143,8 @@ const MobileModal = ({ links, languageToggle }) => {
                 pad={"All"}
                 className={generateClassList([styles.mobileRoot, styles.navigation])}
             >
-                {languageToggle && (
-                    <div className={styles.toggleLang}>
-                        <LanguageSelect
-                            languages={[getLang("en"), getLang("fr")]}
-                            activeLanguage={getLang("en")}
-                        />
-                    </div>
-                )}
-                <br/>
+                {languageToggle && React.cloneElement(languageToggle)}
+                <br />
                 {links && links.map(l => <LinkWrap {...l} />)}
             </Container>
         </nav>

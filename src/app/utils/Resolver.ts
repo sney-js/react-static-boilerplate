@@ -1,3 +1,5 @@
+export const DEFAULT_LOCALE = "en-US";
+
 export const resolve = (node, locale?: String) => {
     if (!node) return undefined;
     let contentType = getContentType(node);
@@ -63,6 +65,7 @@ const getPagePath = (
     const pages = [];
     const stack = [];
     stack.push(page);
+    console.log(page);
 
     while (stack.length > 0) {
         let node = stack.pop();
@@ -75,8 +78,11 @@ const getPagePath = (
         }
     }
 
-    if (localePrefix) {
-        pages.push(localePrefix);
+    if (localePrefix || page.locale) {
+        const locale = localePrefix || page.locale;
+        if (locale !== DEFAULT_LOCALE) {
+            pages.push(locale);
+        }
     }
 
     let result = "/" + pages.reverse().join("/") + "/";
