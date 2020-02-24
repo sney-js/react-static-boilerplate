@@ -2,6 +2,9 @@ import * as contentful from "contentful";
 
 export class ContentfulApi {
     client = null;
+    private defaultLocale: String;
+    private locales: Array<String>;
+    private currentLocale: String;
 
     constructor({ space, accessToken, environment }, host?) {
         this.client = contentful.createClient({
@@ -12,30 +15,36 @@ export class ContentfulApi {
         });
     }
 
+    setLocale(locale: String) {
+        this.currentLocale = locale;
+    }
+
     async getLocale() {
         const data = await this.client.getLocales();
-        return data.items.find(item => item.default);
+        const defaultLocale = data.items.find(item => item.default).code;
+        this.defaultLocale = defaultLocale;
+        this.currentLocale = defaultLocale;
+        return defaultLocale;
+    }
+
+    async getLocales() {
+        const locales = await this.client.getLocales();
+        this.locales = locales.items.map(item => item.code);
+        return this.locales;
     }
 
     async getPages(contentTypePageName = "page", filter?) {
-        const data = await this.client
+        return await this.client
             .getEntries({
                 content_type: contentTypePageName,
                 include: 10,
+                locale: this.currentLocale,
                 ...filter,
             })
-            .then(res=>{
-                console.log(res);
-                return res;
-            })
             .catch(e => {
-                console.log(e);
+                console.error(e);
                 throw e;
             });
-        if (filter) {
-            return data.items.map(filter);
-        }
-        return data;
     }
 
     /**
@@ -44,7 +53,11 @@ export class ContentfulApi {
      * @returns {Promise<Entry<any>>}
      */
     async fetchEntry({ content_type, field, value, ...rest }) {
-        const entries = await this.client.getEntries({ content_type, ...rest });
+        const entries = await this.client.getEntries({
+            content_type,
+            locale: this.currentLocale,
+            ...rest,
+        });
         return entries.items.find(en => en.fields[field] === value);
     }
 

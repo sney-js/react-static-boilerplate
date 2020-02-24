@@ -398,6 +398,6 @@ type CONTENT_TYPE =
     | "rich-text"
     | "video";
 
-type LOCALE_CODE = "en-US";
+type LOCALE_CODE = "en-US" | "fr";
 
 type CONTENTFUL_DEFAULT_LOCALE_CODE = "en-US";

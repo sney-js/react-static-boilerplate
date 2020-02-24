@@ -30,20 +30,21 @@ function App() {
             "preview.contentful.com",
         );
 
-        if (!dynamicRoutes.length) {
-            isLoading = true;
-            routeDataResolver(client)
-                .then(data => {
-                    const pages = data.map((routeData, index) => {
-                        return <Page key={index} path={routeData.path} routeData={routeData} />;
-                    });
-                    setDynamicRoutes(pages);
-                    isLoading = false;
-                })
-                .catch(_ => {
-                    isLoading = false;
-                });
-        }
+        // if (!dynamicRoutes.length) {
+        //     isLoading = true;
+        //     routeDataResolver(client)
+        //         .then(data => {
+        //             console.log("data",data);
+        //             const pages = data.map((routeData, index) => {
+        //                 return <Page key={index} path={routeData.path} routeData={routeData} />;
+        //             });
+        //             setDynamicRoutes(pages);
+        //             isLoading = false;
+        //         })
+        //         .catch(_ => {
+        //             isLoading = false;
+        //         });
+        // }
     }
 
     if (isLoading) {

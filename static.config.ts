@@ -45,37 +45,41 @@ export default {
     },
     getRoutes: async () => {
         const pageList = ["page", "article", "category"];
-        const routes = await routeDataResolver(client, pageList);
+        const localisedRoutes = await routeDataResolver(client, pageList);
 
-        const allArticles = routes.find(i => i.type === "article").items;
-        const groupedCategories = groupByArray(
-            allArticles,
-            x => x.page.fields.category.fields.name,
-        );
+        const pathsArray = localisedRoutes.map(routes => {
+            const allArticles = routes.find(i => i.type === "article").items;
+            const groupedCategories = groupByArray(
+                allArticles,
+                x => x.page.fields.category.fields.name,
+            );
 
-        const pageRoutes = routes.map(({ type, items }) => {
-            return items.map(info => {
-                let extraData = {};
-                if (type === "category") {
-                    extraData = groupedCategories
-                        .find(e => e.key === info.name)
-                        .values.map(ar => ar.page);
-                }
-                return {
-                    path: info.path,
-                    template: `src/app/containers/page/Page_${type}`,
-                    getData: () => ({
-                        page: Flatted.stringify(info.page),
-                        extraData: Flatted.stringify(extraData),
-                        locale: info.locale,
-                    }),
-                };
+            return routes.map(({ type, items }) => {
+                return items.map(info => {
+                    let extraData = {};
+                    if (type === "category") {
+                        extraData = groupedCategories
+                            .find(e => e.key === info.name)
+                            .values.map(ar => ar.page);
+                    }
+                    return {
+                        path: info.path,
+                        template: `src/app/containers/page/Page_${type}`,
+                        getData: () => ({
+                            page: Flatted.stringify(info.page),
+                            extraData: Flatted.stringify(extraData),
+                            locale: info.locale,
+                        }),
+                    };
+                });
             });
         });
 
-        const pageCollection = [].concat(...pageRoutes);
+        const pageCollection = flatten(flatten(pathsArray));
         //TODO print failed pages. before / after
+        console.log("::::::::::Rendering pages:::::::::::");
         pageCollection.map(i => console.log(i.path));
+        console.log("::::::::::::::::::::::::::::::::::::");
         return pageCollection;
     },
     plugins: [
@@ -100,7 +104,6 @@ export default {
     ],
 };
 
-
 const groupByArray = (xs, key) => {
     return xs.reduce(function(rv, x) {
         let v = key instanceof Function ? key(x) : x[key];
@@ -112,4 +115,8 @@ const groupByArray = (xs, key) => {
         }
         return rv;
     }, []);
+};
+
+const flatten = arr => {
+    return [].concat.apply([], arr);
 };

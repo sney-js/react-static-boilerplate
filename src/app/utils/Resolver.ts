@@ -1,13 +1,13 @@
-export const resolve = node => {
+export const resolve = (node, locale?: String) => {
     if (!node) return undefined;
     let contentType = getContentType(node);
     switch (contentType) {
         case "page":
-            return getPagePath(node, "parentPage");
+            return getPagePath(node, { parentPageFieldName: "parentPage", localePrefix: locale });
         case "article":
-            return getPagePath(node, "category");
+            return getPagePath(node, { parentPageFieldName: "category", localePrefix: locale });
         case "category":
-            return getPagePath(node);
+            return getPagePath(node, { localePrefix: locale });
         default:
             return undefined;
     }
@@ -51,7 +51,15 @@ export const resolveAssetLink = node => {
     }
 };
 
-const getPagePath = (page, parentPage = "parentPage") => {
+type ResolveOptions = {
+    parentPageFieldName?: String;
+    localePrefix?: String;
+};
+
+const getPagePath = (
+    page,
+    { parentPageFieldName = "parentPage", localePrefix }: ResolveOptions,
+) => {
     const pages = [];
     const stack = [];
     stack.push(page);
@@ -62,9 +70,13 @@ const getPagePath = (page, parentPage = "parentPage") => {
 
         pages.push(name);
 
-        if (node.fields[parentPage]) {
-            stack.push(node.fields[parentPage]);
+        if (node.fields[parentPageFieldName?.toString()]) {
+            stack.push(node.fields[parentPageFieldName.toString()]);
         }
+    }
+
+    if (localePrefix) {
+        pages.push(localePrefix);
     }
 
     let result = "/" + pages.reverse().join("/") + "/";

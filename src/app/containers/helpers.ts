@@ -1,5 +1,7 @@
 import { getContentType, resolve } from "../utils/Resolver";
 import linkHandler from "./link/dataHandler";
+import { ContentfulClientApi } from "contentful";
+import { ContentfulApi } from "../../contentful/api";
 
 export function handleContent(contentItem, handlers) {
     const handler = handlers[getContentType(contentItem)];
@@ -62,7 +64,7 @@ export function cleanupData(data, config: CleanupConfig) {
     }
 }
 
-export async function routeDataResolver(client, pageList = ["page"]) {
+export async function routeDataResolver(client: ContentfulApi, pageList = ["page"]) {
     const handlers = {
         link: linkHandler,
     };
@@ -74,22 +76,32 @@ export async function routeDataResolver(client, pageList = ["page"]) {
     };
 
     const locale = await client.getLocale();
+    const defaultLocale = await client.getLocale();
+    const locales = await client.getLocales();
 
     return Promise.all(
-        pageList.map(contentName =>
-            client.getPages(contentName).then(query => ({
-                type: contentName,
-                items: query.items.map(page => {
-                    cleanupData(page, cleanupConfig);
-                    return {
-                        page,
-                        name: page?.fields?.name,
-                        path: resolve(page),
-                        locale: locale.code,
-                    };
-                }),
-            })),
-        ),
+        locales.map(lang => {
+            client.setLocale(lang);
+            return Promise.all(
+                pageList.map(contentName =>
+                    client.getPages(contentName).then(query => ({
+                        type: contentName,
+                        items: query.items.map(page => {
+                            cleanupData(page, cleanupConfig);
+                            return {
+                                page,
+                                name: page?.fields?.name,
+                                path: resolve(page, lang === defaultLocale ? undefined : lang),
+                                locale: locale.code,
+                            };
+                        }),
+                    })),
+                ),
+            ).then(val=>{
+                console.log(val);
+                return val;
+            });
+        }),
     );
 }
 
