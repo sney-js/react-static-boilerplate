@@ -100,6 +100,7 @@ export default {
     ],
 };
 
+
 const groupByArray = (xs, key) => {
     return xs.reduce(function(rv, x) {
         let v = key instanceof Function ? key(x) : x[key];

@@ -150,3 +150,11 @@
     min-width: 160px;
     padding-left: 40px;
 }
+
+.toggle-lang {
+    align-items: center;
+    display: flex;
+    @media #{$screen-desktop} {
+        margin-left: $default-gap * 2;
+    }
+}

@@ -12,6 +12,7 @@ export default function HeaderContainer(props) {
             title={header.name}
             links={header.links}
             themeToggle={true}
+            languageToggle={true}
             logo={<RespImage image={header.logo} width={"100px"} />}
         />
     );

@@ -6,10 +6,12 @@ import { useLocation } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
 import Input, { InputType } from "../../elements/forms/Inputs";
 import Form from "../../elements/forms/Form";
+import LanguageSelect, { getLang } from "./LanguageSelector";
 
 const styles = require("./header.module.scss");
 
 type HeaderProps = {
+    languageToggle?: boolean;
     title?: string;
     links?: Array<any>;
     logo?: any;
@@ -35,7 +37,7 @@ export function Header(props: HeaderProps) {
                     !!menuOpen && styles.modalWrapperOpen,
                 ])}
             >
-                <MobileModal links={props.links} />
+                <MobileModal links={props.links} languageToggle={props.languageToggle} />
             </Container>
 
             <Container layoutType={"maxWidth"} pad={"Horizontal"}>
@@ -43,33 +45,42 @@ export function Header(props: HeaderProps) {
                     <div className={styles.logo}>
                         <LinkElement path={"/"}>{props.logo || null}</LinkElement>
                     </div>
-                    <Container className={styles.actionsMobile}>
-                        <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-                    </Container>
-                    <Container className={styles.actionsDesktop}>
-                        <Container className={styles.navigation}>
-                            {props.links &&
-                                props.links.map(l => {
-                                    return <LinkWrap {...l} />;
-                                })}
-                        </Container>
-
-                        {props.themeToggle && (
-                            <Container className={styles.toggleTheme}>
-                                <Input
-                                    type={InputType.toggle}
-                                    label={"Theme"}
-                                    name={"global-theme"}
-                                    onChange={data => {
-                                        const selected = data.target.checked;
-                                        document.body["dataset"].theme = selected
-                                            ? "dark"
-                                            : "light";
-                                    }}
-                                />
+                    <div className={styles.container}>
+                        <Container className={styles.actionsDesktop}>
+                            <Container className={styles.navigation}>
+                                {props.links &&
+                                    props.links.map(l => {
+                                        return <LinkWrap {...l} />;
+                                    })}
                             </Container>
-                        )}
-                    </Container>
+                            {props.themeToggle && (
+                                <Container className={styles.toggleTheme}>
+                                    <Input
+                                        type={InputType.toggle}
+                                        label={"Theme"}
+                                        name={"global-theme"}
+                                        onChange={data => {
+                                            const selected = data.target.checked;
+                                            document.body["dataset"].theme = selected
+                                                ? "dark"
+                                                : "light";
+                                        }}
+                                    />
+                                </Container>
+                            )}
+                            {props.languageToggle && (
+                                <div className={styles.toggleLang}>
+                                    <LanguageSelect
+                                        languages={[getLang("en"), getLang("fr")]}
+                                        activeLanguage={getLang("en")}
+                                    />
+                                </div>
+                            )}
+                        </Container>
+                        <div className={styles.actionsMobile}>
+                            <BurgerMenu isMenuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                        </div>
+                    </div>
                 </div>
             </Container>
         </header>
@@ -90,7 +101,7 @@ const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
     );
 };
 
-const MobileModal = ({ links }) => {
+const MobileModal = ({ links, languageToggle }) => {
     let className = generateClassList([styles.mobileRoot]);
     return (
         <nav className={className}>
@@ -98,6 +109,14 @@ const MobileModal = ({ links }) => {
                 pad={"All"}
                 className={generateClassList([styles.mobileRoot, styles.navigation])}
             >
+                {languageToggle && (
+                    <div className={styles.toggleLang}>
+                        <LanguageSelect
+                            languages={[getLang("en"), getLang("fr")]}
+                            activeLanguage={getLang("en")}
+                        />
+                    </div>
+                )}
                 {links && links.map(l => <LinkWrap {...l} />)}
             </Container>
         </nav>

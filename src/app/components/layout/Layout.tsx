@@ -43,7 +43,8 @@ export const MetaData = (props: IMetaDataFields) => {
 function Layout(props: LayoutProps) {
     const { header, footer, data } = useSiteData();
     useEffect(() => {
-        (window as any).theme = document.body["dataset"].theme = props.theme || "light";
+        const bodyElement = document.body["dataset"];
+        ( window as any).theme = bodyElement && bodyElement.theme? props.theme : "light";
     }, [props.theme]);
     return (
         <div className={generateClassList([styles.layout])}>
