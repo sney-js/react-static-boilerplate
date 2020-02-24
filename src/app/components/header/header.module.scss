@@ -37,6 +37,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: bold;
+
+            @media #{$screen-tablet} {
+                margin-left: 0;
+            }
         }
     }
 
@@ -123,14 +127,16 @@
     top: -100%;
     height: 100vh;
     width: 100vw;
-    transition: 1s ease-in-out;
+    transition: 0.5s ease-out;
     z-index: -1;
+    opacity: 0;
     background-color: var(--color-primary);
 }
 
 .modal-wrapper-open {
     top: 0;
     padding-top: var(--nav-height);
+    opacity: 1;
 }
 .mobile-root {
     a {

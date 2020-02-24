@@ -100,14 +100,6 @@ export default {
     ],
 };
 
-const groupArrayBy = (array, k) =>
-    array.reduce(
-        (acc, item) => (
-            (acc[getByPath(item, k)] = [...(acc[getByPath(item, k)] || []), item]), acc
-        ),
-        {},
-    );
-
 const groupByArray = (xs, key) => {
     return xs.reduce(function(rv, x) {
         let v = key instanceof Function ? key(x) : x[key];
