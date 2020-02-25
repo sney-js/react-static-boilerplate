@@ -1,3 +1,5 @@
+import { WINDOW } from "./helpers";
+
 export const size = {
   mobile: 600,
   tablet: 902,
@@ -18,29 +20,29 @@ export const size = {
 // };
 
 export const isMobile = () => {
-  const width = window?.innerWidth;
+  const width = WINDOW?.innerWidth;
   return width <= size.mobile;
 };
 
 export const isTablet = () => {
-  const width = window?.innerWidth;
+  const width = WINDOW?.innerWidth;
   return width <= size.tablet && width > size.mobile;
 };
 
 export const isTabletOrMobile = () => {
-  const width = window?.innerWidth;
+  const width = WINDOW?.innerWidth;
   return width <= size.tablet;
 };
 
 export const isDesktop = () => {
-  const width = window?.innerWidth;
+  const width = WINDOW?.innerWidth;
   return width > size.tablet;
 };
 
 export const vwHeight = () => {
-  return (window?.innerHeight) || 0;
+  return (WINDOW?.innerHeight) || 0;
 };
 
 export const vwWidth = () => {
-  return (window?.innerWidth) || 0;
+  return (WINDOW?.innerWidth) || 0;
 };

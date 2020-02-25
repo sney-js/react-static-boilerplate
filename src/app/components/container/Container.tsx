@@ -22,8 +22,6 @@ export type ContainerProps = {
     gridColumnMobile?: string;
 };
 
-const BREAKPOINT_MOBILE = "(max-width: 902px)";
-
 class Container extends Component<ContainerProps> {
     constructor(props) {
         super(props);

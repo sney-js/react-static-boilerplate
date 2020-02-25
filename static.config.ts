@@ -55,6 +55,7 @@ export default {
             localeData: {
                 allLocales: locales,
                 defaultLocale: defaultLocale,
+                hasMultipleLocales: locales.length > 1,
             },
             siteData: localeSiteData.reduce((a, b) => {
                 return Object.assign({ [a.locale.toString()]: a, [b.locale.toString()]: b });

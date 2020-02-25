@@ -1,6 +1,7 @@
 import { getContentType, resolve } from "../utils/Resolver";
 import linkHandler from "./link/dataHandler";
 import { ContentfulApi } from "../../contentful/api";
+import { useSiteData } from "react-static";
 
 export function handleContent(contentItem, handlers) {
     const handler = handlers[getContentType(contentItem)];
@@ -107,11 +108,8 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
     );
 }
 
-export function toDashCase(str) {
-    if (!str) return null;
-    return str.replace(/\s+/g, "-").toLowerCase();
-}
 
-export function resolveLocalised() {
-    const locale = (window as any)?.locale;
-}
+export const getSiteDataForKey = function(key: string, locale: string) {
+    const { siteData, localeData } = useSiteData();
+    return localeData.hasMultipleLocales ? siteData[locale][key] : siteData[key];
+};

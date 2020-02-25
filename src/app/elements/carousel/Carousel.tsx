@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import "./carousel.scss";
-import { generateClassList } from "../../utils/helpers";
+import { generateClassList, WINDOW } from "../../utils/helpers";
 import Arrow from "../button/Arrow";
 import Container from "../../components/container/Container";
 
@@ -42,7 +42,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
     };
 
     init(index?) {
-        this.lastWindowWidth = window.innerWidth;
+        this.lastWindowWidth = WINDOW.innerWidth;
         const item = this.itemsRefs[index || 0];
 
         this.setState({
@@ -63,12 +63,12 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
     }
 
     componentDidMount(): void {
-        window.addEventListener("resize", this.onResize, false);
+        WINDOW.addEventListener("resize", this.onResize, false);
         this.init();
     }
 
     componentWillUnmount(): void {
-        window.removeEventListener("resize", this.onResize, false);
+        WINDOW.removeEventListener("resize", this.onResize, false);
     }
 
     onNextClick() {

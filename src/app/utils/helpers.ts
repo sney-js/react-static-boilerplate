@@ -61,3 +61,10 @@ export function splitIntoChunks(array: Array<any>, chunkSize: number) {
 export function cleanWhitespaces(str) {
     return str.replace(/ /gi, "");
 }
+
+export const WINDOW: any =
+    (typeof self === "object" && self.self === self && self) ||
+    (typeof global === "object" && global.global === global && global) ||
+    this;
+
+export const HAS_WINDOW: boolean = typeof window !== "undefined" && typeof document !== "undefined";

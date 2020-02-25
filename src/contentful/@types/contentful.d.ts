@@ -118,6 +118,9 @@ export interface IHeaderFields {
     /** Links */
     links?: ILink[] | undefined;
 
+    /** Logo Link */
+    logoLink: IPage;
+
     /** Slug */
     slug: string;
 }

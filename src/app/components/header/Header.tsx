@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { generateClassList } from "../../utils/helpers";
+import { generateClassList, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import Container from "../container/Container";
 import { useLocation } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
@@ -26,13 +26,13 @@ type HeaderProps = {
 };
 
 let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale: String) {
-    if (!window) return;
+    if (!HAS_WINDOW) return;
 
     const getPathBreaks = function(pathname) {
         return pathname.split("/").filter(e => e.length);
     };
 
-    const location = window.location;
+    const location = WINDOW.location;
 
     let pathBreaks = getPathBreaks(location.pathname);
     pathBreaks.reverse().push(locale);
@@ -40,7 +40,7 @@ let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale:
     pathBreaks = pathBreaks.filter(p => p !== oldLocale && p !== defaultLocale);
 
     const joinedPath = pathBreaks.join("/");
-    ( window as any ).location.pathname = cleanPath(joinedPath);
+    WINDOW.location.pathname = cleanPath(joinedPath);
 };
 
 export function Header(props: HeaderProps) {
@@ -48,8 +48,8 @@ export function Header(props: HeaderProps) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     let location = useLocation();
-    if (!location && window) {
-        location = window.location;
+    if (!location && WINDOW) {
+        location = WINDOW.location;
     }
 
     const allLocales = props.localeData?.allLocales;

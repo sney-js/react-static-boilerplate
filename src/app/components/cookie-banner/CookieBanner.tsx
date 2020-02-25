@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { Cookie } from "../../models/Cookie";
 import { globalHistory } from "@reach/router";
 import Button from "../../elements/button/Button";
+import { WINDOW } from "../../utils/helpers";
 
 const styles = require("./cookie-banner.module.scss");
 
@@ -30,7 +31,7 @@ class CookieBanner extends Component<CookieBannerProps> {
 
     componentDidUpdate(prevProps: Readonly<CookieBannerProps>, prevState): void {
         if (prevState.visible !== this.state.visible) {
-            window.dispatchEvent(new Event("resize"));
+            WINDOW.dispatchEvent(new Event("resize"));
         }
     }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
-import { generateClassList } from "../../utils/helpers";
+import { generateClassList, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import GlobalLoader from "../global-loader/GlobalLoader";
 import HeaderContainer from "../../containers/header/HeaderContainer";
 import FooterContainer from "../../containers/footer/FooterContainer";
@@ -48,10 +48,12 @@ const globalInitialVals = {
 export const GlobalContext = React.createContext(globalInitialVals);
 
 function Layout(props: LayoutProps) {
-    const { siteData, localeData } = useSiteData();
+    const { localeData } = useSiteData();
+
     useEffect(() => {
+        if (!HAS_WINDOW) return;
         const bodyElement = document.body["dataset"];
-        (window as any).theme = bodyElement && bodyElement.theme ? props.theme : "light";
+        WINDOW.theme = bodyElement && bodyElement.theme ? props.theme : "light";
     }, [props.theme]);
 
     const [locale, setLocale] = useState(props.locale || localeData?.default);
@@ -63,19 +65,17 @@ function Layout(props: LayoutProps) {
         locale: locale,
     };
 
-    const header = siteData[locale].header;
-    const footer = siteData[locale].footer;
     console.log("LOCALE", localeData);
 
     return (
         <div className={generateClassList([styles.layout])}>
             <GlobalContext.Provider value={globalState}>
                 <Head>
-                    <html lang={props.locale}/>
+                    <html lang={props.locale} />
 
-                    <link rel="manifest" href="/manifest.json"/>
-                    <meta name="apple-mobile-web-app-capable" content="yes"/>
-                    <meta name="apple-mobile-web-app-title" content="BPL"/>
+                    <link rel="manifest" href="/manifest.json" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta name="apple-mobile-web-app-title" content="BPL" />
                     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
                     <link
                         rel="apple-touch-icon"
@@ -87,12 +87,13 @@ function Layout(props: LayoutProps) {
 
                 <div className={styles.cookieBanner}>{CookieBannerContainer()}</div>
 
-                {header && <HeaderContainer/>}
+                <HeaderContainer />
+
                 <div className={generateClassList([styles.content])}>
                     <main>{props.children}</main>
                 </div>
 
-                {footer && <FooterContainer item={footer} />}
+                <FooterContainer />
 
                 {props.globalLoader && <GlobalLoader />}
             </GlobalContext.Provider>

@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import { Header } from "../../components/header/Header";
-import { useSiteData } from "react-static";
 import { RespImage } from "../../utils/RespImage";
 import { GlobalContext } from "../../components/layout/Layout";
+import { getSiteDataForKey } from "../helpers";
+import { useSiteData } from "react-static";
 
 export default function HeaderContainer() {
-    const { siteData, localeData } = useSiteData();
     const { locale } = useContext(GlobalContext);
-    const header = siteData[locale].header;
+    const { localeData } = useSiteData();
+    const header = getSiteDataForKey("header", locale);
+
     if (!header) return null;
-    console.log(header);
     return (
         <Header
             key={`Header-${locale}`}
@@ -17,8 +18,8 @@ export default function HeaderContainer() {
             title={header.name}
             links={header.links}
             themeToggle={true}
-            localeData={localeData}
-            logo={<RespImage image={header.logo} width={"100px"}/>}
+            localeData={localeData.hasMultipleLocales && localeData}
+            logo={<RespImage image={header.logo} width={"100px"} />}
             logoLink={header.logoLink}
         />
     );
