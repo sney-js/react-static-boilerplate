@@ -18,11 +18,14 @@ const ctfTest = {
         },
     ],
 };
+
+const DUMMY_IMG_URL = "https://cdn.worldvectorlogo.com/logos/react.svg";
+
 storiesOf("Navigation", module).add("default nav", () => (
     <React.Fragment>
         <Header
             links={ctfTest.links}
-            logo={<RespImage imageUrl={"https://cdn.worldvectorlogo.com/logos/react.svg"} />}
+            logo={<RespImage imageUrl={DUMMY_IMG_URL} />}
             themeToggle={true}
         />
     </React.Fragment>

@@ -7,7 +7,6 @@ import Container from "../../components/container/Container";
 type CarouselProps = {
     items?: Array<ReactElement>;
     swipeThreshold?: number;
-    padded?: boolean;
     animateIn?: boolean;
 };
 type CarouselState = {
@@ -32,7 +31,6 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
     static defaultProps = {
         items: [],
         swipeThreshold: 50,
-        padded: true,
     };
 
     onResize = e => {
@@ -165,11 +163,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
     render() {
         return (
             <section className={"d-carousel-wrapper"}>
-                <Container
-                    pad={"Horizontal"}
-                    layoutType={"maxWidth"}
-                    animateIn={this.props.animateIn}
-                >
+                <Container layoutType={"maxWidth"} animateIn={this.props.animateIn}>
                     <section className={"d-carousel"}>
                         <div className={"d-carousel-items-wrapper"}>
                             {this.state.currentIndex > 0 && (
