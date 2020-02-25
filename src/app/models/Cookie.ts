@@ -1,5 +1,4 @@
 export enum Cookie {
-    FUNCTIONAL = "fr_f",
-    ANALYTICS = "fr_a",
-    TRACKING = "fr_t",
+    FUNCTIONAL = "consent_f",
+    ANALYTICS = "consent_a",
 }

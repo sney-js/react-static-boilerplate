@@ -38,7 +38,6 @@ class CookieBanner extends Component<CookieBannerProps> {
     setCookies() {
         Cookies.set(Cookie.FUNCTIONAL, "true", { expires: 365 });
         this.props.setAnalyticsCookie && Cookies.set(Cookie.ANALYTICS, "true", { expires: 365 });
-        this.props.setTrackingCookie && Cookies.set(Cookie.TRACKING, "true", { expires: 365 });
         this.setState({
             visible: false,
         });
