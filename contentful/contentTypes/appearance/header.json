@@ -25,6 +25,11 @@
             "widgetNamespace": "builtin"
         },
         {
+            "fieldId": "logoLink",
+            "widgetId": "entryLinkEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
             "fieldId": "slug",
             "settings": {
                 "helpText": "e.g. main-header"

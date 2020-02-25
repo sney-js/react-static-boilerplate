@@ -4,8 +4,6 @@ import { AppContainer } from "react-hot-loader";
 import "./index.scss";
 // Your top level component
 import App from "./App";
-import TagManager from "react-gtm-module";
-import { environment } from "./environments/environment";
 
 // Render your app
 if (typeof document !== "undefined") {
@@ -19,13 +17,6 @@ if (typeof document !== "undefined") {
             target,
         );
     };
-
-    if (environment.production) {
-        const tagManagerConfig = {
-            gtmId: environment.googleTag,
-        };
-        TagManager.initialize(tagManagerConfig);
-    }
 
     // Render!
     render(App);

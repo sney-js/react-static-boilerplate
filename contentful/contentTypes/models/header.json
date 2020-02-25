@@ -56,6 +56,23 @@
             }
         },
         {
+            "id": "logoLink",
+            "name": "Logo Link",
+            "type": "Link",
+            "localized": false,
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "link"
+                    ]
+                }
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Entry"
+        },
+        {
             "id": "slug",
             "name": "Slug",
             "type": "Symbol",

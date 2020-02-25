@@ -6,7 +6,7 @@
             "widgetNamespace": "builtin"
         },
         {
-            "fieldId": "slug",
+            "fieldId": "name",
             "widgetId": "slugEditor",
             "widgetNamespace": "builtin"
         }

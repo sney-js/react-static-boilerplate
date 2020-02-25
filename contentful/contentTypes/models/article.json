@@ -22,8 +22,14 @@
             "name": "Category",
             "type": "Link",
             "localized": false,
-            "required": false,
-            "validations": [],
+            "required": true,
+            "validations": [
+                {
+                    "linkContentType": [
+                        "category"
+                    ]
+                }
+            ],
             "disabled": false,
             "omitted": false,
             "linkType": "Entry"
@@ -48,20 +54,11 @@
                 },
                 {
                     "enabledNodeTypes": [
-                        "heading-1",
-                        "heading-2",
-                        "heading-3",
-                        "heading-4",
-                        "heading-5",
-                        "heading-6",
-                        "ordered-list",
-                        "unordered-list",
-                        "hr",
-                        "blockquote",
                         "hyperlink",
-                        "entry-hyperlink"
+                        "entry-hyperlink",
+                        "blockquote"
                     ],
-                    "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, link to Url, and link to entry nodes are allowed"
+                    "message": "Only link to Url, link to entry, and quote nodes are allowed"
                 }
             ],
             "disabled": false,

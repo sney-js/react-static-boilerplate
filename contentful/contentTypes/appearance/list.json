@@ -9,6 +9,15 @@
             "widgetNamespace": "builtin"
         },
         {
+            "fieldId": "consys",
+            "settings": {
+                "helpText": "Manually select what content you would like to appear in this list.  This is an alternative to using a query",
+                "bulkEditing": false
+            },
+            "widgetId": "entryLinksEditor",
+            "widgetNamespace": "builtin"
+        },
+        {
             "fieldId": "queryJSON",
             "settings": {
                 "helpText": "This field can be used to dynamically retrieve content to list based on the query criteria. The search query is a JSON object; e.g. {\"content_type\":\"article\"} will retrieve all articles.  For search parameters see; https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/query-entries"
@@ -17,12 +26,11 @@
             "widgetNamespace": "builtin"
         },
         {
-            "fieldId": "consys",
+            "fieldId": "identifier",
             "settings": {
-                "helpText": "Manually select what content you would like to appear in this list.  This is an alternative to using a query",
-                "bulkEditing": false
+                "helpText": "Can be used by devs to identify the type of list."
             },
-            "widgetId": "entryLinksEditor",
+            "widgetId": "slugEditor",
             "widgetNamespace": "builtin"
         }
     ],

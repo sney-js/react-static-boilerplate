@@ -14,7 +14,7 @@
             "omitted": false
         },
         {
-            "id": "slug",
+            "id": "name",
             "name": "Slug",
             "type": "Symbol",
             "localized": false,

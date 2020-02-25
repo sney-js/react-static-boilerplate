@@ -17,7 +17,7 @@
             "id": "content",
             "name": "Content",
             "type": "RichText",
-            "localized": false,
+            "localized": true,
             "required": false,
             "validations": [
                 {
