@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE } from "../../../static.config";
+import { environment } from "../environments/environment";
 
 export const resolve = (node, defaultLocale?: String) => {
     if (!node) return undefined;
@@ -80,7 +80,7 @@ const getPagePath = (
 
     const locale = page.locale || page.sys.locale;
     // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
-    if (locale && locale !== ( DEFAULT_LOCALE || defaultLocale )) {
+    if (locale && locale !== ( environment.defaultLocale || defaultLocale )) {
         pages.push(locale);
     }
 
