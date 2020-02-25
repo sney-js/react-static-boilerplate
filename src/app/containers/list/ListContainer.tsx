@@ -33,17 +33,18 @@ export const CardList = ({ list, title }) => {
                 gridColumnTablet={"1fr 1fr"}
                 gridColumnMobile={"1fr"}
             >
-                {list.map(page => {
+                {list.map((page, index) => {
                     const type = getContentType(page);
                     switch (type) {
                         case "article": {
                             const fields = page.fields as IArticleFields;
                             return (
                                 <Card
+                                    key={`article${index}`}
                                     title={fields.title}
-                                    image={<RespImage image={fields.image}/>}
+                                    image={<RespImage image={fields.image} />}
                                     href={resolve(page, defaultLocale)}
-                                    description={<RichText document={fields.description}/>}
+                                    description={<RichText document={fields.description} />}
                                     subTitle={fields.category.fields.title}
                                     subTitleHref={resolve(fields.category, defaultLocale)}
                                 />
@@ -53,8 +54,9 @@ export const CardList = ({ list, title }) => {
                             const fields = page.fields as IPageFields;
                             return (
                                 <Card
+                                    key={`page${index}`}
                                     title={fields.title}
-                                    image={<RespImage image={fields.image}/>}
+                                    image={<RespImage image={fields.image} />}
                                     href={resolve(page, defaultLocale)}
                                 />
                             );

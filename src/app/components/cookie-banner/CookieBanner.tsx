@@ -3,7 +3,6 @@ import { Component } from "react";
 import Container from "../container/Container";
 import Cookies from "js-cookie";
 import { Cookie } from "../../models/Cookie";
-import { globalHistory } from "@reach/router";
 import Button from "../../elements/button/Button";
 import { WINDOW } from "../../utils/helpers";
 
@@ -49,7 +48,7 @@ class CookieBanner extends Component<CookieBannerProps> {
         return (
             <Container className={styles.cookieBanner} layoutType={"maxWidth"} pad={"Horizontal"}>
                 <div className={styles.container}>
-                    <div className={styles.caption}>{caption || "LOL"}</div>
+                    <div className={styles.caption}>{caption}</div>
                     {this.props.content}
                     <Button onClick={() => this.setCookies()}>Got it!</Button>
                 </div>

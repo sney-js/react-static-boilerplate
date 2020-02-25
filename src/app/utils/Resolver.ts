@@ -34,7 +34,7 @@ export const resolveLinkInfo = node => {
         associatedIcon: node.fields.associatedIcon,
     };
     if (internalLinkNode) {
-        linkData.path = resolve(internalLinkNode) + ( ( anchorId && "#" + anchorId ) || "" );
+        linkData.path = resolve(internalLinkNode) + ((anchorId && "#" + anchorId) || "");
     } else if (externalLinkNode || anchorId) {
         linkData.path = (externalLinkNode || "") + ((anchorId && "#" + anchorId) || "");
     }
@@ -55,7 +55,7 @@ type ResolveOptions = {
 };
 
 export const cleanPath = function(result: string) {
-    return ( result + "/" ).toString().replace(/[\/]+/g, "/");
+    return (result + "/").toString().replace(/[\/]+/g, "/");
 };
 
 const getPagePath = (
@@ -65,7 +65,6 @@ const getPagePath = (
     const pages = [];
     const stack = [];
     stack.push(page);
-    console.log("RESOLVE", page);
 
     while (stack.length > 0) {
         let node = stack.pop();
@@ -80,7 +79,7 @@ const getPagePath = (
 
     const locale = page.locale || page.sys.locale;
     // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
-    if (locale && locale !== ( environment.defaultLocale || defaultLocale )) {
+    if (locale && locale !== (environment.defaultLocale || defaultLocale)) {
         pages.push(locale);
     }
 

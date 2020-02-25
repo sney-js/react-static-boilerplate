@@ -4,7 +4,7 @@ export const environment = {
     apiUrl: "",
     googleTag: null,
     preview: false,
-    defaultLocale:"en-US",
+    defaultLocale: "en-US",
     contentful: {
         space: "",
         accessToken: "",

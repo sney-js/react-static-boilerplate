@@ -31,7 +31,7 @@ const Page_category = (props: PageProps) => {
     return (
         <Layout locale={locale}>
             <MetaData {...metaData} />
-            <CardList title={page.fields.title} list={extraData}/>
+            <CardList title={page.fields.title} list={extraData} />
         </Layout>
     );
 };

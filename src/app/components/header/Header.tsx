@@ -44,7 +44,6 @@ let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale:
 };
 
 export function Header(props: HeaderProps) {
-    console.log("HEADER", props);
     const [menuOpen, setMenuOpen] = useState(false);
 
     let location = useLocation();
@@ -69,7 +68,6 @@ export function Header(props: HeaderProps) {
                     languages={allLocales.map(getLang)}
                     activeLanguage={getLang(props.currentLocale)}
                     onLanguageChange={(locale, oldLocale) => {
-                        console.log(locale, oldLocale);
                         refreshToLocale(locale, oldLocale, defaultLocale);
                     }}
                 />
@@ -98,8 +96,8 @@ export function Header(props: HeaderProps) {
                         <Container className={styles.actionsDesktop}>
                             <Container className={styles.navigation}>
                                 {props.links &&
-                                    props.links.map(l => {
-                                        return <LinkWrap {...l} />;
+                                    props.links.map((l, i) => {
+                                        return <LinkWrap key={`link${i}`} {...l} />;
                                     })}
                             </Container>
                             {props.themeToggle && (
@@ -153,7 +151,7 @@ const MobileModal = ({ links, languageToggle }) => {
             >
                 {languageToggle && React.cloneElement(languageToggle)}
                 <br />
-                {links && links.map(l => <LinkWrap {...l} />)}
+                {links && links.map((l, i) => <LinkWrap key={`link${i}`} {...l} />)}
             </Container>
         </nav>
     );

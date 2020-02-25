@@ -7,12 +7,12 @@ export const getUrl = (image, width = "1440", extraParams = undefined) =>
     `${createSrcSetEntry(image.fields.file.url, width, extraParams)}`;
 
 export const RespImage = ({
-                              image = undefined,
-                              imageUrl = undefined,
-                              width = "1440",
-                              widthVw = 100,
-                              ...rest
-                          }) => {
+    image = undefined,
+    imageUrl = undefined,
+    width = "1440",
+    widthVw = 100,
+    ...rest
+}) => {
     if (!imageUrl && !getByPath(image, "fields.file.url")) return null;
 
     const url = imageUrl || image.fields.file.url;
@@ -25,7 +25,7 @@ export const RespImage = ({
             src={url}
             srcSet={srcsets.join(", ")}
             sizes={`(max-width: ${width}px) ${widthVw}vw, ${width}px`}
-            alt={image && (image.fields.description || image.fields.title) || imageUrl}
+            alt={(image && (image.fields.description || image.fields.title)) || imageUrl}
         />
     );
 };

@@ -38,7 +38,6 @@ $border-radius: 75px;
 
 //--------------------------------------------
 .padding_xs {
-
 }
 
 .split-col-2 {
@@ -64,17 +63,17 @@ $border-radius: 75px;
         text-align: center;
         &.padded_Splitview {
             > *:first-child {
-                margin-bottom: var(--gap-layout);;
+                margin-bottom: var(--gap-layout);
             }
 
             > *:nth-child(2) {
-                margin-top: var(--gap-layout);;
+                margin-top: var(--gap-layout);
             }
         }
     }
 }
 
-.layout-grid{
+.layout-grid {
     display: grid;
     grid-gap: calc(var(--gap-layout) / 2);
 }

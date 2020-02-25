@@ -39,16 +39,21 @@ if (typeof document !== "undefined") {
 
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", function() {
-            navigator.serviceWorker.register("/sw.js").then(function(registration) {
-                // Registration was successful
-                console.log("ServiceWorker registration successful with scope: ", registration.scope);
-            }, function(err) {
-                // registration failed :(
-                console.log("ServiceWorker registration failed: ", err);
-            });
+            navigator.serviceWorker.register("/sw.js").then(
+                function(registration) {
+                    // Registration was successful
+                    console.log(
+                        "ServiceWorker registration successful with scope: ",
+                        registration.scope,
+                    );
+                },
+                function(err) {
+                    // registration failed :(
+                    console.log("ServiceWorker registration failed: ", err);
+                },
+            );
         });
     }
-
 }
 
 // Export your top level component as JSX (for static rendering)

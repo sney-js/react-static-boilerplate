@@ -65,8 +65,6 @@ function Layout(props: LayoutProps) {
         locale: locale,
     };
 
-    console.log("LOCALE", localeData);
-
     return (
         <div className={generateClassList([styles.layout])}>
             <GlobalContext.Provider value={globalState}>

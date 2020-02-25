@@ -102,7 +102,6 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
                     })),
                 ),
             ).then(val => {
-                console.log(val);
                 return val;
             });
         }),

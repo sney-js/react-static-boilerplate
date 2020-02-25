@@ -30,7 +30,8 @@ const LanguageSelect = (props: LanguageSelectorProps) => {
                             title={lang.name}
                             onClick={() => {
                                 // setActiveLanguage(lang.code);
-                                onLanguageChange && onLanguageChange(lang.code, activeLanguage.code);
+                                onLanguageChange &&
+                                    onLanguageChange(lang.code, activeLanguage.code);
                                 setClosed(true);
                             }}
                         />
@@ -61,6 +62,6 @@ export const getLang = (code: String) => {
     }
 };
 
-export const ALL_LOCALES=["en","en-US", "en-GB", "fr", "de", "es"];
+export const ALL_LOCALES = ["en", "en-US", "en-GB", "fr", "de", "es"];
 
 export default LanguageSelect;

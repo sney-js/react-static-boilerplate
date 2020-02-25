@@ -24,7 +24,7 @@ export const Card = (props: CardProps) => (
             <LinkElement path={props.href}>
                 <h3>{props.title}</h3>
             </LinkElement>
-            <p>{props.description}</p>
+            <div>{props.description}</div>
         </div>
     </Container>
 );

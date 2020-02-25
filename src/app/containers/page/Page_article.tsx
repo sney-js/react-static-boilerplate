@@ -24,15 +24,14 @@ const Page_page = (props: PageProps) => {
         page = Flatted.parse(page);
         locale = routeData.locale;
     }
-    console.log("ARTICLE", page);
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
         <Layout locale={locale}>
             <MetaData {...metaData} />
             {page.fields.content &&
-            page.fields.content.map((item, index) =>
-                renderContentContainer({ item, key: index }),
-            )}
+                page.fields.content.map((item, index) =>
+                    renderContentContainer({ item, key: index }),
+                )}
         </Layout>
     );
 };

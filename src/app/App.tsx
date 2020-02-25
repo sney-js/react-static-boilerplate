@@ -54,10 +54,10 @@ function App() {
 
     return (
         <Root>
-            <React.Suspense fallback={<GlobalLoader/>}>
+            <React.Suspense fallback={<GlobalLoader />}>
                 <Router>
                     {dynamicRoutes}
-                    <Routes path="*"/>
+                    <Routes path="*" />
                 </Router>
             </React.Suspense>
         </Root>
