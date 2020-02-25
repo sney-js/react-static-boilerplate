@@ -45,16 +45,16 @@ const globalInitialVals = {
     onLocaleChange: (locale: string) => {},
 };
 
-const GlobalContext = React.createContext(globalInitialVals);
+export const GlobalContext = React.createContext(globalInitialVals);
 
 function Layout(props: LayoutProps) {
-    const { header, footer, data } = useSiteData();
+    const { siteData, localeData } = useSiteData();
     useEffect(() => {
         const bodyElement = document.body["dataset"];
         (window as any).theme = bodyElement && bodyElement.theme ? props.theme : "light";
     }, [props.theme]);
 
-    const [locale, setLocale] = useState(globalInitialVals.locale);
+    const [locale, setLocale] = useState(props.locale || localeData?.default);
 
     const globalState = {
         onLocaleChange: locale => {
@@ -63,15 +63,19 @@ function Layout(props: LayoutProps) {
         locale: locale,
     };
 
+    const header = siteData[locale].header;
+    const footer = siteData[locale].footer;
+    console.log("LOCALE", localeData);
+
     return (
         <div className={generateClassList([styles.layout])}>
             <GlobalContext.Provider value={globalState}>
                 <Head>
-                    <html lang={props.locale} />
+                    <html lang={props.locale}/>
 
-                    <link rel="manifest" href="/manifest.json" />
-                    <meta name="apple-mobile-web-app-capable" content="yes" />
-                    <meta name="apple-mobile-web-app-title" content="BPL" />
+                    <link rel="manifest" href="/manifest.json"/>
+                    <meta name="apple-mobile-web-app-capable" content="yes"/>
+                    <meta name="apple-mobile-web-app-title" content="BPL"/>
                     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
                     <link
                         rel="apple-touch-icon"
@@ -83,7 +87,7 @@ function Layout(props: LayoutProps) {
 
                 <div className={styles.cookieBanner}>{CookieBannerContainer()}</div>
 
-                {header && <HeaderContainer item={header} />}
+                {header && <HeaderContainer/>}
                 <div className={generateClassList([styles.content])}>
                     <main>{props.children}</main>
                 </div>

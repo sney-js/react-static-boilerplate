@@ -1,74 +1,82 @@
 import React, { useEffect, useState } from "react";
 import { generateClassList } from "../../utils/helpers";
 import Container from "../container/Container";
-import LinkElement from "../../elements/link/LinkElement";
-import { useLocation, useRouteData } from "react-static";
+import { useLocation } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
 import Input, { InputType } from "../../elements/forms/Inputs";
-import Form from "../../elements/forms/Form";
-import LanguageSelect, { ALL_LOCALES, getLang } from "./LanguageSelector";
-import { DEFAULT_LOCALE } from "../../utils/Resolver";
+import LanguageSelect, { getLang } from "./LanguageSelector";
+import { LinkData } from "../../models/LinkData";
+import { cleanPath } from "../../utils/Resolver";
 
 const styles = require("./header.module.scss");
 
+type LocaleData = {
+    allLocales: Array<String>;
+    defaultLocale: String;
+};
+
 type HeaderProps = {
-    languageToggle?: boolean;
     title?: string;
     links?: Array<any>;
     logo?: any;
+    currentLocale?: string;
+    logoLink?: LinkData;
     themeToggle?: boolean;
+    localeData?: LocaleData;
 };
 
-let getPathBreaks = function(pathname) {
-    return pathname.split("/").filter(e => e.length);
-};
+let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale: String) {
+    if (!window) return;
 
-function getCurrentLocale(pathname) {
-    const paths = getPathBreaks(pathname);
-    if (ALL_LOCALES.find(l => l === paths[1])) {
-        console.log("has locale : " + paths[1]);
-        return paths[1];
-    }
-    return undefined;
-}
+    const getPathBreaks = function(pathname) {
+        return pathname.split("/").filter(e => e.length);
+    };
+
+    const location = window.location;
+
+    let pathBreaks = getPathBreaks(location.pathname);
+    pathBreaks.reverse().push(locale);
+    pathBreaks = pathBreaks.reverse();
+    pathBreaks = pathBreaks.filter(p => p !== oldLocale && p !== defaultLocale);
+
+    const joinedPath = pathBreaks.join("/");
+    ( window as any ).location.pathname = cleanPath(joinedPath);
+};
 
 export function Header(props: HeaderProps) {
     console.log("HEADER", props);
     const [menuOpen, setMenuOpen] = useState(false);
-    const location = useLocation();
+
+    let location = useLocation();
+    if (!location && window) {
+        location = window.location;
+    }
+
+    const allLocales = props.localeData?.allLocales;
+    const defaultLocale = props.localeData?.defaultLocale;
 
     useEffect(() => {
         setMenuOpen(false);
     }, [location?.pathname]);
 
     const classNames = generateClassList([styles.header]);
-    const languageSelector = (
-        <div className={styles.toggleLang}>
-            <LanguageSelect
-                languages={[getLang("en-US"), getLang("fr")]}
-                activeLanguage={getLang("en-US")}
-                setActiveLanguage={locale => {
-                    console.log(locale);
-                    (window as any).locale = locale;
-                    //TODO use react way
-                    console.log(location.pathname);
-                    const currentLocale = getCurrentLocale(location.pathname);
-                    let pathBreaks = getPathBreaks(location.pathname);
-                    if (currentLocale) {
-                        pathBreaks[0] = locale;
-                    } else {
-                        // in default locale so no lang prefix
-                        if (locale !== DEFAULT_LOCALE) {
-                            pathBreaks.reverse().push(locale);
-                            pathBreaks = pathBreaks.reverse();
-                        }
-                    }
-                    const newPath: string = pathBreaks.join("/");
-                    (window as any).location.pathname = newPath;
-                }}
-            />
-        </div>
-    );
+
+    let languageSelector = null;
+    if (props.localeData) {
+        languageSelector = (
+            <div className={styles.toggleLang}>
+                <LanguageSelect
+                    languages={allLocales.map(getLang)}
+                    activeLanguage={getLang(props.currentLocale)}
+                    onLanguageChange={(locale, oldLocale) => {
+                        console.log(locale, oldLocale);
+                        refreshToLocale(locale, oldLocale, defaultLocale);
+                    }}
+                />
+            </div>
+        );
+    }
+
     return (
         <header className={classNames}>
             <Container
@@ -84,7 +92,7 @@ export function Header(props: HeaderProps) {
             <Container layoutType={"maxWidth"} pad={"Horizontal"}>
                 <div className={styles.container}>
                     <div className={styles.logo}>
-                        <LinkElement path={"/"}>{props.logo || null}</LinkElement>
+                        <LinkWrap {...props.logoLink}>{props.logo || null}</LinkWrap>
                     </div>
                     <div className={styles.container}>
                         <Container className={styles.actionsDesktop}>

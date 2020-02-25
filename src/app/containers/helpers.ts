@@ -1,6 +1,5 @@
 import { getContentType, resolve } from "../utils/Resolver";
 import linkHandler from "./link/dataHandler";
-import { ContentfulClientApi } from "contentful";
 import { ContentfulApi } from "../../contentful/api";
 
 export function handleContent(contentItem, handlers) {
@@ -79,7 +78,6 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
         ignoreTypes: [],
     };
 
-    const locale = await client.getLocale();
     const defaultLocale = await client.getLocale();
     const locales = await client.getLocales();
 
@@ -95,7 +93,7 @@ export async function routeDataResolver(client: ContentfulApi, pageList = ["page
                             return {
                                 page,
                                 name: page?.fields?.name,
-                                path: resolve(page),
+                                path: resolve(page, defaultLocale),
                                 locale: lang,
                             };
                         }),

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { generateClassList } from "../../utils/helpers";
+
 const styles = require("./language.module.scss");
 
 type LanguageType = { code: string; icon: any; name: string };
@@ -7,7 +8,7 @@ type LanguageType = { code: string; icon: any; name: string };
 type LanguageSelectorProps = {
     languages: Array<LanguageType>;
     activeLanguage: LanguageType;
-    setActiveLanguage: (lang: LanguageType["code"]) => void;
+    setActiveLanguage?: (lang: LanguageType["code"]) => void;
     onLanguageChange?: (langTo: LanguageType["code"], langFrom: LanguageType["code"]) => void;
 };
 
@@ -28,7 +29,7 @@ const LanguageSelect = (props: LanguageSelectorProps) => {
                             alt={lang.name}
                             title={lang.name}
                             onClick={() => {
-                                setActiveLanguage(lang.code);
+                                // setActiveLanguage(lang.code);
                                 onLanguageChange && onLanguageChange(lang.code, activeLanguage.code);
                                 setClosed(true);
                             }}

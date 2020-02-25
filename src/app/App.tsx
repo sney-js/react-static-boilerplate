@@ -4,11 +4,8 @@ import { Router } from "@reach/router";
 import { Mocks } from "./utils/mocks";
 import { mocksConfig } from "./mock-configs";
 import { ContentfulApi } from "../contentful/api";
-import { routeDataResolver } from "./containers/helpers";
-import Page from "./containers/page/Page_page";
 import { environment } from "./environments/environment";
 import GlobalLoader from "./components/global-loader/GlobalLoader";
-import Layout from "./components/layout/Layout";
 
 function App() {
     if (typeof document !== "undefined") {
@@ -57,13 +54,11 @@ function App() {
 
     return (
         <Root>
-            <React.Suspense fallback={<GlobalLoader />}>
-                <Layout>
-                    <Router>
-                        {dynamicRoutes}
-                        <Routes path="*" />
-                    </Router>
-                </Layout>
+            <React.Suspense fallback={<GlobalLoader/>}>
+                <Router>
+                    {dynamicRoutes}
+                    <Routes path="*"/>
+                </Router>
             </React.Suspense>
         </Root>
     );

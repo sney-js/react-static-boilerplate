@@ -4,8 +4,6 @@ import "./page.scss";
 import Layout, { MetaData } from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
-import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
-import Container from "../../components/container/Container";
 
 type PageProps = {
     changeTheme?: Function;
@@ -25,13 +23,13 @@ const Page_page = (props: PageProps) => {
     console.log(page,locale);
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
-        <Container>
+        <Layout locale={locale}>
             <MetaData {...metaData} />
             {page.fields.content &&
-                page.fields.content.map((item, index) =>
-                    renderContentContainer({ item, key: index }),
-                )}
-        </Container>
+            page.fields.content.map((item, index) =>
+                renderContentContainer({ item, key: index }),
+            )}
+        </Layout>
     );
 };
 

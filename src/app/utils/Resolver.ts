@@ -1,26 +1,24 @@
-export const DEFAULT_LOCALE = "en-US";
+import { DEFAULT_LOCALE } from "../../../static.config";
 
-export const resolve = (node, locale?: String) => {
+export const resolve = (node, defaultLocale?: String) => {
     if (!node) return undefined;
     let contentType = getContentType(node);
     switch (contentType) {
         case "page":
-            return getPagePath(node, { parentPageFieldName: "parentPage", localePrefix: locale });
+            return getPagePath(node, {
+                parentPageFieldName: "parentPage",
+                defaultLocale: defaultLocale,
+            });
         case "article":
-            return getPagePath(node, { parentPageFieldName: "category", localePrefix: locale });
+            return getPagePath(node, {
+                parentPageFieldName: "category",
+                defaultLocale: defaultLocale,
+            });
         case "category":
-            return getPagePath(node, { localePrefix: locale });
+            return getPagePath(node, { defaultLocale: defaultLocale });
         default:
             return undefined;
     }
-};
-
-export const resolvePageInfo = node => {
-    if (!getContentType(node)) return undefined;
-    return {
-        path: resolve(node),
-        title: node.fields.title,
-    };
 };
 
 export const resolveLinkInfo = node => {
@@ -36,9 +34,7 @@ export const resolveLinkInfo = node => {
         associatedIcon: node.fields.associatedIcon,
     };
     if (internalLinkNode) {
-        if (getContentType(internalLinkNode) === "page") {
-            linkData.path = resolve(internalLinkNode) + ((anchorId && "#" + anchorId) || "");
-        }
+        linkData.path = resolve(internalLinkNode) + ( ( anchorId && "#" + anchorId ) || "" );
     } else if (externalLinkNode || anchorId) {
         linkData.path = (externalLinkNode || "") + ((anchorId && "#" + anchorId) || "");
     }
@@ -55,17 +51,21 @@ export const resolveAssetLink = node => {
 
 type ResolveOptions = {
     parentPageFieldName?: String;
-    localePrefix?: String;
+    defaultLocale?: String;
+};
+
+export const cleanPath = function(result: string) {
+    return ( result + "/" ).toString().replace(/[\/]+/g, "/");
 };
 
 const getPagePath = (
     page,
-    { parentPageFieldName = "parentPage", localePrefix }: ResolveOptions,
+    { parentPageFieldName = "parentPage", defaultLocale }: ResolveOptions,
 ) => {
     const pages = [];
     const stack = [];
     stack.push(page);
-    console.log(page);
+    console.log("RESOLVE", page);
 
     while (stack.length > 0) {
         let node = stack.pop();
@@ -78,15 +78,14 @@ const getPagePath = (
         }
     }
 
-    if (localePrefix || page.locale) {
-        const locale = localePrefix || page.locale;
-        if (locale !== DEFAULT_LOCALE) {
-            pages.push(locale);
-        }
+    const locale = page.locale || page.sys.locale;
+    // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
+    if (locale && locale !== ( DEFAULT_LOCALE || defaultLocale )) {
+        pages.push(locale);
     }
 
-    let result = "/" + pages.reverse().join("/") + "/";
-    result = result.replace(/[\/]+/g, "/");
+    let result = "/" + pages.reverse().join("/");
+    result = cleanPath(result);
 
     return result;
 };

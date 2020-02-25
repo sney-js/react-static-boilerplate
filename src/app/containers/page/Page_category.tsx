@@ -2,11 +2,8 @@ import React from "react";
 import { useRouteData } from "react-static";
 import "./page.scss";
 import Layout, { MetaData } from "../../components/layout/Layout";
-import { renderContentContainer } from "../utils/renderer";
 import Flatted from "flatted";
-import CookieBannerContainer from "../cookie-banner/CookieBannerContainer";
 import { CardList } from "../list/ListContainer";
-import Container from "../../components/container/Container";
 
 type PageProps = {
     changeTheme?: Function;
@@ -32,10 +29,10 @@ const Page_category = (props: PageProps) => {
 
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
-        <Container>
+        <Layout locale={locale}>
             <MetaData {...metaData} />
             <CardList title={page.fields.title} list={extraData}/>
-        </Container>
+        </Layout>
     );
 };
 

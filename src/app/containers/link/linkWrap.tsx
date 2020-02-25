@@ -4,12 +4,12 @@ import { LinkData } from "../../models/LinkData";
 
 export default LinkWrap;
 // Add all new contentful containers here.
-function LinkWrap(params: LinkData) {
+type LinkWrapType = {
+    children?: any;
+} & LinkData;
+
+function LinkWrap(params: LinkWrapType) {
     if (!params) return null;
 
-    return (
-        <LinkElement {...params}>
-            {params.title}
-        </LinkElement>
-    );
+    return <LinkElement {...params}>{params.children || params.title}</LinkElement>;
 }
