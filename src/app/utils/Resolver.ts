@@ -23,7 +23,13 @@ export const resolve = (node, defaultLocale?: String) => {
 
 export const resolveLinkInfo = node => {
     if (node && node.fields.path) return;
-    let internalLinkNode = node.fields.internalLink;
+    let internalLinkNode;
+    const contentType = getContentType(node);
+    if (contentType === "article" || contentType === "page") {
+        internalLinkNode = node;
+    } else {
+        internalLinkNode = node.fields.internalLink;
+    }
     let externalLinkNode = node.fields.externalLink;
     let anchorId = node.fields.anchorId;
     const linkData = {
