@@ -19,8 +19,9 @@ export default {
         const locales = await client.getLocales();
         const localeSiteData = await Promise.all(
             locales.map(async lang => {
-                client.setLocale(lang);
+
                 // -------------------------------Header---------------------------
+                client.setLocale(lang);
                 const mainNav = await client.fetchEntry({
                     content_type: "header",
                     include: 3,
@@ -32,6 +33,7 @@ export default {
                 navSiteData.logoLink = resolveLinkInfo(navSiteData.logoLink);
                 // -------------------------------Footer---------------------------
 
+                client.setLocale(lang);
                 const footer = await client.fetchEntry({
                     content_type: "footer",
                     field: "slug",
