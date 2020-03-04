@@ -19,7 +19,7 @@ export default function HeaderContainer() {
             links={header.links}
             themeToggle={true}
             localeData={localeData.hasMultipleLocales && localeData}
-            logo={<RespImage image={header.logo} width={"100px"} />}
+            logo={<RespImage image={header.logo} widthMax={100} />}
             logoLink={header.logoLink}
         />
     );
