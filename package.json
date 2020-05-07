@@ -23,6 +23,7 @@
         "@zxing/library": "^0.15.2",
         "body-scroll-lock": "^2.6.4",
         "broadcast-channel": "^3.0.3",
+        "caller-callsite": "^4.1.0",
         "contentful": "^7.9.1",
         "csg-toolbox": "./scripts/contentful/",
         "dotenv": "^8.1.0",
