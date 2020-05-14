@@ -7,6 +7,7 @@ import "./rich-text.scss";
 import * as Markdown from "react-markdown";
 
 const GLOBAL_OPTIONS = {
+		renderText: text => text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
     renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: node => {
             return <ImageElement content={node.data.target} />;
