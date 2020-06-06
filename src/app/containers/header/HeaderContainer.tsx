@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Header } from "../../components/header/Header";
 import { RespImage } from "../../utils/RespImage";
 import { GlobalContext } from "../../components/layout/Layout";
-import { getSiteDataForKey } from "../helpers";
+import { getSiteDataForKey } from "../utils/ReactStaticHelpers";
 import { useSiteData } from "react-static";
 
 export default function HeaderContainer() {

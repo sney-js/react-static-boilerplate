@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Footer from "../../components/footer/Footer";
 import { GlobalContext } from "../../components/layout/Layout";
-import { getSiteDataForKey } from "../helpers";
+import { getSiteDataForKey } from "../utils/ReactStaticHelpers";
 
 export default function FooterContainer(props) {
     const { locale } = useContext(GlobalContext);

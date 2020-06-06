@@ -1,8 +1,9 @@
 import * as path from "path";
 import { ContentfulApi } from "./src/contentful/api";
 import * as Flatted from "flatted";
-import { routeDataResolver } from "./src/app/containers/helpers";
 import { resolveLinkInfo } from "./src/app/utils/Resolver";
+import { IArticleFields } from "./src/contentful/@types/contentful";
+import RouteGenerator from "./src/contentful/RouteGenerator";
 
 require("dotenv").config();
 const client = new ContentfulApi({
@@ -19,7 +20,6 @@ export default {
         const locales = await client.getLocales();
         const localeSiteData = await Promise.all(
             locales.map(async lang => {
-
                 // -------------------------------Header---------------------------
                 client.setLocale(lang);
                 const mainNav = await client.fetchEntry({
@@ -63,43 +63,9 @@ export default {
         };
     },
     getRoutes: async () => {
-        const pageList = ["page", "article", "category"];
-        const localisedRoutes = await routeDataResolver(client, pageList);
 
-        const pathsArray = localisedRoutes.map(routes => {
-            const allArticles = routes.find(i => i.type === "article").items;
-            const groupedCategories = groupByArray(
-                allArticles,
-                x => x.page.fields.category.fields.name,
-            );
-
-            return routes.map(({ type, items }) => {
-                return items.map(info => {
-                    let extraData = {};
-                    if (type === "category") {
-                        extraData = groupedCategories
-                            .find(e => e.key === info.name)
-                            .values.map(ar => ar.page);
-                    }
-                    return {
-                        path: info.path,
-                        template: `src/app/containers/page/Page_${type}`,
-                        getData: () => ({
-                            page: Flatted.stringify(info.page),
-                            extraData: Flatted.stringify(extraData),
-                            locale: info.locale,
-                        }),
-                    };
-                });
-            });
-        });
-
-        const pageCollection = flatten(flatten(pathsArray));
-        //TODO print failed pages. before / after
-        console.log("::::::::::Rendering pages:::::::::::");
-        pageCollection.map(i => console.log(i.path));
-        console.log("::::::::::::::::::::::::::::::::::::");
-        return pageCollection;
+        const routeGenerator = new RouteGenerator(client);
+        return routeGenerator.getRoutes();
     },
     plugins: [
         "react-static-plugin-typescript",
@@ -121,21 +87,4 @@ export default {
         "react-static-plugin-scss-modules-rw",
         "react-static-plugin-file-replace",
     ],
-};
-
-const groupByArray = (xs, key) => {
-    return xs.reduce(function(rv, x) {
-        let v = key instanceof Function ? key(x) : x[key];
-        let el = rv.find(r => r && r.key === v);
-        if (el) {
-            el.values.push(x);
-        } else {
-            rv.push({ key: v, values: [x] });
-        }
-        return rv;
-    }, []);
-};
-
-const flatten = arr => {
-    return [].concat.apply([], arr);
 };

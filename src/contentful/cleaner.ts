@@ -1,8 +1,6 @@
-import { getContentType, resolve } from "../utils/Resolver";
-import linkHandler from "./link/dataHandler";
-import { ContentfulApi } from "../../contentful/api";
+import { getContentType } from "../app/utils/Resolver";
 import { useSiteData } from "react-static";
-import { WINDOW } from "../utils/helpers";
+import { WINDOW } from "../app/utils/helpers";
 
 export function handleContent(contentItem, handlers) {
     const handler = handlers[getContentType(contentItem)];
@@ -67,45 +65,6 @@ export function cleanupData(data, config: CleanupConfig) {
             handleContent(object, config.handlers);
         }
     }
-}
-
-export async function routeDataResolver(client: ContentfulApi, pageList = ["page"]) {
-    const handlers = {
-        link: linkHandler,
-    };
-
-    const cleanupConfig: CleanupConfig = {
-        handlers: handlers,
-        ignoreProps: ["sys"],
-        ignoreTypes: [],
-    };
-
-    const defaultLocale = await client.getLocale();
-    const locales = await client.getLocales();
-
-    return Promise.all(
-        locales.map(lang => {
-            client.setLocale(lang);
-            return Promise.all(
-                pageList.map(contentName =>
-                    client.getPages(contentName).then(query => ({
-                        type: contentName,
-                        items: query.items.map(page => {
-                            cleanupData(page, cleanupConfig);
-                            return {
-                                page,
-                                name: page?.fields?.name,
-                                path: resolve(page, defaultLocale),
-                                locale: lang,
-                            };
-                        }),
-                    })),
-                ),
-            ).then(val => {
-                return val;
-            });
-        }),
-    );
 }
 
 export const getSiteDataForKey = function(key: string, locale: string) {

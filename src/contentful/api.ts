@@ -17,6 +17,7 @@ export class ContentfulApi {
 
     setLocale(locale: String) {
         this.currentLocale = locale;
+        return this;
     }
 
     async getLocale() {
