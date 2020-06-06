@@ -1,4 +1,5 @@
 import { environment } from "../environments/environment";
+import { LinkData } from "../models/LinkData";
 
 export const resolve = (node, defaultLocale?: String) => {
     if (!node) return undefined;
@@ -21,7 +22,7 @@ export const resolve = (node, defaultLocale?: String) => {
     }
 };
 
-export const resolveLinkInfo = node => {
+export const resolveLinkInfo = (node): LinkData => {
     if (node && node.fields.path) return;
     let internalLinkNode;
     const contentType = getContentType(node);
