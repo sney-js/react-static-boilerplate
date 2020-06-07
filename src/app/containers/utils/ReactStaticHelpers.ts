@@ -1,6 +1,10 @@
 import { useSiteData } from "react-static";
+import { GlobalSiteData } from "../../models/SiteData";
+import { SiteData } from "../../../contentful/RouteGenerator";
 
-export const getSiteDataForKey = function(key: string, locale: string) {
-    const { siteData, localeData } = useSiteData();
-    return localeData.hasMultipleLocales ? siteData[locale][key] : siteData[key];
+export const getSiteDataForLocale = (
+    locale?: string,
+): SiteData => {
+    const { siteData, localeData } = useSiteData() as GlobalSiteData;
+    return locale && localeData.hasMultipleLocales ? siteData[locale]: siteData;
 };

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Footer from "../../components/footer/Footer";
 import { GlobalContext } from "../../components/layout/Layout";
-import { getSiteDataForKey } from "../utils/ReactStaticHelpers";
+import { getSiteDataForLocale } from "../utils/ReactStaticHelpers";
 
 export default function FooterContainer(props) {
     const { locale } = useContext(GlobalContext);
-    const footer = getSiteDataForKey("footer", locale);
+    const footer = getSiteDataForLocale(locale).footer;
     if (!footer) return null;
     return <Footer links={footer.links} content={footer.copyright} />;
 }

@@ -1,4 +1,4 @@
-import { getContentType } from "../app/utils/Resolver";
+import { getContentType, getPageType } from "../app/utils/Resolver";
 import { useSiteData } from "react-static";
 import { WINDOW } from "../app/utils/helpers";
 import RouteConfig from "./RouteConfig";
@@ -35,7 +35,7 @@ function cleanupEntryLink(object) {
     return object;
 }
 
-export function cleanupData(data, withHandler?: boolean) {
+export function cleanupData(data, locale?:string, withHandler?: boolean) {
     const config = RouteConfig.cleanupConfig;
 
     const stack = [];
@@ -51,15 +51,17 @@ export function cleanupData(data, withHandler?: boolean) {
         //--------------------------------------------------
         const contentType = getContentType(item);
 
+        // embeds contentType inside item as sys is removed from data in frontend
         if (contentType) {
             item.type = contentType;
         }
 
-        // if (locale) {
-        //     item.locale = locale;
-        //     if (typeof item.sys === "object") {
-        //         item.sys.locale = locale;
-        //     }
+        // embeds locale inside item info to be used by resolve methods on frontend
+        // if (getPageType(contentType) && locale) {
+            // item.locale = locale;
+            // if (typeof item.sys === "object") {
+            //     item.sys.locale = locale;
+            // }
         // }
 
         for (const prop in item) {
@@ -91,7 +93,7 @@ export function cleanupData(data, withHandler?: boolean) {
     }
 
     if (!withHandler) {
-        cleanupData(localContentData, true);
+        cleanupData(localContentData, locale, true);
     }
 
     // finally clean bigger objected like link

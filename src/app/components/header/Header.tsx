@@ -17,8 +17,8 @@ type LocaleData = {
 
 type HeaderProps = {
     title?: string;
-    links?: Array<any>;
-    logo?: any;
+    links?: Array<LinkData>;
+    logo?: JSX.Element;
     currentLocale?: string;
     logoLink?: LinkData;
     themeToggle?: boolean;

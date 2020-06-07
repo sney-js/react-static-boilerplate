@@ -2,26 +2,29 @@ import React, { useContext } from "react";
 import { Header } from "../../components/header/Header";
 import { RespImage } from "../../utils/RespImage";
 import { GlobalContext } from "../../components/layout/Layout";
-import { getSiteDataForKey } from "../utils/ReactStaticHelpers";
+import { getSiteDataForLocale } from "../utils/ReactStaticHelpers";
 import { useSiteData } from "react-static";
+import { IHeaderFields } from "../../../contentful/@types/contentful";
+import { resolve, resolveLinkInfo } from "../../utils/Resolver";
+import { LinkData } from "../../models/LinkData";
 
 export default function HeaderContainer() {
     const { locale } = useContext(GlobalContext);
     const { localeData } = useSiteData();
-    const header = getSiteDataForKey("header", locale);
+    const header = getSiteDataForLocale(locale).header;
 
     if (!header) return null;
-    console.log(header,"header");
+    console.log(header);
     return (
         <Header
             key={`Header-${locale}`}
             currentLocale={locale}
             title={header.name}
-            links={header.links}
+            links={header.links as LinkData[]}
             themeToggle={true}
             localeData={localeData.hasMultipleLocales && localeData}
             logo={<RespImage image={header.logo} widthMax={100} />}
-            logoLink={header.logoLink}
+            logoLink={header.logoLink as LinkData}
         />
     );
 }

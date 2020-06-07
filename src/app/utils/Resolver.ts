@@ -9,6 +9,7 @@ export type ContentfulEntry = {
     locale?: string;
 };
 
+export let getPageType = (contentType: string) => RouteConfig.pages.find(e => e.contentType === contentType);
 /**
  * Returns the resolved path from a given ContentfulNode
  * @param node
@@ -17,7 +18,7 @@ export const resolve = (node: ContentfulEntry) => {
     if (!node) return undefined;
 
     let contentType = getContentType(node);
-    let pageContentTypeConfig = RouteConfig.pages.find(e => e.contentType === contentType);
+    let pageContentTypeConfig = getPageType(contentType);
 
     if (!pageContentTypeConfig) {
         return undefined;
@@ -36,8 +37,9 @@ export const resolveLinkInfo = (node: ContentfulEntry): LinkData => {
     let internalLinkNode;
 
     const contentType = getContentType(node);
+
     // pages can be directly resolved too
-    if (RouteConfig.pages.find(e => e.contentType === contentType)) {
+    if (!!getPageType(contentType)) {
         internalLinkNode = node;
     } else {
         internalLinkNode = node.fields.internalLink;
@@ -94,7 +96,7 @@ const _resolvePagePath = (page: ContentfulEntry, parentPageFieldName?: string) =
         }
     }
 
-    const locale = page?.sys?.locale;
+    const locale = page.locale || page?.sys?.locale;
     // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
     if (locale && locale !== RouteConfig.defaultLocale) {
         pages.push(locale);

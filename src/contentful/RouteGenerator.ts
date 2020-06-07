@@ -1,10 +1,16 @@
 import { ContentfulApi } from "./api";
 import { ContentfulEntry, resolve, resolveLinkInfo } from "../app/utils/Resolver";
-import { CleanupConfig, cleanupData } from "./cleaner";
-import { IArticle, IPage } from "./@types/contentful";
+import { CleanupConfig, cleanupData } from "./EntryCleaner";
+import { IArticle, IFooterFields, IHeaderFields, IPage } from "./@types/contentful";
 import * as Flatted from "flatted";
 import RouteConfig from "./RouteConfig";
 import { Route } from "react-static";
+
+export type SiteData = {
+    footer: IFooterFields;
+    header: IHeaderFields;
+    locale: String;
+};
 
 export type ReactStaticRoute = Route & {
     redirect?: string;
@@ -74,7 +80,7 @@ class RouteGenerator {
     }
 
     private generatePageData(page: IPage, lang: string): PageRouteData {
-        cleanupData(page);
+        cleanupData(page, lang);
         return {
             page,
             name: page?.fields?.name,
@@ -102,7 +108,6 @@ class RouteGenerator {
 
             return routes.map(({ contentType, pageList }) =>
                 pageList.map((info: PageRouteData) => {
-
                     let extraData = {};
 
                     switch (contentType) {
@@ -142,10 +147,11 @@ class RouteGenerator {
     }
 
     async getSiteData() {
-                // -------------------------------Navigation---------------------------
+        // -------------------------------Navigation---------------------------
         const defaultLocale = RouteConfig.defaultLocale;
         const locales = await this.client.getLocales();
-        const localeSiteData: [{ footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }] = await Promise.all(
+
+        const localeSiteData: SiteData[] = await Promise.all(
             locales.map(async lang => {
                 // -------------------------------Header---------------------------
                 this.client.setLocale(lang);
@@ -155,7 +161,7 @@ class RouteGenerator {
                     field: "slug",
                     value: "main-header",
                 });
-                cleanupData(mainNav);
+                cleanupData(mainNav, lang);
                 // -------------------------------Footer---------------------------
 
                 this.client.setLocale(lang);
@@ -164,7 +170,7 @@ class RouteGenerator {
                     field: "slug",
                     value: "main-footer",
                 });
-                cleanupData(footer);
+                cleanupData(footer, lang);
                 // -------------------------------site data---------------------------
                 return {
                     locale: lang,
@@ -175,7 +181,6 @@ class RouteGenerator {
         );
 
         return {
-            data: {},
             localeData: {
                 allLocales: locales,
                 defaultLocale: defaultLocale,
