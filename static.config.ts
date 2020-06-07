@@ -1,7 +1,7 @@
 import * as path from "path";
 import { ContentfulApi } from "./src/contentful/api";
-import { resolveLinkInfo } from "./src/app/utils/Resolver";
 import RouteGenerator from "./src/contentful/RouteGenerator";
+import { cleanupData } from "./src/contentful/cleaner";
 
 require("dotenv").config();
 const client = new ContentfulApi({
@@ -26,9 +26,7 @@ export default {
                     field: "slug",
                     value: "main-header",
                 });
-                const navSiteData = mainNav.fields;
-                navSiteData.links = navSiteData.links.map(resolveLinkInfo);
-                navSiteData.logoLink = resolveLinkInfo(navSiteData.logoLink);
+                cleanupData(mainNav);
                 // -------------------------------Footer---------------------------
 
                 client.setLocale(lang);
@@ -37,13 +35,12 @@ export default {
                     field: "slug",
                     value: "main-footer",
                 });
-                const footerSiteData = footer.fields;
-                footerSiteData.links = footerSiteData.links.map(resolveLinkInfo);
+                cleanupData(footer);
                 // -------------------------------site data---------------------------
                 return {
                     locale: lang,
-                    header: navSiteData,
-                    footer: footerSiteData,
+                    header: mainNav.fields,
+                    footer: footer.fields,
                 };
             }),
         );

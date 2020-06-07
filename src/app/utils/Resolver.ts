@@ -45,13 +45,15 @@ export const resolveLinkInfo = (node: ContentfulEntry): LinkData => {
 
     let externalLinkNode = node.fields.externalLink;
     let anchorId = node.fields.anchorId;
+
     const linkData = {
         title: node.fields.title,
         newTab: node.fields.isNewTab,
         path: "",
         isExternal: !!externalLinkNode || (!internalLinkNode && !!anchorId),
         associatedIcon: node.fields.associatedIcon,
-    };
+    } as LinkData;
+
     if (internalLinkNode) {
         linkData.path = resolve(internalLinkNode) + ((anchorId && "#" + anchorId) || "");
     } else if (externalLinkNode || anchorId) {

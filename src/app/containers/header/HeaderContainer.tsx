@@ -11,6 +11,7 @@ export default function HeaderContainer() {
     const header = getSiteDataForKey("header", locale);
 
     if (!header) return null;
+    console.log(header,"header");
     return (
         <Header
             key={`Header-${locale}`}

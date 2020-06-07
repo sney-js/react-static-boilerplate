@@ -74,7 +74,7 @@ class RouteGenerator {
     }
 
     private generatePageData(page: IPage, lang: string): PageRouteData {
-        cleanupData(page, this.config.cleanupConfig);
+        cleanupData(page);
         return {
             page,
             name: page?.fields?.name,

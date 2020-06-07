@@ -1,6 +1,7 @@
 import { getContentType } from "../app/utils/Resolver";
 import { useSiteData } from "react-static";
 import { WINDOW } from "../app/utils/helpers";
+import RouteConfig from "./RouteConfig";
 
 export function handleContent(contentItem, handlers) {
     const handler = handlers[getContentType(contentItem)];
@@ -23,48 +24,78 @@ export type CleanupConfig = {
 };
 
 function cleanupEntryLink(object) {
-    if (Array.isArray(object)) {
-        return object.filter(element => cleanupEntryLink(element));
+    const type = getContentType(object);
+    if (type) {
+        if (Array.isArray(object)) {
+            return object.filter(element =>
+                cleanupEntryLink(element),
+            );
+        }
     }
-
-    if (object && object.sys && object.sys.type === "Link") {
-        return null;
-    }
-
     return object;
 }
 
-export function cleanupData(data, config: CleanupConfig) {
+export function cleanupData(data, withHandler?: boolean) {
+    const config = RouteConfig.cleanupConfig;
+
     const stack = [];
     const processed = [];
-    stack.push(data);
+    let localContentData = Object.assign({}, data);
+    stack.push(localContentData);
 
     while (stack.length > 0) {
-        const object = stack.pop();
-        if (processed.indexOf(object) != -1) continue;
-        processed.push(object);
-        const contentType = getContentType(object);
+        const item = stack.pop();
+        if (processed.indexOf(item) != -1) continue;
+        processed.push(item);
+
+        //--------------------------------------------------
+        const contentType = getContentType(item);
+
         if (contentType) {
-            object.type = contentType;
-        }
-        if (object?.sys?.locale) {
-            object.locale = object.sys.locale;
+            item.type = contentType;
         }
 
-        for (const prop in object) {
-            if (object.hasOwnProperty(prop) && !config.ignoreProps.includes(prop)) {
-                if (prop == null) continue;
-                if (config.ignoreTypes.includes(contentType)) continue;
-                if (typeof object[prop] == "object") {
-                    object[prop] = cleanupEntryLink(object[prop]);
-                    if (object[prop]) stack.push(object[prop]);
+        // if (locale) {
+        //     item.locale = locale;
+        //     if (typeof item.sys === "object") {
+        //         item.sys.locale = locale;
+        //     }
+        // }
+
+        for (const prop in item) {
+            // for each key in item. (e.g, [sys, fields, title, name]
+
+            if (item.hasOwnProperty(prop) && !config.ignoreProps.includes(prop)) {
+                // if is a valid key
+
+                if (prop == null || prop === "locale") continue;
+
+                if (typeof item[prop] == "object") {
+                    // if is a bigger object (e.g. [fields, link]
+
+                    item[prop] = cleanupEntryLink(item[prop]);
+
+                    let overwriteField = item[prop].overwrite;
+                    if (overwriteField) {
+                        item[overwriteField] = item[prop].value;
+                    }
+
+                    if (typeof item[prop] == "object") stack.push(item[prop]);
                 }
             }
         }
-        if (contentType && !config.ignoreTypes.includes(contentType)) {
-            handleContent(object, config.handlers);
+
+        if (withHandler && contentType && !config.ignoreTypes.includes(contentType)) {
+            handleContent(item, config.handlers);
         }
     }
+
+    if (!withHandler) {
+        cleanupData(localContentData, true);
+    }
+
+    // finally clean bigger objected like link
+    Object.assign(data, localContentData);
 }
 
 export const getSiteDataForKey = function(key: string, locale: string) {
