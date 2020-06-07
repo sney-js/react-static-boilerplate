@@ -1,53 +1,70 @@
-## TypeScript support
+# React Static Boilerplate
 
-Added support for client-side typescript compiling (through webpack pipeline)
+## Getting Started
 
-## Path Aliases for Absolute Imports
-
-`react-static-typescript-plugin` supports path aliases [since v3.1](https://github.com/react-static/react-static/pull/963#issuecomment-455596728). It has been set up in this template.
-
-```js
-// tsconfig.json
-{
-  // ...
-    "paths": {
-      "@components/*": ["src/components/*"]
-    },
-  // ...
-}
-
-// this works in your React app
-import FancyDiv from '@components/FancyDiv'
+```bash
+yarn install
+yarn start
 ```
 
-## Scss and scss modules support
+This runs the boilerplate on default data. An example contentful space and environment are used (see `.env`).
 
-Added scss & modules loaders to webpack workflow:
+## Configuration
 
-1. To include styles to component just import './styles.scss'
-2. To use modules inside your components import styles from './styles.module.scss'
+### Contentful Keys
 
-Note: to compile modules you need to add .module.scss extension to a file
+Edit `.env`
 
-## Contentful module
+### Static site generation
 
-For data retrieval from contetnful use contentful module (/contetnful),
+`src/contentful/RouteConfig.ts` contains data regarding static page generation.
 
-Note: Unfortunately I wasn't able add ts support for contentful module and static.config.ts out of box
+```js
+{
+    pages: [
+        { contentType: "page", parentField: "parentPage" },
+        { contentType: "article", parentField: "category" },
+        { contentType: "category" },
+    ],
+    cleanupConfig: {
+        handlers: {
+            link: linkHandler,
+        },
+        ignoreProps: ["sys"],
+        ignoreTypes: [],
+    },
+    defaultLocale: "en-US",
+}
+```
 
-## Env
+`pages` describe content model names on your contentful that you want to generate routes for. Pages should have 2 required fields: `title` and `name`. `name` becomes the url part for that page. `parentField` determines the field that links to another one of the above `pages` that is used as parent path for final url generation.
+
+`defaultLocale` must correspond to the default locale configured on your space.
+
+`cleanupConfig`: `sys` is removed from all contentful entries on frontend to reduce memory `ignoreProps` is used to control this. Other entries like `link` that create links to other page entries also take up space. A handler can be provided that converts page data into link data. (has type `LinkData`) 
+
+## Environments
 
 There 2 sets for env variables:
 
 1. .env - general purpose env file (for contatnful credentials, prebuild processing, etc)
 2. src/environments - client side env variables for 3d party services usage (implemented through file replace plugin)
 
-## Debugger
+## Contribution
 
-To attach debugger for webstorm you could folow instructions [here](https://blog.jetbrains.com/webstorm/2017/01/debugging-react-apps/).  
-If you want to use breakpoint, ensure that checkbox "Ensure breakpoint are detected when loading scripts" set to true
+### Contentful fields types
 
-## Adding new Contentful components
+When you edit contentful models, you must update the local copy of its type. To update/generate TS field types, run `contentful-typescript-codegen` script.
+
+New types will be generated into `src/contentful/@types/contentful.d.ts`
+
+### Contentful Models Backup
+
+In addition to types, we also store contentful model structure as code. When you create a PR, make sure to run `contentful:pull` command to update the component you have been working on's content model structure.
+
+If you have pulled from another branch and want to update your contentful environment to with the latest change from code, use `contentful:push`. **Caution: Make sure your environment is not master as this can be destructive to live site.**
+
+### Adding new Contentful components
 
 1. Create a folder under `app/containers/` with same name as contentful's content model name.
 2. Add a `<componentName>.tsx` file, `dataHandler.ts` and `<componentName>.module.tsx` if required.
@@ -59,7 +76,7 @@ If you want to use breakpoint, ensure that checkbox "Ensure breakpoint are detec
     7. Navigate to `app/containers/<parent-component>/dataHandler.ts` to create entry and link to your component's dataHandler.
 6. Pull latest contentful content models using `CONTENTFUL_MANTOKEN=$CONTENTFUL_MANTOKEN npm run contentful:pull -- --include=all` command.
 
-## Icons
+### Icons
 
 To use icons, they need to be exported through [svgr](https://github.com/smooth-code/svgr)
 
@@ -68,25 +85,3 @@ To use icons, they need to be exported through [svgr](https://github.com/smooth-
 3. icons will be generated into src/app/components/icons directory
 4. import icon as any other react component (import SvgArrow from "../components/icons/Arrow";)
 5. To add app styling to icon, wrap icon into Icon component
-
-## Api mocking
-
-Implemented simple client-side interceptor for fetch requests (app/core/mocks.ts)
-
-in app/mock-configs.ts add mock config with parameters:
-
--   url - regexp of url which you want to intercept
--   method - POST, GET, etc.
--   passthrough: true or false (should be intercepted or not)
--   responseData: path to mock data (will be resolved through simple GET request)
-
-## Deployment
-
-You need locally installed aws credentials (User/.aws/credentials);
-Deployment: run npm deploy-env script with params (credentials, region, bucket name, dist folder)
-
-## Contentful fields types
-
-To update/generate TS field types, run contentful-typescript-codegen script.
-
-New types will be generated into src/contentful/@types/contentful.d.ts
