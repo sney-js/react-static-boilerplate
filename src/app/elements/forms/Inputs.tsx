@@ -3,7 +3,7 @@ import "./inputs.scss";
 import "./toggle.scss";
 import InputMask from "react-input-mask";
 import { FormValidationContext } from "./Form";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 import SvgCheck from "../svg-elements/Check";
 import Icon from "../icon/Icon";
 
@@ -257,7 +257,7 @@ class Input extends React.Component<InputProps> {
                         {...rest}
                         aria-label={this.props.label || this.props.description || this.props.name}
                         type={originalInputType || "text"}
-                        className={generateClassList([!this.state.value && "placeholder-shown"])}
+                        className={makeClass([!this.state.value && "placeholder-shown"])}
                     />
                 </InputFieldGroup>
             );
@@ -279,7 +279,7 @@ class Input extends React.Component<InputProps> {
                                 title={""}
                                 type="checkbox"
                                 name={this.props.name}
-                                className={generateClassList([
+                                className={makeClass([
                                     !this.state.value && "placeholder-shown",
                                 ])}
                                 aria-label={
@@ -328,7 +328,7 @@ class Input extends React.Component<InputProps> {
                                 <InputMask
                                     title={""}
                                     key={i}
-                                    className={generateClassList([
+                                    className={makeClass([
                                         !this.state.value && "placeholder-shown",
                                         "single-box",
                                     ])}
@@ -385,7 +385,7 @@ class Input extends React.Component<InputProps> {
                 <input
                     title={""}
                     ref={this.inputObj}
-                    className={generateClassList([!this.state.value && "placeholder-shown"])}
+                    className={makeClass([!this.state.value && "placeholder-shown"])}
                     placeholder={this.props.placeholder || " "}
                     onChange={this.onChange.bind(this)}
                     onInvalid={this.onInvalid.bind(this)}
@@ -404,8 +404,8 @@ class Input extends React.Component<InputProps> {
 
 function CheckboxFieldGroup(props: InputProps) {
     return (
-        <div className={generateClassList(["d-form-checkbox", props.className])}>
-            <div className={generateClassList(["field s"])}>
+        <div className={makeClass(["d-form-checkbox", props.className])}>
+            <div className={makeClass(["field s"])}>
                 {!props.label && props.children}
                 {props.label && (
                     <label>
@@ -423,8 +423,8 @@ function CheckboxFieldGroup(props: InputProps) {
 
 function RadioFieldGroup(props: InputProps) {
     return (
-        <div className={generateClassList(["d-form-radio", props.className])}>
-            <div className={generateClassList(["field s"])}>
+        <div className={makeClass(["d-form-radio", props.className])}>
+            <div className={makeClass(["field s"])}>
                 {!props.label && props.children}
                 {props.label && (
                     <label>
@@ -452,8 +452,8 @@ function InputFieldGroup(props: InputProps) {
         }
     }, [props.iconState]);
     return (
-        <div className={generateClassList(["d-form-input", props.className])}>
-            <div className={generateClassList(["field s", hasError && "error error-input-anim"])}>
+        <div className={makeClass(["d-form-input", props.className])}>
+            <div className={makeClass(["field s", hasError && "error error-input-anim"])}>
                 {props.type === "password" ? (
                     <span
                         className={"input-icon"}

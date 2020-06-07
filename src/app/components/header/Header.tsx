@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { generateClassList, HAS_WINDOW, WINDOW } from "../../utils/helpers";
+import { makeClass, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import Container from "../container/Container";
 import { useLocation } from "react-static";
 import LinkWrap from "../../containers/link/linkWrap";
@@ -58,7 +58,7 @@ export function Header(props: HeaderProps) {
         setMenuOpen(false);
     }, [location?.pathname]);
 
-    const classNames = generateClassList([styles.header]);
+    const classNames = makeClass([styles.header]);
 
     let languageSelector = null;
     if (props.localeData) {
@@ -79,7 +79,7 @@ export function Header(props: HeaderProps) {
         <header className={classNames}>
             <Container
                 breakpoint={"Tablet"}
-                className={generateClassList([
+                className={makeClass([
                     styles.modalWrapper,
                     !!menuOpen && styles.modalWrapperOpen,
                 ])}
@@ -128,7 +128,7 @@ export function Header(props: HeaderProps) {
 }
 
 const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
-    let className = generateClassList([styles.burgerIcon, isMenuOpen && styles.burgerOpen]);
+    let className = makeClass([styles.burgerIcon, isMenuOpen && styles.burgerOpen]);
     return (
         <div className={"burger-root"}>
             <a onClick={() => setMenuOpen(!isMenuOpen)}>
@@ -142,12 +142,12 @@ const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
 };
 
 const MobileModal = ({ links, languageToggle }) => {
-    let className = generateClassList([styles.mobileRoot]);
+    let className = makeClass([styles.mobileRoot]);
     return (
         <nav className={className}>
             <Container
                 pad={"All"}
-                className={generateClassList([styles.mobileRoot, styles.navigation])}
+                className={makeClass([styles.mobileRoot, styles.navigation])}
             >
                 {languageToggle && React.cloneElement(languageToggle)}
                 <br />

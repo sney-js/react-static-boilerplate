@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 import { FadeOnScroll } from "../../elements/fadeup/fadeup";
 import { isMobile, isTablet, isTabletOrMobile } from "../../utils/Device";
 
@@ -28,7 +28,7 @@ class Container extends Component<ContainerProps> {
     }
 
     render() {
-        let classNames = generateClassList([
+        let classNames = makeClass([
             this.props.className,
             styles.container,
             this.props.pad === "All" && styles.padded,
@@ -59,7 +59,7 @@ class Container extends Component<ContainerProps> {
                 <section id={this.props.id} className={classNames}>
                     {this.props.layoutType ? (
                         <section
-                            className={generateClassList([
+                            className={makeClass([
                                 this.props.classNameInner,
                                 this.props.layoutType === "maxWidth" && styles.maxWidth,
                                 this.props.layoutType === "splitView" && styles.splitCol2,

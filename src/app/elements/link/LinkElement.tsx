@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import { Link } from "@reach/router";
 import { LinkData } from "../../models/LinkData";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 
 export interface LinkElementProps extends LinkData {
     onClick?: Function;
@@ -17,7 +17,7 @@ class LinkElement extends Component<LinkElementProps> {
     render() {
         const generalProps = {
             onClick: this.props.onClick && (e => this.props.onClick(e)),
-            className: generateClassList(["link", this.props.className]),
+            className: makeClass(["link", this.props.className]),
             title: this.props.title,
         };
         return (

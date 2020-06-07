@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./image.scss";
 import { RespImage } from "../../utils/RespImage";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 
 export type ImageProps = {
     content?: any;
@@ -16,7 +16,7 @@ class ImageElement extends React.Component<ImageProps> {
     render() {
         if (!this.props.content && !this.props.children) return null;
         return (
-            <figure className={generateClassList(["d-image", this.props.className])}>
+            <figure className={makeClass(["d-image", this.props.className])}>
                 {this.props.children || RespImage({ image: this.props.content })}
             </figure>
         );

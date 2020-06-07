@@ -2,7 +2,7 @@ export function getByPath(object, path) {
     return path.split(/[.[\]]+/).reduce((obj, part) => obj && obj[part], object);
 }
 
-export function generateClassList(classes: Array<string>) {
+export function makeClass(classes: Array<string>) {
     return classes
         .filter(e => e)
         .join(" ")

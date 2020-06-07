@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 
 const styles = require("./language.module.scss");
 
@@ -21,7 +21,7 @@ const LanguageSelect = (props: LanguageSelectorProps) => {
     return (
         <div className={styles.languageSelector} defaultValue={activeLanguage.code}>
             <img src={activeLanguage.icon} onClick={() => setClosed(!isClosed)} />
-            <ul className={generateClassList([styles.languagepicker, isClosed && styles.hidden])}>
+            <ul className={makeClass([styles.languagepicker, isClosed && styles.hidden])}>
                 {languages.map(lang => (
                     <li key={lang.code}>
                         <img

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import "./carousel.scss";
-import { generateClassList, WINDOW } from "../../utils/helpers";
+import { makeClass, WINDOW } from "../../utils/helpers";
 import Arrow from "../button/Arrow";
 import Container from "../../components/container/Container";
 
@@ -95,7 +95,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
             return (
                 <React.Fragment key={index}>
                     <div
-                        className={generateClassList([
+                        className={makeClass([
                             "d-carousel-item",
                             this.state.currentIndex == index && "active",
                         ])}
@@ -187,7 +187,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                                 }
                                 onTouchMove={touchMoveEvent => this.handleTouchMove(touchMoveEvent)}
                                 onTouchEnd={() => this.handleTouchEnd()}
-                                className={generateClassList([
+                                className={makeClass([
                                     "d-carousel-items-container",
                                     this.touchStart && "is-dragging",
                                 ])}
@@ -207,7 +207,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                                         >
                                             <div
                                                 key={index}
-                                                className={generateClassList([
+                                                className={makeClass([
                                                     index === this.state.currentIndex && "active",
                                                     "d-carousel-indicator",
                                                 ])}

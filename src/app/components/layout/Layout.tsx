@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
-import { generateClassList, HAS_WINDOW, WINDOW } from "../../utils/helpers";
+import { makeClass, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import GlobalLoader from "../global-loader/GlobalLoader";
 import HeaderContainer from "../../containers/header/HeaderContainer";
 import FooterContainer from "../../containers/footer/FooterContainer";
@@ -66,7 +66,7 @@ function Layout(props: LayoutProps) {
     };
 
     return (
-        <div className={generateClassList([styles.layout])}>
+        <div className={makeClass([styles.layout])}>
             <GlobalContext.Provider value={globalState}>
                 <Head>
                     <html lang={props.locale} />
@@ -87,7 +87,7 @@ function Layout(props: LayoutProps) {
 
                 <HeaderContainer />
 
-                <div className={generateClassList([styles.content])}>
+                <div className={makeClass([styles.content])}>
                     <main>{props.children}</main>
                 </div>
 

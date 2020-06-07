@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./title.scss";
 import { ReactNode } from "react";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 import RichText from "../rich-text/RichText";
 import Container from "../../components/container/Container";
 
@@ -19,7 +19,7 @@ class Title extends React.Component<ImageProps> {
     render() {
         return (
             <Container
-                className={generateClassList([
+                className={makeClass([
                     "d-title",
                     this.props.alignment && "align-" + this.props.alignment,
                 ])}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactNode } from "react";
 import "./button.scss";
-import { generateClassList } from "../../utils/helpers";
+import { makeClass } from "../../utils/helpers";
 import { LinkElementProps } from "../link/LinkElement";
 import Icon, { IconProps } from "../icon/Icon";
 import Arrow from "./Arrow";
@@ -85,7 +85,7 @@ class Button extends React.Component<ButtonProps> {
     render() {
         const { className, preventDefaultOnLoading, active, ...rest } = this.props;
         const iconButtons = ["icon", "icon-filled", "icon-transparent", "icon-filled-outlined"];
-        const classList = generateClassList([
+        const classList = makeClass([
             "d-button",
             className,
             iconButtons.includes(this.props.shape) && "d-icon-button",
