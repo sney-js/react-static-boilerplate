@@ -62,6 +62,4 @@ export const getLang = (code: String) => {
     }
 };
 
-export const ALL_LOCALES = ["en", "en-US", "en-GB", "fr", "de", "es"];
-
 export default LanguageSelect;

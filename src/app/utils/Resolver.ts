@@ -1,6 +1,7 @@
 import { LinkData } from "../models/LinkData";
 import RouteConfig from "../../contentful/RouteConfig";
 import { Asset, Sys } from "contentful";
+import { HAS_WINDOW, WINDOW } from "./helpers";
 
 export type ContentfulEntry = {
     sys: Sys;
@@ -10,6 +11,8 @@ export type ContentfulEntry = {
 };
 
 export let getPageType = (contentType: string) => RouteConfig.pages.find(e => e.contentType === contentType);
+
+export let getDefaultLocale = () => RouteConfig.defaultLocale;
 /**
  * Returns the resolved path from a given ContentfulNode
  * @param node
@@ -70,6 +73,11 @@ export const resolveAssetLink = (node: Asset) => {
 
 export const cleanPath = function(result: string) {
     return (result + "/").toString().replace(/[\/]+/g, "/");
+};
+
+export const getPathBreaks = function() {
+    const pathname = WINDOW?.location?.pathname;
+    return HAS_WINDOW && pathname.split("/").filter(e => e.length);
 };
 
 export const getContentType = (node?: ContentfulEntry) => {

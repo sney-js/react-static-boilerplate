@@ -57,12 +57,12 @@ export function cleanupData(data, locale?:string, withHandler?: boolean) {
         }
 
         // embeds locale inside item info to be used by resolve methods on frontend
-        // if (getPageType(contentType) && locale) {
-            // item.locale = locale;
-            // if (typeof item.sys === "object") {
-            //     item.sys.locale = locale;
-            // }
-        // }
+        if (getPageType(contentType) && locale) {
+            item.locale = locale;
+            if (typeof item.sys === "object") {
+                item.sys.locale = locale;
+            }
+        }
 
         for (const prop in item) {
             // for each key in item. (e.g, [sys, fields, title, name]
