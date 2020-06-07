@@ -140,6 +140,52 @@ class RouteGenerator {
         console.log("::::::::::::::::::::::::::::::::::::");
         return pageCollection;
     }
+
+    async getSiteData() {
+                // -------------------------------Navigation---------------------------
+        const defaultLocale = RouteConfig.defaultLocale;
+        const locales = await this.client.getLocales();
+        const localeSiteData: [{ footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }, { footer: any; header: any; locale: String }] = await Promise.all(
+            locales.map(async lang => {
+                // -------------------------------Header---------------------------
+                this.client.setLocale(lang);
+                const mainNav = await this.client.fetchEntry({
+                    content_type: "header",
+                    include: 3,
+                    field: "slug",
+                    value: "main-header",
+                });
+                cleanupData(mainNav);
+                // -------------------------------Footer---------------------------
+
+                this.client.setLocale(lang);
+                const footer = await this.client.fetchEntry({
+                    content_type: "footer",
+                    field: "slug",
+                    value: "main-footer",
+                });
+                cleanupData(footer);
+                // -------------------------------site data---------------------------
+                return {
+                    locale: lang,
+                    header: mainNav.fields,
+                    footer: footer.fields,
+                };
+            }),
+        );
+
+        return {
+            data: {},
+            localeData: {
+                allLocales: locales,
+                defaultLocale: defaultLocale,
+                hasMultipleLocales: locales.length > 1,
+            },
+            siteData: localeSiteData.reduce((a, b) => {
+                return Object.assign({ [a.locale.toString()]: a, [b.locale.toString()]: b });
+            }),
+        };
+    }
 }
 
 const flatten = arr => {
