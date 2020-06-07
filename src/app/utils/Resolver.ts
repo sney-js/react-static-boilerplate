@@ -1,36 +1,48 @@
-import { environment } from "../environments/environment";
 import { LinkData } from "../models/LinkData";
+import RouteConfig from "../../contentful/RouteConfig";
+import { Asset, Sys } from "contentful";
 
-export const resolve = (node, defaultLocale?: String) => {
-    if (!node) return undefined;
-    let contentType = getContentType(node);
-    switch (contentType) {
-        case "page":
-            return getPagePath(node, {
-                parentPageFieldName: "parentPage",
-                defaultLocale: defaultLocale,
-            });
-        case "article":
-            return getPagePath(node, {
-                parentPageFieldName: "category",
-                defaultLocale: defaultLocale,
-            });
-        case "category":
-            return getPagePath(node, { defaultLocale: defaultLocale });
-        default:
-            return undefined;
-    }
+export type ContentfulEntry = {
+    sys: Sys;
+    fields: any;
+    type?: string;
+    locale?: string;
 };
 
-export const resolveLinkInfo = (node): LinkData => {
+/**
+ * Returns the resolved path from a given ContentfulNode
+ * @param node
+ */
+export const resolve = (node: ContentfulEntry) => {
+    if (!node) return undefined;
+
+    let contentType = getContentType(node);
+    let pageContentTypeConfig = RouteConfig.pages.find(e => e.contentType === contentType);
+
+    if (!pageContentTypeConfig) {
+        return undefined;
+    }
+
+    return _resolvePagePath(node, pageContentTypeConfig.parentField);
+};
+
+/**
+ * Given ILink or a contentType defined in RouteConfig, determines its LinkData
+ * @param node
+ */
+export const resolveLinkInfo = (node: ContentfulEntry): LinkData => {
     if (node && node.fields.path) return;
+
     let internalLinkNode;
+
     const contentType = getContentType(node);
-    if (contentType === "article" || contentType === "page") {
+    // pages can be directly resolved too
+    if (RouteConfig.pages.find(e => e.contentType === contentType)) {
         internalLinkNode = node;
     } else {
         internalLinkNode = node.fields.internalLink;
     }
+
     let externalLinkNode = node.fields.externalLink;
     let anchorId = node.fields.anchorId;
     const linkData = {
@@ -48,27 +60,23 @@ export const resolveLinkInfo = (node): LinkData => {
     return linkData;
 };
 
-export const resolveAssetLink = node => {
-    try {
-        return node.fields.file.url;
-    } catch (e) {
-        return undefined;
-    }
-};
-
-type ResolveOptions = {
-    parentPageFieldName?: String;
-    defaultLocale?: String;
+export const resolveAssetLink = (node: Asset) => {
+    return node?.fields?.file?.url;
 };
 
 export const cleanPath = function(result: string) {
     return (result + "/").toString().replace(/[\/]+/g, "/");
 };
 
-const getPagePath = (
-    page,
-    { parentPageFieldName = "parentPage", defaultLocale }: ResolveOptions,
-) => {
+export const getContentType = (node?: ContentfulEntry) => {
+    try {
+        return node.type || node.sys.contentType.sys.id;
+    } catch (e) {
+        return undefined;
+    }
+};
+
+const _resolvePagePath = (page: ContentfulEntry, parentPageFieldName?: string) => {
     const pages = [];
     const stack = [];
     stack.push(page);
@@ -79,14 +87,14 @@ const getPagePath = (
 
         pages.push(name);
 
-        if (node.fields[parentPageFieldName?.toString()]) {
+        if (parentPageFieldName && node.fields[parentPageFieldName.toString()]) {
             stack.push(node.fields[parentPageFieldName.toString()]);
         }
     }
 
-    const locale = page.locale || page.sys.locale;
+    const locale = page?.sys?.locale;
     // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
-    if (locale && locale !== (environment.defaultLocale || defaultLocale)) {
+    if (locale && locale !== RouteConfig.defaultLocale) {
         pages.push(locale);
     }
 
@@ -94,12 +102,4 @@ const getPagePath = (
     result = cleanPath(result);
 
     return result;
-};
-
-export const getContentType = node => {
-    try {
-        return node.type || node.sys.contentType.sys.id;
-    } catch (e) {
-        return undefined;
-    }
 };

@@ -1,8 +1,6 @@
 import * as path from "path";
 import { ContentfulApi } from "./src/contentful/api";
-import * as Flatted from "flatted";
 import { resolveLinkInfo } from "./src/app/utils/Resolver";
-import { IArticleFields } from "./src/contentful/@types/contentful";
 import RouteGenerator from "./src/contentful/RouteGenerator";
 
 require("dotenv").config();
@@ -63,7 +61,6 @@ export default {
         };
     },
     getRoutes: async () => {
-
         const routeGenerator = new RouteGenerator(client);
         return routeGenerator.getRoutes();
     },

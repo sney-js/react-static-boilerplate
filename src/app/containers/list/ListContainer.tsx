@@ -21,9 +21,6 @@ export default function ListContainer(props: ListTypes) {
 }
 
 export const CardList = ({ list, title }) => {
-    const {
-        localeData: { defaultLocale },
-    } = useSiteData();
     return (
         <Container animateIn pad={"All"} layoutType={"maxWidth"}>
             <h2>{title}</h2>
@@ -43,10 +40,10 @@ export const CardList = ({ list, title }) => {
                                     key={`article${index}`}
                                     title={fields.title}
                                     image={<RespImage image={fields.image} />}
-                                    href={resolve(page, defaultLocale)}
+                                    href={resolve(page)}
                                     description={<RichText document={fields.description} />}
                                     subTitle={fields.category.fields.title}
-                                    subTitleHref={resolve(fields.category, defaultLocale)}
+                                    subTitleHref={resolve(fields.category)}
                                 />
                             );
                         }
@@ -57,7 +54,7 @@ export const CardList = ({ list, title }) => {
                                     key={`page${index}`}
                                     title={fields.title}
                                     image={<RespImage image={fields.image} />}
-                                    href={resolve(page, defaultLocale)}
+                                    href={resolve(page)}
                                 />
                             );
                         }

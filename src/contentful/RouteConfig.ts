@@ -2,7 +2,6 @@ import linkHandler from "../app/containers/link/dataHandler";
 import { RouteGeneratorConfig } from "./RouteGenerator";
 
 const config: RouteGeneratorConfig = {
-    pageList: ["page"],
     pages: [
         { contentType: "page", parentField: "parentPage" },
         { contentType: "article", parentField: "category" },
@@ -15,5 +14,7 @@ const config: RouteGeneratorConfig = {
         ignoreProps: ["sys"],
         ignoreTypes: [],
     },
+    defaultLocale: "en-US",
 };
+
 export default config;
