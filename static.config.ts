@@ -3,6 +3,7 @@ import { ContentfulApi } from "./src/contentful/api";
 import RouteGenerator from "./src/contentful/RouteGenerator";
 
 require("dotenv").config();
+
 const client = new ContentfulApi({
     space: process.env.CONTENTFUL_SPACE,
     accessToken: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN,

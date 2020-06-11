@@ -9,7 +9,7 @@
         "export": "npm run compile:config && react-static -c tmp/static.config.js export",
         "compile:config": "tsc --p tsconfig.static.json",
         "serve": "serve dist -p 3000 -s",
-        "svgr": "svgr --config-file svgrrc.config.js --ext tsx -d src/app/elements/svg-elements public/assets/svg-elements",
+        "svgr": "svgr --config-file svgrrc.config.js --ext tsx -d src/elements/svg-elements public/assets/svg-elements",
         "contentful:pull": "contentful:pull-types",
         "contentful:push": "contentful:push-types",
         "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
@@ -48,8 +48,12 @@
         "react-transition-group": "^4.3.0"
     },
     "devDependencies": {
-        "@storybook/addon-info": "^5.3.13",
-        "@storybook/react": "^5.3.13",
+        "@storybook/addon-actions": "^5.3.18",
+        "@storybook/addon-docs": "^5.3.18",
+        "@storybook/addon-knobs": "^5.3.18",
+        "@storybook/addons": "^5.3.18",
+        "@storybook/preset-create-react-app": "^2.1.1",
+        "@storybook/react": "^5.3.18",
         "@types/node": "^12.7.2",
         "@types/reach__router": "^1.2",
         "@types/react": "^16.9.1",
