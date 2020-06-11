@@ -1,0 +1,106 @@
+@import '../../styles/helpers/main';
+.d-footer {
+  #{$themeDarkSelf}{
+    --color-footer-bg-first: var(--color-primary);
+    --color-footer-bg-mid: var(--color-primary-darker);
+    --color-footer-bg-last: var(--color-primary-darker-2);
+  }
+  #{$themeLightSelf}{
+    --color-footer-bg-first: var(--color-secondary);
+    --color-footer-bg-mid: var(--color-secondary);
+    --color-footer-bg-last: var(--color-secondary-darker);
+  }
+
+  &__first-block {
+    background-color: var(--color-footer-bg-first);
+  }
+
+  &__mid-block {
+    background-color: var(--color-footer-bg-mid);
+    padding: var(--spacing-gap-mobile) 0;
+  }
+
+  &__last-block {
+    background-color: var(--color-footer-bg-last);
+  }
+  //ToDo: should be removed if newsletter is component itself
+  &__newsletter {
+    > div {
+      display: flex;
+      align-items: center;
+      @media #{$screen-mobile} {
+        display: block;
+      }
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: var(--spacing-gap-m);
+      flex-grow: 0.6;
+      @media #{$screen-mobile} {
+        margin-left: 0;
+      }
+    }
+    .field {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      margin-right: var(--spacing-gap-m);
+      margin-bottom: 0;
+    }
+
+    @media #{$screen-mobile} {
+      order: 2;
+      padding: var(--spacing-gap-xs) 0 var(--spacing-gap-m);
+    }
+  }
+  &__social {
+    display: flex;
+    align-items: center;
+    @media #{$screen-mobile} {
+      display: block;
+    }
+
+    &-title {
+    }
+    &-links {
+      flex-grow: 0.5;
+      display: flex;
+    }
+
+    .d-social-link {
+      margin-right: var(--spacing-gap-xs);
+    }
+  }
+  &__sitemap {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: var(--spacing-gap-xs) 0;
+    &-item {
+      width: 40%;
+      font-size: 0.8em;
+      line-height: 2;
+
+      @media #{$screen-mobile} {
+        padding: var(--spacing-gap-mobile) var(--spacing-gap-mobile) 0 0;
+        width: 100%;
+        line-height: 1;
+      }
+    }
+  }
+  .layout-grid {
+    align-items: center;
+  }
+  &__copyright {
+    padding: var(--spacing-gap-xs) 0;
+    align-items: center;
+  }
+
+  .d-social-link {
+    width: 1em;
+    height: 1em;
+  }
+}

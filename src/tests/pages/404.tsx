@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../../app/components/layout/Layout";
-import Container from "../../app/components/container/Container";
+import Layout from "components/layout/Layout";
+import Container from "components/container/Container";
 
 export default () => {
     return (

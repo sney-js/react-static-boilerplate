@@ -1,13 +1,16 @@
-import { getContentType, getPageType } from "../app/utils/Resolver";
+import { getContentType, getPageType } from "utils/Resolver";
 import { useSiteData } from "react-static";
-import { WINDOW } from "../app/utils/helpers";
+import { WINDOW } from "utils/Helpers";
 import RouteConfig from "./RouteConfig";
 
 export function handleContent(contentItem, handlers) {
-    const handler = handlers[getContentType(contentItem)];
-    if (handler) {
-        handler(contentItem);
-        return;
+    const contentType = getContentType(contentItem);
+    if (contentType) {
+        const handler = handlers[contentType];
+        if (handler) {
+            handler(contentItem);
+            return;
+        }
     }
     defaultHandler(contentItem);
 }
@@ -27,15 +30,13 @@ function cleanupEntryLink(object) {
     const type = getContentType(object);
     if (type) {
         if (Array.isArray(object)) {
-            return object.filter(element =>
-                cleanupEntryLink(element),
-            );
+            return object.filter(element => cleanupEntryLink(element));
         }
     }
     return object;
 }
 
-export function cleanupData(data, locale?:string, withHandler?: boolean) {
+export function cleanupData(data, locale?: string, withHandler?: boolean) {
     const config = RouteConfig.cleanupConfig;
 
     const stack = [];

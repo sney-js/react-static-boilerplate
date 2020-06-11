@@ -1,0 +1,136 @@
+@import '../helpers/main';
+
+.story-grid {
+  display: grid;
+  grid-gap: var(--spacing-gap);
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+
+  @media #{$screen-mobile} {
+    display: block;
+  }
+}
+
+.story-grid-shaded {
+  > * {
+    background-color: var(--color-highlight);
+  }
+}
+
+.story-colors {
+  min-height: 100px;
+  min-width: 120px;
+  text-align: center;
+  > div {
+    border: 2px solid var(--color-highlight);
+    box-shadow: -4px 4px 0px var(--color-highlight-secondary);
+    min-height: 100px;
+    min-width: 120px;
+    position: relative;
+
+    &:before {
+      z-index: -1;
+      opacity: 0.05;
+      position: absolute;
+      content: '';
+      width: 100%;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background-size: 200px;
+    }
+  }
+  small {
+    font-weight: 500;
+  }
+}
+
+.story-typography {
+  //counter-reset: h2counter;
+  h1 {
+    counter-reset: h2;
+  }
+  h2 {
+    counter-reset: h3;
+  }
+  h3 {
+    counter-reset: h4;
+  }
+  h4 {
+    counter-reset: h5;
+  }
+  h5 {
+    counter-reset: h6;
+  }
+
+  h2:before {
+    counter-increment: h2;
+    content: counter(h2) '. ';
+  }
+  h3:before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3) '. ';
+  }
+  h4:before {
+    counter-increment: h4;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '. ';
+  }
+  h5:before {
+    counter-increment: h5;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '. ';
+  }
+  h6:before {
+    counter-increment: h6;
+    content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '.'
+      counter(h6) '. ';
+  }
+
+  h2.nocount:before,
+  h3.nocount:before,
+  h4.nocount:before,
+  h5.nocount:before,
+  h6.nocount:before {
+    content: '';
+    counter-increment: none;
+  }
+}
+
+.story-spaces {
+}
+.story-box {
+  background-color: var(--color-primary-translucent-1);
+  border: 1px dashed black;
+  display: inline-block;
+  margin: 2px;
+  line-height: 0;
+  > i {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border: 1px solid black;
+    background-color: #8ab4c0;
+  }
+  > * {
+    line-height: 1;
+  }
+}
+
+.story-table {
+  table-layout: fixed;
+  h5 {
+    margin-bottom: 0;
+  }
+
+  @media #{$screen-mobile} {
+    tr {
+      display: grid;
+    }
+  }
+}
+
+.story-dummy-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff6a7d63;
+  position: relative;
+}

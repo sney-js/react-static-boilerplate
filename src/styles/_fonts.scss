@@ -1,0 +1,64 @@
+$font-primary: 'UniverseBP';
+
+/**
+  e.g.: public/assets/fonts/UniverseBP-Bold/UniverseBP-Bold.woff2
+ */
+$font-loc: '/assets/fonts/';
+
+@mixin get-font-all($name, $weight) {
+  font-family: $font-primary;
+  src: url('#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.woff')
+      format('woff'),
+    url('#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.ttf')
+      format('truetype'),
+    url('#{$font-loc}#{$name}-#{$weight}/#{$name}-#{$weight}.woff2')
+      format('woff2'); /* Modern Browsers */
+}
+
+@font-face {
+  @include get-font-all($font-primary, 'Light');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  @include get-font-all($font-primary, 'Roman');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  @include get-font-all($font-primary, 'Bold');
+  font-weight: bold;
+  font-style: normal;
+}
+
+//body {
+//font-family: $font-primary, 'HelveticaNeue-Light', 'Helvetica Neue Light',
+//  'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+//font-weight: 300;
+//font-size: 16px;
+//}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: bold;
+}
+.black {
+  font-weight: 800;
+}
+.ultra-black {
+  font-weight: 900;
+}

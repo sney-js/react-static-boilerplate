@@ -1,0 +1,84 @@
+%padded-y {
+  padding-top: var(--gap-layout);
+  padding-bottom: var(--gap-layout);
+}
+
+%padded-x {
+  padding-left: var(--gap-layout);
+  padding-right: var(--gap-layout);
+}
+
+%absolute-fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+%absolute-fill-centered {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.breakpoint-Desktop {
+  @media #{$screen-tablet} {
+    display: none !important;
+  }
+}
+
+.breakpoint-Non-Desktop {
+  @media #{$screen-desktop} {
+    display: none !important;
+  }
+}
+
+.breakpoint-Tablet {
+  @media screen and (min-width: #{$tablet + 1}px) {
+    display: none !important;
+  }
+  @media screen and (max-width: #{$phone - 1}px) {
+    display: none !important;
+  }
+}
+
+.breakpoint-Mobile {
+  @media screen and (min-width: #{$phone + 1}px) {
+    display: none !important;
+  }
+}
+
+.background-Primary {
+  background-color: var(--color-primary);
+}
+
+.background-Primary-darker {
+  background-color: var(--color-primary-darker);
+}
+.background-Primary-lighter {
+  background-color: var(--color-primary-lighter);
+}
+
+.background-Secondary {
+  background-color: var(--color-secondary);
+}
+
+.background-Dark {
+  background-color: var(--color-dark);
+}
+
+.background-None {
+  background-color: unset;
+}
+
+.container-image {
+  line-height: 0;
+
+  img {
+    width: 100%;
+  }
+}

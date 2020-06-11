@@ -1,0 +1,22 @@
+@import '../../styles/helpers/main';
+
+$pad--label: 16px !default;
+$pad--small: 8px !default;
+$pad-input: 10px !default;
+$input-font-size: 14px !default;
+
+$input-bg: transparent !default;
+$input-bg-focused: var(--color-primary-translucent-1) !default;
+$color-primary: var(--color-primary) !default;
+$color-border: var(--color-primary-translucent-2) !default;
+$color-disabled: var(--color-highlight-secondary) !default;
+$color-error: var(--color-error) !default;
+
+$color-highlight: var(--color-highlight) !default;
+$color--border-dark: var(--color-primary-darker) !default;
+
+$input-border-radius: var(--border-radius-small) !default;
+
+$placeholder-top-focused: -8px !default;
+$appearing-animation-speed: 750ms cubic-bezier(0.35, 1, 0.45, 1) !default;
+$focus-box-shadow: 0px 0px 0px 2px var(--color-highlight-secondary) !default;

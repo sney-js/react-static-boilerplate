@@ -1,0 +1,92 @@
+:root {
+  // --------------CONSTANTS---------------
+  --font-primary: 'UniverseBP';
+  --font-secondary: 'Helvetica';
+
+  --color-primary: #6f3ed5;
+
+  --color-primary-darker: #5d33b2;
+  --color-primary-darker-2: #552fa2;
+  --color-primary-lighter: #9468ee;
+  --color-primary-disabled: rgb(93, 76, 122);
+
+  --color-primary-translucent-1: rgba(111, 62, 213, 0.11);
+  --color-primary-translucent-2: rgba(111, 62, 213, 0.4);
+
+  --color-secondary: #ffffff;
+  --color-secondary-darker: #e5e5e5;
+
+  --color-light: #fff;
+  --color-dark: #222222;
+
+  --color-highlight-text: rgba(0, 0, 0, 0.2);
+  --color-highlight: rgba(0, 0, 0, 0.1);
+  --color-highlight-secondary: rgba(0, 0, 0, 0.3);
+  --color-highlight-lighter: rgba(0, 0, 0, 0.05);
+  --color-highlight-darker: rgba(0, 0, 0, 0.1);
+
+  --color-disabled: rgb(242, 242, 242);
+  --color-error: #d20000;
+  --color-link: #979797;
+
+  //------------NUMBERS---------------
+  --transition-ui: 0.25s ease-out;
+  --transition: 0.5s ease-out;
+  --border-style: solid;
+  --border-radius-small: 2px;
+  --border-radius-medium: 8px;
+  --border-radius-button: 2px;
+
+  --val-max-width: 1200px;
+  --val-max-width-narrow: 700px;
+  --spacing-gap: 16px;
+  --spacing-gap-xxs: 4px;
+  --spacing-gap-xs: 8px;
+  --spacing-gap-m: 32px;
+  --spacing-gap-mobile: 16px;
+  --spacing-gap-tablet: 32px;
+  --spacing-gap-large: 64px;
+
+  //---------------DEFAULT VALUES------------
+  --color-body: var(--color-dark);
+  --color-bg: var(--color-light);
+
+  //--------------DYNAMIC----------------
+  --gap-layout: var(--spacing-gap-large);
+  @media #{$screen-tablet} {
+    --gap-layout: var(--spacing-gap-tablet);
+  }
+  @media #{$screen-mobile} {
+    --gap-layout: var(--spacing-gap-mobile);
+  }
+}
+
+// use $darkTheme inside components
+.data-theme-dark,
+[data-theme='dark'] {
+  --color-body: var(--color-light);
+  --color-bg: var(--color-dark);
+  color: var(--color-body);
+
+  --color-highlight: rgba(255, 255, 255, 0.2);
+  --color-highlight-text: rgba(255, 255, 255, 0.3);
+  --color-highlight-darker: rgba(0, 0, 0, 0.2);
+  --color-error: #ff7979;
+}
+
+.data-theme-light,
+[data-theme='light'] {
+  color: var(--color-body);
+}
+
+body {
+  line-height: 1.4;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--color-body);
+  background-color: var(--color-bg);
+}
+
+h1,h2,h3,h4,h5{
+  font-family: var(--font-secondary) inherit;
+}

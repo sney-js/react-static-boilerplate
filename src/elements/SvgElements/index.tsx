@@ -1,0 +1,13 @@
+export { default as IcAdd } from './IcAdd';
+export { default as IcArrowLeft } from './IcArrowLeft';
+export { default as IcArrowRight } from './IcArrowRight';
+export { default as IcArrowTopright } from './IcArrowTopright';
+export { default as IcDanger } from './IcDanger';
+export { default as IcEyeAlt } from './IcEyeAlt';
+export { default as IcEye } from './IcEye';
+export { default as IcLock } from './IcLock';
+export { default as IcMenu } from './IcMenu';
+export { default as IcTwitter } from './IcTwitter';
+export { default as IcYoutube } from './IcYoutube';
+export { default as IcFacebook } from './IcFacebook';
+export { default as IcArrowThick } from './IcArrowThick';

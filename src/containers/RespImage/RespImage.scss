@@ -1,0 +1,16 @@
+.d-RespImage{
+
+  // tablet and mobile styles
+  @media #{$screen-tablet} {
+
+  }
+
+  figure.d-image {
+    margin: 0;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}

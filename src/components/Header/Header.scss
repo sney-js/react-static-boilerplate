@@ -1,0 +1,65 @@
+@import "Navigation/Navigation";
+
+%flex-vars {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.d-header {
+  @extend %flex-vars;
+  background: var(--color-bg);
+  width: 100%;
+  top: 0;
+  left: 0;
+  min-height: 90px;
+  box-shadow: 0px 5px 10px var(--color-highlight-lighter);
+
+  @media #{$screen-tablet} {
+    margin: 0;
+  }
+
+  &__logo {
+    flex-grow: 0.2;
+    &-brand,
+    &-subbrand {
+      padding: var(--spacing-gap-xs) 0 0 var(--spacing-gap-mobile);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    @media #{$screen-tablet} {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      z-index: 10;
+    }
+    .d-link {
+      display: inline-block;
+      padding: 5px 10px;
+    }
+  }
+
+  &__nav {
+    flex-grow: 2;
+    position: relative;
+    @extend %flex-vars;
+    @media #{$screen-tablet} {
+      display: block;
+      padding: 0;
+    }
+  }
+  .d-nav {
+    flex-grow: 0.5;
+  }
+  @media #{$screen-tablet} {
+    display: block;
+    padding: 0;
+  }
+  .d-profile {
+    @media #{$screen-tablet} {
+      position: absolute;
+      right: var(--spacing-gap-large);
+      top: var(--spacing-gap-xxs);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+// ------------- BREAKPOINTS ---------------------
+$phone: 600;
+$tablet: 902;
+$desktop: 1024;
+$widescreen: 1440;
+$hd: 1920;
+$content-max-width: #{$widescreen}px;
+
+// should not really need to use any other queries except these
+$screen-tablet: screen and
+  (
+    max-width: #{$tablet}px
+  );
+$screen-mobile: screen and
+  (
+    max-width: #{$phone}px
+  );
+$screen-desktop: screen and
+  (
+    min-width: #{$tablet + 1}px
+  );
+
+$screen-tablet-only: screen and
+  (
+    min-width: #{$phone + 1}px
+  )
+  and
+  (
+    max-width: #{$tablet}px
+  );

@@ -1,0 +1,279 @@
+@import 'inputVariables';
+@import 'toggle';
+
+textarea,
+input:not([type='checkbox']):not([type='submit']):not([type='radio']) {
+  display: block;
+  width: 100%;
+  text-align: left;
+  height: 42px;
+  padding: 0 $pad-input;
+  border-radius: $input-border-radius;
+  background-color: $input-bg;
+  //border: 0;
+  border: 1px solid;
+  border-color: $color-border;
+  outline: none;
+  font-size: $input-font-size;
+  color: inherit;
+  box-sizing: border-box;
+  //@include setTypeStylesAll("body");
+  letter-spacing: 0.7px;
+  appearance: none;
+
+  .error &:not(:disabled) {
+    border-color: $color-error;
+  }
+
+  &:disabled {
+    border-color: $color-disabled;
+    animation: none;
+  }
+
+  &::placeholder {
+    color: $color-primary;
+  }
+
+  .input-disabled & {
+    color: $color-disabled;
+  }
+
+  &:focus {
+    background-color: $input-bg-focused;
+  }
+}
+
+// Cannot change password dots easily
+input[type='password'] {
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+textarea {
+  font-size: $input-font-size;
+  padding-top: 9px;
+  min-height: 105px;
+  max-height: 105px;
+  max-width: 100%;
+  min-width: 100%;
+  color: inherit;
+  outline: none;
+  resize: none;
+}
+
+.input-disabled {
+  .input-icon {
+    opacity: 0.3;
+  }
+
+  label,
+  .field-description {
+    color: $color-disabled !important;
+  }
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+  text-align: center;
+
+  .field-description {
+    padding-top: 3px;
+    text-align: left;
+  }
+
+  &.input-disabled {
+  }
+
+  .error-root {
+    width: 100%;
+  }
+
+  .error {
+    color: $color-error;
+    font-weight: 500;
+    width: 100%;
+  }
+}
+
+label {
+  //margin-bottom: $pad--label;
+  margin-top: $pad--label/2;
+  color: $color-primary;
+  text-align: left;
+  padding-left: $pad-input;
+}
+
+label,
+input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+input:disabled + label {
+  color: $color-disabled;
+}
+
+.inline-input.inline-input {
+  input.single-box {
+    width: 75px;
+    margin-left: 3px;
+    margin-right: 3px;
+    display: inline-block;
+
+    //@media #{$screen-mobile} {
+    //    width: 55px;
+    //}
+  }
+}
+
+input:focus {
+  outline: 0;
+}
+
+// -----------------------LABEL MOVING UP-------------------
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+$placeholder-top: 20px;
+
+textarea:placeholder-shown + label,
+input:placeholder-shown + label {
+  top: $placeholder-top;
+  cursor: text;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translate(0, #{-32px + $pad--label});
+  pointer-events: none;
+  position: absolute;
+}
+.error label {
+  color: $color-error !important;
+}
+
+/**
+* By default, the placeholder should be transparent. Also, it should
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+
+/**
+* Show the placeholder when the input is focused.
+*/
+textarea:focus::-webkit-input-placeholder,
+input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+input:placeholder-shown {
+  //background-color: $bg--input !important;
+}
+
+input:not(:placeholder-shown):not([type='submit']) {
+  background-color: $color-highlight;
+  //border-color: $color--border-dark;
+}
+
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when
+* there's something in the input at all.
+*/
+textarea:not(:placeholder-shown) + label:not(.sfid-button-label),
+textarea:focus + label:not(.sfid-button-label),
+input:not(:placeholder-shown) + label:not(.sfid-button-label),
+input:focus + label:not(.sfid-button-label) {
+  transform: translate(0, 5px);
+  top: -$placeholder-top + $placeholder-top-focused;
+  font-size: 10px;
+  text-align: left;
+  position: absolute;
+  color: $color-primary;
+}
+
+//-----------------------SPIN ARROW------------------------------
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.error-root {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 0.7em;
+  small {
+    line-height: 1.5;
+    font-size: 0.9em;
+  }
+  //position: absolute;
+  //transform: translateX(-50%);
+  //left: 50%;
+  //margin-top: -6px;
+}
+
+//----------------------------------------------------------
+.error-input-anim {
+  animation: shake $appearing-animation-speed;
+}
+//------------------ICONS----------------------------------------
+
+//-------------------------ICONS--------------------------------
+.input-icon {
+  opacity: 0.5;
+  position: absolute;
+  box-sizing: border-box;
+  right: 8px;
+  top: 10px;
+  padding: 4px;
+  line-height: 0;
+  border-radius: $input-border-radius;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+
+  &:hover {
+    background-color: $color-highlight;
+  }
+
+  .input-disabled &:hover {
+    background-color: transparent !important;
+  }
+}
+
+.input-toggle .input-icon {
+  right: unset;
+  left: 0px;
+  top: 14px;
+}
+
+//--------------------custom fields----------------------
+.field {
+  &.input-checkbox + &.input-checkbox {
+    margin-top: -1rem;
+  }
+}
+
+.input-group-fieldset {
+  text-align: left;
+  > span {
+    margin: 26px 0 4px;
+    display: block;
+  }
+}

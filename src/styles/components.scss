@@ -1,0 +1,11 @@
+@import './../elements/elements';
+@import './../components/components';
+@import './../containers/containers';
+
+// Until we start on the Image Compoinent
+.d-image {
+  img {
+    object-fit: cover;
+    display: block;
+  }
+}

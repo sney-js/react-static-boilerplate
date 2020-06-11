@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Appearance 1`] = `ShallowWrapper {}`;
+
+exports[`<Button /> Basic 1`] = `"<button class=\\"d-button primary\\">no</button>"`;

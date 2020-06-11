@@ -1,0 +1,13 @@
+.card-component .form-component {
+  max-width: 355px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-error-box {
+  min-height: 1em;
+  color: var(--color-error);
+  font-weight: normal;
+  text-align: left;
+  margin: var(--spacing-gap) 0;
+}

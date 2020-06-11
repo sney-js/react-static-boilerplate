@@ -1,5 +1,5 @@
 import { ContentfulApi } from "./api";
-import { ContentfulEntry, resolve, resolveLinkInfo } from "../app/utils/Resolver";
+import { ContentfulEntry, resolve, resolveLinkInfo } from "utils/Resolver";
 import { CleanupConfig, cleanupData } from "./EntryCleaner";
 import { IArticle, IFooterFields, IHeaderFields, IPage } from "./@types/contentful";
 import * as Flatted from "flatted";

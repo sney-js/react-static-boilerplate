@@ -1,7 +1,7 @@
 import * as contentful from "contentful";
 
 export class ContentfulApi {
-    client = null;
+    client: any = null;
     private defaultLocale: String;
     private locales: Array<String>;
     private currentLocale: String;

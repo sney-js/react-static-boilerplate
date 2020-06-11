@@ -1,0 +1,44 @@
+%title-strip {
+  height: 32px;
+
+  @media #{$screen-tablet} {
+    height: 20px;
+  }
+
+  @media #{$screen-mobile} {
+    height: 18px;
+  }
+}
+
+.d-card {
+  position: relative;
+
+   &__body {
+     //padding: 0 var(--spacing-gap-tablet) var(--spacing-gap-tablet);
+
+     @media #{$screen-mobile} {
+       padding: 0 var(--spacing-gap) var(--spacing-gap);
+     }
+   }
+
+   &__header {
+   }
+
+   &__title {
+     display: block;
+     margin: var(--spacing-gap) 0;
+   }
+
+   &__subtitle {
+     display: block;
+     position: relative;
+   }
+
+   &__description {
+     margin-bottom: var(--spacing-gap-tablet);
+
+     @media #{$screen-mobile} {
+       margin-bottom: var(--spacing-gap);
+     }
+   }
+}

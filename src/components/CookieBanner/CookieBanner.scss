@@ -1,0 +1,35 @@
+.d-CookieBanner{
+
+  padding-left: var(--gap-layout);
+  padding-right: var(--spacing-gap);
+    bottom: 0px;
+    align-items: baseline;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    left: 0px;
+    position: fixed;
+    z-index: 999;
+    box-shadow: 2px -2px 8px rgba(0, 0, 0, 0.07);
+
+    @media #{$screen-tablet} {
+        width: 100vw;
+    }
+
+    &__caption {
+        @include setTypeStyles("caption");
+        opacity: 0.5;
+    }
+
+    &__container {
+      width: 350px;
+      display: flex;
+      padding: var(--spacing-gap) 0;
+      align-items: center;
+      justify-content: space-between;
+      @media #{$screen-tablet} {
+        width: 80vw;
+      }
+    }
+}
