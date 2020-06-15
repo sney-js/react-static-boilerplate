@@ -1,7 +1,6 @@
 import { LinkData } from "../models/LinkData";
 import RouteConfig from "../../contentful/RouteConfig";
 import { Asset, Sys } from "contentful";
-import { HAS_WINDOW, WINDOW } from "./helpers";
 
 export type ContentfulEntry = {
     sys: Sys;
@@ -10,7 +9,8 @@ export type ContentfulEntry = {
     locale?: string;
 };
 
-export let getPageType = (contentType: string) => RouteConfig.pages.find(e => e.contentType === contentType);
+export let getPageType = (contentType: string) =>
+    RouteConfig.pages.find(e => e.contentType === contentType);
 
 export let getDefaultLocale = () => RouteConfig.defaultLocale;
 /**
@@ -27,7 +27,11 @@ export const resolve = (node: ContentfulEntry) => {
         return undefined;
     }
 
-    return _resolvePagePath(node, pageContentTypeConfig.parentField);
+    return _resolvePagePath(
+        node,
+        pageContentTypeConfig.parentField,
+        pageContentTypeConfig.parentPath,
+    );
 };
 
 /**
@@ -71,13 +75,16 @@ export const resolveAssetLink = (node: Asset) => {
     return node?.fields?.file?.url;
 };
 
-export const cleanPath = function(result: string) {
-    return (result + "/").toString().replace(/[\/]+/g, "/");
+export const getContentLocale = (node?: ContentfulEntry) => {
+    try {
+        return node!.locale || node!.sys?.locale;
+    } catch (e) {
+        return undefined;
+    }
 };
 
-export const getPathBreaks = function() {
-    const pathname = WINDOW?.location?.pathname;
-    return HAS_WINDOW && pathname.split("/").filter(e => e.length);
+export const cleanPath = function(result: string) {
+    return (result + "/").toString().replace(/[\/]+/g, "/");
 };
 
 export const getContentType = (node?: ContentfulEntry) => {
@@ -88,14 +95,20 @@ export const getContentType = (node?: ContentfulEntry) => {
     }
 };
 
-const _resolvePagePath = (page: ContentfulEntry, parentPageFieldName?: string) => {
-    const pages = [];
-    const stack = [];
+const _resolvePagePath = (
+    page: ContentfulEntry,
+    parentPageFieldName?: string,
+    parentPagePathName?: string,
+) => {
+    const pages: string[] = [];
+    const stack: ContentfulEntry[] = [];
     stack.push(page);
 
     while (stack.length > 0) {
         let node = stack.pop();
-        let name = node.fields.name === "index" ? "" : node.fields.name;
+        if (!node) continue;
+
+        let name: string = node.fields.name === "index" ? "" : node.fields.name;
 
         pages.push(name);
 
@@ -104,10 +117,14 @@ const _resolvePagePath = (page: ContentfulEntry, parentPageFieldName?: string) =
         }
     }
 
-    const locale = page.locale || page?.sys?.locale;
+    const locale = getContentLocale(page);
     // DEFAULT_LOCALE is not undefined during build. From frontend, defaultLocale is essential
     if (locale && locale !== RouteConfig.defaultLocale) {
         pages.push(locale);
+    }
+
+    if (parentPagePathName) {
+        pages.push(parentPagePathName);
     }
 
     let result = "/" + pages.reverse().join("/");

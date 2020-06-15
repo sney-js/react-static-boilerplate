@@ -30,9 +30,9 @@ export type RouteDataType = {
 };
 
 export type RouteGeneratorConfig = {
-    cleanupConfig: CleanupConfig;
-    pages: Array<{ contentType: string; parentField?: string }>;
-    defaultLocale: string;
+  cleanupConfig: CleanupConfig;
+  pages: Array<{ contentType: string; parentField?: string; parentPath?: string }>;
+  defaultLocale: string;
 };
 
 const TEMPLATES_FOLDER = `src/app/containers/page/Page_`;

@@ -37,7 +37,9 @@ Edit `.env`
 }
 ```
 
-`pages` describe content model names on your contentful that you want to generate routes for. Pages should have 2 required fields: `title` and `name`. `name` becomes the url part for that page. `parentField` determines the field that links to another one of the above `pages` that is used as parent path for final url generation.
+`pages` describe content model names on your contentful that you want to generate routes for. Pages should have 2 required fields: `title` and `name`. `name` becomes the url part for that page. 
+
+`parentField` determines the field that links to another one of the above `pages` that is used as parent path for final url generation. If you have a fixed parent path string, use `parentPath`. 
 
 `defaultLocale` must correspond to the default locale configured on your space.
 
