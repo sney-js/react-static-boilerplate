@@ -1,0 +1,311 @@
+@import 'inputVariables';
+
+.input-checkbox {
+  $checkbox-padding-left: 11px !default;
+  $checkbox-border-radius: 2px !default;
+  $checkbox-size: 20px !default;
+
+  $color-on: $color-primary;
+  $color-border: $color-checkbox-border;
+  $color-background: $color-highlight;
+
+  .switch-checkbox-root {
+    .switch {
+      position: relative;
+      display: block;
+      margin: $checkbox-padding-left 0 4px $checkbox-size +
+        $checkbox-padding-left;
+      text-align: left;
+      color: inherit;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      position: absolute; //required error tooltip position
+      left: -$checkbox-size;
+    }
+
+    /* The slider */
+    .slider {
+      margin-left: -$checkbox-size - $checkbox-padding-left;
+      background-color: transparent;
+      border: $input-border-width solid $color-border;
+      border-radius: $checkbox-border-radius;
+      height: $checkbox-size;
+      width: $checkbox-size;
+      left: 0;
+      position: absolute;
+      bottom: -3px;
+      transition: 0.5s background-color;
+    }
+
+    .slider:after {
+      position: absolute;
+      content: '';
+    }
+
+    input:checked + .slider {
+      border-color: $color-on;
+
+      &:before {
+        background-color: $color-on;
+      }
+
+      &:after {
+        border: solid $color-on;
+        border-width: 0 2px 2px 0;
+        height: 59%;
+        width: 23%;
+        left: 33%;
+        top: 9%;
+        transform: rotate(43deg);
+      }
+    }
+
+    input:focus + .slider {
+      box-shadow: $focus-box-shadow;
+    }
+
+    input:disabled + .slider {
+      opacity: 0.3;
+
+      &:hover {
+        cursor: auto;
+      }
+    }
+
+    label {
+      color: inherit;
+      padding-left: 0;
+    }
+  }
+
+  .field-underinfo {
+    text-align: left;
+    width: 70%;
+    padding-left: $checkbox-padding-left + $checkbox-size;
+  }
+
+  //--------------------------------ERROR-----------------------
+  &.error .slider {
+    border-color: $color-error;
+  }
+}
+
+//------------------------TOGGLE------------------------
+
+.switch-toggle-root {
+  $switch-width: 48px;
+  $switch-height: 28px;
+  $switch-ball-padding: 2px;
+  $switch-ball-size: 22px;
+  $switch-ball-distance: 20px;
+
+  $color-switch-ball: white;
+  $color-on: $color-primary;
+  $color-border: transparent;
+  $color-background: $color-highlight;
+  $dividerBorder: 1px solid $color-border;
+
+  // move text right a little when icon is present
+  .input-has-icon & {
+    padding-left: $pad-label * 2 + 6px;
+  }
+
+  .switch {
+    position: relative;
+    display: block;
+    margin: $pad-label 0;
+    text-align: left;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    position: absolute; //required error tooltip position
+    right: 17px;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    background-color: $color-background;
+    bottom: 0;
+    border: 1px solid $color-border;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    box-sizing: content-box;
+    width: $switch-width;
+    height: $switch-height;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: $switch-ball-size;
+    width: $switch-ball-size;
+    left: $switch-ball-padding;
+    bottom: $switch-ball-padding;
+    border: 1px solid $color-border;
+    background-color: $color-switch-ball;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    border: 1px solid $color-border;
+    background-color: $color-on;
+
+    &:before {
+      background-color: $color-switch-ball;
+    }
+  }
+
+  input:focus + .slider {
+    box-shadow: $focus-box-shadow;
+
+    &:before {
+    }
+  }
+
+  input:disabled + .slider {
+    opacity: 0.3;
+
+    &:hover {
+      cursor: auto;
+    }
+  }
+
+  input:checked + .slider:before {
+    transform: translateX($switch-ball-distance);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  //-----------extra---------
+
+  label {
+    color: inherit;
+    padding-left: 0;
+  }
+}
+//--------------------RADIO-------------------------------------------
+
+.input-radio {
+  $checkbox-padding-left: 11px !default;
+  $checkbox-border-radius: 2px !default;
+  $checkbox-size: 20px !default;
+
+  $color-on: $color-primary;
+  $color-border: $color-checkbox-border;
+  $color-background: $color-highlight;
+
+  .switch-radio-root {
+    .switch {
+      position: relative;
+      display: block;
+      margin: $checkbox-padding-left 0 4px $checkbox-size +
+        $checkbox-padding-left;
+      text-align: left;
+      color: inherit;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      position: absolute; //required error tooltip position
+      left: -$checkbox-size;
+    }
+
+    /* The slider */
+    .slider {
+      margin-left: -$checkbox-size - $checkbox-padding-left;
+      background-color: transparent;
+      border: $input-border-width solid $color-border;
+      border-radius: 50%;
+      height: $checkbox-size;
+      width: $checkbox-size;
+      left: 0;
+      position: absolute;
+      bottom: -3px;
+      transition: 0.5s background-color;
+    }
+
+    .slider:after {
+      position: absolute;
+      content: '';
+    }
+
+    input:checked + .slider {
+      border-color: $color-on;
+
+      &:before {
+        background-color: $color-on;
+      }
+
+      &:after {
+        border: none;
+        border-radius: 50%;
+        background-color: $color-on;
+        height: $checkbox-size/2;
+        width: $checkbox-size/2;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    input:focus + .slider {
+      box-shadow: $focus-box-shadow;
+    }
+
+    input:disabled + .slider {
+      opacity: 0.3;
+
+      &:hover {
+        cursor: auto;
+      }
+    }
+
+    label {
+      color: inherit;
+      padding-left: 0;
+    }
+  }
+
+  .field-underinfo {
+    text-align: left;
+    width: 70%;
+    padding-left: $checkbox-padding-left + $checkbox-size;
+  }
+
+  //--------------------------------ERROR-----------------------
+  &.error .slider {
+    border-color: $color-error;
+  }
+}
+//------------------------------------------------------------------------
+
+.input-toggle {
+  .input-icon {
+    right: unset;
+    left: 0px;
+    top: 14px;
+  }
+  .field-underinfo {
+    text-align: left;
+    width: 70%;
+  }
+}

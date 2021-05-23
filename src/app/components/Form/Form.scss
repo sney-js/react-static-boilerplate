@@ -1,0 +1,13 @@
+.d-form {
+  .d-form__error-box {
+    min-height: 1em;
+    color: var(--color-error);
+    font-weight: normal;
+    text-align: left;
+    margin: var(--spacing-gap) 0;
+  }
+  .d-form__lower-root {
+  }
+  .d-form__footnote {
+  }
+}

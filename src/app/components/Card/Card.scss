@@ -1,0 +1,76 @@
+@import "../../scss/helpers";
+
+%title-strip {
+  height: 32px;
+
+  @media #{$screen-tablet} {
+    height: 20px;
+  }
+
+  @media #{$screen-mobile} {
+    height: 18px;
+  }
+}
+
+.d-card {
+  position: relative;
+  outline: none;
+  border-radius: var(--border-radius-medium);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--box-shaddow-medium);
+
+  &__image {
+    line-height: 0;
+    height: 100%;
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    padding: var(--spacing-gap-m) var(--spacing-gap) 0;
+
+    @media #{$screen-mobile} {
+      padding: var(--spacing-gap);
+    }
+  }
+
+  &__appearance-overlay {
+    // to change text and button colors to white, re-set variables in this scope
+    //--color-secondary: white;
+    //--color-primary-dynamic: white;
+    .d-card__body {
+      width: 100%;
+      bottom: 0;
+    }
+    .d-card__image {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      &:after {
+        content: '';
+        @extend %absolute-fill;
+        background: -webkit-linear-gradient(
+          120deg,
+          transparent,
+          var(--color-highlight-3)
+        );
+      }
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.d-card__noPadding {
+  .d-card__body {
+    padding: 0;
+  }
+}

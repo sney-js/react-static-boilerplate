@@ -1,0 +1,276 @@
+@import 'inputVariables';
+@import 'toggle';
+
+%generic-input {
+  display: block;
+  width: 100%;
+  text-align: left;
+  height: $input-height;
+  padding: 0 $pad-input;
+  border-radius: $input-border-radius;
+  background-color: $input-bg;
+  border: $input-border-width solid $color-border;
+  outline: none;
+  font-size: $input-font-size;
+  color: $color-text;
+  box-sizing: border-box;
+  letter-spacing: 0.7px;
+  appearance: none;
+  font-family: inherit;
+
+  .error &:not(:disabled) {
+    border-color: $color-error;
+  }
+
+  &:disabled {
+    border-color: $color-disabled;
+    animation: none;
+  }
+
+  &::placeholder {
+    color: inherit;
+  }
+
+  .input-disabled & {
+    color: $color-disabled;
+  }
+
+  &:focus {
+    background-color: $input-bg-focused;
+    border-color: $color-border-focus;
+  }
+
+  &:required + label:after {
+    content: '*';
+    color: inherit;
+  }
+}
+
+$ignoredTypes: unquote($exception-input-types);
+
+select,
+textarea,
+input#{$ignoredTypes} {
+  @extend %generic-input;
+}
+
+// Cannot change password dots easily
+input[type='password'] {
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+textarea {
+  font-size: $input-font-size;
+  padding-top: 9px;
+  min-height: 105px;
+  max-height: 105px;
+  max-width: 100%;
+  min-width: 100%;
+  color: inherit;
+  outline: none;
+  resize: none;
+}
+
+.input-disabled {
+  .input-icon {
+    opacity: 0.3;
+  }
+
+  label,
+  .field-description {
+    color: $color-disabled !important;
+  }
+}
+
+label,
+input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+input:disabled + label {
+  color: $color-disabled;
+}
+
+input:focus {
+  outline: 0;
+}
+
+// -----------------------LABEL MOVING UP-------------------
+
+/**
+* Label on default top position
+*/
+label {
+  color: $color-primary;
+  text-align: left;
+  padding-left: $pad-input;
+  font-size: $label-focused-font-size;
+}
+
+/**
+* Label on top position with position absolute
+*/
+
+%label-top-absolute {
+  top: -$label-focused-font-size - $label-focused-margin;
+  font-size: $label-focused-font-size;
+  text-align: left;
+  position: absolute;
+  color: $color-primary;
+  padding-left: $label-focused-left;
+}
+
+input:not([value='']),
+select,
+textarea,
+input:placeholder-shown,
+input:focus {
+  & + label:not(#{$exception-class}) {
+    @extend %label-top-absolute;
+  }
+}
+
+/**
+* Label on input middle position
+*/
+%label-middle-absolute {
+  top: calc(#{$input-height}/ 2 - 0.6em);
+  cursor: text;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  position: absolute;
+  font-size: $input-font-size;
+}
+input:not(:placeholder-shown) {
+  & + label {
+    @extend %label-middle-absolute;
+  }
+}
+
+.error label {
+  color: $color-error !important;
+}
+
+/**
+* By default, the placeholder should be transparent. Also, it should
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0.5;
+  transition: inherit;
+}
+
+/**
+* Show the placeholder when the input is focused.
+*/
+textarea:focus::-webkit-input-placeholder,
+input:focus::-webkit-input-placeholder {
+  //opacity: 1;
+}
+
+input:placeholder-shown {
+  //background-color: $bg--input !important;
+}
+
+input:not(:placeholder-shown):not([type='submit']) {
+  background-color: $color-highlight;
+  //border-color: $color--border-dark;
+}
+
+//-----------------------SPIN ARROW------------------------------
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+//----------------------------------------------------------
+.error-input-anim {
+  animation: shake $appearing-animation-speed;
+}
+//------------------field----------------------------------------
+
+.field {
+  position: relative;
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: $input-margin-bottom;
+  text-align: $underinfo-text-align;
+  z-index: auto;
+
+  .field-underinfo {
+    line-height: 1;
+    font-weight: 500;
+    margin-top: $underinfo-margin-top;
+
+    .field-description {
+      display: block;
+    }
+
+    .field-error {
+      display: block;
+      color: $color-error;
+    }
+  }
+
+  p {
+    margin: auto;
+  }
+}
+
+//-------------------------ICONS--------------------------------
+.input-icon {
+  position: absolute;
+  box-sizing: border-box;
+  right: 0;
+  top: 0;
+  line-height: 0;
+  border-radius: $input-border-radius;
+  width: $input-height;
+  height: $input-height;
+  display: flex;
+  justify-content: center;
+  transform: none;
+  z-index: auto;
+
+  > * {
+    width: $input-height/2.5;
+  }
+
+  &:hover {
+    background-color: $color-highlight-icon;
+  }
+
+  .input-disabled &:hover {
+    background-color: transparent !important;
+  }
+}
+
+//--------------------custom fields----------------------
+.field {
+  &.input-checkbox + &.input-checkbox {
+    margin-top: -1rem;
+  }
+}
+
+.input-group-fieldset {
+  text-align: left;
+  > span {
+    margin: 26px 0 4px;
+    display: block;
+  }
+}
+
+.input-select {
+}
