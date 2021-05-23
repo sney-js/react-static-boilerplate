@@ -22,7 +22,7 @@ export class ContentfulApi {
 
     async getLocale() {
         const data = await this.client.getLocales();
-        const defaultLocale = data.items.find(item => item.default).code;
+        const defaultLocale = data.items.find((item) => item.default).code;
         this.defaultLocale = defaultLocale;
         this.currentLocale = defaultLocale;
         return defaultLocale;
@@ -30,7 +30,7 @@ export class ContentfulApi {
 
     async getLocales() {
         const locales = await this.client.getLocales();
-        this.locales = locales.items.map(item => item.code);
+        this.locales = locales.items.map((item) => item.code);
         return this.locales;
     }
 
@@ -42,7 +42,7 @@ export class ContentfulApi {
                 locale: this.currentLocale,
                 ...filter,
             })
-            .catch(e => {
+            .catch((e) => {
                 console.error(e);
                 throw e;
             });
@@ -59,7 +59,7 @@ export class ContentfulApi {
             locale: this.currentLocale,
             ...rest,
         });
-        return entries.items.find(en => en.fields[field] === value);
+        return entries.items.find((en) => en.fields[field] === value);
     }
 
     async fetchQuery(query, filter) {

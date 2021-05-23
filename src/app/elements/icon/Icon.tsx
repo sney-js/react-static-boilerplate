@@ -21,10 +21,6 @@ export type IconProps = {
 };
 
 class Icon extends React.Component<IconProps> {
-    constructor(params?) {
-        super(params);
-    }
-
     modifyChildren(child, styles) {
         styles = {
             transform: `scale(${this.props.innerScale || 1})`,
