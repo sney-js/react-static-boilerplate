@@ -32,8 +32,13 @@
         "react-transition-group": "^4.4.1"
     },
     "devDependencies": {
-        "@storybook/addon-info": "^5.3.21",
-        "@storybook/react": "^6.2.9",
+        "@storybook/addon-a11y": "^6.1.1",
+        "@storybook/addon-actions": "^6.1.1",
+        "@storybook/addon-essentials": "^6.1.1",
+        "@storybook/addon-jest": "6.1.1",
+        "@storybook/addon-links": "^6.1.1",
+        "@storybook/client-logger": "^6.1.1",
+        "@storybook/react": "^6.1.1",
         "@svgr/cli": "^5.5.0",
         "@types/js-cookie": "^2.2.6",
         "@types/node": "^15.6.0",
@@ -73,6 +78,9 @@
         "react-static-plugin-sitemap": "^7.5.3",
         "react-static-plugin-source-filesystem": "^7.5.3",
         "react-static-plugin-typescript": "^7.5.3",
+        "storybook-addon-react-docgen": "^1.2.42",
+        "storybook-addon-specifications": "^2.2.0",
+        "storybook-addon-themes": "^6.0.0",
         "sass": "^1.34.0",
         "tsc-watch": "^4.2.9",
         "typescript": "^4.2.4"
