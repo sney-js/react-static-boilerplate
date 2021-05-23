@@ -28,7 +28,7 @@ function cleanupEntryLink(object) {
     const type = getContentType(object);
     if (type) {
         if (Array.isArray(object)) {
-            return object.filter(element => cleanupEntryLink(element));
+            return object.filter((element) => cleanupEntryLink(element));
         }
     }
     return object;
@@ -39,7 +39,7 @@ export function cleanupData(data, locale?: string, withHandler?: boolean) {
 
     const stack: any[] = [];
     const processed: any[] = [];
-    let localContentData = Object.assign({}, data);
+    const localContentData = Object.assign({}, data);
     stack.push(localContentData);
 
     while (stack.length > 0) {
@@ -50,7 +50,7 @@ export function cleanupData(data, locale?: string, withHandler?: boolean) {
 
         processed.push(item);
 
-        //--------------------------------------------------
+        // --------------------------------------------------
         const contentType = getContentType(item);
 
         // embeds contentType inside item as sys is removed from data in frontend
@@ -74,17 +74,17 @@ export function cleanupData(data, locale?: string, withHandler?: boolean) {
 
                 if (prop == null || prop === "locale") continue;
 
-                if (typeof item[prop] == "object") {
+                if (typeof item[prop] === "object") {
                     // if is a bigger object (e.g. [fields, link]
 
                     item[prop] = cleanupEntryLink(item[prop]);
 
-                    let overwriteField = item[prop].overwrite;
+                    const overwriteField = item[prop].overwrite;
                     if (overwriteField) {
                         item[overwriteField] = item[prop].value;
                     }
 
-                    if (typeof item[prop] == "object") stack.push(item[prop]);
+                    if (typeof item[prop] === "object") stack.push(item[prop]);
                 }
             }
         }

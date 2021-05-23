@@ -2,7 +2,7 @@ import { ContentfulApi } from "./api";
 import { ContentfulEntry, resolve, resolveLinkInfo } from "../app/utils/Resolver";
 import { CleanupConfig, cleanupData } from "./EntryCleaner";
 import { IArticle, IFooterFields, IHeaderFields, IPage } from "./@types/contentful";
-import {parse, stringify} from "flatted";
+import { stringify } from "flatted";
 import RouteConfig from "./RouteConfig";
 import { Route } from "react-static";
 
@@ -30,9 +30,9 @@ export type RouteDataType = {
 };
 
 export type RouteGeneratorConfig = {
-  cleanupConfig: CleanupConfig;
-  pages: Array<{ contentType: string; parentField?: string; parentPath?: string }>;
-  defaultLocale: string;
+    cleanupConfig: CleanupConfig;
+    pages: Array<{ contentType: string; parentField?: string; parentPath?: string }>;
+    defaultLocale: string;
 };
 
 const TEMPLATES_FOLDER = `src/app/containers/page/Page_`;
@@ -49,46 +49,6 @@ class RouteGenerator {
         this.config = RouteConfig;
     }
 
-    private async routeDataResolver(): Promise<RouteDataType[][]> {
-        this.defaultLocale = await this.client.getLocale();
-        this.locales = await this.client.getLocales();
-
-        const pageList = this.config.pages.map(p => p.contentType);
-
-        return Promise.all(
-            // for each locale
-            this.locales.map(lang =>
-                Promise.all(
-                    // for each page
-                    pageList.map(contentName =>
-                        // make contentful calls to retrieve each page for each locale
-                        this.client
-                            .setLocale(lang)
-                            .getPages(contentName)
-                            .then(
-                                (query): RouteDataType => ({
-                                    contentType: contentName,
-                                    pageList: query.items.map(page =>
-                                        this.generatePageData(page, lang),
-                                    ),
-                                }),
-                            ),
-                    ),
-                ),
-            ),
-        );
-    }
-
-    private generatePageData(page: IPage, lang: string): PageRouteData {
-        cleanupData(page, lang);
-        return {
-            page,
-            name: page?.fields?.name,
-            path: resolve(page),
-            locale: lang,
-        };
-    }
-
     async getRoutes(): Promise<Array<ReactStaticRoute>> {
         /**
          * [
@@ -99,11 +59,11 @@ class RouteGenerator {
         const localisedRoutes = await this.routeDataResolver();
 
         const pathsArray = localisedRoutes.map((routes: RouteDataType[]) => {
-            const articlesAll = routes.find(i => i.contentType === "article").pageList;
+            const articlesAll = routes.find((i) => i.contentType === "article").pageList;
 
             const categoriesGrouped = groupByArray(
                 articlesAll,
-                x => x.page.fields.category.fields.name,
+                (x) => x.page.fields.category.fields.name,
             );
 
             return routes.map(({ contentType, pageList }) =>
@@ -111,18 +71,20 @@ class RouteGenerator {
                     let extraData = {};
 
                     switch (contentType) {
-                        case "category":
+                        case "category": {
                             extraData = categoriesGrouped
-                                .find(e => e.key === info.name)
-                                .values.map(ar => ar.page);
+                                .find((e) => e.key === info.name)
+                                .values.map((ar) => ar.page);
                             break;
-                        case "article":
+                        }
+                        case "article": {
                             const page = info.page as IArticle;
-                            let articleCategory = page.fields.category?.fields.name;
+                            const articleCategory = page.fields.category?.fields.name;
                             extraData = categoriesGrouped
-                                .find(e => e.key === articleCategory)
-                                ?.values.map(ar => resolveLinkInfo(ar.page));
+                                .find((e) => e.key === articleCategory)
+                                ?.values.map((ar) => resolveLinkInfo(ar.page));
                             break;
+                        }
                     }
 
                     const reactStaticRouteData: ReactStaticRoute = {
@@ -141,7 +103,7 @@ class RouteGenerator {
 
         const pageCollection = flatten(flatten(pathsArray));
         console.log("::::::::::Rendering pages:::::::::::");
-        pageCollection.map(i => console.log(i.path));
+        pageCollection.map((i) => console.log(i.path));
         console.log("::::::::::::::::::::::::::::::::::::");
         return pageCollection;
     }
@@ -152,7 +114,7 @@ class RouteGenerator {
         const locales = await this.client.getLocales();
 
         const localeSiteData: SiteData[] = await Promise.all(
-            locales.map(async lang => {
+            locales.map(async (lang) => {
                 // -------------------------------Header---------------------------
                 this.client.setLocale(lang);
                 const mainNav = await this.client.fetchEntry({
@@ -187,20 +149,63 @@ class RouteGenerator {
                 hasMultipleLocales: locales.length > 1,
             },
             siteData: localeSiteData.reduce((a, b) => {
-                return Object.assign({ [a.locale.toString()]: a, [b.locale.toString()]: b });
+                return Object.assign({
+                    [a.locale.toString()]: a,
+                    [b.locale.toString()]: b,
+                });
             }),
+        };
+    }
+
+    private async routeDataResolver(): Promise<RouteDataType[][]> {
+        this.defaultLocale = await this.client.getLocale();
+        this.locales = await this.client.getLocales();
+
+        const pageList = this.config.pages.map((p) => p.contentType);
+
+        return Promise.all(
+            // for each locale
+            this.locales.map((lang) =>
+                Promise.all(
+                    // for each page
+                    pageList.map((contentName) =>
+                        // make contentful calls to retrieve each page for each locale
+                        this.client
+                            .setLocale(lang)
+                            .getPages(contentName)
+                            .then(
+                                (query): RouteDataType => ({
+                                    contentType: contentName,
+                                    pageList: query.items.map((page) =>
+                                        this.generatePageData(page, lang),
+                                    ),
+                                }),
+                            ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    private generatePageData(page: IPage, lang: string): PageRouteData {
+        cleanupData(page, lang);
+        return {
+            page,
+            name: page?.fields?.name,
+            path: resolve(page),
+            locale: lang,
         };
     }
 }
 
-const flatten = arr => {
-    return [].concat.apply([], arr);
+const flatten = (arr) => {
+    return [...arr];
 };
 
 const groupByArray = (xs, key) => {
-    return xs.reduce(function(rv, x) {
-        let v = key instanceof Function ? key(x) : x[key];
-        let el = rv.find(r => r && r.key === v);
+    return xs.reduce(function (rv, x) {
+        const v = key instanceof Function ? key(x) : x[key];
+        const el = rv.find((r) => r && r.key === v);
         if (el) {
             el.values.push(x);
         } else {

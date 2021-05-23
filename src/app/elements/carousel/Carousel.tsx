@@ -98,7 +98,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                     <div
                         className={makeClass([
                             "d-carousel-item",
-                            this.state.currentIndex == index && "active",
+                            this.state.currentIndex === index && "active",
                         ])}
                         ref={(elementRef) => {
                             this.itemsRefs[index] = elementRef;
