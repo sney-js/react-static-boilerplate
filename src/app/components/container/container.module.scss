@@ -1,5 +1,5 @@
-@import "variables";
-@import "layout";
+@import "../../scss/helpers";
+@use "../../scss/layout" as *;
 
 $fold-height: 60px;
 $fold-width: 60px;
