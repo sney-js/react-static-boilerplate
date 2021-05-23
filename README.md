@@ -68,14 +68,14 @@ If you have pulled from another branch and want to update your contentful enviro
 
 ### Adding new Contentful components
 
-1. Create a folder under `app/containers/` with same name as contentful's content model name.
+1. Create a folder under `app/modules/` with same name as contentful's content model name.
 2. Add a `<componentName>.tsx` file, `dataHandler.ts` and `<componentName>.module.tsx` if required.
 3. Change the class names to be `<componentName>` identifiable.
 4. If its a page level component:
-    5. Create a new entry for your component inside `app/containers/utils/renderer.tsx`
-    6. Create a new entry for your component inside `app/containers/page/dataHandler.ts`
+    5. Create a new entry for your component inside `app/modules/utils/renderer.tsx`
+    6. Create a new entry for your component inside `app/modules/page/dataHandler.ts`
 5. If its NOT a page level component:
-    7. Navigate to `app/containers/<parent-component>/dataHandler.ts` to create entry and link to your component's dataHandler.
+    7. Navigate to `app/modules/<parent-component>/dataHandler.ts` to create entry and link to your component's dataHandler.
 6. Pull latest contentful content models using `CONTENTFUL_MANTOKEN=$CONTENTFUL_MANTOKEN npm run contentful:pull -- --include=all` command.
 
 ### Icons

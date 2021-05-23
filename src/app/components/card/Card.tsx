@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "./Container";
+import Container from "../container/Container";
 import LinkElement from "../../elements/link/LinkElement";
 // const styles = require("./card.module.scss");
 import "./card.scss";

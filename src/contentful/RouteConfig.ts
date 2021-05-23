@@ -1,4 +1,4 @@
-import linkHandler from "../app/containers/link/dataHandler";
+import linkHandler from "../app/modules/link/dataHandler";
 import { RouteGeneratorConfig } from "./RouteGenerator";
 
 const config: RouteGeneratorConfig = {
