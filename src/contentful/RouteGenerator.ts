@@ -199,7 +199,7 @@ class RouteGenerator {
 }
 
 const flatten = (arr) => {
-    return [...arr];
+    return [].concat.apply([], arr);
 };
 
 const groupByArray = (xs, key) => {

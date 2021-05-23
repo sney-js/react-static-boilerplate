@@ -15,7 +15,7 @@ type LocaleData = {
     defaultLocale: String;
 };
 
-type HeaderProps = {
+export type HeaderProps = {
     title?: string;
     links?: Array<LinkData>;
     logo?: JSX.Element;
@@ -43,7 +43,7 @@ const refreshToLocale = function (locale: string, oldLocale: string, defaultLoca
     WINDOW.location.pathname = cleanPath(joinedPath);
 };
 
-export function Header(props: HeaderProps) {
+export const Header = (props: HeaderProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     let location = useLocation();
@@ -122,7 +122,7 @@ export function Header(props: HeaderProps) {
             </Container>
         </header>
     );
-}
+};
 
 const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
     const className = makeClass([styles.burgerIcon, isMenuOpen && styles.burgerOpen]);

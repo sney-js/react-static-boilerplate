@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
 import "./carousel.scss";
 import { makeClass, WINDOW } from "../../utils/helpers";
-import Arrow from "../button/Arrow";
-import Container from "../../components/container/Container";
+import Arrow from "../../elements/button/Arrow";
+import Container from "../container/Container";
 
-type CarouselProps = {
+export type CarouselProps = {
     items?: Array<ReactElement>;
     swipeThreshold?: number;
     animateIn?: boolean;
