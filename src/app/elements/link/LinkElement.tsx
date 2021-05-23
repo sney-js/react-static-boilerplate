@@ -16,7 +16,7 @@ class LinkElement extends Component<LinkElementProps> {
 
     render() {
         const generalProps = {
-            onClick: this.props.onClick && (e => this.props.onClick(e)),
+            onClick: this.props.onClick && ((e) => this.props.onClick(e)),
             className: makeClass(["link", this.props.className]),
             title: this.props.title,
         };
@@ -35,7 +35,7 @@ class LinkElement extends Component<LinkElementProps> {
                         {...generalProps}
                         to={this.props.path}
                         target={this.props.newTab ? "_blank" : "_self"}
-                        onClick={event => {
+                        onClick={(event) => {
                             if (!this.props.newTab) return;
                             event.preventDefault();
                             window.open(window.location.origin + this.props.path);

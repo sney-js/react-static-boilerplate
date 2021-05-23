@@ -15,18 +15,18 @@ function App() {
 
     const [dynamicRoutes, setDynamicRoutes] = useState([]);
 
-    let isLoading = false;
+    const isLoading = false;
 
     if (environment.preview) {
-        const client = new ContentfulApi(
-            {
-                space: environment.contentful.space,
-                accessToken: environment.contentful.accessToken,
-                environment: environment.contentful.environment,
-            },
-            "preview.contentful.com",
-        );
-
+        // TODO implement preview functionality
+        // const client = new ContentfulApi(
+        //     {
+        //         space: environment.contentful.space,
+        //         accessToken: environment.contentful.accessToken,
+        //         environment: environment.contentful.environment,
+        //     },
+        //     "preview.contentful.com",
+        // );
         // if (!dynamicRoutes.length) {
         //     isLoading = true;
         //     routeDataResolver(client)

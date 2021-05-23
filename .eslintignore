@@ -1,0 +1,11 @@
+build/
+dist/
+node_modules/
+.snapshots/
+webpack.config.js
+rollup.config.js
+*.min.js
+**/assets/
+**/*.mdx
+!.storybook
+scripts/Abc/

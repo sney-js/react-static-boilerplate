@@ -13,13 +13,13 @@ type CardProps = {
     description?: React.ReactElement;
 };
 export const Card = (props: CardProps) => (
-    <Container background={"Primary"} className={"card"}>
+    <Container background="Primary" className="card">
         <div>
             <LinkElement path={props.href}>{props.image}</LinkElement>
         </div>
-        <div className={"content"}>
+        <div className="content">
             <LinkElement path={props.subTitleHref}>
-                <h4 className={"caption"}>{props.subTitle}</h4>
+                <h4 className="caption">{props.subTitle}</h4>
             </LinkElement>
             <LinkElement path={props.href}>
                 <h3>{props.title}</h3>

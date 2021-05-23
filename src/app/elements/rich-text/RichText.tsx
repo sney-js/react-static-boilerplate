@@ -7,12 +7,12 @@ import "./rich-text.scss";
 import Markdown from "react-markdown";
 
 const GLOBAL_OPTIONS = {
-    renderText: text => text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
+    renderText: (text) => text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
     renderNode: {
-        [BLOCKS.EMBEDDED_ASSET]: node => {
+        [BLOCKS.EMBEDDED_ASSET]: (node) => {
             return <ImageElement content={node.data.target} />;
         },
-        [INLINES.ENTRY_HYPERLINK]: node => {
+        [INLINES.ENTRY_HYPERLINK]: (node) => {
             return (
                 <LinkElement {...node.data.target.fields}>
                     {node.content[0] && node.content[0].value}
@@ -20,9 +20,9 @@ const GLOBAL_OPTIONS = {
             );
         },
         // text hyperlinks are always external.
-        [INLINES.HYPERLINK]: node => {
+        [INLINES.HYPERLINK]: (node) => {
             return (
-                <a href={node.data.uri} target={"_blank"}>
+                <a href={node.data.uri} target="_blank" rel="noreferrer">
                     {node.content[0].value}
                 </a>
             );
@@ -41,13 +41,11 @@ export default (props: RichTextType) => {
         if (data.length && !data[data.length - 1].props.children[0]) {
             data.pop();
         }
-        return <section className={"d-rich-text"}>{data}</section>;
+        return <section className="d-rich-text">{data}</section>;
     } else if (props.markdown) {
         return (
-            <section className={"d-rich-text"}>
-                <Markdown>
-                    {props.markdown}
-                </Markdown>
+            <section className="d-rich-text">
+                <Markdown>{props.markdown}</Markdown>
             </section>
         );
     } else {

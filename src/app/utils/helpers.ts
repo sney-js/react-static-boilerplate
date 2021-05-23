@@ -4,7 +4,7 @@ export function getByPath(object, path) {
 
 export function makeClass(classes: Array<string>) {
     return classes
-        .filter(e => e)
+        .filter((e) => e)
         .join(" ")
         .trim();
 }
@@ -15,10 +15,10 @@ export function makeClass(classes: Array<string>) {
  * @param items
  */
 export function getInterpolation(items: Array<string>): Array<string> {
-    let regexp = /\{\{([^}]+)\}\}/g;
-    let result = items
-        .map(item => {
-            let matches = [];
+    const regexp = /\{\{([^}]+)\}\}/g;
+    const result = items
+        .map((item) => {
+            const matches = [];
             let match = regexp.exec(item);
             while (match != null) {
                 matches.push(match[1]);
@@ -26,7 +26,7 @@ export function getInterpolation(items: Array<string>): Array<string> {
             }
             return matches;
         })
-        .filter(e => !!e);
+        .filter((e) => !!e);
     return [].concat.apply([], result);
 }
 
@@ -52,7 +52,7 @@ export function applyInterpolation(text: string, data: any) {
 export function splitIntoChunks(array: Array<any>, chunkSize: number) {
     return [].concat.apply(
         [],
-        array.map(function(elem, i) {
+        array.map(function (elem, i) {
             return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
         }),
     );

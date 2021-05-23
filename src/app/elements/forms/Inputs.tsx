@@ -80,7 +80,7 @@ class Input extends React.Component<InputProps> {
 
     onInvalid(e) {
         e.preventDefault();
-        let value = this.state.value;
+        const value = this.state.value;
         this.setInvalid({
             error: true,
             errorText:
@@ -106,7 +106,7 @@ class Input extends React.Component<InputProps> {
             errorItem.errorText = this.props.emptyError;
         }
 
-        let validityOverwriteFunction = this.props.setValidity;
+        const validityOverwriteFunction = this.props.setValidity;
         if (validityOverwriteFunction !== undefined) {
             errorItem = validityOverwriteFunction(value);
         }
@@ -126,7 +126,7 @@ class Input extends React.Component<InputProps> {
         const id = parseInt(target.id.split("--")[0]);
         let stateValue = this.state.value;
         if (!stateValue) {
-            stateValue = [...Array(this.props.singleBoxes)].map(i => "-").join("");
+            stateValue = [...Array(this.props.singleBoxes)].map((i) => "-").join("");
         }
         if (value.length === 1) {
             const nextBoxId = (id + 1) % this.props.singleBoxes;
@@ -193,7 +193,7 @@ class Input extends React.Component<InputProps> {
         prevState: Readonly<{}>,
         snapshot?: any,
     ): void {
-        let hasError = this.state.error && this.state.error.error === true;
+        const hasError = this.state.error && this.state.error.error === true;
         this.setInputError(hasError);
         if (prevProps.value !== this.props.value) {
             this.setState({
@@ -246,7 +246,7 @@ class Input extends React.Component<InputProps> {
                 <InputFieldGroup {...this.props} error={this.state.error}>
                     <InputMask
                         ref={this.inputObj}
-                        title={""}
+                        title=""
                         placeholder={this.props.placeholder || " "}
                         mask={this.props.mask}
                         maskChar={this.props.maskChar || ""}
@@ -268,7 +268,7 @@ class Input extends React.Component<InputProps> {
                     {...this.props}
                     error={this.state.error}
                     label={undefined}
-                    className={"input-with-borders"}
+                    className="input-with-borders"
                 >
                     <div className="switch-root">
                         <label className="switch">
@@ -276,12 +276,10 @@ class Input extends React.Component<InputProps> {
                             <input
                                 key={"toggle" + this.state.value + this.props.name}
                                 {...rest}
-                                title={""}
+                                title=""
                                 type="checkbox"
                                 name={this.props.name}
-                                className={makeClass([
-                                    !this.state.value && "placeholder-shown",
-                                ])}
+                                className={makeClass([!this.state.value && "placeholder-shown"])}
                                 aria-label={
                                     this.props.label || this.props.description || this.props.name
                                 }
@@ -297,7 +295,7 @@ class Input extends React.Component<InputProps> {
             return (
                 <CheckboxFieldGroup {...this.props}>
                     <input
-                        title={""}
+                        title=""
                         ref={this.inputObj}
                         key={"checkbox" + this.state.value + this.props.name}
                         onChange={this.onChange.bind(this)}
@@ -307,7 +305,7 @@ class Input extends React.Component<InputProps> {
                         {...rest}
                     />
                     <span className="checkmark">
-                        <Icon className={"check-icon"} icon={<SvgCheck />} />
+                        <Icon className="check-icon" icon={<SvgCheck />} />
                     </span>
                 </CheckboxFieldGroup>
             );
@@ -317,7 +315,7 @@ class Input extends React.Component<InputProps> {
             return (
                 <InputFieldGroup {...this.props} error={this.state.error}>
                     <fieldset
-                        className={"inline-input"}
+                        className="inline-input"
                         id={this.props.id}
                         name={this.props.name}
                         onChange={this.onChange.bind(this)}
@@ -326,14 +324,14 @@ class Input extends React.Component<InputProps> {
                         {[...Array(this.props.singleBoxes)].map((_, i) => {
                             return (
                                 <InputMask
-                                    title={""}
+                                    title=""
                                     key={i}
                                     className={makeClass([
                                         !this.state.value && "placeholder-shown",
                                         "single-box",
                                     ])}
                                     id={this.getSingleBoxID(i)}
-                                    maskChar={""}
+                                    maskChar=""
                                     value={(this.state.value && this.state.value[i]) || undefined}
                                     name={"split--" + this.props.name + "--" + i}
                                     placeholder={" "}
@@ -343,9 +341,9 @@ class Input extends React.Component<InputProps> {
                                         this.props.name
                                     }
                                     {...rest}
-                                    type={"tel"}
+                                    type="tel"
                                     autoComplete="false"
-                                    mask={"9"}
+                                    mask="9"
                                 />
                             );
                         })}
@@ -357,7 +355,7 @@ class Input extends React.Component<InputProps> {
             return (
                 <RadioFieldGroup {...this.props}>
                     <input
-                        title={""}
+                        title=""
                         ref={this.inputObj}
                         key={"radio" + this.state.value + this.props.name}
                         onChange={this.onChange.bind(this)}
@@ -376,14 +374,14 @@ class Input extends React.Component<InputProps> {
                 {...this.props}
                 error={this.state.error}
                 iconState={this.state.value && this.state.value.length > 0 ? 0 : -1}
-                onIconStateChange={state => {
+                onIconStateChange={(state) => {
                     if (this.props.type === "password") {
                         this.inputObj.current.type = state === 1 ? "text" : "password";
                     }
                 }}
             >
                 <input
-                    title={""}
+                    title=""
                     ref={this.inputObj}
                     className={makeClass([!this.state.value && "placeholder-shown"])}
                     placeholder={this.props.placeholder || " "}
@@ -441,7 +439,7 @@ function RadioFieldGroup(props: InputProps) {
 }
 
 function InputFieldGroup(props: InputProps) {
-    let hasError = props.error && props.error.error;
+    const hasError = props.error && props.error.error;
     // -1 initial state. 0 action, 1 action-alternate
     const [iconState, setIconState] = useState(props.iconState || -1);
 
@@ -456,9 +454,9 @@ function InputFieldGroup(props: InputProps) {
             <div className={makeClass(["field s", hasError && "error error-input-anim"])}>
                 {props.type === "password" ? (
                     <span
-                        className={"input-icon"}
+                        className="input-icon"
                         onClick={() => {
-                            let newIconState = iconState !== 0 ? 0 : 1;
+                            const newIconState = iconState !== 0 ? 0 : 1;
                             setIconState(newIconState);
                             props.onIconStateChange && props.onIconStateChange(newIconState);
                         }}
@@ -471,7 +469,7 @@ function InputFieldGroup(props: InputProps) {
                     <small>{props.description}</small>
                     <div className="error-root">
                         {hasError && props.error.errorText && (
-                            <small className={"error"}>{props.error.errorText}</small>
+                            <small className="error">{props.error.errorText}</small>
                         )}
                     </div>
                 </div>

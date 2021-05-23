@@ -33,20 +33,21 @@ class Icon extends React.Component<IconProps> {
         const props = {
             style: styles,
         };
-        let element = React.cloneElement(child, props);
+        const element = React.cloneElement(child, props);
         return element;
     }
 
     render() {
         return (
             <i
-                className={`d-svg-icon ${this.props.className || ""} ${this.props.type ||
-                    IconType.OUTLINED} ${this.props.theme || ""}`.trim()}
+                className={`d-svg-icon ${this.props.className || ""} ${
+                    this.props.type || IconType.OUTLINED
+                } ${this.props.theme || ""}`.trim()}
                 style={this.props.style}
             >
                 {this.props.icon
                     ? this.modifyChildren(this.props.icon, { color: this.props.color })
-                    : React.Children.map(this.props.children, child =>
+                    : React.Children.map(this.props.children, (child) =>
                           this.modifyChildren(child, { color: this.props.color }),
                       )}
             </i>

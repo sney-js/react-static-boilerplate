@@ -44,9 +44,9 @@ class CookieBanner extends Component<CookieBannerProps> {
 
     render() {
         if (!this.state.visible) return null;
-        let caption = this.props.caption || "Cookie Policy";
+        const caption = this.props.caption || "Cookie Policy";
         return (
-            <Container className={styles.cookieBanner} layoutType={"maxWidth"} pad={"Horizontal"}>
+            <Container className={styles.cookieBanner} layoutType="maxWidth" pad="Horizontal">
                 <div className={styles.container}>
                     <div className={styles.caption}>{caption}</div>
                     {this.props.content}

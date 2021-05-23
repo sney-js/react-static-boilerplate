@@ -25,11 +25,11 @@ type HeaderProps = {
     localeData?: LocaleData;
 };
 
-let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale: String) {
+const refreshToLocale = function (locale: string, oldLocale: string, defaultLocale: String) {
     if (!HAS_WINDOW) return;
 
-    const getPathBreaks = function(pathname) {
-        return pathname.split("/").filter(e => e.length);
+    const getPathBreaks = function (pathname) {
+        return pathname.split("/").filter((e) => e.length);
     };
 
     const location = WINDOW.location;
@@ -37,7 +37,7 @@ let refreshToLocale = function(locale: string, oldLocale: string, defaultLocale:
     let pathBreaks = getPathBreaks(location.pathname);
     pathBreaks.reverse().push(locale);
     pathBreaks = pathBreaks.reverse();
-    pathBreaks = pathBreaks.filter(p => p !== oldLocale && p !== defaultLocale);
+    pathBreaks = pathBreaks.filter((p) => p !== oldLocale && p !== defaultLocale);
 
     const joinedPath = pathBreaks.join("/");
     WINDOW.location.pathname = cleanPath(joinedPath);
@@ -78,16 +78,13 @@ export function Header(props: HeaderProps) {
     return (
         <header className={classNames}>
             <Container
-                breakpoint={"Tablet"}
-                className={makeClass([
-                    styles.modalWrapper,
-                    !!menuOpen && styles.modalWrapperOpen,
-                ])}
+                breakpoint="Tablet"
+                className={makeClass([styles.modalWrapper, !!menuOpen && styles.modalWrapperOpen])}
             >
                 <MobileModal links={props.links} languageToggle={languageSelector} />
             </Container>
 
-            <Container layoutType={"maxWidth"} pad={"Horizontal"}>
+            <Container layoutType="maxWidth" pad="Horizontal">
                 <div className={styles.container}>
                     <div className={styles.logo}>
                         <LinkWrap {...props.logoLink}>{props.logo || null}</LinkWrap>
@@ -104,11 +101,11 @@ export function Header(props: HeaderProps) {
                                 <Container className={styles.toggleTheme}>
                                     <Input
                                         type={InputType.toggle}
-                                        label={"Theme"}
-                                        name={"global-theme"}
-                                        onChange={data => {
+                                        label="Theme"
+                                        name="global-theme"
+                                        onChange={(data) => {
                                             const selected = data.target.checked;
-                                            document.body["dataset"].theme = selected
+                                            document.body.dataset.theme = selected
                                                 ? "dark"
                                                 : "light";
                                         }}
@@ -128,9 +125,9 @@ export function Header(props: HeaderProps) {
 }
 
 const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
-    let className = makeClass([styles.burgerIcon, isMenuOpen && styles.burgerOpen]);
+    const className = makeClass([styles.burgerIcon, isMenuOpen && styles.burgerOpen]);
     return (
-        <div className={"burger-root"}>
+        <div className="burger-root">
             <a onClick={() => setMenuOpen(!isMenuOpen)}>
                 <div className={className}>
                     <div className={styles.line1} />
@@ -142,13 +139,10 @@ const BurgerMenu = ({ isMenuOpen, setMenuOpen }) => {
 };
 
 const MobileModal = ({ links, languageToggle }) => {
-    let className = makeClass([styles.mobileRoot]);
+    const className = makeClass([styles.mobileRoot]);
     return (
         <nav className={className}>
-            <Container
-                pad={"All"}
-                className={makeClass([styles.mobileRoot, styles.navigation])}
-            >
+            <Container pad="All" className={makeClass([styles.mobileRoot, styles.navigation])}>
                 {languageToggle && React.cloneElement(languageToggle)}
                 <br />
                 {links && links.map((l, i) => <LinkWrap key={`link${i}`} {...l} />)}
