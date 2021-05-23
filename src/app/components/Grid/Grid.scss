@@ -1,0 +1,21 @@
+@import "../../scss/helpers";
+
+.layout-grid {
+  --grid-template: repeat(auto-fill, minmax(200px, 1fr));
+  --grid-template-tablet: var(--grid-template);
+  --grid-template-mobile: var(--grid-template);
+  --grid-gap: var(--spacing-gap);
+  --grid-align: start;
+
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: var(--grid-template);
+  align-items: var(--grid-align);
+
+  @media #{$screen-tablet} {
+    grid-template-columns: var(--grid-template-tablet);
+  }
+  @media #{$screen-mobile} {
+    grid-template-columns: var(--grid-template-mobile);
+  }
+}

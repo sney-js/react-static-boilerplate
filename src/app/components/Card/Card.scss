@@ -25,6 +25,7 @@
   &__image {
     line-height: 0;
     height: 100%;
+
     img {
       height: 100%;
       object-fit: cover;
@@ -47,25 +48,32 @@
       width: 100%;
       bottom: 0;
     }
+
     .d-card__image {
       position: absolute;
       height: 100%;
       width: 100%;
       z-index: -1;
+
       &:after {
         content: '';
         @extend %absolute-fill;
         background: -webkit-linear-gradient(
-          120deg,
-          transparent,
-          var(--color-highlight-3)
+                        120deg,
+                        transparent,
+                        var(--color-highlight-3)
         );
       }
+
       img {
         height: 100%;
         object-fit: cover;
       }
     }
+  }
+
+  > .link {
+    display: contents;
   }
 }
 

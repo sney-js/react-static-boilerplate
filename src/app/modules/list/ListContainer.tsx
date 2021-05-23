@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../../components/container/Container';
+import Container from '../../components/container';
 import {
   IArticleFields,
   IListFields,
@@ -9,6 +9,7 @@ import { getContentType, resolve } from '../../utils/Resolver';
 import RichText from '../../elements/rich-text/RichText';
 import { RespImage } from '../../utils/RespImage';
 import Card from '../../components/Card';
+import Grid from '../../components/Grid';
 
 type ListTypes = {
   customList?: Array<any>;
@@ -25,13 +26,12 @@ export default function ListContainer(props: ListTypes) {
 
 export const CardList = ({ list, title }) => {
   return (
-    <Container animateIn pad='All' layoutType='maxWidth'>
+    <Container animateIn pad='All' layout='maxWidth'>
       <h2>{title}</h2>
-      <Container
-        layoutType='grid'
-        gridColumn='1fr 1fr 1fr'
-        gridColumnTablet='1fr 1fr'
-        gridColumnMobile='1fr'
+      <Grid
+        template='1fr 1fr 1fr'
+        templateTablet='1fr 1fr'
+        templateMobile='1fr'
       >
         {list.map((page, index) => {
           const type = getContentType(page);
@@ -43,10 +43,9 @@ export const CardList = ({ list, title }) => {
                   key={`article${index}`}
                   title={fields.title}
                   image={<RespImage image={fields.image} />}
-                  link={resolve(page)}
+                  cardLink={{ path: resolve(page) }}
                   description={<RichText document={fields.description} />}
                   subTitle={fields.category.fields.title}
-                  subTitleHref={resolve(fields.category)}
                 />
               );
             }
@@ -57,7 +56,7 @@ export const CardList = ({ list, title }) => {
                   key={`page${index}`}
                   title={fields.title}
                   image={<RespImage image={fields.image} />}
-                  href={resolve(page)}
+                  cardLink={{ path: resolve(page) }}
                 />
               );
             }
@@ -65,7 +64,7 @@ export const CardList = ({ list, title }) => {
               return null;
           }
         })}
-      </Container>
+      </Grid>
     </Container>
   );
 };

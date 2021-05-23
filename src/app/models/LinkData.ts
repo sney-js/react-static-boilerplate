@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ButtonProps } from "../elements/Button/Button";
+import { ButtonProps } from '../elements/Button/Button';
 
 export class LinkData {
   path?: string;

@@ -1,85 +1,103 @@
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import { makeClass } from '../../utils/helpers';
 import { FadeOnScroll } from '../../elements/fadeup/fadeup';
-import { isMobile, isTabletOrMobile } from '../../utils/Device';
-
-const styles = require('./container.module.scss');
+import './Container.scss';
 
 export type ContainerProps = {
-  id?: string;
-  children?: any;
-  className?: string;
+  children: React.ReactNode;
   /**
-   * When using a layoutType, a child div is created. This will set class on that.
+   * Sets padding on this container as defined in css's `--gap-layout` variable.
+   * This changes accordingly depending on device width.
+   * `'All' | 'Vertical' | 'Horizontal' | 'Bottom' | 'Top'`
    */
-  classNameInner?: string;
+  pad?: 'All' | 'Vertical' | 'Horizontal' | 'Bottom' | 'Top';
+  /**
+   * `'maxWidth' | 'columns' | 'centered' | 'maxWidthNarrow'`
+   */
+  layout?: 'maxWidth' | 'columns' | 'centered' | 'maxWidthNarrow';
+  /**
+   * `'dark' | 'light' | 'default' | 'none'`
+   */
+  theme?: 'dark' | 'light' | 'default' | 'none' | 'dslight' | 'dsdark';
+  /**
+   * Whether this container should only show on given breakpoint
+   * `'Desktop' | 'Tablet' | 'Mobile'`.
+   * Note that Tablet will also cover Mobile.
+   */
+  breakpoint?: 'All' | 'Desktop' | 'Tablet' | 'Mobile' | 'Non-Desktop';
+  /**
+   * Sets a `background-$background` classname on this container
+   * e.g. `.background-primary`
+   */
+  background?: string;
+  /**
+   * Whether this container should animate with fadein affect when in view
+   */
   animateIn?: boolean;
-  layoutType?: 'maxWidth' | 'splitView' | 'grid';
-  pad?: 'All' | 'Vertical' | 'Horizontal' | 'Bottom' | 'Desktop-Horizontal';
-  breakpoint?: 'All' | 'Desktop' | 'Tablet' | 'Mobile';
-  background?: 'None' | 'Primary' | 'Secondary' | 'Themed';
-  gridColumn?: string;
-  gridColumnTablet?: string;
-  gridColumnMobile?: string;
+  /**
+   * Can be used to animate containers at a later time. For example cards in a sequence.
+   */
+  animateNow?: boolean;
+  /**
+   * @param isVisible boolean
+   * @returns void
+   */
+  onVisible?: (isVisible: boolean) => void;
+  /**
+   * When used with `layout: columns`, this disables breaking on Mobile
+   */
+  responsiveColumn?: boolean;
+} & React.HTMLAttributes<any>;
+
+const Container: FC<ContainerProps> = (props: ContainerProps) => {
+  const {
+    pad,
+    breakpoint,
+    animateIn,
+    animateNow,
+    layout,
+    onVisible,
+    background,
+    theme,
+    responsiveColumn,
+    ...rest
+  } = props;
+
+  const classNames = makeClass([
+    props.className,
+    'd-container',
+    pad && `pad-${pad}`,
+    layout && `layout-${layout}`,
+    breakpoint && `breakpoint-${breakpoint}`,
+    background && `background-${background}`,
+    animateIn && 'fadeup-initial',
+    responsiveColumn === false && `layout-column-noMobile`
+  ]);
+
+  const themeProp = {};
+  if (theme) {
+    themeProp['data-theme'] = theme;
+  }
+  const containerDom = (
+    <section {...themeProp} {...rest} className={classNames}>
+      {props.children}
+    </section>
+  );
+
+  if (!(animateIn === true || animateNow === true)) {
+    return containerDom;
+  }
+
+  return (
+    <FadeOnScroll
+      animate={animateIn}
+      uniqueKey={classNames + '-' + props.id}
+      onVisible={onVisible}
+      enter={animateNow}
+    >
+      {containerDom}
+    </FadeOnScroll>
+  );
 };
-
-class Container extends Component<ContainerProps> {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const classNames = makeClass([
-      this.props.className,
-      styles.container,
-      this.props.pad === 'All' && styles.padded,
-      this.props.pad === 'Horizontal' && styles.padded_x,
-      this.props.pad === 'Vertical' && styles.padded_y,
-      this.props.pad === 'Bottom' && styles.padded_bottom,
-      this.props.pad === 'Desktop-Horizontal' && styles.padded_x_desktop,
-      this.props.breakpoint === 'Desktop' && styles.desktopOnly,
-      this.props.breakpoint === 'Tablet' && styles.tabletOnly,
-      this.props.breakpoint === 'Mobile' && styles.mobileOnly,
-      this.props.background && `bg bg-${this.props.background}`,
-      this.props.animateIn && 'fadeup-initial'
-    ]);
-
-    let gridTemplateColumns = this.props.gridColumn;
-    if (isTabletOrMobile()) {
-      gridTemplateColumns =
-        this.props.gridColumnTablet || this.props.gridColumn;
-      if (this.props.gridColumnMobile && isMobile()) {
-        gridTemplateColumns = this.props.gridColumnMobile;
-      }
-    }
-
-    return (
-      <FadeOnScroll
-        animate={this.props.animateIn}
-        uniqueKey={classNames + '-' + this.props.id}
-      >
-        <section id={this.props.id} className={classNames}>
-          {this.props.layoutType ? (
-            <section
-              className={makeClass([
-                this.props.classNameInner,
-                this.props.layoutType === 'maxWidth' && styles.maxWidth,
-                this.props.layoutType === 'splitView' && styles.splitCol2,
-                this.props.layoutType === 'splitView' &&
-                  styles.padded_Splitview,
-                this.props.layoutType === 'grid' && styles.layoutGrid
-              ])}
-              style={{ gridTemplateColumns: gridTemplateColumns }}
-            >
-              {this.props.children}
-            </section>
-          ) : (
-            this.props.children
-          )}
-        </section>
-      </FadeOnScroll>
-    );
-  }
-}
 
 export default Container;

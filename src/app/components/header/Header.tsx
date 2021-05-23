@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeClass, HAS_WINDOW, WINDOW } from '../../utils/helpers';
-import Container from '../container/Container';
+import Container from '../container';
 import { useLocation } from 'react-static';
 import LinkWrap from '../../modules/link/linkWrap';
 import Input from '../../elements/Input';
@@ -82,6 +82,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <header className={classNames}>
       <Container
+        theme='dark'
         breakpoint='Tablet'
         className={makeClass([
           styles.modalWrapper,
@@ -91,7 +92,7 @@ export const Header = (props: HeaderProps) => {
         <MobileModal links={props.links} languageToggle={languageSelector} />
       </Container>
 
-      <Container layoutType='maxWidth' pad='Horizontal'>
+      <Container layout='maxWidth' pad='Horizontal'>
         <div className={styles.container}>
           <div className={styles.logo}>
             <LinkWrap {...props.logoLink}>{props.logo || null}</LinkWrap>
