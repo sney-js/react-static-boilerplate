@@ -1,7 +1,8 @@
 import React from 'react';
-import Container from '../container/Container';
+import Container from '../container';
 import LinkWrap from '../../modules/link/linkWrap';
 import { LinkData } from '../../models/LinkData';
+import Grid from '../Grid';
 
 const styles = require('./footer.module.scss');
 
@@ -12,17 +13,13 @@ export type FooterProps = {
 
 const Footer = ({ content, links }: FooterProps) => (
   <footer className={styles.footer}>
-    <Container layoutType='maxWidth' pad='All'>
+    <Container layout='maxWidth' pad='All'>
       <div className={styles.links}>
-        <Container
-          layoutType='grid'
-          gridColumn='1fr 1fr 1fr'
-          gridColumnMobile='1fr'
-        >
+        <Grid template='1fr 1fr 1fr' templateMobile='1fr'>
           {links?.map((l, i) => (
             <LinkWrap key={`footer${i}`} {...l} />
           ))}
-        </Container>
+        </Grid>
       </div>
       <br />
       <small>{content}</small>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as iconsList from './index';
-import Container from '../../components/container/Container';
+import Grid from '../../components/Grid';
 
 export default {
   title: 'Elements/Icons'
@@ -12,10 +12,7 @@ export const SVG = () => {
     iconsListArray.push({ name: key, value: iconsList[key] });
   }
   return (
-    <Container
-      layoutType='grid'
-      gridColumn='repeat(auto-fill, minmax(100px, 1fr))'
-    >
+    <Grid template='repeat(auto-fill, minmax(100px, 1fr))'>
       {iconsListArray.map((e, i) => (
         <div key={i} className='story-dummy-icon'>
           <div>{e.value()}</div>
@@ -24,6 +21,6 @@ export const SVG = () => {
           </small>
         </div>
       ))}
-    </Container>
+    </Grid>
   );
 };

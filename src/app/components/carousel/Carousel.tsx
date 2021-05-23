@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import './carousel.scss';
 import { makeClass, WINDOW } from '../../utils/helpers';
-import Container from '../container/Container';
+import Container from '../container';
 import Button from '../../elements/Button';
 
 export type CarouselProps = {
@@ -167,7 +167,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
   render() {
     return (
       <section className='d-carousel-wrapper'>
-        <Container layoutType='maxWidth' animateIn={this.props.animateIn}>
+        <Container layout='maxWidth' animateIn={this.props.animateIn}>
           <section className='d-carousel'>
             <div className='d-carousel-items-wrapper'>
               {this.state.currentIndex > 0 && (

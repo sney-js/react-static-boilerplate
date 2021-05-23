@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import Container from '../container/Container';
+import Container from '../container';
 import Cookies from 'js-cookie';
 import { Cookie } from '../../models/Cookie';
 import Button from '../../elements/Button/Button';
@@ -49,7 +49,7 @@ class CookieBanner extends Component<CookieBannerProps> {
     return (
       <Container
         className={styles.cookieBanner}
-        layoutType='maxWidth'
+        layout='maxWidth'
         pad='Horizontal'
       >
         <div className={styles.container}>

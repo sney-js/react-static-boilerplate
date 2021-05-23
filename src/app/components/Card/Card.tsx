@@ -7,6 +7,8 @@ import {
   withoutInfoTileProps
 } from '../Infotile/InfotileHelper';
 import './Card.scss';
+import { LinkData } from '../../models/LinkData';
+import LinkElement from '../../elements/link/LinkElement';
 
 export type CardProps = InfotileProps & {
   /**
@@ -17,6 +19,10 @@ export type CardProps = InfotileProps & {
    * `overlay` would lay text elements on top of the image
    */
   appearance?: 'normal' | 'overlay';
+  /**
+   * An entire card level link
+   */
+  cardLink?: LinkData;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
@@ -25,7 +31,7 @@ export type CardProps = InfotileProps & {
  * @constructor
  */
 const Card: FC<CardProps> = (props: CardProps) => {
-  const { image, className, appearance, ...rest } = props;
+  const { image, className, appearance, cardLink, ...rest } = props;
 
   const infoTileProps = extractInfoTileProps(rest);
   const restCard = withoutInfoTileProps(rest);
@@ -40,7 +46,9 @@ const Card: FC<CardProps> = (props: CardProps) => {
 
   return (
     <div className={classes} {...restCard}>
-      {image && <div className='d-card__image'>{image}</div>}
+      <LinkElement {...cardLink}>
+        {image && <div className='d-card__image'>{image}</div>}
+      </LinkElement>
       <div className='d-card__body'>
         <Infotile {...infoTileProps} />
         {props.children}

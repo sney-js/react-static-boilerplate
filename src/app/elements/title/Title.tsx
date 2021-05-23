@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import './title.scss';
 import { makeClass } from '../../utils/helpers';
-import Container from '../../components/container/Container';
+import Container from '../../components/container';
 
 type ImageProps = {
   caption?: string;

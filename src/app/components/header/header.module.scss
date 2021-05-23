@@ -148,6 +148,9 @@
     align-items: center;
     min-width: 160px;
     padding-left: 40px;
+    :global(.field){
+        margin-bottom: 0;
+    }
 }
 
 .toggle-lang {
