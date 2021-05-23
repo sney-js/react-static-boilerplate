@@ -1,10 +1,16 @@
 import React from "react";
 import Container from "../container/Container";
 import LinkWrap from "../../containers/link/linkWrap";
+import { LinkData } from "../../models/LinkData";
 
 const styles = require("./footer.module.scss");
 
-export default ({ content, links }) => (
+export type FooterProps = {
+    links?: Array<LinkData>;
+    content?: React.ReactChildren;
+};
+
+const Footer = ({ content, links }: FooterProps) => (
     <footer className={styles.footer}>
         <Container layoutType="maxWidth" pad="All">
             <div className={styles.links}>
@@ -19,3 +25,4 @@ export default ({ content, links }) => (
         </Container>
     </footer>
 );
+export default Footer;
