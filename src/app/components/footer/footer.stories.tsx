@@ -1,8 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import Header from "../src/app/components/header/Header";
-import { RespImage } from "../src/app/utils/RespImage";
-import Footer from "../src/app/components/footer/Footer";
+import Footer from "./Footer";
 
 const ctfTest = {
     title: "Main Header",
@@ -21,9 +19,6 @@ const ctfTest = {
 };
 storiesOf("Footer", module).add("default footer", () => (
     <React.Fragment>
-        <Footer
-            content={"Copyright Trademark"}
-            links={ctfTest.links}
-        />
+        <Footer content="Copyright Trademark" links={ctfTest.links} />
     </React.Fragment>
 ));

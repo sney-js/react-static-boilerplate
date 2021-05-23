@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import Header from "../src/app/components/header/Header";
-import { RespImage } from "../src/app/utils/RespImage";
+import Header from "./Header";
+import { RespImage } from "../../utils/RespImage";
 
 const ctfTest = {
     title: "Main Header",
