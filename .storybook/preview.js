@@ -1,8 +1,5 @@
 import { withTests } from "@storybook/addon-jest";
-import { customViewports, StorySorter } from "./PluginsConfig";
 import { addDecorator } from "@storybook/react";
-import "./styles/main.scss";
-import React from "react";
 
 let testResults;
 try {
@@ -40,11 +37,5 @@ export const parameters = {
         grid: {
             disable: true,
         },
-    },
-    viewport: {
-        viewports: customViewports,
-    },
-    options: {
-        storySort: StorySorter,
     },
 };
