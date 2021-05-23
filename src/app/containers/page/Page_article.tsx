@@ -3,7 +3,7 @@ import { useRouteData } from "react-static";
 import "./page.scss";
 import Layout, { MetaData } from "../../components/layout/Layout";
 import { renderContentContainer } from "../utils/renderer";
-import Flatted from "flatted";
+import { parse } from "flatted";
 
 type PageProps = {
     changeTheme?: Function;
@@ -21,7 +21,7 @@ const Page_page = (props: PageProps) => {
     } else {
         const routeData = useRouteData();
         page = routeData.page;
-        page = Flatted.parse(page);
+        page = parse(page);
         locale = routeData.locale;
     }
     let metaData = page.fields.metaData ? page.fields.metaData.fields : "";

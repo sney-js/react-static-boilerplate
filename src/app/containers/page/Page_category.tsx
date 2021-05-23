@@ -2,7 +2,7 @@ import React from "react";
 import { useRouteData } from "react-static";
 import "./page.scss";
 import Layout, { MetaData } from "../../components/layout/Layout";
-import Flatted from "flatted";
+import { parse } from "flatted";
 import { CardList } from "../list/ListContainer";
 
 type PageProps = {
@@ -21,9 +21,9 @@ const Page_category = (props: PageProps) => {
     } else {
         const routeData = useRouteData();
         page = routeData.page;
-        page = Flatted.parse(page);
+        page = parse(page);
         extraData = routeData.extraData;
-        extraData = Flatted.parse(extraData);
+        extraData = parse(extraData);
         locale = routeData.locale;
     }
 

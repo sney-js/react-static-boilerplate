@@ -17,7 +17,7 @@ storiesOf("Form Elements", module).add("All Elements", () => {
                     console.log("Do something with the data:");
                     console.log(data);
                     // rare case: return false to use default html fom 'action'
-                    return new Promise<any>(r => setTimeout(() => r(), 1000));
+                    return new Promise<any>(r => setTimeout(() => r(true), 1000));
                 }}
                 onInvalid={e => {
                     console.log("e is not valid");
@@ -125,7 +125,7 @@ storiesOf("Form Elements", module).add("Error + Disabled", () => (
                 console.log("Do something with the data:");
                 console.log(data);
                 // rare case: return false to use default html fom 'action'
-                return new Promise<any>(r => setTimeout(() => r(), 1000));
+                return new Promise<any>(r => setTimeout(() => r(true), 1000));
             }}
             onInvalid={e => {
                 console.log("e is not valid");
@@ -220,7 +220,7 @@ storiesOf("Form Elements", module).add("Required", () => (
         <Form
             onSubmit={data => {
                 console.log("SENT");
-                return new Promise<any>(r => setTimeout(() => r(), 1000));
+                return new Promise<any>(r => setTimeout(() => r(true), 1000));
             }}
             onInvalid={e => {
                 let einput = e.target as HTMLInputElement;
@@ -273,7 +273,7 @@ storiesOf("Form Elements", module).add("Validation", () => (
         <Form
             onSubmit={data => {
                 console.log("SENT");
-                return new Promise<any>(resolve => resolve());
+                return new Promise<any>(resolve => resolve(true));
             }}
             onInvalid={e => {
                 console.log(e.target, "e is not valid");
