@@ -4,7 +4,7 @@ import { IArticleFields, IListFields, IPageFields } from "../../../contentful/@t
 import { getContentType, resolve } from "../../utils/Resolver";
 import RichText from "../../elements/rich-text/RichText";
 import { RespImage } from "../../utils/RespImage";
-import { Card } from "../../components/container/Card";
+import { Card } from "../../components/card/Card";
 
 type ListTypes = {
     customList?: Array<any>;

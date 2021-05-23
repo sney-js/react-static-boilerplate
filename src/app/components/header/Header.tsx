@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeClass, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import Container from "../container/Container";
 import { useLocation } from "react-static";
-import LinkWrap from "../../containers/link/linkWrap";
+import LinkWrap from "../../modules/link/linkWrap";
 import Input, { InputType } from "../../elements/forms/Inputs";
 import LanguageSelect, { getLang } from "./LanguageSelector";
 import { LinkData } from "../../models/LinkData";

@@ -35,7 +35,7 @@ export type RouteGeneratorConfig = {
     defaultLocale: string;
 };
 
-const TEMPLATES_FOLDER = `src/app/containers/page/Page_`;
+const TEMPLATES_FOLDER = `src/app/modules/page/Page_`;
 
 class RouteGenerator {
     client;

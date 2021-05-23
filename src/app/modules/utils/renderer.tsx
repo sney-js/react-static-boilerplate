@@ -4,7 +4,7 @@ import { RespImage } from "../../utils/RespImage";
 import Container from "../../components/container/Container";
 import ListContainer from "../list/ListContainer";
 
-// Add all new contentful containers here.
+// Add all new contentful modules here.
 export const renderContentContainer = ({ item, key, ...rest }) => {
     switch (item.type) {
         case "rich-text":

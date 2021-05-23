@@ -3,10 +3,10 @@ import { Head, useSiteData } from "react-static";
 import { getUrl } from "../../utils/RespImage";
 import { makeClass, HAS_WINDOW, WINDOW } from "../../utils/helpers";
 import GlobalLoader from "../global-loader/GlobalLoader";
-import HeaderContainer from "../../containers/header/HeaderContainer";
-import FooterContainer from "../../containers/footer/FooterContainer";
+import HeaderContainer from "../../modules/header/HeaderContainer";
+import FooterContainer from "../../modules/footer/FooterContainer";
 import { IMetaDataFields } from "../../../contentful/@types/contentful";
-import CookieBannerContainer from "../../containers/cookie-banner/CookieBannerContainer";
+import CookieBannerContainer from "../../modules/cookie-banner/CookieBannerContainer";
 
 const styles = require("./layout.module.scss");
 

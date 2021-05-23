@@ -19,7 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
-      "containers/*": ["src/containers/*"],
+      "modules/*": ["src/modules/*"],
       "types/*": ["types/*"]
     },
     "lib": ["dom", "es2015", "es2016"]
