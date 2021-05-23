@@ -5,7 +5,6 @@ import { getContentType, resolve } from "../../utils/Resolver";
 import RichText from "../../elements/rich-text/RichText";
 import { RespImage } from "../../utils/RespImage";
 import { Card } from "../../components/container/Card";
-import { useSiteData } from "react-static";
 
 type ListTypes = {
     customList?: Array<any>;

@@ -11,7 +11,8 @@ type CardProps = {
     subTitle?: string;
     subTitleHref?: string;
     description?: React.ReactElement;
-};
+} & React.HTMLAttributes<HTMLElement>;
+
 export const Card = (props: CardProps) => (
     <Container background="Primary" className="card">
         <div>

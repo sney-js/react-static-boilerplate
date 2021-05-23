@@ -4,7 +4,6 @@ import "./button.scss";
 import { makeClass } from "../../utils/helpers";
 import { LinkElementProps } from "../link/LinkElement";
 import Icon, { IconProps } from "../icon/Icon";
-import { ArrowProps } from "./Arrow";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     shape?: "icon" | "icon-filled" | "default";
@@ -68,10 +67,7 @@ class Button extends React.Component<ButtonProps> {
 
     getButtonTitle() {
         return (
-            this.props.label ||
-            this.props.text ||
-            (this.props.link && this.props.link.props.title) ||
-            (this.props as typeof ArrowProps).direction
+            this.props.label || this.props.text || (this.props.link && this.props.link.props.title)
         );
     }
 

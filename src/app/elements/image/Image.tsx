@@ -6,21 +6,15 @@ import { makeClass } from "../../utils/helpers";
 export type ImageProps = {
     content?: any;
     className?: string;
+} & React.HTMLAttributes<HTMLElement>;
+
+const ImageElement = (props: ImageProps) => {
+    if (!props.content && !props.children) return null;
+    return (
+        <figure className={makeClass(["d-image", props.className])}>
+            {props.children || RespImage({ image: props.content })}
+        </figure>
+    );
 };
-
-class ImageElement extends React.Component<ImageProps> {
-    constructor(params?) {
-        super(params);
-    }
-
-    render() {
-        if (!this.props.content && !this.props.children) return null;
-        return (
-            <figure className={makeClass(["d-image", this.props.className])}>
-                {this.props.children || RespImage({ image: this.props.content })}
-            </figure>
-        );
-    }
-}
 
 export default ImageElement;

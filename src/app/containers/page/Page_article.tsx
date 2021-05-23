@@ -12,7 +12,7 @@ type PageProps = {
     routeData?: any;
 };
 
-const Page_page = (props: PageProps) => {
+const Page_article = (props: PageProps) => {
     let page, locale;
 
     if (props.routeData) {
@@ -36,4 +36,4 @@ const Page_page = (props: PageProps) => {
     );
 };
 
-export default Page_page;
+export default Page_article;
