@@ -1,60 +1,48 @@
-@import "fonts";
-@import "typography-utils";
-
-@each $heading in (h1, h2, h3, h4, h5, body, label, small) {
+@each $heading in (h1, h2, h3, h4, h5, h6, body, label, small) {
     #{$heading} {
         // The function will set css properties for 'wide' as default
-        @include setTypeStylesAll("#{$heading}");
+        margin-top: 0;
+        margin-bottom: 1em;
         max-width: 100%;
+        @include setTypeStylesAll('#{$heading}');
     }
 }
 
-.caption {
-    @include setTypeStylesAll("caption");
-}
-
-// ---------------------------------------------------------------
-
-body {
-    font-family: $font-primary, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-        Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-}
-
-p {
-    max-width: 100%;
+.tiny {
+    @include setTypeStylesAll('tiny');
+    opacity: 0.5;
 }
 
 a {
     text-decoration: none;
     cursor: pointer;
+    color: inherit;
+
+    &:visited {
+        color: inherit;
+    }
 }
 
-strong {
+strong,
+b {
     font-weight: bold;
 }
 
 .italic {
     font-style: italic;
 }
-
 .bold {
     font-weight: bold;
-}
-
-.black {
-    font-weight: 800;
-}
-
-.ultra-black {
-    font-weight: 900;
 }
 
 hr {
     height: 1px;
     width: 100%;
     border: 0;
-    margin-top: $default-gap * 2;
-    margin-bottom: $default-gap * 2;
+    background-color: var(--color-highlight-1);
+}
+
+p hr {
+    margin-top: var(--gap-layout);
+    margin-bottom: var(--gap-layout);
 }

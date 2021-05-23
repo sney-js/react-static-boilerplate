@@ -1,102 +1,155 @@
-$type-style-map: (
-    desktop: (
-        // default
-        body:
-        (
-            font-size: 16px,
-            line-height: 25px,
+// second arg overwritews
+@function non-destructive-map-merge($parent-map, $child-map) {
+  $result: $parent-map;
+  @each $key, $value in $child-map {
+    @if (not map-has-key($result, $key)) or
+      (type-of(map-get($result, $key)) != type-of($value)) or
+      (not (type-of(map-get($result, $key)) == map and type-of($value) == map)) {
+      $result: map-merge(
+                      $result,
+                      (
+                              $key: $value
+                      )
+      );
+    } @else {
+      $result: map-merge(
+                      $result,
+                      (
+                              $key: non-destructive-map-merge(map-get($result, $key), $value)
+                      )
+      );
+    }
+  }
+  @return $result;
+}
+
+$type-style-map--default: (
+        desktop: (
+                body: (
+                        font-size: 16px,
+                        line-height: 1.5
+                ),
+                h1: (
+                        font-size: 64px,
+                        line-height: normal,
+                        font-weight: normal,
+                        margin-top: 0px,
+                        margin-bottom: 0.5em
+                ),
+                h2: (
+                        margin-top: 0,
+                        font-size: 56px,
+                        line-height: normal,
+                        font-weight: normal,
+                        margin-bottom: 2em
+                ),
+                h3: (
+                        font-size: 44px,
+                        line-height: normal
+                ),
+                h4: (
+                        font-size: 22px,
+                        line-height: normal
+                ),
+                h5: (
+                        font-size: 18px,
+                        line-height: normal
+                ),
+                h6: (
+                        font-size: 14px,
+                        line-height: normal
+                ),
+                label: (
+                        font-size: 13px,
+                        line-height: normal,
+                        font-weight: normal,
+                        letter-spacing: 0.2px
+                ),
+                small: (
+                        font-size: 12px,
+                        line-height: 1.5,
+                        margin-bottom: 0
+                ),
+                tiny: (
+                        font-size: 10px,
+                        line-height: 1.5
+                ),
+                button: (
+                        font-size: 16px,
+                        line-height: 19px,
+                        font-weight: 600
+                )
         ),
-        h1: (
-            font-size: 36px,
-            line-height: 45px,
-            margin-top: 32px,
-            margin-bottom: 32px,
+        tablet: (
+                h1: (
+                        font-size: 48px
+                ),
+                h2: (
+                        font-size: 44px
+                ),
+                h3: (
+                        font-size: 44px
+                ),
+                h4: (
+                        font-size: 18px
+                ),
+                h5: (
+                        font-size: 14px
+                ),
+                h6: (
+                        font-size: 11px
+                )
         ),
-        h2: (
-            font-size: 28px,
-            line-height: 32px,
-        ),
-        h3: (
-            font-size: 21px,
-            line-height: 25px,
-        ),
-        caption: (
-            font-size: 11px,
-            line-height: 13px,
-            letter-spacing: 1.83px,
-            text-transform: Uppercase,
-            font-weight: normal,
-        ),
-        label: (
-            font-size: 11px,
-            line-height: 13px,
-            letter-spacing: 2px,
-            text-transform: Uppercase,
-            font-weight: bold,
-        ),
-        small: (
-            font-size: 9px,
-            line-height: 11px,
-        ),
-        menu-link: (
-            font-size: 9px,
-            line-height: 11px,
-            letter-spacing: 2px,
-            text-transform: uppercase,
-        ),
-    ),
-    tablet: (
-          // < 1024px
-          h2:
-          (
-              font-size: 28px,
-              line-height: 35px,
-          ),
-    ),
-    mobile: (
-        // < 500px
-        body:
-        (
-            font-size: 16px,
-            line-height: 25px,
-        ),
-        h1: (
-            font-size: 28px,
-            line-height: 35px,
-        ),
-        h2: (
-            font-size: 24px,
-            line-height: 28px,
-        ),
-    ),
+        mobile: (
+                body: (
+                        font-size: 18px
+                ),
+                h1: (
+                        font-size: 42px
+                ),
+                h2: (
+                        font-size: 32px
+                ),
+                h3: (
+                        font-size: 32px
+                ),
+                h4: (
+                        font-size: 18px
+                ),
+                h5: (
+                        font-size: 14px
+                ),
+                h6: (
+                        font-size: 11px
+                )
+        )
+);
+
+$type-style-map: () !default;
+$type-style-map: non-destructive-map-merge(
+                $type-style-map--default,
+                $type-style-map
 );
 
 // Function that uses the config above to populate css properties.
-@mixin setTypeStyles($style-type, $breakpoint: "desktop") {
-    $breakpoint-data: map_get($type-style-map, $breakpoint);
-    @if (map-has-key($breakpoint-data, $style-type)) {
-        $style-data: map_get($breakpoint-data, $style-type);
-        @each $key in map-keys($style-data) {
-            $value: map_get($style-data, $key);
-            #{$key}: $value;
-        }
+@mixin setTypeStyles($style-type, $breakpoint: 'desktop') {
+  $breakpoint-data: map_get($type-style-map, $breakpoint);
+  @if (map-has-key($breakpoint-data, $style-type)) {
+    $style-data: map_get($breakpoint-data, $style-type);
+    @each $key in map-keys($style-data) {
+      $value: map_get($style-data, $key);
+      #{$key}: $value;
     }
-}
-
-@mixin linkStyles($theme) {
-    text-decoration: underline;
-    cursor: pointer;
-    color: map-get($theme, text);
-    font-weight: bold;
+  }
 }
 
 // Mixin to load above styles for all breakpoints.
 @mixin setTypeStylesAll($style-type) {
-    @include setTypeStyles($style-type);
-    @media #{$screen-tablet} {
-        @include setTypeStyles($style-type, "tablet");
-    }
-    @media #{$screen-mobile} {
-        @include setTypeStyles($style-type, "mobile");
-    }
+  @include setTypeStyles($style-type);
+  @media #{$screen-tablet} {
+    @include setTypeStyles($style-type, 'tablet');
+  }
+  @media #{$screen-mobile} {
+    @include setTypeStyles($style-type, 'mobile');
+  }
 }

@@ -1,5 +1,5 @@
 export const environment = {
-    production: true,
-    localStorageKey: "d-data",
-    apiUrl: "/",
+  production: true,
+  localStorageKey: 'd-data',
+  apiUrl: '/'
 };

@@ -1,0 +1,65 @@
+@import "../../scss/helpers";
+
+.d-infotile {
+  &__body {
+  }
+
+  &__subTitle {
+    display: block;
+    margin-top: 0;
+    margin-bottom: var(--spacing-gap);
+    color: var(--color-primary-dynamic);
+    font-size: 1.33rem;
+  }
+
+  //-----------------title + title secondary------------------
+  &__header {
+    margin: 0 0 var(--spacing-gap-m);
+    line-height: 1em;
+    @media #{$screen-mobile} {
+      margin-bottom: var(--spacing-gap);
+    }
+  }
+
+  &__title {
+    display: block;
+    margin-top: 0;
+  }
+
+  &__header_Secondary &__title {
+    color: var(--color-primary-dynamic);
+  }
+
+  &__titleSecondary {
+    display: block;
+    position: relative;
+    color: var(--color-body);
+  }
+
+  //-------------------------------------------------------
+  &__description {
+    color: var(--color-body);
+    margin-bottom: var(--spacing-gap-m);
+    @media #{$screen-mobile} {
+      margin-bottom: var(--spacing-gap);
+    }
+  }
+
+  &__links {
+    .d-layout-centered & {
+      justify-content: center;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, auto));
+    grid-gap: var(--spacing-gap);
+    margin-bottom: var(--spacing-gap-m);
+    justify-content: start;
+
+    @media #{$screen-mobile} {
+      grid-template-columns: auto;
+      justify-content: normal;
+      margin-bottom: 0;
+    }
+  }
+}

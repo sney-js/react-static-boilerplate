@@ -1,0 +1,116 @@
+body {
+  // --------------CONSTANTS---------------
+  // Please DO NOT change values of variables defined here on different themes
+  // These are CONSTANTS.
+
+  --font-primary: 'Helvetica';
+  --font-secondary: 'Helvetica';
+
+  //--------------
+  --color-sp-Theme-Constants: none;
+
+  --color-primary: #3f6ddb;
+  --color-secondary: #ffd500;
+  --color-light: #fff;
+  --color-dark: #222222;
+  //--------------
+  --color-sp-Theme-Variants: none;
+
+  --color-primary-darker: #1a46b0;
+  --color-primary-lighter: #648eec;
+
+  //---------------DEFAULT VALUES------------
+  // The values of colors defined here will change depending on themes.
+  // These are CONSTANTS.
+
+  --color-sp-Theme-Dynamic: none;
+
+  --color-primary-dynamic: var(--color-primary);
+  --color-secondary-dynamic: var(--color-secondary);
+  //--------------
+  --color-sp-Site: none;
+
+  --color-body: var(--color-dark);
+  --color-bg: var(--color-light);
+  --color-error: #d20000;
+  --color-heading: #0d0847;
+
+  //--------------
+  --color-sp-Highlights: none;
+  --color-highlight-0: rgba(0, 0, 0, 0.05);
+  --color-highlight-1: rgba(0, 0, 0, 0.1);
+  --color-highlight-2: rgba(0, 0, 0, 0.15);
+  --color-highlight-3: rgba(0, 0, 0, 0.3);
+  --color-highlight-4: rgba(0, 0, 0, 0.7);
+
+  --color-sp-Shadow: none;
+  --color-shadow-small: rgba(0, 0, 0, 0.1);
+
+  //--------------
+
+  //------------NUMBERS---------------
+  --transition-ui: 0.25s ease-out;
+  --transition: 0.5s ease-out;
+  --border-style: solid;
+  --border-width-small: 2px;
+  --border-radius-small: 2px;
+  --border-radius-medium: 4px;
+  --border-radius-image: 8px;
+  --border-radius-button: 24px;
+  --val-max-width: 1200px;
+  --val-max-width-narrow: 700px;
+  --button-height: 42px;
+  --button-border-width: 2px;
+
+  --nav-height: 90px;
+
+  --spacing-gap: 16px;
+  --spacing-gap-xxs: calc(var(--spacing-gap) / 4);
+  --spacing-gap-xs: calc(var(--spacing-gap) / 2);
+  --spacing-gap-ms: calc(var(--spacing-gap) * 1.5);
+  --spacing-gap-m: calc(var(--spacing-gap) * 2);
+  --spacing-gap-large: calc(var(--spacing-gap) * 4);
+  --spacing-gap-mobile: var(--spacing-gap);
+  --spacing-gap-tablet: var(--spacing-gap-m);
+
+  --z-index-xxs: 1;
+  --z-index-xs: 2;
+
+  --gradient-primary: none;
+  --box-shaddow-small: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  --box-shaddow-medium: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
+  --box-shaddow-large: 0 2px 42px 0 rgba(0, 0, 0, 0.15);
+
+  //--------------BREAKPOINTS DYNAMIC----------------
+  --gap-layout: var(--spacing-gap-large);
+  @media #{$screen-tablet} {
+    --gap-layout: var(--spacing-gap-tablet);
+  }
+  @media #{$screen-mobile} {
+    --gap-layout: var(--spacing-gap-mobile);
+  }
+  --spacing-margin-outer: calc(
+          (100vw - var(--val-max-width)) / 2 + var(--gap-layout)
+  );
+}
+
+// use $darkTheme inside components
+.data-theme-dark,
+[data-theme='dark'] {
+  --color-body: var(--color-light);
+  --color-bg: var(--color-dark);
+  --color-error: #ff7979;
+  --color-primary-dynamic: var(--color-secondary);
+  --color-secondary-dynamic: var(--color-primary);
+  --color-heading: #e5e5e5;
+
+  --color-highlight-1: rgba(255, 255, 255, 0.2);
+  --color-highlight-2: rgba(255, 255, 255, 0.3);
+  --gradient-primary: radial-gradient(circle at 50% 55%, #026a38, #009923 92%);
+}
+
+
+[data-theme] {
+  background-color: var(--color-bg);
+  color: var(--color-body);
+}
