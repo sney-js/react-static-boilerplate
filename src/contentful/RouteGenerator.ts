@@ -2,7 +2,7 @@ import { ContentfulApi } from "./api";
 import { ContentfulEntry, resolve, resolveLinkInfo } from "../app/utils/Resolver";
 import { CleanupConfig, cleanupData } from "./EntryCleaner";
 import { IArticle, IFooterFields, IHeaderFields, IPage } from "./@types/contentful";
-import * as Flatted from "flatted";
+import {parse, stringify} from "flatted";
 import RouteConfig from "./RouteConfig";
 import { Route } from "react-static";
 
@@ -129,8 +129,8 @@ class RouteGenerator {
                         path: info.path,
                         template: `${TEMPLATES_FOLDER}${contentType}`,
                         getData: (): { extraData: string; page: string; locale: String } => ({
-                            page: Flatted.stringify(info.page),
-                            extraData: Flatted.stringify(extraData),
+                            page: stringify(info.page),
+                            extraData: stringify(extraData),
                             locale: info.locale,
                         }),
                     };

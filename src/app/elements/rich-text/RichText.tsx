@@ -4,10 +4,10 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import ImageElement from "../image/Image";
 import LinkElement from "../link/LinkElement";
 import "./rich-text.scss";
-import * as Markdown from "react-markdown";
+import Markdown from "react-markdown";
 
 const GLOBAL_OPTIONS = {
-		renderText: text => text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
+    renderText: text => text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
     renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: node => {
             return <ImageElement content={node.data.target} />;
@@ -45,7 +45,9 @@ export default (props: RichTextType) => {
     } else if (props.markdown) {
         return (
             <section className={"d-rich-text"}>
-                <Markdown source={props.markdown} escapeHtml={false} />
+                <Markdown>
+                    {props.markdown}
+                </Markdown>
             </section>
         );
     } else {

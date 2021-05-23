@@ -1,8 +1,8 @@
 import React from "react";
-import * as Markdown from "react-markdown";
+import Markdown from "react-markdown";
 
 export const MarkdownRenderer = ({ html }) => {
-    return <Markdown source={html} escapeHtml={true} />;
+    return <Markdown children={html} />;
 };
 
 export default MarkdownRenderer;
