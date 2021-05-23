@@ -4,11 +4,9 @@ import { RespImage } from "../../utils/RespImage";
 import { GlobalContext } from "../../components/layout/Layout";
 import { getSiteDataForLocale } from "../utils/ReactStaticHelpers";
 import { useSiteData } from "react-static";
-import { IHeaderFields } from "../../../contentful/@types/contentful";
-import { resolve, resolveLinkInfo } from "../../utils/Resolver";
 import { LinkData } from "../../models/LinkData";
 
-export default function HeaderContainer() {
+const HeaderContainer = () => {
     const { locale } = useContext(GlobalContext);
     const { localeData } = useSiteData();
     const header = getSiteDataForLocale(locale).header;
@@ -27,4 +25,5 @@ export default function HeaderContainer() {
             logoLink={header.logoLink as LinkData}
         />
     );
-}
+};
+export default HeaderContainer;

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { makeClass } from "../../utils/helpers";
 import { FadeOnScroll } from "../../elements/fadeup/fadeup";
-import { isMobile, isTablet, isTabletOrMobile } from "../../utils/Device";
+import { isMobile, isTabletOrMobile } from "../../utils/Device";
 
 const styles = require("./container.module.scss");
+
 export type ContainerProps = {
     id?: string;
     children?: any;
