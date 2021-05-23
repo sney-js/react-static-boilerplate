@@ -52,14 +52,14 @@ function Layout(props: LayoutProps) {
 
     useEffect(() => {
         if (!HAS_WINDOW) return;
-        const bodyElement = document.body["dataset"];
+        const bodyElement = document.body.dataset;
         WINDOW.theme = bodyElement && bodyElement.theme ? props.theme : "light";
     }, [props.theme]);
 
     const [locale, setLocale] = useState(props.locale || localeData?.default);
 
     const globalState = {
-        onLocaleChange: locale => {
+        onLocaleChange: (locale) => {
             setLocale(locale);
         },
         locale: locale,

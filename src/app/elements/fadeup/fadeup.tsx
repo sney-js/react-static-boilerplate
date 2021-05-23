@@ -15,7 +15,7 @@ export const FadeOnScroll = ({ uniqueKey, animate, children, ...transitionProps 
     const [isVisible, setvisible] = useState(false);
     const uniqKey = route && route.pathname + (uniqueKey || "-no-key");
     return (
-        <OnVisible onChange={val => setvisible(val)}>
+        <OnVisible onChange={(val) => setvisible(val)}>
             <CSSTransition
                 in={isVisible}
                 appear={true}

@@ -24,7 +24,7 @@ class Title extends React.Component<ImageProps> {
                     this.props.alignment && "align-" + this.props.alignment,
                 ])}
             >
-                {this.props.caption && <div className={"caption"}>{this.props.caption}</div>}
+                {this.props.caption && <div className="caption">{this.props.caption}</div>}
 
                 {this.props.content}
             </Container>

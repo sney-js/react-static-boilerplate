@@ -27,7 +27,7 @@ const Page_category = (props: PageProps) => {
         locale = routeData.locale;
     }
 
-    let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
+    const metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
         <Layout locale={locale}>
             <MetaData {...metaData} />

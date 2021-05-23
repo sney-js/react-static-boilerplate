@@ -22,13 +22,13 @@ export default function ListContainer(props: ListTypes) {
 
 export const CardList = ({ list, title }) => {
     return (
-        <Container animateIn pad={"All"} layoutType={"maxWidth"}>
+        <Container animateIn pad="All" layoutType="maxWidth">
             <h2>{title}</h2>
             <Container
-                layoutType={"grid"}
-                gridColumn={"1fr 1fr 1fr"}
-                gridColumnTablet={"1fr 1fr"}
-                gridColumnMobile={"1fr"}
+                layoutType="grid"
+                gridColumn="1fr 1fr 1fr"
+                gridColumnTablet="1fr 1fr"
+                gridColumnMobile="1fr"
             >
                 {list.map((page, index) => {
                     const type = getContentType(page);

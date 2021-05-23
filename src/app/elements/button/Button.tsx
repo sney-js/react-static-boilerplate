@@ -4,13 +4,10 @@ import "./button.scss";
 import { makeClass } from "../../utils/helpers";
 import { LinkElementProps } from "../link/LinkElement";
 import Icon, { IconProps } from "../icon/Icon";
-import Arrow from "./Arrow";
+import { ArrowProps } from "./Arrow";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    shape?:
-        | "icon"
-        | "icon-filled"
-        | "default";
+    shape?: "icon" | "icon-filled" | "default";
     link?: React.ReactElement<LinkElementProps>;
     label?: string;
     icon?: ReactNode;
@@ -25,10 +22,6 @@ class Button extends React.Component<ButtonProps> {
     static defaultProps = {
         preventDefaultOnLoading: true,
     };
-
-    constructor(params?) {
-        super(params);
-    }
 
     onClick(e) {
         if (this.props.isLoading && this.props.preventDefaultOnLoading) {
@@ -78,7 +71,7 @@ class Button extends React.Component<ButtonProps> {
             this.props.label ||
             this.props.text ||
             (this.props.link && this.props.link.props.title) ||
-            (this.props as Arrow["props"]).direction
+            (this.props as typeof ArrowProps).direction
         );
     }
 
@@ -92,14 +85,18 @@ class Button extends React.Component<ButtonProps> {
             active && "active",
         ]);
 
-        let wrapper = this.props.link ? this.props.link : <button title={this.getButtonTitle()} />;
+        const wrapper = this.props.link ? (
+            this.props.link
+        ) : (
+            <button title={this.getButtonTitle()} />
+        );
 
         return React.cloneElement(
             wrapper,
             {
                 ...(this.props.link && this.props.link.props),
                 ...rest,
-                onClick: e => this.onClick(e),
+                onClick: (e) => this.onClick(e),
                 className: classList,
             },
             React.Children.toArray(this.getButtonContent()),

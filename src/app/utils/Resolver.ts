@@ -9,10 +9,10 @@ export type ContentfulEntry = {
     locale?: string;
 };
 
-export let getPageType = (contentType: string) =>
-    RouteConfig.pages.find(e => e.contentType === contentType);
+export const getPageType = (contentType: string) =>
+    RouteConfig.pages.find((e) => e.contentType === contentType);
 
-export let getDefaultLocale = () => RouteConfig.defaultLocale;
+export const getDefaultLocale = () => RouteConfig.defaultLocale;
 /**
  * Returns the resolved path from a given ContentfulNode
  * @param node
@@ -20,8 +20,8 @@ export let getDefaultLocale = () => RouteConfig.defaultLocale;
 export const resolve = (node: ContentfulEntry) => {
     if (!node) return undefined;
 
-    let contentType = getContentType(node);
-    let pageContentTypeConfig = getPageType(contentType);
+    const contentType = getContentType(node);
+    const pageContentTypeConfig = getPageType(contentType);
 
     if (!pageContentTypeConfig) {
         return undefined;
@@ -46,14 +46,14 @@ export const resolveLinkInfo = (node: ContentfulEntry): LinkData => {
     const contentType = getContentType(node);
 
     // pages can be directly resolved too
-    if (!!getPageType(contentType)) {
+    if (getPageType(contentType)) {
         internalLinkNode = node;
     } else {
         internalLinkNode = node.fields.internalLink;
     }
 
-    let externalLinkNode = node.fields.externalLink;
-    let anchorId = node.fields.anchorId;
+    const externalLinkNode = node.fields.externalLink;
+    const anchorId = node.fields.anchorId;
 
     const linkData = {
         title: node.fields.title,
@@ -83,7 +83,7 @@ export const getContentLocale = (node?: ContentfulEntry) => {
     }
 };
 
-export const cleanPath = function(result: string) {
+export const cleanPath = function (result: string) {
     return (result + "/").toString().replace(/[\/]+/g, "/");
 };
 
@@ -105,10 +105,10 @@ const _resolvePagePath = (
     stack.push(page);
 
     while (stack.length > 0) {
-        let node = stack.pop();
+        const node = stack.pop();
         if (!node) continue;
 
-        let name: string = node.fields.name === "index" ? "" : node.fields.name;
+        const name: string = node.fields.name === "index" ? "" : node.fields.name;
 
         pages.push(name);
 

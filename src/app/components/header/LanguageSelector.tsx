@@ -22,7 +22,7 @@ const LanguageSelect = (props: LanguageSelectorProps) => {
         <div className={styles.languageSelector} defaultValue={activeLanguage.code}>
             <img src={activeLanguage.icon} onClick={() => setClosed(!isClosed)} />
             <ul className={makeClass([styles.languagepicker, isClosed && styles.hidden])}>
-                {languages.map(lang => (
+                {languages.map((lang) => (
                     <li key={lang.code}>
                         <img
                             src={lang.icon}

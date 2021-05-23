@@ -28,7 +28,7 @@ class Container extends Component<ContainerProps> {
     }
 
     render() {
-        let classNames = makeClass([
+        const classNames = makeClass([
             this.props.className,
             styles.container,
             this.props.pad === "All" && styles.padded,

@@ -29,7 +29,7 @@ export const RespImage = ({
     if (!imageUrl && !getByPath(image, "fields.file.url")) return null;
 
     const url = imageUrl || image.fields.file.url;
-    const srcsets = [400, 800, 1440, 1920].map(width => {
+    const srcsets = [400, 800, 1440, 1920].map((width) => {
         return createSrcSetEntry(url, width, ` ${width}w`);
     });
     return (

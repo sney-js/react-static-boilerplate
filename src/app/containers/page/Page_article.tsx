@@ -24,7 +24,7 @@ const Page_page = (props: PageProps) => {
         page = parse(page);
         locale = routeData.locale;
     }
-    let metaData = page.fields.metaData ? page.fields.metaData.fields : "";
+    const metaData = page.fields.metaData ? page.fields.metaData.fields : "";
     return (
         <Layout locale={locale}>
             <MetaData {...metaData} />

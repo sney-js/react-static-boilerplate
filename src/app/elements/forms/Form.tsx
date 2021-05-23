@@ -35,11 +35,9 @@ class Form extends React.Component<FormProps> {
     setInputValidity(name: string, valid: boolean) {
         if (!this.state) return;
         const inputs = this.state.inputsInvalid;
-        if (!inputs[name] || inputs[name] === valid) {
-            return;
-        } else {
+        if (!(!inputs[name] || inputs[name] === valid)) {
             inputs[name] = valid;
-            let invalids = Object.keys(inputs).filter(e => inputs[e] === true);
+            const invalids = Object.keys(inputs).filter((e) => inputs[e] === true);
             this.setState({
                 inputsInvalid: inputs,
                 formValid: invalids.length === 0,
@@ -58,22 +56,22 @@ class Form extends React.Component<FormProps> {
         return (
             <form
                 {...this.props}
-                onSubmit={e => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     const allInputsValid = this.state.formValid;
-                    let isEmpty = Object.keys(this.state.inputsInvalid).length === 0;
+                    const isEmpty = Object.keys(this.state.inputsInvalid).length === 0;
                     if (!isEmpty && !allInputsValid) {
                         console.error("All inputs not valid!", this.state.inputsInvalid);
                         return;
                     }
-                    let jsonData = this.getJsonData(e.target);
+                    const jsonData = this.getJsonData(e.target);
                     this.setState({ inProgress: true });
                     this.props.onSubmit(jsonData, e).then(() => {
                         this.setState({ inProgress: false });
                     });
                 }}
-                onChange={e => {
-                    let input = e.target as HTMLInputElement;
+                onChange={(e) => {
+                    const input = e.target as HTMLInputElement;
                     this.props.onChange && this.props.onChange(input);
                 }}
             >
@@ -87,7 +85,7 @@ class Form extends React.Component<FormProps> {
                             timeout={{ enter: 0 }}
                             key={this.props.error.errorText}
                         >
-                            <div className={"form-error-box fadeup-initial"}>
+                            <div className="form-error-box fadeup-initial">
                                 <small>{this.props.error && this.props.error.errorText}</small>
                             </div>
                         </CSSTransition>
@@ -100,7 +98,7 @@ class Form extends React.Component<FormProps> {
     private getJsonData(form: any) {
         const formData = new FormData(form);
         const object = {};
-        formData.forEach(function(value: string, key) {
+        formData.forEach(function (value: string, key) {
             value = value.trim();
             if (object[key] !== undefined) object[key] += value;
             else object[key] = value;

@@ -22,15 +22,15 @@ export class Mocks {
         if (!this.originalFetch) return;
         const fetch = this.originalFetch;
         let mockConfigs = this.mockConfigs;
-        window.fetch = function(url, config) {
+        window.fetch = function (url, config) {
             mockConfigs = [...mockConfigs];
             if (!mockConfigs) return fetch.apply(this, arguments);
 
-            const filteredConfigs = mockConfigs.filter(mockConfig => {
+            const filteredConfigs = mockConfigs.filter((mockConfig) => {
                 return mockConfig.method == ((config && config.method) || "GET");
             });
 
-            const mockConfig: any = filteredConfigs.find(mockConfig => {
+            const mockConfig: any = filteredConfigs.find((mockConfig) => {
                 return (<string>url).match(mockConfig.url);
             });
 

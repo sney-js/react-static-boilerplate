@@ -21,19 +21,20 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         currentItem: null,
         currentIndex: 0,
     };
+
     itemsRefs = [];
     containerRef: any;
     touchStart: number;
     moveDelta: number;
-    lastTranslate: number = 0;
-    lastWindowWidth: number = 0;
+    lastTranslate = 0;
+    lastWindowWidth = 0;
 
     static defaultProps = {
         items: [],
         swipeThreshold: 50,
     };
 
-    onResize = e => {
+    onResize = (e) => {
         if (this.lastWindowWidth !== e.target.innerWidth) {
             this.init(this.state.currentIndex);
         }
@@ -99,13 +100,13 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
                             "d-carousel-item",
                             this.state.currentIndex == index && "active",
                         ])}
-                        ref={elementRef => {
+                        ref={(elementRef) => {
                             this.itemsRefs[index] = elementRef;
                         }}
                     >
                         {item}
                     </div>
-                    <div className={"d-carousel-item-gap"} />
+                    <div className="d-carousel-item-gap" />
                 </React.Fragment>
             );
         });
@@ -162,48 +163,50 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     render() {
         return (
-            <section className={"d-carousel-wrapper"}>
-                <Container layoutType={"maxWidth"} animateIn={this.props.animateIn}>
-                    <section className={"d-carousel"}>
-                        <div className={"d-carousel-items-wrapper"}>
+            <section className="d-carousel-wrapper">
+                <Container layoutType="maxWidth" animateIn={this.props.animateIn}>
+                    <section className="d-carousel">
+                        <div className="d-carousel-items-wrapper">
                             {this.state.currentIndex > 0 && (
                                 <Arrow
-                                    className={"prev-button"}
-                                    direction={"left"}
-                                    onClick={e => this.onPrevClick()}
+                                    className="prev-button"
+                                    direction="left"
+                                    onClick={(e) => this.onPrevClick()}
                                 />
                             )}
                             {this.state.currentIndex < this.props.items.length - 1 && (
                                 <Arrow
-                                    className={"next-button"}
-                                    direction={"right"}
-                                    onClick={e => this.onNextClick()}
+                                    className="next-button"
+                                    direction="right"
+                                    onClick={(e) => this.onNextClick()}
                                 />
                             )}
 
                             <div
-                                onTouchStart={touchStartEvent =>
+                                onTouchStart={(touchStartEvent) =>
                                     this.handleTouchStart(touchStartEvent)
                                 }
-                                onTouchMove={touchMoveEvent => this.handleTouchMove(touchMoveEvent)}
+                                onTouchMove={(touchMoveEvent) =>
+                                    this.handleTouchMove(touchMoveEvent)
+                                }
                                 onTouchEnd={() => this.handleTouchEnd()}
                                 className={makeClass([
                                     "d-carousel-items-container",
                                     this.touchStart && "is-dragging",
                                 ])}
                                 style={this.getCurrentStyle()}
-                                ref={elementRef => (this.containerRef = elementRef)}
+                                ref={(elementRef) => (this.containerRef = elementRef)}
                             >
                                 {this.initElements(this.props.items)}
                             </div>
                         </div>
                         {this.props.items.length > 1 && (
-                            <div className={"d-carousel-indicators-container"}>
+                            <div className="d-carousel-indicators-container">
                                 {this.props.items.map((ref, index) => {
                                     return (
                                         <div
-                                            className={"d-carousel-indicator-wrapper"}
-                                            onClick={e => this.onIndicatorClick(index)}
+                                            className="d-carousel-indicator-wrapper"
+                                            onClick={(e) => this.onIndicatorClick(index)}
                                         >
                                             <div
                                                 key={index}
