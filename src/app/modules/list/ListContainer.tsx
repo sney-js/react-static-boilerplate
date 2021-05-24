@@ -32,6 +32,7 @@ export const CardList = ({ list, title }) => {
         template='1fr 1fr 1fr'
         templateTablet='1fr 1fr'
         templateMobile='1fr'
+        align='stretch'
       >
         {list.map((page, index) => {
           const type = getContentType(page);
@@ -45,7 +46,6 @@ export const CardList = ({ list, title }) => {
                   image={<RespImage image={fields.image} />}
                   cardLink={{ path: resolve(page) }}
                   description={<RichText document={fields.description} />}
-                  subTitle={fields.category.fields.title}
                 />
               );
             }

@@ -1,16 +1,7 @@
 import { ContentfulApi } from './api';
-import {
-  ContentfulEntry,
-  resolve,
-  resolveLinkInfo
-} from '../app/utils/Resolver';
+import { ContentfulEntry, resolve } from '../app/utils/Resolver';
 import { CleanupConfig, cleanupData } from './EntryCleaner';
-import {
-  IArticle,
-  IFooterFields,
-  IHeaderFields,
-  IPage
-} from './@types/contentful';
+import { IFooterFields, IHeaderFields, IPage } from './@types/contentful';
 import { stringify } from 'flatted';
 import RouteConfig from './RouteConfig';
 import { Route } from 'react-static';
@@ -72,32 +63,12 @@ class RouteGenerator {
     const localisedRoutes = await this.routeDataResolver();
 
     const pathsArray = localisedRoutes.map((routes: RouteDataType[]) => {
-      const articlesAll = routes.find(
-        (i) => i.contentType === 'article'
-      ).pageList;
-
-      const categoriesGrouped = groupByArray(
-        articlesAll,
-        (x) => x.page.fields.category.fields.name
-      );
-
       return routes.map(({ contentType, pageList }) =>
         pageList.map((info: PageRouteData) => {
-          let extraData = {};
+          const extraData = {};
 
           switch (contentType) {
-            case 'category': {
-              extraData = categoriesGrouped
-                .find((e) => e.key === info.name)
-                .values.map((ar) => ar.page);
-              break;
-            }
             case 'article': {
-              const page = info.page as IArticle;
-              const articleCategory = page.fields.category?.fields.name;
-              extraData = categoriesGrouped
-                .find((e) => e.key === articleCategory)
-                ?.values.map((ar) => resolveLinkInfo(ar.page));
               break;
             }
           }

@@ -10,8 +10,8 @@
     "compile:config": "tsc --p tsconfig.static.json",
     "code:svgr": "svgr --config-file svgrrc.config.js --ext tsx -d src/app/elements/svg-elements public/assets/svg-elements",
     "start:storybook": "start-storybook -p 9001 -s ./public -c .storybook",
-    "contentful:pull": "contentful:pull-types",
-    "contentful:push": "contentful:push-types",
+    "contentful:pull": "node scripts/contentful/bin/push-types.js",
+    "contentful:push": "node scripts/contentful/bin/pull-types.js",
     "contentful:types": "contentful-typescript-codegen --output src/contentful/@types/contentful.d.ts",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

@@ -13,7 +13,7 @@ export type FooterProps = {
 
 const Footer = ({ content, links }: FooterProps) => (
   <footer className={styles.footer}>
-    <Container layout='maxWidth' pad='All'>
+    <Container layout='maxWidth' pad='All' theme='dark'>
       <div className={styles.links}>
         <Grid template='1fr 1fr 1fr' templateMobile='1fr'>
           {links?.map((l, i) => (

@@ -1,30 +1,3 @@
-%padded-y {
-    padding-top: var(--gap-layout);
-    padding-bottom: var(--gap-layout);
-}
-
-%padded-x {
-    padding-left: var(--gap-layout);
-    padding-right: var(--gap-layout);
-}
-
-%absolute-fill {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-}
-
-%absolute-fill-centered {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-}
-
 .d-layout-centered {
     text-align: center;
     justify-items: center;

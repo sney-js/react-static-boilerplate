@@ -21,6 +21,7 @@ export type HeaderProps = {
   logo?: JSX.Element;
   currentLocale?: string;
   logoLink?: LinkData;
+  ctaLink?: LinkData;
   themeToggle?: boolean;
   localeData?: LocaleData;
 };
@@ -80,10 +81,9 @@ export const Header = (props: HeaderProps) => {
   }
 
   return (
-    <header className={classNames}>
+    <header className={classNames} data-theme='dark'>
       <Container
-        theme='dark'
-        breakpoint='Tablet'
+        breakpoint='Non-Desktop'
         className={makeClass([
           styles.modalWrapper,
           !!menuOpen && styles.modalWrapperOpen

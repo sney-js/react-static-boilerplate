@@ -107,10 +107,6 @@ body {
   --color-highlight-1: rgba(255, 255, 255, 0.2);
   --color-highlight-2: rgba(255, 255, 255, 0.3);
   --gradient-primary: radial-gradient(circle at 50% 55%, #026a38, #009923 92%);
-}
 
-
-[data-theme] {
-  background-color: var(--color-bg);
   color: var(--color-body);
 }
