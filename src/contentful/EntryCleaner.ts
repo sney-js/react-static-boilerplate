@@ -79,7 +79,7 @@ export function cleanupData(data, locale?: string, withHandler?: boolean) {
 
           item[prop] = cleanupEntryLink(item[prop]);
 
-          const overwriteField = item[prop].overwrite;
+          const overwriteField = item[prop]?.overwrite;
           if (overwriteField) {
             item[overwriteField] = item[prop].value;
           }
