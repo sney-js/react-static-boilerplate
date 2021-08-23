@@ -34,36 +34,37 @@ export const CardList = ({ list, title }) => {
         templateMobile='1fr'
         align='stretch'
       >
-        {list.map((page, index) => {
-          const type = getContentType(page);
-          switch (type) {
-            case 'article': {
-              const fields = page.fields as IArticleFields;
-              return (
-                <Card
-                  key={`article${index}`}
-                  title={fields.title}
-                  image={<RespImage image={fields.image} />}
-                  cardLink={{ path: resolve(page) }}
-                  description={<RichText document={fields.description} />}
-                />
-              );
+        {list?.map &&
+          list.map((page, index) => {
+            const type = getContentType(page);
+            switch (type) {
+              case 'article': {
+                const fields = page.fields as IArticleFields;
+                return (
+                  <Card
+                    key={`article${index}`}
+                    title={fields.title}
+                    image={<RespImage image={fields.image} />}
+                    cardLink={{ path: resolve(page) }}
+                    description={<RichText document={fields.description} />}
+                  />
+                );
+              }
+              case 'page': {
+                const fields = page.fields as IPageFields;
+                return (
+                  <Card
+                    key={`page${index}`}
+                    title={fields.title}
+                    image={<RespImage image={fields.image} />}
+                    cardLink={{ path: resolve(page) }}
+                  />
+                );
+              }
+              default:
+                return null;
             }
-            case 'page': {
-              const fields = page.fields as IPageFields;
-              return (
-                <Card
-                  key={`page${index}`}
-                  title={fields.title}
-                  image={<RespImage image={fields.image} />}
-                  cardLink={{ path: resolve(page) }}
-                />
-              );
-            }
-            default:
-              return null;
-          }
-        })}
+          })}
       </Grid>
     </Container>
   );
